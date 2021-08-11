@@ -11,7 +11,7 @@ import utiles.procesoInput;
 import utiles.procesoInput;
 
 public class personajePrefab {
-
+  private procesoInput combo1[];
   private int x;
   private int y;
   private int vidamax;
@@ -25,9 +25,6 @@ public class personajePrefab {
     }
 
 
-	public void jump(){
-      y+= (action.keyDown(Input.Keys.W))? 15 : 0;
-    }
     public int getx(){
         return x;
     }
