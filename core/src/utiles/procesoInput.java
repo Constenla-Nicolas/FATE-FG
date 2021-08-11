@@ -9,9 +9,9 @@ public class procesoInput implements InputProcessor  {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (Gdx.input.) {
+       // if (Gdx.input.) {
             
-        }
+    //    }
         return true;
     }
 
