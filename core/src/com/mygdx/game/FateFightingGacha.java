@@ -18,9 +18,8 @@ public class FateFightingGacha extends Game {
 	 
 	@Override
 	public void create () {
-		
-	//	this.setScreen(new MenuPrincipal());
-
+	 
+		 
 		Render.bacth=new SpriteBatch();
 		b=Render.bacth;
 		 
