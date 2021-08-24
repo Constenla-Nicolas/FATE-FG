@@ -1,21 +1,28 @@
 package Screens;
  
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import utiles.Imagen;
+import utiles.Render;
 
 public class pantallaCarga implements Screen{
-   
- 
- 
+   Imagen fondo;
+   SpriteBatch b=Render.bacth;
     @Override
     public void show() {
-        // TODO Auto-generated method stub
+       fondo= new Imagen("astolfo ending.jpg");
         
     }
 
     @Override
     public void render(float delta) {
-        // TODO Auto-generated method stub
-        
+      
+        b.begin();
+
+       
+
+        b.end();
     }
 
     @Override
