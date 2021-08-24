@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import Screens.MenuPrincipal;
- 
 import utiles.Render;
 import Screens.*;
 import com.badlogic.gdx.Game;
@@ -19,7 +17,7 @@ public class FateFightingGacha extends Game {
 	@Override
 	public void create () {
 	 
-		 
+		setScreen(new pantallaCarga());
 		Render.bacth=new SpriteBatch();
 		b=Render.bacth;
 		 
