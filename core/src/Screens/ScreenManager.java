@@ -21,7 +21,7 @@ public class ScreenManager {
 	
 	public static void setpantallaCarga() {
 		game.setScreen(pantallaCarga);
-	}
+	}	
 
 	public static void setMainMenu() {
 		game.setScreen(MenuPrincipal);
