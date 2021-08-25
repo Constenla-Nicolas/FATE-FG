@@ -15,7 +15,7 @@ public class ScreenManager {
 	public static void initialize(Game game) {
 		ScreenManager.game = game;
 
-		pantallaCarga = new pantallaCarga();
+		pantallaCarga = new PantallaCarga();
 		MenuPrincipal = new MenuPrincipal();
 	}
 	

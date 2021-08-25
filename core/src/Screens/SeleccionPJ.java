@@ -14,8 +14,8 @@ public class SeleccionPJ implements Screen {
     @Override
     public void show() { 
         fondoImagen=new Imagen("badlogic.jpg");
-		Render.bacth= new SpriteBatch();
-		b = Render.bacth;
+		Render.batch= new SpriteBatch();
+		b = Render.batch;
         
     }
 
