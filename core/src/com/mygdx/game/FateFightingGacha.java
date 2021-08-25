@@ -21,20 +21,20 @@ public class FateFightingGacha extends Game {
 		Render.bacth=new SpriteBatch();
 		b=Render.bacth;
 		 
-		
+		ScreenManager.initialize(FateFightingGacha.this);
 	}
 
 	@Override
 	public void render () {
 		super.render();
 		b.begin();
-	 	 
+	 	 ScreenManager.setpantallaCarga();
 		b.end(); 
 	}
 	
 	@Override
 	public void dispose () {
 		b.dispose();
-		img.dispose();
+		super.dispose();
 	}
 }

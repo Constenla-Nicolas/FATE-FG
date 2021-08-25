@@ -1,29 +1,30 @@
 package Screens;
- 
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import utiles.Imagen;
-import utiles.Render;
+import utiles.*;
+ 
 
-public class pantallaCarga implements Screen{
-   Imagen fondo;
-   SpriteBatch b;
+public class SeleccionPJ implements Screen {
+    private Imagen fondoImagen;
+
+	private SpriteBatch b;
+	 
     @Override
-    public void show() {
-       fondo= new Imagen("astolfo ending.jpg");
+    public void show() { 
+        fondoImagen=new Imagen("badlogic.jpg");
+		Render.bacth= new SpriteBatch();
+		b = Render.bacth;
         
     }
 
     @Override
     public void render(float delta) {
-        Render.bacth=new SpriteBatch();
-		b=Render.bacth;
-        b.begin();
-        fondo.dibujar();
-       
-
-        b.end();
+       b.begin();
+       fondoImagen.dibujar();
+       b.end();
+        
     }
 
     @Override
@@ -52,8 +53,7 @@ public class pantallaCarga implements Screen{
 
     @Override
     public void dispose() {
-       b.dispose();
-       
+        // TODO Auto-generated method stub
         
     }
     
