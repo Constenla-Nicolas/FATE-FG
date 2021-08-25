@@ -11,7 +11,7 @@ public class ScreenManager {
 	
 	private ScreenManager() {}
 	
-   //This is called by Game from inside the "create()" method.
+  
 	public static void initialize(Game game) {
 		ScreenManager.game = game;
 
