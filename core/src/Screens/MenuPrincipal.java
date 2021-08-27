@@ -109,7 +109,9 @@ public class MenuPrincipal implements Screen{
 				case 1:
 				Render.app.setScreen(new PantallaCarga());
 				break;
-
+				case 3:
+				Render.app.setScreen(new SeleccionPJ());
+				break;
 				case 5:
 				Gdx.app.exit();
 				break;

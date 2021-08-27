@@ -12,7 +12,7 @@ public class Render {
 	
 	public static FateFightingGacha app;
 	public static void cleaner() {
-		Gdx.gl.glClearColor(0, 0, 0, 1);	/*limpieza de pantalla*/
+		Gdx.gl.glClearColor(1, 1, 1, 1);	/*limpieza de pantalla*/
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 }
