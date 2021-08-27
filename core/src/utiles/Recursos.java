@@ -10,4 +10,5 @@ public class Recursos {
 	public final static String MENUFONT = "Fuentes/Trajan Pro Regular.ttf";
 	public final static String BACKGROUND = "fondos/fire.jpg";
 	public final static Music TITLEMUSIC = Gdx.audio.newMusic(Gdx.files.internal("Music/CosmosInTheLostbelt.mp3"));
+	
 }

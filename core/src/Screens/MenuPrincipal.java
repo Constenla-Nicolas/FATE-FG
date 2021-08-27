@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+ 
 
 import Entradas.Entradas;
 import utiles.Config;
@@ -14,6 +15,7 @@ import utiles.Imagen;
 import utiles.Recursos;
 import utiles.Render;
 import utiles.Text;
+ 
 
 public class MenuPrincipal implements Screen{
     Imagen menu, menuFondo;
@@ -28,44 +30,45 @@ public class MenuPrincipal implements Screen{
 
 	@Override
 	public void show() {
+		
 		menu = new Imagen(Recursos.TITLESCREEN);
-		menu.setSize(1400, 600);
-		menu.setPosition((Config.WIDTH/2)-700, Config.HEIGHT/2);
+		menu.setSize(Config.tamanioDeAlgo(60,Config.WIDTH),Config.tamanioDeAlgo(60,Config.HEIGHT));
+		menu.setPosition(Config.centrado(60, Config.WIDTH),Config.centrado(50,Config.WIDTH));// Config.HEIGHT/2
 		b = Render.batch;
-		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fem.gif").read());
+		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
+		 
 		
 		
-
 		Gdx.input.setInputProcessor(entradas);
 
-		menuFondo = new Imagen(Recursos.BACKGROUND);
-		menuFondo.setSize(Config.WIDTH, Config.HEIGHT);
-
+		
+		 
 		int avance = 80;
 		
 		for (int i = 0; i < options.length; i++) {
-			options[i] = new Text(Recursos.MENUFONT, 60, Color.WHITE);
+			options[i] = new Text(Recursos.MENUFONT, 30, Color.WHITE);
 			options[i].setTexto(texts[i]);
+			
 			options[i].setPosition((Config.WIDTH/2)-(options[i].getWidth()/2), (Config.HEIGHT/2)+(options[0].getHeight()/2)-(options[i].getHeight()+(avance*i)));
 
 		}
 
 		
-
 	}
 
 	@Override
 	public void render(float delta) {
 		
 		Render.cleaner();
-
+		
+		
 		b.begin();
 		Recursos.TITLEMUSIC.play();
-		menuFondo.dibujar();
-		menu.dibujar();
+	
+		
 		elapsed += Gdx.graphics.getDeltaTime();
-		b.draw(animation.getKeyFrame(elapsed),20.0f, 20.0f);
-
+		b.draw(animation.getKeyFrame(elapsed),0.0f, 0.0f,Config.WIDTH,Config.HEIGHT);
+		 menu.dibujar();
 		for (int i = 0; i < options.length; i++) {
 			options[i].dibujar();
 		}
@@ -117,6 +120,7 @@ public class MenuPrincipal implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
+		Config.getViewport().update(width, height);
 	}
 
 	@Override

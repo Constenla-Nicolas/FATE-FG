@@ -412,11 +412,22 @@ public class GifDecoder {
         int curByte = 0;
         try {
             curByte = in.read();
+            
         } catch (Exception e) {
             status = STATUS_FORMAT_ERROR;
         }
         return curByte;
     }
+    ///////////////////////////////////////////////////////////
+
+  
+
+
+
+
+
+    //////////////////////////////////////////////////////////
+
 
     /**
      * Reads next variable length block from input.
@@ -615,6 +626,8 @@ public class GifDecoder {
         }
         resetFrame();
     }
+
+    
 
     /**
      * Reads Logical Screen Descriptor
