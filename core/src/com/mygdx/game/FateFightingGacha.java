@@ -27,7 +27,7 @@ public class FateFightingGacha extends Game {
 		Render.app = this;
 		Config.initialize();
 		
-		Render.app.setScreen(new MenuPrincipal());
+		Render.app.setScreen(new PantallaCarga());
 		
 
 	}
