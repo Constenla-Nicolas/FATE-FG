@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
- 
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 import Entradas.Entradas;
 import utiles.Config;
@@ -25,15 +27,18 @@ public class MenuPrincipal implements Screen{
 	String  texts[] = {"Arcade", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
 	Entradas entradas = new Entradas(this);
 	float elapsed = 0;
+	 
+	 
+	 
 	int opc = 1;
 	public float tiempo = 0;
 
 	@Override
 	public void show() {
-		
+		 
 		menu = new Imagen(Recursos.TITLESCREEN);
 		menu.setSize(Config.tamanioDeAlgo(60,Config.WIDTH),Config.tamanioDeAlgo(60,Config.HEIGHT));
-		menu.setPosition(Config.centrado(60, Config.WIDTH),Config.centrado(50,Config.WIDTH));// Config.HEIGHT/2
+		menu.setPosition(Config.centrado(Config.WIDTH),Config.centrado(Config.WIDTH));// Config.HEIGHT/2
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
 		 
@@ -47,6 +52,7 @@ public class MenuPrincipal implements Screen{
 		
 		for (int i = 0; i < options.length; i++) {
 			options[i] = new Text(Recursos.MENUFONT, 30, Color.WHITE);
+		
 			options[i].setTexto(texts[i]);
 			
 			options[i].setPosition((Config.WIDTH/2)-(options[i].getWidth()/2), (Config.HEIGHT/2)+(options[0].getHeight()/2)-(options[i].getHeight()+(avance*i)));
@@ -77,10 +83,10 @@ public class MenuPrincipal implements Screen{
 
 		tiempo += delta;
 
-		if(entradas.isDown()){
-			if(tiempo > 0.1f){
+		if(entradas.isDown()){ 	//entradas = input entrys
+			if(tiempo > 0.1f){ 	//tiempo = time
 				tiempo = 0;
-				opc++;
+				opc++;			// opc= option;
 				if(opc > 5){
 					opc = 1;
 				}
@@ -97,20 +103,19 @@ public class MenuPrincipal implements Screen{
 		}
 		for (int i = 0; i < options.length; i++) {
 			if(i==(opc-1)){
-				options[i].setColor(Color.RED);
+				options[i].setColor(Color.RED);  //this is a Texts array 
 			}
 			else{
 				options[i].setColor(Color.WHITE);
 			}
-			
 		}
 		if(entradas.isEnter()){
 			switch(opc){
 				case 1:
-				Render.app.setScreen(new PantallaCarga());
+				Render.app.setScreen(new PantallaCarga()); //PantallaCarga = LoadingScreen
 				break;
 				case 3:
-				Render.app.setScreen(new SeleccionPJ());
+				Render.app.setScreen(new SeleccionPJ()); // SeleccionPJ = CharacterSelection
 				break;
 				case 5:
 				Gdx.app.exit();

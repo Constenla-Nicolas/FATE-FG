@@ -17,6 +17,7 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
     private static final int Taskbar= 50;
     private static Camera camara;
     private static Viewport viewport;
+    private static int porcentaje;
  
     public static void initialize(){
         // no borres la linea de abajo, todavia la estoy testeando
@@ -45,7 +46,7 @@ public static void updateCamara(){
  */
 
 public static int tamanioDeAlgo(int porc,int xyvalue){
-
+    porcentaje = porc;
    return (porc*xyvalue/100);
 }
 
@@ -53,12 +54,12 @@ public static int tamanioDeAlgo(int porc,int xyvalue){
  * Para centrar cualquier cosa
  * 
  * @return posicion en pantalla
- * @param porc porcentaje de pantalla que va a ocupar
+ * Llamar primero a tamanioDeAlgo() si o si;
  * @param xyvalue por donde se va a centrar, usar config.WIDTH o config.HEIGHT para centrar horizontal o vertical respectivamente
  */
-public static int centrado(int porc,int xyvalue){
+public static int centrado(int xyvalue){
 
-    return (xyvalue/2-(Config.tamanioDeAlgo(porc,xyvalue))/2);
+    return (xyvalue/2-(Config.tamanioDeAlgo(porcentaje,xyvalue))/2);
 }
 
 }
