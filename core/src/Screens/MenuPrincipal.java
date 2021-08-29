@@ -58,30 +58,8 @@ public class MenuPrincipal implements Screen{
 
 		
 	}
-	public  void inputwea(){
-			;
-		}
-	@Override
-	public void render(float delta) {
-		
-		Render.cleaner();
-		
-		
-		b.begin();
-		Recursos.TITLEMUSIC.play();
-	
-		
-		elapsed += Gdx.graphics.getDeltaTime();
-		b.draw(animation.getKeyFrame(elapsed),0.0f, 0.0f,Config.WIDTH,Config.HEIGHT);
-		 menu.dibujar();
-		for (int i = 0; i < options.length; i++) {
-			options[i].dibujar();
-		}
-		
-		b.end();
-
-		tiempo += delta;
-
+	public  void labelInput(){
+			 
 		
 		if(entradas.isDown()){ 	//entradas = input entrys
 			if(tiempo > 0.1f){ 	//tiempo = time
@@ -122,6 +100,28 @@ public class MenuPrincipal implements Screen{
 				break;
 			}
 		}
+		}
+	@Override
+	public void render(float delta) {
+		
+		Render.cleaner();
+		
+		
+		b.begin();
+		Recursos.TITLEMUSIC.play();
+	
+		
+		elapsed += Gdx.graphics.getDeltaTime();
+		b.draw(animation.getKeyFrame(elapsed),0.0f, 0.0f,Config.WIDTH,Config.HEIGHT);
+		 menu.dibujar();
+		for (int i = 0; i < options.length; i++) {
+			options[i].dibujar();
+		}
+		
+		b.end();
+
+		tiempo += delta;
+		labelInput();
 	}
 	
 
