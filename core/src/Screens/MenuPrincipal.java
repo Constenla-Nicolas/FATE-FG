@@ -6,9 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 import Entradas.Entradas;
 import utiles.Config;
@@ -20,7 +17,7 @@ import utiles.Text;
  
 
 public class MenuPrincipal implements Screen{
-    Imagen menu, menuFondo;
+    Imagen menu;
 	Animation<TextureRegion> animation;
 	SpriteBatch b;
 	Text options[] = new Text[5];
@@ -61,7 +58,9 @@ public class MenuPrincipal implements Screen{
 
 		
 	}
-
+	public  void inputwea(){
+			;
+		}
 	@Override
 	public void render(float delta) {
 		
@@ -83,6 +82,7 @@ public class MenuPrincipal implements Screen{
 
 		tiempo += delta;
 
+		
 		if(entradas.isDown()){ 	//entradas = input entrys
 			if(tiempo > 0.1f){ 	//tiempo = time
 				tiempo = 0;

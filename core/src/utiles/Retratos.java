@@ -2,7 +2,7 @@ package utiles;
 
 public enum Retratos {
     
-    MORDED("pngs/pngwing.com (8).png"),ASTOLFO("pngs/a.png"),ATALANTE("pngs/pngwing.com (1).png"),JEANNE("pngs/pngwing.com (4).png");
+    MORDED("pngs/pngwing.com (8).png"),ASTOLFO("pngs/pngwing.com (6).png"),ATALANTE("pngs/pngwing.com (1).png"),JEANNE("pngs/pngwing.com (4).png");
 
     private String ruta;
 

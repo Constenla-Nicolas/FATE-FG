@@ -1,0 +1,1069 @@
+
+MordredAll.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+pp
+  rotate: false
+  xy: 0, 286
+  size: 188, 217
+  orig: 188, 217
+  offset: 0, 0
+  index: -1
+Crimson Thunder6
+  rotate: false
+  xy: 0, 151
+  size: 134, 135
+  orig: 134, 135
+  offset: 0, 0
+  index: -1
+Crimson Thunder7
+  rotate: false
+  xy: 188, 367
+  size: 133, 136
+  orig: 133, 136
+  offset: 0, 0
+  index: -1
+BloodySlashEX6
+  rotate: false
+  xy: 0, 38
+  size: 83, 113
+  orig: 83, 113
+  offset: 0, 0
+  index: -1
+BloodySlashEX7
+  rotate: false
+  xy: 321, 391
+  size: 79, 112
+  orig: 79, 112
+  offset: 0, 0
+  index: -1
+ehhh
+  rotate: false
+  xy: 400, 412
+  size: 99, 91
+  orig: 99, 91
+  offset: 0, 0
+  index: -1
+ClarentBlood16
+  rotate: false
+  xy: 188, 295
+  size: 99, 72
+  orig: 99, 72
+  offset: 0, 0
+  index: -1
+ClarentBlood15
+  rotate: false
+  xy: 499, 431
+  size: 97, 72
+  orig: 97, 72
+  offset: 0, 0
+  index: -1
+ClarentBlood17
+  rotate: false
+  xy: 596, 445
+  size: 97, 58
+  orig: 97, 58
+  offset: 0, 0
+  index: -1
+ClarentBlood18
+  rotate: false
+  xy: 693, 446
+  size: 90, 57
+  orig: 90, 57
+  offset: 0, 0
+  index: -1
+Air 3-3
+  rotate: false
+  xy: 134, 196
+  size: 63, 90
+  orig: 63, 90
+  offset: 0, 0
+  index: -1
+Air 4-2
+  rotate: false
+  xy: 197, 215
+  size: 70, 80
+  orig: 70, 80
+  offset: 0, 0
+  index: -1
+Air 2-2
+  rotate: false
+  xy: 783, 445
+  size: 78, 58
+  orig: 78, 58
+  offset: 0, 0
+  index: -1
+Ataque 1-1
+  rotate: false
+  xy: 83, 67
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+Air 3-2
+  rotate: false
+  xy: 861, 443
+  size: 72, 60
+  orig: 72, 60
+  offset: 0, 0
+  index: -1
+Air 3-1
+  rotate: false
+  xy: 933, 444
+  size: 71, 59
+  orig: 71, 59
+  offset: 0, 0
+  index: -1
+RadiantThrust3
+  rotate: false
+  xy: 0, 0
+  size: 76, 38
+  orig: 76, 38
+  offset: 0, 0
+  index: -1
+Crouch2
+  rotate: false
+  xy: 134, 152
+  size: 65, 44
+  orig: 65, 44
+  offset: 0, 0
+  index: -1
+Fall6
+  rotate: false
+  xy: 134, 152
+  size: 65, 44
+  orig: 65, 44
+  offset: 0, 0
+  index: -1
+Ataque 1-2
+  rotate: false
+  xy: 144, 68
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+HeavySplitter3
+  rotate: false
+  xy: 199, 152
+  size: 62, 63
+  orig: 62, 63
+  offset: 0, 0
+  index: -1
+Ataque 4-4
+  rotate: false
+  xy: 205, 68
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+Air 3-4
+  rotate: false
+  xy: 287, 289
+  size: 47, 78
+  orig: 47, 78
+  offset: 0, 0
+  index: -1
+HeavySplitter5
+  rotate: false
+  xy: 287, 289
+  size: 47, 78
+  orig: 47, 78
+  offset: 0, 0
+  index: -1
+Jump4
+  rotate: false
+  xy: 334, 307
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+HeavySplitter7
+  rotate: false
+  xy: 267, 219
+  size: 65, 70
+  orig: 65, 70
+  offset: 0, 0
+  index: -1
+Ataque 3-2
+  rotate: false
+  xy: 400, 360
+  size: 78, 52
+  orig: 78, 52
+  offset: 0, 0
+  index: -1
+RadiantThrust5
+  rotate: false
+  xy: 395, 310
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+RadiantThrust4
+  rotate: false
+  xy: 499, 393
+  size: 76, 38
+  orig: 76, 38
+  offset: 0, 0
+  index: -1
+Intro1
+  rotate: false
+  xy: 478, 356
+  size: 21, 56
+  orig: 21, 56
+  offset: 0, 0
+  index: -1
+RadiantThrust6
+  rotate: false
+  xy: 499, 343
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+Air 1-1
+  rotate: false
+  xy: 575, 347
+  size: 32, 84
+  orig: 32, 84
+  offset: 0, 0
+  index: -1
+Jump5
+  rotate: false
+  xy: 607, 361
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+Crimson Thunder5
+  rotate: false
+  xy: 668, 363
+  size: 34, 82
+  orig: 34, 82
+  offset: 0, 0
+  index: -1
+RadiantThrust7
+  rotate: false
+  xy: 702, 396
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+RadiantThrust8
+  rotate: false
+  xy: 778, 395
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+Win2
+  rotate: false
+  xy: 854, 388
+  size: 70, 55
+  orig: 70, 55
+  offset: 0, 0
+  index: -1
+Air 4-3
+  rotate: false
+  xy: 702, 342
+  size: 69, 54
+  orig: 69, 54
+  offset: 0, 0
+  index: -1
+BloodySlash3
+  rotate: false
+  xy: 771, 343
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+BloodySlashEX3
+  rotate: false
+  xy: 771, 343
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+ClarentBlood12
+  rotate: false
+  xy: 838, 336
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+Ataque 4-2
+  rotate: false
+  xy: 83, 15
+  size: 61, 52
+  orig: 61, 52
+  offset: 0, 0
+  index: -1
+HeavySplitter8
+  rotate: false
+  xy: 144, 11
+  size: 63, 57
+  orig: 63, 57
+  offset: 0, 0
+  index: -1
+Air 1-2
+  rotate: false
+  xy: 207, 5
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+Ataque 4-3
+  rotate: false
+  xy: 334, 249
+  size: 62, 58
+  orig: 62, 58
+  offset: 0, 0
+  index: -1
+Ataque 1-3
+  rotate: false
+  xy: 396, 247
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+HeavySplitter9
+  rotate: false
+  xy: 332, 200
+  size: 63, 49
+  orig: 63, 49
+  offset: 0, 0
+  index: -1
+HeavySplitter4
+  rotate: false
+  xy: 395, 189
+  size: 62, 58
+  orig: 62, 58
+  offset: 0, 0
+  index: -1
+Fall4
+  rotate: false
+  xy: 267, 193
+  size: 65, 26
+  orig: 65, 26
+  offset: 0, 0
+  index: -1
+Dash1
+  rotate: false
+  xy: 261, 154
+  size: 58, 39
+  orig: 58, 39
+  offset: 0, 0
+  index: -1
+Crimson Thunder3
+  rotate: false
+  xy: 266, 89
+  size: 55, 65
+  orig: 55, 65
+  offset: 0, 0
+  index: -1
+Ataque 2-1
+  rotate: false
+  xy: 267, 26
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+BloodySlash6
+  rotate: false
+  xy: 456, 247
+  size: 47, 63
+  orig: 47, 63
+  offset: 0, 0
+  index: -1
+Air 1-3
+  rotate: false
+  xy: 457, 189
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+Air 2-3
+  rotate: false
+  xy: 503, 285
+  size: 59, 58
+  orig: 59, 58
+  offset: 0, 0
+  index: -1
+Fall5
+  rotate: false
+  xy: 503, 249
+  size: 45, 36
+  orig: 45, 36
+  offset: 0, 0
+  index: -1
+Ataque 4-5
+  rotate: false
+  xy: 515, 177
+  size: 34, 72
+  orig: 34, 72
+  offset: 0, 0
+  index: -1
+Win1
+  rotate: false
+  xy: 607, 306
+  size: 62, 55
+  orig: 62, 55
+  offset: 0, 0
+  index: -1
+Intro2
+  rotate: false
+  xy: 669, 307
+  size: 29, 56
+  orig: 29, 56
+  offset: 0, 0
+  index: -1
+Crimson thunder2
+  rotate: false
+  xy: 698, 287
+  size: 60, 55
+  orig: 60, 55
+  offset: 0, 0
+  index: -1
+73
+  rotate: false
+  xy: 905, 334
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+74
+  rotate: false
+  xy: 905, 334
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+Crouch1
+  rotate: false
+  xy: 905, 334
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+Fall7
+  rotate: false
+  xy: 905, 334
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+ClarentBlood1
+  rotate: false
+  xy: 924, 388
+  size: 43, 55
+  orig: 43, 55
+  offset: 0, 0
+  index: -1
+Crimson Thunder1
+  rotate: false
+  xy: 924, 388
+  size: 43, 55
+  orig: 43, 55
+  offset: 0, 0
+  index: -1
+Guard1
+  rotate: false
+  xy: 924, 388
+  size: 43, 55
+  orig: 43, 55
+  offset: 0, 0
+  index: -1
+Air 2-1
+  rotate: false
+  xy: 967, 387
+  size: 37, 57
+  orig: 37, 57
+  offset: 0, 0
+  index: -1
+Air 4-1
+  rotate: false
+  xy: 952, 329
+  size: 53, 58
+  orig: 53, 58
+  offset: 0, 0
+  index: -1
+HeavySplitter6
+  rotate: false
+  xy: 952, 329
+  size: 53, 58
+  orig: 53, 58
+  offset: 0, 0
+  index: -1
+Ataque 2-2
+  rotate: false
+  xy: 562, 285
+  size: 37, 58
+  orig: 37, 58
+  offset: 0, 0
+  index: -1
+Crimson Thunder4
+  rotate: false
+  xy: 549, 207
+  size: 35, 78
+  orig: 35, 78
+  offset: 0, 0
+  index: -1
+BloodySlash2
+  rotate: false
+  xy: 584, 215
+  size: 37, 70
+  orig: 37, 70
+  offset: 0, 0
+  index: -1
+BloodySlashEX2
+  rotate: false
+  xy: 584, 215
+  size: 37, 70
+  orig: 37, 70
+  offset: 0, 0
+  index: -1
+BloodySlash7
+  rotate: false
+  xy: 621, 243
+  size: 47, 63
+  orig: 47, 63
+  offset: 0, 0
+  index: -1
+Air 4-4
+  rotate: false
+  xy: 621, 189
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+Ataque 2-3
+  rotate: false
+  xy: 668, 229
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+Ataque 3-3
+  rotate: false
+  xy: 668, 177
+  size: 56, 52
+  orig: 56, 52
+  offset: 0, 0
+  index: -1
+Ataque 2-4
+  rotate: false
+  xy: 723, 229
+  size: 38, 58
+  orig: 38, 58
+  offset: 0, 0
+  index: -1
+Ataque 4-1
+  rotate: false
+  xy: 724, 177
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+Ataque 4-7
+  rotate: false
+  xy: 724, 177
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+BloodySlash5
+  rotate: false
+  xy: 724, 177
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+BloodySlashEX5
+  rotate: false
+  xy: 724, 177
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+ClarentBlood14
+  rotate: false
+  xy: 724, 177
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+RadiantThrust1
+  rotate: false
+  xy: 724, 177
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+Ataque 3-1
+  rotate: false
+  xy: 584, 164
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+Ataque 4-6
+  rotate: false
+  xy: 584, 164
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+BloodySlash1
+  rotate: false
+  xy: 584, 164
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+BloodySlashEX1
+  rotate: false
+  xy: 584, 164
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+CrimsonCharge1
+  rotate: false
+  xy: 549, 151
+  size: 35, 56
+  orig: 35, 56
+  offset: 0, 0
+  index: -1
+CrimsonCharge4
+  rotate: false
+  xy: 621, 150
+  size: 47, 39
+  orig: 47, 39
+  offset: 0, 0
+  index: -1
+CrimsonCharge7
+  rotate: false
+  xy: 668, 125
+  size: 58, 52
+  orig: 58, 52
+  offset: 0, 0
+  index: -1
+CrimsonCharge3
+  rotate: false
+  xy: 726, 125
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+CrimsonCharge6
+  rotate: false
+  xy: 726, 125
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+HeavySplitter1
+  rotate: false
+  xy: 726, 125
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+Fall1
+  rotate: false
+  xy: 758, 287
+  size: 34, 55
+  orig: 34, 55
+  offset: 0, 0
+  index: -1
+RadiantThrust2
+  rotate: false
+  xy: 792, 292
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+Walk1
+  rotate: false
+  xy: 838, 283
+  size: 58, 53
+  orig: 58, 53
+  offset: 0, 0
+  index: -1
+DmgTaken1
+  rotate: false
+  xy: 761, 229
+  size: 35, 58
+  orig: 35, 58
+  offset: 0, 0
+  index: -1
+Win3
+  rotate: false
+  xy: 796, 229
+  size: 41, 63
+  orig: 41, 63
+  offset: 0, 0
+  index: -1
+Win7
+  rotate: false
+  xy: 796, 229
+  size: 41, 63
+  orig: 41, 63
+  offset: 0, 0
+  index: -1
+Walk2
+  rotate: false
+  xy: 770, 177
+  size: 58, 52
+  orig: 58, 52
+  offset: 0, 0
+  index: -1
+Walk3
+  rotate: false
+  xy: 837, 232
+  size: 58, 51
+  orig: 58, 51
+  offset: 0, 0
+  index: -1
+Walk4
+  rotate: false
+  xy: 772, 126
+  size: 58, 51
+  orig: 58, 51
+  offset: 0, 0
+  index: -1
+Fall2
+  rotate: false
+  xy: 896, 275
+  size: 52, 59
+  orig: 52, 59
+  offset: 0, 0
+  index: -1
+Walk5
+  rotate: false
+  xy: 948, 280
+  size: 58, 49
+  orig: 58, 49
+  offset: 0, 0
+  index: -1
+Walk6
+  rotate: false
+  xy: 895, 226
+  size: 58, 49
+  orig: 58, 49
+  offset: 0, 0
+  index: -1
+Fall3
+  rotate: false
+  xy: 953, 228
+  size: 51, 52
+  orig: 51, 52
+  offset: 0, 0
+  index: -1
+BackDash1
+  rotate: false
+  xy: 321, 89
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+ClarentBlood11
+  rotate: false
+  xy: 327, 19
+  size: 37, 70
+  orig: 37, 70
+  offset: 0, 0
+  index: -1
+Dash2
+  rotate: false
+  xy: 837, 193
+  size: 58, 39
+  orig: 58, 39
+  offset: 0, 0
+  index: -1
+RadiantThrust10
+  rotate: false
+  xy: 895, 172
+  size: 48, 54
+  orig: 48, 54
+  offset: 0, 0
+  index: -1
+BackDash2
+  rotate: false
+  xy: 830, 131
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+Intro6
+  rotate: false
+  xy: 871, 137
+  size: 23, 56
+  orig: 23, 56
+  offset: 0, 0
+  index: -1
+RadiantThrust9
+  rotate: false
+  xy: 894, 118
+  size: 48, 54
+  orig: 48, 54
+  offset: 0, 0
+  index: -1
+CharSelect
+  rotate: false
+  xy: 943, 170
+  size: 38, 56
+  orig: 38, 56
+  offset: 0, 0
+  index: -1
+Win5
+  rotate: false
+  xy: 943, 170
+  size: 38, 56
+  orig: 38, 56
+  offset: 0, 0
+  index: -1
+RadiantThrust11
+  rotate: false
+  xy: 981, 174
+  size: 43, 54
+  orig: 43, 54
+  offset: 0, 0
+  index: -1
+DmgTaken2
+  rotate: false
+  xy: 942, 109
+  size: 40, 61
+  orig: 40, 61
+  offset: 0, 0
+  index: -1
+ClarentBlood10
+  rotate: false
+  xy: 982, 123
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+CrimsonCharge2
+  rotate: false
+  xy: 584, 111
+  size: 37, 53
+  orig: 37, 53
+  offset: 0, 0
+  index: -1
+HeavySplitter2
+  rotate: false
+  xy: 584, 111
+  size: 37, 53
+  orig: 37, 53
+  offset: 0, 0
+  index: -1
+CrimsonCharge5
+  rotate: false
+  xy: 621, 111
+  size: 47, 39
+  orig: 47, 39
+  offset: 0, 0
+  index: -1
+Jump2
+  rotate: false
+  xy: 362, 89
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+Jump3
+  rotate: false
+  xy: 364, 27
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+Stance2
+  rotate: false
+  xy: 403, 127
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+DmgTaken3
+  rotate: false
+  xy: 444, 130
+  size: 39, 59
+  orig: 39, 59
+  offset: 0, 0
+  index: -1
+Intro5
+  rotate: false
+  xy: 483, 133
+  size: 26, 56
+  orig: 26, 56
+  offset: 0, 0
+  index: -1
+Win4
+  rotate: false
+  xy: 509, 119
+  size: 40, 58
+  orig: 40, 58
+  offset: 0, 0
+  index: -1
+Win6
+  rotate: false
+  xy: 509, 119
+  size: 40, 58
+  orig: 40, 58
+  offset: 0, 0
+  index: -1
+Stance1
+  rotate: false
+  xy: 549, 88
+  size: 35, 63
+  orig: 35, 63
+  offset: 0, 0
+  index: -1
+CrimsonCharge8
+  rotate: false
+  xy: 584, 61
+  size: 41, 50
+  orig: 41, 50
+  offset: 0, 0
+  index: -1
+BloodySlash4
+  rotate: false
+  xy: 625, 60
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+BloodySlashEX4
+  rotate: false
+  xy: 625, 60
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+Intro10
+  rotate: false
+  xy: 405, 25
+  size: 34, 63
+  orig: 34, 63
+  offset: 0, 0
+  index: -1
+Stance3
+  rotate: false
+  xy: 439, 25
+  size: 35, 63
+  orig: 35, 63
+  offset: 0, 0
+  index: -1
+Stance4
+  rotate: false
+  xy: 474, 25
+  size: 35, 63
+  orig: 35, 63
+  offset: 0, 0
+  index: -1
+ClarentBlood2
+  rotate: false
+  xy: 509, 59
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood13
+  rotate: false
+  xy: 509, 8
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+Intro3
+  rotate: false
+  xy: 548, 32
+  size: 36, 56
+  orig: 36, 56
+  offset: 0, 0
+  index: -1
+RadiantThrust12
+  rotate: false
+  xy: 584, 7
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: -1
+Intro4
+  rotate: false
+  xy: 623, 4
+  size: 38, 56
+  orig: 38, 56
+  offset: 0, 0
+  index: -1
+ClarentBlood3
+  rotate: false
+  xy: 661, 0
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood4
+  rotate: false
+  xy: 982, 63
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood5
+  rotate: false
+  xy: 695, 3
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood6
+  rotate: false
+  xy: 729, 3
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood7
+  rotate: false
+  xy: 763, 3
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood8
+  rotate: false
+  xy: 797, 3
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+Guard2
+  rotate: false
+  xy: 831, 7
+  size: 34, 56
+  orig: 34, 56
+  offset: 0, 0
+  index: -1
+Intro7
+  rotate: false
+  xy: 865, 7
+  size: 23, 56
+  orig: 23, 56
+  offset: 0, 0
+  index: -1
+Intro8
+  rotate: false
+  xy: 888, 8
+  size: 34, 55
+  orig: 34, 55
+  offset: 0, 0
+  index: -1
+Intro9
+  rotate: false
+  xy: 922, 8
+  size: 34, 55
+  orig: 34, 55
+  offset: 0, 0
+  index: -1

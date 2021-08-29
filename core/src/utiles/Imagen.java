@@ -13,6 +13,12 @@ public class Imagen {
 		t = new Texture(ruta);
 		s = new Sprite(t);
 	}
+	
+	public void dispose(){
+		t.dispose();
+	 
+
+	}
 	public void dibujar() {
 		s.draw(Render.batch);
 	}
