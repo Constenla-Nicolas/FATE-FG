@@ -1,3 +1,3 @@
 # FATE-FG
 
-Fighting game de Fate Apcrypha
+Fighting game de Fate Apocrypha
