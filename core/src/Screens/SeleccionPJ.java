@@ -9,7 +9,7 @@ import personajes.Mordred;
 import utiles.*;
  
 
-public class SeleccionPJ implements Screen {
+public class SeleccionPJ extends ScreenManager implements Screen,TieneFondo {
     private Imagen fondoImagen;
     private Mordred p;
 	private SpriteBatch b;
@@ -88,6 +88,11 @@ public class SeleccionPJ implements Screen {
        b.dispose();
        portrait.dispose();
        portraitEnemigo.dispose();
+    }
+    @Override
+    public void setFondo() {
+        // TODO Auto-generated method stub
+        
     }
     
 }
