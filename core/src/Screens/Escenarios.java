@@ -1,22 +1,31 @@
 package Screens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleShader.Config;
 
+import utiles.Imagen;
+import utiles.Recursos;
+import utiles.Render;
 public class Escenarios implements Screen{
-
-    
-
+   SpriteBatch b;
+   private Imagen fightstage;
+   Hud hud;
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-        
+        b= Render.batch;
+       fightstage= new Imagen(Recursos.TESTING);
+       fightstage.setSize(utiles.Config.WIDTH, utiles.Config.HEIGHT);
+       hud= new Hud(b);
+       
+    
     }
 
     @Override
     public void render(float delta) {
-        // TODO Auto-generated method stub
         
+        hud.mostrarHud();
     }
 
     @Override

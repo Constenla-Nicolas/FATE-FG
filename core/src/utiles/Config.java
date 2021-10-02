@@ -17,7 +17,7 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
     private static final int Taskbar= 50;
     private static Camera camara;
     private static Viewport viewport;
-    private static int porcentaje;
+    private static int percentaje;
  
     public static void initialize(){
         // no borres la linea de abajo, todavia la estoy testeando
@@ -46,7 +46,7 @@ public static void updateCamara(){
  */
 
 public static int tamanioDeAlgo(int porc,int xyvalue){
-    porcentaje = porc;
+    percentaje = porc;
    return (porc*xyvalue/100);
 }
 
@@ -59,7 +59,7 @@ public static int tamanioDeAlgo(int porc,int xyvalue){
  */
 public static int centrado(int xyvalue){
 
-    return (xyvalue/2-(Config.tamanioDeAlgo(porcentaje,xyvalue))/2);
+    return (xyvalue/2-(Config.tamanioDeAlgo(percentaje,xyvalue))/2);
 }
 
 }

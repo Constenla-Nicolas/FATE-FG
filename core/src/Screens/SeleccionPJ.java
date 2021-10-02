@@ -5,21 +5,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 import personajes.Mordred;
+ 
 import utiles.*;
  
 
 public class SeleccionPJ implements Screen {
     private Imagen fondoImagen;
-    private Mordred m;
+    private Mordred p;
 	private SpriteBatch b;
 	private Imagen portrait;
     private Imagen portraitEnemigo;
     AtlasRegion[] a;
     @Override
     public void show() { 
+        p= new Mordred();
         fondoImagen=new Imagen(Recursos.SELECCPJ);
 		fondoImagen.setSize(Config.WIDTH, Config.HEIGHT);
-        
+     
 		b = Render.batch; 
         mostrarRetrato(1, false);
         mostrarRetrato(0,true);
@@ -27,15 +29,15 @@ public class SeleccionPJ implements Screen {
     }
     public void mostrarRetrato(int opc,boolean p1){  // opc va a ser igual al personaje que el usuario elija
         if(p1==true){
-            portrait = new Imagen(Retratos.values()[opc].getRuta());
+            portrait = new Imagen(Retratos.values()[opc].getRoot());
             portrait.setSize(Config.tamanioDeAlgo(35, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
             portrait.setPosition(Config.centrado(Config.WIDTH)-((18.3f*Config.WIDTH)/100),Config.centrado(Config.HEIGHT)+((10.42f*Config.HEIGHT)/100));  
 
         }
         if(p1==false){
             
-            portraitEnemigo = new Imagen(Retratos.values()[opc].getRuta());
-            System.out.println(Retratos.values()[opc].getRuta());
+            portraitEnemigo = new Imagen(Retratos.values()[opc].getRoot());
+            System.out.println(Retratos.values()[opc].getRoot());
            portraitEnemigo.setSize(Config.tamanioDeAlgo(40, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
         
              portraitEnemigo.setPosition(Config.centrado(Config.WIDTH)+((46.6f*Config.WIDTH)/100),Config.centrado(Config.HEIGHT)+((10.42f*Config.HEIGHT)/100));  
@@ -78,8 +80,7 @@ public class SeleccionPJ implements Screen {
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        
+        // TODO  aaaaa
     }
 
     @Override

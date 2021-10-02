@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import Screens.Escenarios;
 import Screens.MenuPrincipal;
 import Screens.PantallaCarga;
 import Screens.ScreenManager;
@@ -28,7 +29,7 @@ public class FateFightingGacha extends Game {
 		Render.app = this;
 		Config.initialize();
 		
-		Render.app.setScreen(new PantallaCarga());
+		Render.app.setScreen(new Escenarios());
 		
 
 	}

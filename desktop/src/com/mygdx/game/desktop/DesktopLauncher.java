@@ -13,9 +13,8 @@ public class DesktopLauncher {
 		
 		config.height=1000;
 		config.width=600;
-	 
-		//config.fullscreen=true;
-		//config.fullscreen=true;
+	  
+		config.fullscreen=true;
 		new LwjglApplication(new FateFightingGacha(), config);
 	
 		 
