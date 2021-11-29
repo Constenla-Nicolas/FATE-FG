@@ -9,7 +9,7 @@ import personajes.Mordred;
 import utiles.*;
  
 
-public class SeleccionPJ extends ScreenManager implements Screen,TieneFondo {
+public class SeleccionPJ  implements Screen,TieneFondo {
     private Imagen fondoImagen;
     private Mordred p;
 	private SpriteBatch b;

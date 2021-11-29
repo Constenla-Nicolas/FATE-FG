@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import Screens.Escenarios;
 import Screens.MenuPrincipal;
 import Screens.PantallaCarga;
-import Screens.ScreenManager;
+ 
 import Screens.SeleccionPJ;
 import utiles.Config;
 import utiles.Recursos;

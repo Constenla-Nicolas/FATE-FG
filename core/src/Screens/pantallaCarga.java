@@ -3,14 +3,10 @@ package Screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import utiles.Config;
-import utiles.Imagen;
-import utiles.Recursos;
-import utiles.Render;
+import utiles.*;
 
 public class PantallaCarga implements Screen{
-	
-	Imagen fondo;
+    Imagen fondo;
 
 	SpriteBatch b;
 	boolean fadeInTerminado = false, termina = false;
