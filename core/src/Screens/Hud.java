@@ -7,42 +7,78 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
  
 import utiles.Config;
+ 
 import utiles.Render;
  
+ 
 
-public class Hud {
+public class Hud{
     public Stage stage;
     private Viewport viewport;
     private Label cuentaAtras;
     private Label tiempotexto;
-    private Integer timer;
+    private int sec=99;
     public Hud(SpriteBatch batch){
-        
+       
+        startTimer();
         viewport = new FitViewport( Config.WIDTH,Config.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,batch);
         table();
         
     }
 
-   public void mostrarHud(){
+       private Timer.Task TimerSegundos = new Timer.Task() {
+        
+          @Override
+          public void run() {
+           sec--;
+           System.out.println(sec);
+          }
+      };
       
+        public void startTimer(){
+          Timer.schedule(TimerSegundos, 1f, 1f);
+          
+      }
+
+      public void BarraVida(int x, int y) {
+
+
+      }
+   public void mostrarHud(){
+    
        Render.batch.setProjectionMatrix(stage.getCamera().combined);
        stage.draw();
+       
+         
+   }
+
+   public void dispose(){
+    Render.cleaner();
    }
    private void table() {
+    
        Table table = new Table();
        table.top();
        table.setFillParent(true);
-        cuentaAtras = new Label(String.format("%02d", timer),new Label.LabelStyle(new BitmapFont(),Color.WHITE));
+        cuentaAtras = new Label(String.format("%02d", sec),new Label.LabelStyle(new BitmapFont(),Color.WHITE));
         tiempotexto= new Label("TIME",new Label.LabelStyle(new BitmapFont(),Color.WHITE));
         table.add(tiempotexto).expandX().padTop(10);
         table.row();
         table.add(cuentaAtras).expandX().padTop(10);
         stage.addActor(table);
+   }
+
+   public Label getCuentaAtras() {
+       return cuentaAtras;
+   }
+   public int getSec() {
+       return sec;
    }
 }

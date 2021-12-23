@@ -13,7 +13,7 @@ public class Recursos {
 	public final static String SELECCPJ = "fondos/SeleccPJ.png";
 	public final static String MordredPORTRAIT = "pngs/pngwing.com (8)";
 	public final static String TESTING="EscenariosBatalla/20.jpg";
-
+ 
 
 
 }

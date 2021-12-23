@@ -14,7 +14,7 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
     public static final int HEIGHT = Gdx.graphics.getDisplayMode().height;
     ///////////////////////////////////////////////////////////////////////
 
-    private static final int Taskbar= 50;
+   
     private static Camera camara;
     private static Viewport viewport;
     private static int percentaje;
@@ -54,7 +54,7 @@ public static int tamanioDeAlgo(int porc,int xyvalue){
  * Para centrar cualquier cosa
  * 
  * @return posicion en pantalla
- * Llamar primero a tamanioDeAlgo() si o si;
+ * Llamar y definir primero tamanioDeAlgo() si o si;
  * @param xyvalue por donde se va a centrar, usar config.WIDTH o config.HEIGHT para centrar horizontal o vertical respectivamente
  */
 public static int centrado(int xyvalue){
