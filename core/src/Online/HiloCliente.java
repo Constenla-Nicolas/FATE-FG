@@ -56,6 +56,7 @@ public class HiloCliente extends Thread {
           
             e.printStackTrace();
         }
+        
     }
 
 }
