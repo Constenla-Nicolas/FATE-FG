@@ -37,7 +37,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         if(p1==false){
             
             portraitEnemigo = new Imagen(Retratos.values()[opc].getRoot());
-            System.out.println(Retratos.values()[opc].getRoot());
+   
            portraitEnemigo.setSize(Config.tamanioDeAlgo(40, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
         
              portraitEnemigo.setPosition(Config.centrado(Config.WIDTH)+((46.6f*Config.WIDTH)/100),Config.centrado(Config.HEIGHT)+((10.42f*Config.HEIGHT)/100));  

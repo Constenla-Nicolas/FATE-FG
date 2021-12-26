@@ -10,4 +10,8 @@ public enum Background {
     Background(String root){
         this.root=root;
     }
+
+    public String getRoot() {
+        return root;
+    }
 }

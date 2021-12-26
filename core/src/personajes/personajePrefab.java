@@ -2,16 +2,14 @@ package personajes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+ 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 import utiles.Imagen;
 import utiles.procesoInput;
-import utiles.procesoInput;
+ 
 
-public class personajePrefab {
+public abstract class personajePrefab {
   private procesoInput combo1[];
   private int x;
   private int y;
@@ -34,7 +32,12 @@ public class personajePrefab {
         return y;
     }
 	
-	 
+    public int getVidaActual() {
+        return vidaActual;
+    }
+	public int getVidamax() {
+        return vidamax;
+    }
 	 
 
 }

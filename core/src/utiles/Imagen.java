@@ -3,21 +3,29 @@ package utiles;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class Imagen {
+ 
+
+public class Imagen extends Actor {
 
 	private Texture t;
 	private Sprite s;
 	private float x = 0,y = 0;
-	public Imagen(String ruta) {
-		t = new Texture(ruta);
+	public Imagen(String escenario1) {
+		t = new Texture(escenario1);
 		s = new Sprite(t);
+		this.t=t;
 	}
 	
 	public void dispose(){
 		t.dispose();
 	 
 
+	}
+	public Texture getT() {
+		return t;
 	}
 	public void dibujar() {
 		s.draw(Render.batch);
