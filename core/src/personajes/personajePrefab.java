@@ -14,6 +14,7 @@ public abstract class personajePrefab {
   private int x;
   private int y;
   private int vidamax;
+  private Imagen i;
   private  int vidaActual;
   public AtlasRegion Sprites;
   public static Imagen spriteImagen;
@@ -23,6 +24,14 @@ public abstract class personajePrefab {
         
         Gdx.input.setInputProcessor(action);
     }
+    public Imagen getImagen() {
+        return i;
+    }
+    public void setImagen(Imagen i){
+
+        this.i = i;
+    }
+
 
 
     public int getx(){

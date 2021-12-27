@@ -33,7 +33,7 @@ public class Hud {
         viewport = new FitViewport( Config.WIDTH,Config.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,batch);
         table();
-      
+         
     }
     public void contornoBarra(){
         contorno.setSize(Config.tamanioDeAlgo(25, Config.WIDTH), Config.tamanioDeAlgo(10, Config.HEIGHT));

@@ -13,11 +13,11 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
     public static final int WIDTH =Gdx.graphics.getDisplayMode().width; 
     public static final int HEIGHT = Gdx.graphics.getDisplayMode().height;
     ///////////////////////////////////////////////////////////////////////
-
+    public static boolean ONLINE=false;
    
     private static Camera camara;
     private static Viewport viewport;
-    private static int percentaje;
+    private static int proporcion;
  
     public static void initialize(){
         // no borres la linea de abajo, todavia la estoy testeando
@@ -25,7 +25,6 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
         
         camara = new OrthographicCamera(WIDTH,HEIGHT);
         camara.normalizeUp();
-        
         viewport = new FitViewport(WIDTH, HEIGHT, camara); 
         viewport.update(WIDTH, HEIGHT,true);
         Render.batch.setProjectionMatrix(camara.combined);
@@ -39,6 +38,15 @@ public static void updateCamara(){
 }
 
 /**
+ * Para cuando quieras hacer un porcentaje
+ * 
+ * @param nmb    cuanto porciento
+ * @param xyvalue config.HEIGHT o config.WIDTH si lo haces en base al tamaño de pantalla
+ */
+    public static int SacarPorcentaje(float nmb, int xyvalue){
+        return (int)(nmb*xyvalue/100);
+    }
+/**
  * Para cuando quieras definir el tamanio de un texto, titulo, etc. en base a la resolucion interna del juego
  * 
  * @param porc    porcentaje de pantalla que va a ocupar
@@ -46,7 +54,7 @@ public static void updateCamara(){
  */
 
 public static int tamanioDeAlgo(int porc,int xyvalue){
-    percentaje = porc;
+    proporcion = porc;
    return (porc*xyvalue/100);
 }
 
@@ -59,7 +67,7 @@ public static int tamanioDeAlgo(int porc,int xyvalue){
  */
 public static int centrado(int xyvalue){
 
-    return (xyvalue/2-(Config.tamanioDeAlgo(percentaje,xyvalue))/2);
+    return (xyvalue/2-(Config.tamanioDeAlgo(proporcion,xyvalue))/2);
 }
 
 }

@@ -16,7 +16,7 @@ public class Imagen extends Actor {
 	public Imagen(String escenario1) {
 		t = new Texture(escenario1);
 		s = new Sprite(t);
-		this.t=t;
+		 
 	}
 	
 	public void dispose(){
@@ -27,6 +27,7 @@ public class Imagen extends Actor {
 	public Texture getT() {
 		return t;
 	}
+	
 	public void dibujar() {
 		s.draw(Render.batch);
 	}

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+ 
 
 import Entradas.Entradas;
 import utiles.Config;
@@ -16,7 +17,7 @@ import utiles.Render;
 import utiles.Text;
  
 
-public class MenuPrincipal implements Screen{
+public class MenuPrincipal implements Screen,TieneFondo{
     Imagen menu;
 	Animation<TextureRegion> animation;
 	SpriteBatch b;
@@ -32,10 +33,8 @@ public class MenuPrincipal implements Screen{
 
 	@Override
 	public void show() {
+		 setFondo();
 		 
-		menu = new Imagen(Recursos.TITLESCREEN);
-		menu.setSize(Config.tamanioDeAlgo(60,Config.WIDTH),Config.tamanioDeAlgo(60,Config.HEIGHT));
-		menu.setPosition(Config.centrado(Config.WIDTH),Config.centrado(Config.WIDTH));// Config.HEIGHT/2
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
 		 
@@ -152,6 +151,12 @@ public class MenuPrincipal implements Screen{
 	public void dispose() {
 		Recursos.TITLEMUSIC.dispose();;
 		
+	}
+	@Override
+	public void setFondo() {
+		menu = new Imagen(Recursos.TITLESCREEN);
+		menu.setSize(Config.tamanioDeAlgo(60,Config.WIDTH),Config.tamanioDeAlgo(60,Config.HEIGHT));
+		menu.setPosition(Config.centrado(Config.WIDTH),Config.centrado(Config.WIDTH));// Config.HEIGHT/2
 	}
     
 }

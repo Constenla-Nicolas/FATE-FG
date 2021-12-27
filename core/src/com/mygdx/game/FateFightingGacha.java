@@ -1,14 +1,10 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
  
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  
-
-import Screens.Escenarios;
-import Screens.PantallaCarga;
 import Screens.SeleccionPJ;
 import utiles.Config;
  
@@ -25,7 +21,7 @@ public class FateFightingGacha extends Game {
 		Render.app = this;
 		Config.initialize();
 		
-		Render.app.setScreen(new PantallaCarga());
+		Render.app.setScreen(new SeleccionPJ());
 		
 
 	}
