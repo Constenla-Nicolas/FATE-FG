@@ -2,7 +2,10 @@ package utiles;
 
  
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
+ 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
@@ -14,7 +17,7 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
     public static final int HEIGHT = Gdx.graphics.getDisplayMode().height;
     ///////////////////////////////////////////////////////////////////////
     public static boolean ONLINE=false;
-   
+    public static java.util.Random r = new Random();
     private static Camera camara;
     private static Viewport viewport;
     private static int proporcion;

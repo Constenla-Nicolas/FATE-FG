@@ -27,6 +27,11 @@ public class Imagen extends Actor {
 	public Texture getT() {
 		return t;
 	}
+
+	public void darVuelta(Boolean a,boolean b){
+
+		s.flip(a, b);
+	}
 	
 	public void dibujar() {
 		s.draw(Render.batch);

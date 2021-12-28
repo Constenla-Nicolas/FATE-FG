@@ -6,17 +6,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import utiles.Config;
 import utiles.Imagen;
+ 
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
    private Imagen fightstage;
    Hud hud;
-    public Escenarios(){
-
+   private String e;
+    public Escenarios(String escenario){
+    this.e = escenario;
+    setFondo();
  }
     @Override
     public void show() {
-        setFondo();
+        
         b= Render.batch;
         hud= new Hud(b);
        
@@ -67,9 +70,9 @@ public class Escenarios implements Screen,TieneFondo{
     Render.batch.dispose();
     hud.dispose();
     }
-    @Override
+     @Override
     public void setFondo() {
-        fightstage= new Imagen(Background.ESCENARIO1.getRoot());
+        fightstage= new Imagen(e);
         fightstage.setSize(Config.tamanioDeAlgo(100, Config.WIDTH),Config.tamanioDeAlgo(100, Config.HEIGHT));
         fightstage.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
     }

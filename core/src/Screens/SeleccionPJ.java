@@ -2,12 +2,16 @@ package Screens;
  
  
 
+import java.security.Key;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+ 
 
 import Entradas.Entradas;
  
@@ -21,15 +25,21 @@ public class SeleccionPJ  implements Screen,TieneFondo {
 	private SpriteBatch b;
     private Imagen flecha[]= new Imagen[4];
 	private Imagen[][] portrait= new Imagen[4][2]; // 0 es astolfo, 1 mordred, 2 jeanne, 3 atalante
-    private Imagen portraitEnemigo;
+    private Imagen[] portraitEnemigo=new Imagen[4];
     private personajePrefab jugador;
     private personajePrefab jugador2;
     int opc =0;
     int cont;
-  
+    float ts, period;
+    boolean npc=false;
+
+
+
+
     AtlasRegion[] a;
     @Override
     public void show() { 
+       
         Gdx.input.setInputProcessor(input);
          setFondo();
 		b = Render.batch;
@@ -39,7 +49,30 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         
     }
     
-    private void seleccionar(){
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    private void selecEscenario(){
+
+      
+        Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot()));
+
+    }
+
+    private int inputSelec() {
         try {
             synchronized(input){
                   input.wait(120);
@@ -51,7 +84,8 @@ public class SeleccionPJ  implements Screen,TieneFondo {
           }
         
             
-            if (input.isDown()) {
+            if (input.keyDown(Keys.A)) {
+           
                 if (opc==0) {
                     opc=3;
                 }
@@ -60,7 +94,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
                   
                 }
             }
-            if (input.isUp()) {
+            if (input.keyDown(Keys.D)) {
                 if(opc==3){
                  opc=0;
                 }
@@ -69,16 +103,8 @@ public class SeleccionPJ  implements Screen,TieneFondo {
                    
                 }
             }
-            System.out.println(jugador);
-         
-         portrait[opc][1].dibujar();
-        
-
-         if (input.isEnter()) {
-            jugador= Retratos.values()[opc+8].getClase();
-         }
-        
-        
+          
+            return opc;
     }
 
     private void listapj(){
@@ -123,15 +149,16 @@ else{
         portrait[i-4][1] = new Imagen(Retratos.values()[i].getRoot());
         portrait[i-4][1].setSize(Config.tamanioDeAlgo(35, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
         portrait[i-4][1].setPosition(Config.centrado(Config.WIDTH)- Config.SacarPorcentaje(18.3f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));  
-        ;
+        
     }
-      
-    // portrait[] = new Imagen(Retratos.values()[4].getRoot());
-    // portrait.setSize(Config.tamanioDeAlgo(35, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
-    // portrait.setPosition  //  portraitEnemigo = new Imagen(Retratos.values()[5].getRoot());
-    // portraitEnemigo.setSize(Config.tamanioDeAlgo(40, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
-    // portraitEnemigo.setPosition(Config.centrado(Config.WIDTH)+ Config.SacarPorcentaje(50.6f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));
+      for (int i = 4; i < Retratos.values().length-4; i++) {
+    portraitEnemigo[i-4] = new Imagen(Retratos.values()[i].getRoot());
+    portraitEnemigo[i-4].setSize(Config.tamanioDeAlgo(40, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
+    portraitEnemigo[i-4].setPosition(Config.centrado(Config.WIDTH)+ Config.SacarPorcentaje(50.6f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));
 
+          
+      }
+    
 }
         
    }
@@ -143,7 +170,12 @@ else{
          
         
        b.begin();
-      seleccionar();
+     //  seleccionar();
+     ts +=Gdx.graphics.getRawDeltaTime();
+     if(ts > period){
+         ts-=period;
+         handleEvent();
+     }
      for (int i = 0; i < portrait.length; i++) {
             portrait[i][0].dibujar();
         }
@@ -152,6 +184,41 @@ else{
        b.end();
         
     }
+
+    private void handleEvent() {
+ 
+        portrait[inputSelec()][1].dibujar();
+
+
+        // if (npc=false) {
+        //      if(input.keyDown(Keys.SPACE)) {
+
+  
+        //      jugador= Retratos.values()[inputSelec()+8].getClase();
+        //      npc =true;
+        //        System.out.println(jugador);
+
+        // }
+        // } else {
+        //     portraitEnemigo[inputSelec()].dibujar();
+
+        //     if (input.keyDown(Keys.SPACE)) {
+             
+        //      jugador2= Retratos.values()[inputSelec()+8].getClase();
+        // }
+        // }
+
+
+ 
+       
+        
+        
+
+    }
+
+
+
+
 
     @Override
     public void resize(int width, int height) {
@@ -178,7 +245,7 @@ else{
     @Override
     public void dispose() {
        b.dispose();
-      
+       
        fondoImagen.dispose();
     }
     @Override

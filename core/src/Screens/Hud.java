@@ -26,9 +26,12 @@ public class Hud {
     private Label cuentaAtras;
     private Label tiempotexto;
     Imagen contorno;
+    Imagen contorno2;
     private int sec=99;
     public Hud(SpriteBatch batch){
         contorno = new Imagen("pngs/life_bar.png");
+        contorno2= new Imagen("pngs/life_bar.png");
+        contorno2.darVuelta(true, false);
         startTimer(); 
         viewport = new FitViewport( Config.WIDTH,Config.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,batch);
@@ -36,9 +39,17 @@ public class Hud {
          
     }
     public void contornoBarra(){
-        contorno.setSize(Config.tamanioDeAlgo(25, Config.WIDTH), Config.tamanioDeAlgo(10, Config.HEIGHT));
+        contorno.setSize(Config.tamanioDeAlgo(48, Config.WIDTH), Config.tamanioDeAlgo(6, Config.HEIGHT));
+        contorno.setPosition(Config.centrado(Config.WIDTH)- Config.SacarPorcentaje(47, Config.WIDTH), Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(45, Config.HEIGHT));
+        contorno2.setSize(Config.tamanioDeAlgo(48, Config.WIDTH), Config.tamanioDeAlgo(6, Config.HEIGHT));
+        contorno2.setPosition(Config.centrado(Config.WIDTH)+ Config.SacarPorcentaje(5, Config.WIDTH), Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(45, Config.HEIGHT));
+        
+        
         Render.batch.begin();
         contorno.dibujar();
+        contorno2.dibujar();
+
+
         Render.batch.end();
     }
 

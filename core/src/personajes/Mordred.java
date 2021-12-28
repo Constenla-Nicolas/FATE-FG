@@ -1,5 +1,7 @@
 package personajes;
 
+import com.badlogic.gdx.scenes.scene2d.Event;
+
 import utiles.Imagen;
 
 public class Mordred extends personajePrefab{
@@ -9,4 +11,11 @@ public class Mordred extends personajePrefab{
       
 
     }
+
+    @Override
+    public void Terminapelea() {
+        // TODO Auto-generated method stub
+        
+    }
+ 
 }

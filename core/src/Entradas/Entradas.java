@@ -3,18 +3,15 @@ package Entradas;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
-import Screens.*;
+ 
 
 public class Entradas implements InputProcessor {
 
     private boolean down = false, up = false, enter = false;
     Screen app;
 
-    public Entradas(Screen app){
+    public Entradas(Screen app){    
         this.app = app;
-    }
-    public boolean isEnter(){
-        return enter;
     }
     public boolean isDown(){
         return down;
@@ -22,6 +19,11 @@ public class Entradas implements InputProcessor {
     public boolean isUp(){
         return up;
     }
+    public boolean isEnter(){
+        return enter;
+    }
+
+
     @Override
     public boolean keyDown(int keycode) {
         
@@ -35,6 +37,7 @@ public class Entradas implements InputProcessor {
         }
         if(keycode == Keys.ENTER){
             enter = true;
+        
         }
         return false;
     }
@@ -49,6 +52,7 @@ public class Entradas implements InputProcessor {
         }
         if(keycode == Keys.ENTER){
             enter = false ;
+          
         }
         return false;
     }
