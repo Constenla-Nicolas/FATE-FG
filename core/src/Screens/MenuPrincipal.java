@@ -89,7 +89,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		if(entradas.isEnter()){
 			switch(opc){
 				case 1:
-				Render.app.setScreen(new PantallaCarga()); //PantallaCarga = LoadingScreen
+				Render.app.setScreen(new pantallaCarga()); //PantallaCarga = LoadingScreen
 				break;
 				case 3:
 				Render.app.setScreen(new SeleccionPJ()); // SeleccionPJ = CharacterSelection
