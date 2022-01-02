@@ -4,8 +4,7 @@ import com.badlogic.gdx.Game;
  
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import Online.Cliente;
+ 
 import Screens.*;
 import utiles.Config;
  
