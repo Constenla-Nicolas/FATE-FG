@@ -75,7 +75,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     private int inputSelec() {
         try {
             synchronized(input){
-                  input.wait(120);
+                  input.wait(90);
             }
             
           } catch (InterruptedException e) {
@@ -84,22 +84,22 @@ public class SeleccionPJ  implements Screen,TieneFondo {
           }
         
             
-            if (input.keyDown(Keys.A)) {
+            if (input.isDown()) {
            
                 if (opc==0) {
                     opc=3;
                 }
                 else{
-                    opc--;
+                    opc=1;
                   
                 }
             }
-            if (input.keyDown(Keys.D)) {
+            if (input.isUp()) {
                 if(opc==3){
                  opc=0;
                 }
                 else{
-                    opc++;
+                    opc=1;
                    
                 }
             }
@@ -190,23 +190,25 @@ else{
         portrait[inputSelec()][1].dibujar();
 
 
-        // if (npc=false) {
-        //      if(input.keyDown(Keys.SPACE)) {
+         if (!npc) {
+              if(input.isEnter()) {
+                System.out.println("a");
 
   
-        //      jugador= Retratos.values()[inputSelec()+8].getClase();
-        //      npc =true;
-        //        System.out.println(jugador);
+              jugador= Retratos.values()[inputSelec()+8].getClase();
+            npc =true;
+               System.out.println(jugador);
 
-        // }
-        // } else {
-        //     portraitEnemigo[inputSelec()].dibujar();
+         }
+        } else {
+             portraitEnemigo[inputSelec()].dibujar();
 
-        //     if (input.keyDown(Keys.SPACE)) {
-             
-        //      jugador2= Retratos.values()[inputSelec()+8].getClase();
-        // }
-        // }
+             if (input.isEnter()) {
+ 
+             System.out.println(jugador2);
+              jugador2= Retratos.values()[inputSelec()+8].getClase();
+         }
+         }
 
 
  

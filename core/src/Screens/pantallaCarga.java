@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import utiles.*;
 
-public class PantallaCarga implements Screen{
+public class pantallaCarga implements Screen{
     Imagen fondo;
 
 	SpriteBatch b;
