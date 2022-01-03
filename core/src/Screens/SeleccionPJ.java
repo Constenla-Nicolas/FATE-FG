@@ -52,12 +52,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     private int inputSelec() {
         try {
             synchronized(input){
-<<<<<<< HEAD
                   input.wait(90);
-=======
-                  input.wait(140);
-                 
->>>>>>> dfe4b7540a258a7588ef62b4df4a365755648ed9
             }
             
           } catch (InterruptedException e) {
@@ -66,13 +61,8 @@ public class SeleccionPJ  implements Screen,TieneFondo {
           }
         
             
-<<<<<<< HEAD
             if (input.isDown()) {
            
-=======
-            if (input.isA()) {
-               
->>>>>>> dfe4b7540a258a7588ef62b4df4a365755648ed9
                 if (opc==0) {
                     opc=3;
                 }
@@ -81,12 +71,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
                   
                 }
             }
-<<<<<<< HEAD
             if (input.isUp()) {
-=======
-            if (input.isD()) {
-             
->>>>>>> dfe4b7540a258a7588ef62b4df4a365755648ed9
                 if(opc==3){
                  opc=0;
                 }
