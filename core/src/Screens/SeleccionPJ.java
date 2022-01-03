@@ -5,7 +5,7 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Input.Keys;
+ 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
  
@@ -16,7 +16,7 @@ import utiles.*;
 
 public class SeleccionPJ  implements Screen,TieneFondo {
     private Imagen fondoImagen;
-    private EntradaSelecc input = new EntradaSelecc(this);
+    private Entradas input = new Entradas(this);
 	private SpriteBatch b;
     private Imagen flecha[]= new Imagen[4];
 	private Imagen[][] portrait= new Imagen[4][2]; // 0 es astolfo, 1 mordred, 2 jeanne, 3 atalante
@@ -25,7 +25,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     private personajePrefab jugador2;
     int opc =0;
     int cont;
-    float ts, period;
+     float ts, period;
     boolean npc=false;
 
 
@@ -53,6 +53,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         try {
             synchronized(input){
                   input.wait(90);
+ 
             }
             
           } catch (InterruptedException e) {
@@ -62,12 +63,14 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         
             
             if (input.isDown()) {
-           
+                System.out.println("abajo");
                 if (opc==0) {
+                     
                     opc=3;
+                    System.out.println(opc);
                 }
                 else{
-                    opc=1;
+                    opc--;
                   
                 }
             }
@@ -76,7 +79,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
                  opc=0;
                 }
                 else{
-                    opc=1;
+                    opc++;
                    
                 }
             }
@@ -144,12 +147,12 @@ public class SeleccionPJ  implements Screen,TieneFondo {
          
         
        b.begin();
- 
-    
+       
      ts +=Gdx.graphics.getRawDeltaTime();
      if(ts > period){
-         ts-=period;
-         handleEvent();
+         ts-=period; 
+         
+    handleEvent();
      }
      for (int i = 0; i < portrait.length; i++) {
             portrait[i][0].dibujar();
@@ -162,11 +165,12 @@ public class SeleccionPJ  implements Screen,TieneFondo {
 
     private void handleEvent() {
   
-
-       portrait[inputSelec()][1].dibujar();
+        portrait[inputSelec()][1].dibujar();
+       
       if (input.isEnter()) {
           
           jugador= Retratos.values()[inputSelec()+8].getClase();
+          System.out.println("aeuoeauaouoaeu");;
           seleccionarEnemigo();
       } 
 
@@ -190,9 +194,11 @@ public class SeleccionPJ  implements Screen,TieneFondo {
          }
          }
 
-
+        }
     private void seleccionarEnemigo() {
+        
         portraitEnemigo[inputSelec()].dibujar();
+        System.out.println("seleccenemigo");
         if (input.isEnter()) {
           
             jugador2= Retratos.values()[inputSelec()+8].getClase();
@@ -247,68 +253,6 @@ public class SeleccionPJ  implements Screen,TieneFondo {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public class EntradaSelecc extends Entradas{
-
-        public EntradaSelecc(Screen app) {
-            super(app);
-             
-        }
-        @Override
-        public boolean keyDown(int keycode) {
-             
-            switch (keycode) {
-                case Keys.UP:
-                    down=true;
-                    return false;
-                case Keys.DOWN:
-                    up=true;
-                    return false;
-    
-                case Keys.D:
-                    d = true;
-                    return false;
-                
-                case Keys.A:
-                    a=true;
-                    return false;
-                case Keys.ENTER:
-                    enter=true;
-                    return false;
-                default:
-                    return false;
-            }
-       
-        }
-
-        @Override
-        public boolean keyUp(int keycode){
-            switch (keycode) {
-                case Keys.UP:
-                    down=false;
-                    return false;
-                case Keys.DOWN:
-                    up=false;
-                    return false;
-    
-                case Keys.D:
-                    d = false;
-                    return false;
-                
-                case Keys.A:
-                    a=false;
-                    return false;
-                case Keys.ENTER:
-                    enter=false;
-                    return false;
-                default:
-                    return false;
-            }
-        }
-
-
-
-        
-    }
     
 
     
