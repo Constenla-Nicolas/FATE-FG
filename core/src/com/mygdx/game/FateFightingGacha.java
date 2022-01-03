@@ -14,7 +14,7 @@ public class FateFightingGacha extends Game {
 	Texture img;
 	int x,y;
 	 
-	 
+	  
 	@Override
 	public void create () {
 		Render.batch=new SpriteBatch();

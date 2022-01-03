@@ -1,10 +1,7 @@
 package Screens;
  
  
-
-import java.security.Key;
-import java.util.Timer;
-import java.util.TimerTask;
+ 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,16 +9,14 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
  
-
 import Entradas.Entradas;
- 
 import personajes.personajePrefab;
 import utiles.*;
  
 
 public class SeleccionPJ  implements Screen,TieneFondo {
     private Imagen fondoImagen;
-    private Entradas input = new Entradas(this);
+    private EntradaSelecc input = new EntradaSelecc(this);
 	private SpriteBatch b;
     private Imagen flecha[]= new Imagen[4];
 	private Imagen[][] portrait= new Imagen[4][2]; // 0 es astolfo, 1 mordred, 2 jeanne, 3 atalante
@@ -32,8 +27,6 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     int cont;
     float ts, period;
     boolean npc=false;
-
-
 
 
     AtlasRegion[] a;
@@ -48,23 +41,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         
         
     }
-    
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
     private void selecEscenario(){
 
       
@@ -75,7 +52,12 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     private int inputSelec() {
         try {
             synchronized(input){
+<<<<<<< HEAD
                   input.wait(90);
+=======
+                  input.wait(140);
+                 
+>>>>>>> dfe4b7540a258a7588ef62b4df4a365755648ed9
             }
             
           } catch (InterruptedException e) {
@@ -84,8 +66,13 @@ public class SeleccionPJ  implements Screen,TieneFondo {
           }
         
             
+<<<<<<< HEAD
             if (input.isDown()) {
            
+=======
+            if (input.isA()) {
+               
+>>>>>>> dfe4b7540a258a7588ef62b4df4a365755648ed9
                 if (opc==0) {
                     opc=3;
                 }
@@ -94,7 +81,12 @@ public class SeleccionPJ  implements Screen,TieneFondo {
                   
                 }
             }
+<<<<<<< HEAD
             if (input.isUp()) {
+=======
+            if (input.isD()) {
+             
+>>>>>>> dfe4b7540a258a7588ef62b4df4a365755648ed9
                 if(opc==3){
                  opc=0;
                 }
@@ -126,9 +118,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
             flecha[j].setPosition(posx+Config.SacarPorcentaje(5, Config.WIDTH), posy+Config.SacarPorcentaje(31,Config.HEIGHT)); 
         }
           
-                       
-        // jugador.setImagen(portrait[0][1]);
-        // jugador2.setImagen(portrait[1][1]);
+   
 
         }
 
@@ -138,10 +128,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     
     public void mostrarRetrato( ){
 
-if (Config.ONLINE==true) {
-           
-}
-else{
+
         
     for (int i = 4; i < Retratos.values().length-4; i++) {
         flecha[i-4] = new Imagen(Recursos.FLECHA);
@@ -159,18 +146,21 @@ else{
           
       }
     
-}
+
         
    }
 
     @Override
     public void render(float delta) {
-
+        // if (Config.ONLINE==true) { }
+           
+        // else{}
        Render.cleaner();
          
         
        b.begin();
-     //  seleccionar();
+ 
+    
      ts +=Gdx.graphics.getRawDeltaTime();
      if(ts > period){
          ts-=period;
@@ -186,9 +176,14 @@ else{
     }
 
     private void handleEvent() {
- 
-        portrait[inputSelec()][1].dibujar();
+  
 
+       portrait[inputSelec()][1].dibujar();
+      if (input.isEnter()) {
+          
+          jugador= Retratos.values()[inputSelec()+8].getClase();
+          seleccionarEnemigo();
+      } 
 
          if (!npc) {
               if(input.isEnter()) {
@@ -211,16 +206,15 @@ else{
          }
 
 
- 
+    private void seleccionarEnemigo() {
+        portraitEnemigo[inputSelec()].dibujar();
+        if (input.isEnter()) {
+          
+            jugador2= Retratos.values()[inputSelec()+8].getClase();
+            seleccionarEnemigo();
+        } 
        
-        
-        
-
     }
-
-
-
-
 
     @Override
     public void resize(int width, int height) {
@@ -247,7 +241,14 @@ else{
     @Override
     public void dispose() {
        b.dispose();
-       
+        for (int i = 0; i < portrait.length; i++) {
+            for (int j = 0; j < portrait[0].length; j++) {
+                portrait[i][j].dispose();
+            }
+        }
+        for (int i = 0; i < portraitEnemigo.length; i++) {
+            portraitEnemigo[i].dispose();
+        }
        fondoImagen.dispose();
     }
     @Override
@@ -256,5 +257,74 @@ else{
         fondoImagen=new Imagen(Recursos.SELECCPJ);
 		fondoImagen.setSize(Config.WIDTH, Config.HEIGHT);
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public class EntradaSelecc extends Entradas{
+
+        public EntradaSelecc(Screen app) {
+            super(app);
+             
+        }
+        @Override
+        public boolean keyDown(int keycode) {
+             
+            switch (keycode) {
+                case Keys.UP:
+                    down=true;
+                    return false;
+                case Keys.DOWN:
+                    up=true;
+                    return false;
+    
+                case Keys.D:
+                    d = true;
+                    return false;
+                
+                case Keys.A:
+                    a=true;
+                    return false;
+                case Keys.ENTER:
+                    enter=true;
+                    return false;
+                default:
+                    return false;
+            }
+       
+        }
+
+        @Override
+        public boolean keyUp(int keycode){
+            switch (keycode) {
+                case Keys.UP:
+                    down=false;
+                    return false;
+                case Keys.DOWN:
+                    up=false;
+                    return false;
+    
+                case Keys.D:
+                    d = false;
+                    return false;
+                
+                case Keys.A:
+                    a=false;
+                    return false;
+                case Keys.ENTER:
+                    enter=false;
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+
+
+        
+    }
+    
+
     
 }
