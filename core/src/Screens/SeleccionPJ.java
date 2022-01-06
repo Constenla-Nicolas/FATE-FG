@@ -42,14 +42,9 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         
     }
 
-    private void selecEscenario(){
+    
 
-      
-        Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot()));
-
-    }
-
-    private int inputSelec() {
+    public int inputSelec() {
         try {
             synchronized(input){
                   input.wait(90);
@@ -63,7 +58,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         
             
             if (input.isDown()) {
-                System.out.println("abajo");
+              
                 if (opc==0) {
                      
                     opc=3;
@@ -91,45 +86,41 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         
         int[] posEspecif={0,10,20,8};
 
-        for (int i = 0; i < Retratos.values().length/3; i++) {
-            portrait[i][0]= new Imagen(Retratos.values()[i].getRoot());
+        for (int i = 0; i < Retratos.values().length; i++) {
+            portrait[i][0]= new Imagen(Retratos.values()[i].getRoot2());
             portrait[i][0].setSize(Config.tamanioDeAlgo(15, Config.WIDTH),Config.tamanioDeAlgo(30, Config.HEIGHT));
            
         }
         float posx =Config.centrado(Config.HEIGHT+Config.SacarPorcentaje(65, Config.HEIGHT));
        
-         for (int j = 0; j < Retratos.values().length/3; j++) {
+         for (int j = 0; j < Retratos.values().length; j++) {
             float posy =Config.centrado(Config.WIDTH-Config.SacarPorcentaje(28, Config.WIDTH));
             posx=posx+Config.SacarPorcentaje(posEspecif[j], Config.HEIGHT);
             if(j==3){posy=posy-Config.SacarPorcentaje(3, Config.HEIGHT);}
             portrait[j][0].setPosition(posx, posy);
             flecha[j].setPosition(posx+Config.SacarPorcentaje(5, Config.WIDTH), posy+Config.SacarPorcentaje(31,Config.HEIGHT)); 
         }
-          
-   
-
+  
         }
-
-        
-        
+ 
     
     
     public void mostrarRetrato( ){
 
 
         
-    for (int i = 4; i < Retratos.values().length-4; i++) {
-        flecha[i-4] = new Imagen(Recursos.FLECHA);
-        flecha[i-4].setSize(Config.tamanioDeAlgo(4, Config.WIDTH),Config.tamanioDeAlgo(10, Config.HEIGHT));
-        portrait[i-4][1] = new Imagen(Retratos.values()[i].getRoot());
-        portrait[i-4][1].setSize(Config.tamanioDeAlgo(35, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
-        portrait[i-4][1].setPosition(Config.centrado(Config.WIDTH)- Config.SacarPorcentaje(18.3f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));  
+    for (int i = 0; i < Retratos.values().length; i++) {
+        flecha[i] = new Imagen(Recursos.FLECHA);
+        flecha[i].setSize(Config.tamanioDeAlgo(4, Config.WIDTH),Config.tamanioDeAlgo(10, Config.HEIGHT));
+        portrait[i][1] = new Imagen(Retratos.values()[i].getRoot());
+        portrait[i][1].setSize(Config.tamanioDeAlgo(35, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
+        portrait[i][1].setPosition(Config.centrado(Config.WIDTH)- Config.SacarPorcentaje(18.3f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));  
         
     }
-      for (int i = 4; i < Retratos.values().length-4; i++) {
-    portraitEnemigo[i-4] = new Imagen(Retratos.values()[i].getRoot());
-    portraitEnemigo[i-4].setSize(Config.tamanioDeAlgo(40, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
-    portraitEnemigo[i-4].setPosition(Config.centrado(Config.WIDTH)+ Config.SacarPorcentaje(50.6f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));
+      for (int i = 0; i < Retratos.values().length; i++) {
+    portraitEnemigo[i] = new Imagen(Retratos.values()[i].getRoot());
+    portraitEnemigo[i].setSize(Config.tamanioDeAlgo(40, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
+    portraitEnemigo[i].setPosition(Config.centrado(Config.WIDTH)+ Config.SacarPorcentaje(50.6f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));
 
           
       }
@@ -165,47 +156,34 @@ public class SeleccionPJ  implements Screen,TieneFondo {
 
     private void handleEvent() {
   
-        portrait[inputSelec()][1].dibujar();
        
-      if (input.isEnter()) {
-          
-          jugador= Retratos.values()[inputSelec()+8].getClase();
-          System.out.println("aeuoeauaouoaeu");;
-          seleccionarEnemigo();
-      } 
+    
 
-         if (!npc) {
+         if (!npc) { portrait[inputSelec()][1].dibujar();
               if(input.isEnter()) {
-                System.out.println("a");
+               
 
   
-              jugador= Retratos.values()[inputSelec()+8].getClase();
+              jugador= Retratos.values()[inputSelec()].getClase();
             npc =true;
-               System.out.println(jugador);
+             
 
          }
         } else {
              portraitEnemigo[inputSelec()].dibujar();
 
              if (input.isEnter()) {
- 
-             System.out.println(jugador2);
-              jugador2= Retratos.values()[inputSelec()+8].getClase();
+            
+            
+              jugador2= Retratos.values()[inputSelec()].getClase(); 
+              System.out.println(jugador);
+              System.out.println(jugador2);
+              Render.app.setScreen(new SeleccionEscenarios(jugador,jugador2));
          }
          }
 
         }
-    private void seleccionarEnemigo() {
-        
-        portraitEnemigo[inputSelec()].dibujar();
-        System.out.println("seleccenemigo");
-        if (input.isEnter()) {
-          
-            jugador2= Retratos.values()[inputSelec()+8].getClase();
-            seleccionarEnemigo();
-        } 
-       
-    }
+    
 
     @Override
     public void resize(int width, int height) {
@@ -248,12 +226,9 @@ public class SeleccionPJ  implements Screen,TieneFondo {
         fondoImagen=new Imagen(Recursos.SELECCPJ);
 		fondoImagen.setSize(Config.WIDTH, Config.HEIGHT);
     }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
-
-    
+ 
+  
+ 
 }
+   
+ 

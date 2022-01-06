@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+ 
 
  
 
@@ -24,18 +24,24 @@ public class Imagen extends Actor {
 	 
 
 	}
+
+	public void Rotar(float degrees) {
+		s.rotate(degrees);
+	}
 	public Texture getT() {
 		return t;
 	}
+ 
+	public void darVuelta(Boolean x,boolean y){
 
-	public void darVuelta(Boolean a,boolean b){
-
-		s.flip(a, b);
+		s.flip(x, y);
 	}
 	
 	public void dibujar() {
 		s.draw(Render.batch);
 	}
+
+	
 	public void setTransparencia(Float a) {
 		s.setAlpha(a);
 	}
