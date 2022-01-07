@@ -1,9 +1,12 @@
 package Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
  
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import Entradas.Entradas;
+import personajes.Mordred;
 import utiles.Config;
 import utiles.Imagen;
  
@@ -12,6 +15,10 @@ public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
    private Imagen fightstage;
    Hud hud;
+//    int i = 0;
+//    Mordred mordred;
+//    Entradas entradas = new Entradas(this);
+//    public float tiempo = 0;
    private String e;
     public Escenarios(String escenario){
     this.e = escenario;
@@ -22,24 +29,67 @@ public class Escenarios implements Screen,TieneFondo{
         
         b= Render.batch;
         hud= new Hud(b);
+        // mordred = new Mordred();                                     
+        // Gdx.input.setInputProcessor(entradas);
        
-    
     }
 
     @Override
     public void render(float delta) {
          
         Render.cleaner();
-        
        b.begin();
         fightstage.dibujar();
-       b.end(); 
-       hud.mostrarHud(); 
-       
+        
+        //mordred.anim[i].dibujar();
+        
+         b.end(); 
+       hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
-      
+   
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+   //  tiempo+=delta;
+     
+    //   prueba();
+    //   if(tiempo%2 == 0){
+
+    //   }
+    //   if (i>5){
+    //       i =0;
+    //   }
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
     }
 
+
+
+     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+    // public void prueba(){
+    //     if(entradas.isDown()){ 
+	// 		if(tiempo > 0.02f){ 
+	// 			tiempo = 0;
+    //             for (int i = 0; i < mordred.anim.length; i++) {
+                    
+	// 			mordred.anim[i].setPosition(mordred.anim[i].getX()+30, mordred.anim[i].getY());
+    //             System.out.println(mordred.anim[i].getX());
+                
+    //             }
+                
+    //         }
+    //     }
+    //     if(entradas.isUp()){
+    //         System.out.println("s");
+	// 		if(tiempo > 0.1f){
+	// 			tiempo = 0;
+    //             System.out.println("d");
+	// 			mordred.setX(mordred.getX()-1);	
+				
+	// 		}
+	// 	}
+    // }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public void resize(int width, int height) {
         // TODO Auto-generated method stub
