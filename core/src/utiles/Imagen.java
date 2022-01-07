@@ -46,6 +46,12 @@ public class Imagen extends Actor {
 		s.setX(x);
 		s.setY(y);
 	}
+	public float getX(){
+		return s.getX();
+	}
+	public float getY(){
+		return s.getY();
+	}
 	public Vector2 getPosition(){
 		return new Vector2(x,y);
 	}

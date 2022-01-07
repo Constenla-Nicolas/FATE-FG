@@ -1,6 +1,7 @@
 package personajes;
  
  
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
  
 
@@ -8,16 +9,15 @@ import utiles.Imagen;
 
  
 
-public abstract class personajePrefab implements terminable {
+public abstract class personajePrefab{
   
-  private int x;
-  private int y;
+  private float x, y, w, h;
   private int vidamax;
   private Imagen i;
   private  int vidaActual;
   public AtlasRegion Sprites;
   public static Imagen spriteImagen;
-   
+
   
     public personajePrefab(){
         
@@ -29,17 +29,30 @@ public abstract class personajePrefab implements terminable {
     public void setImagen(Imagen i){
 
         this.i = i;
+        
     }
 
+    public void setX(float x){
+        i.setX(this.x);
 
+    }
+	public void setY(float y){
+        i.setY(this.y);;
+    }
 
-    public int getx(){
+    public float getX(){
         return x;
     }
-	public int gety(){
+	public float getY(){
         return y;
     }
-	
+
+    public float getW() {
+        return w;
+    }
+	public float getH() {
+        return h;
+    }
     public int getVidaActual() {
         return vidaActual;
     }

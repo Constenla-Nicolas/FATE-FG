@@ -11,11 +11,7 @@ public class Atalante extends personajePrefab{
 
     }
 
-    @Override
-    public void Terminapelea() {
-        // TODO Auto-generated method stub
-        
-    }
+
  
 
 
