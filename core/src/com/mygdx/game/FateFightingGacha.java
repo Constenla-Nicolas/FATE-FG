@@ -1,29 +1,32 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
- 
-import com.badlogic.gdx.graphics.Texture;
+  
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  
 import Screens.*;
+import personajes.Mordred;
+import personajes.personajePrefab;
 import utiles.Config;
  
 import utiles.Render;
 public class FateFightingGacha extends Game {
 	 
-	Texture img;
+ 
 	int x,y;
 	 
 	  
 	@Override
 	public void create () {
+		personajePrefab p1,p2;
+		p1=new Mordred();
+		p2=new Mordred();
 		Render.batch=new SpriteBatch();
 		Render.app = this;
 		Config.initialize();
 	      Render.app.setScreen(new Escenarios(Background.values()[0].getRoot()));
 		//Render.app.setScreen(new Escenarios(Background.values()[0].getRoot()));
 		
-
 	}
 
 	@Override

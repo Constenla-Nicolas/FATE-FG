@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Entradas.Entradas;
 import personajes.Mordred;
+import personajes.personajePrefab;
 import utiles.Config;
 import utiles.Imagen;
  
@@ -20,8 +21,9 @@ public class Escenarios implements Screen,TieneFondo{
 //    Entradas entradas = new Entradas(this);
 //    public float tiempo = 0;
    private String e;
-    public Escenarios(String escenario){
+    public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
+    System.out.println(p1);
     setFondo();
  }
     @Override
