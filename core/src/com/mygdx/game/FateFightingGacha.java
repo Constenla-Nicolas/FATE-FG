@@ -24,7 +24,7 @@ public class FateFightingGacha extends Game {
 		Render.batch=new SpriteBatch();
 		Render.app = this;
 		Config.initialize();
-	   //   Render.app.setScreen(new Escenarios(Background.values()[0].getRoot()));
+		Render.app.setScreen(new SeleccionPJ());
 		//Render.app.setScreen(new Escenarios(Background.values()[0].getRoot()));
 		
 	}

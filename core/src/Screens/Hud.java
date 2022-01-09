@@ -28,17 +28,17 @@ import utiles.Render;
  
 
 public class Hud {
-    public Stage stage;
+    private Stage stage;
     private Viewport viewport;
     private Label cuentaAtras;
-    ProgressBar hp;
+    private ProgressBar hp;
     private Label tiempotexto;
-    Imagen contorno;
-    Imagen contorno2;
-    Pixmap pixmap;
+    private Imagen contorno;
+    private Imagen contorno2;
+    private  Pixmap pixmap;
     private int sec=99;
-    ProgressBarStyle progressBarStyle;
-    TextureRegionDrawable drawable;
+    private ProgressBarStyle progressBarStyle;
+    private TextureRegionDrawable drawable;
     public Hud(SpriteBatch batch){
         contorno = new Imagen("pngs/life_bar.png");
         contorno2= new Imagen("pngs/life_bar.png");
@@ -52,8 +52,8 @@ public class Hud {
     }
 
 
-    public void barradvida(){
-    pixmap = new Pixmap(100, 20, Format.RGBA8888);
+    private void barradvida(){
+    pixmap = new Pixmap(Config.WIDTH/2, 20, Format.RGBA8888);
     pixmap.setColor(Color.RED);
     pixmap.fill();
     drawable = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
@@ -66,16 +66,14 @@ public class Hud {
      
     progressBarStyle.knob = drawable;
      
-    Pixmap pixmap = new Pixmap(100, 20, Format.RGBA8888);
-    pixmap.setColor(Color.GREEN);
-    pixmap.fill();
-    drawable = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
-    pixmap.dispose();
+ 
+    
      
     progressBarStyle.knobBefore = drawable;
+    
     }
 
-    public void contornoBarra(){
+    private void contornoBarra(){
         contorno.setSize(Config.tamanioDeAlgo(48, Config.WIDTH), Config.tamanioDeAlgo(6, Config.HEIGHT));
         contorno.setPosition(Config.centrado(Config.WIDTH)- Config.SacarPorcentaje(47, Config.WIDTH), Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(45, Config.HEIGHT));
         contorno2.setSize(Config.tamanioDeAlgo(48, Config.WIDTH), Config.tamanioDeAlgo(6, Config.HEIGHT));
@@ -125,7 +123,7 @@ public class Hud {
         hp.setValue(1.0f);
         hp.setAnimateDuration(0.25f);
         hp.setBounds(10, 10, 100, 20);
-         
+        
         stage.addActor(hp);
         table.add(tiempotexto).expandX().padTop(10);
         table.row();
