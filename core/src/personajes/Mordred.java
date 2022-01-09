@@ -1,36 +1,43 @@
 package personajes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import utiles.Render;
 import utiles.Imagen;
 
 public class Mordred extends personajePrefab{
     public Imagen img;
-    public Imagen anim[] = new Imagen[6];
-    String fuente[] = {"Moedred/Walk1.png", "Moedred/Walk2.png", "Moedred/Walk3.png", "Moedred/Walk4.png", "Moedred/Walk5.png", "Moedred/Walk6.png"};
-    SpriteBatch b;
+
+    public float elapsedTime = 0;
+    public SpriteBatch b;
+    public TextureAtlas textureAtlas;
+    public Sprite s; 
+    TextureRegion textureRegion;
+    public int currentFrame = 1;
+    public int maxFrames = 6;
+
     
 
     public Mordred(){
         spriteImagen= new Imagen("mordredSheet.png");
-        img = new Imagen("Moedred/win7.png");
-        img.setSize(Gdx.graphics.getHeight()/2, Gdx.graphics.getHeight()/2);
-        img.setPosition(Gdx.graphics.getHeight()/2, Gdx.graphics.getHeight()/2);
-for (int i = 0; i < anim.length; i++) {
-    anim[i] = new Imagen(fuente[i]);
-    anim[i].setSize(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/4);
-    anim[i].setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        b = new SpriteBatch();
+        textureAtlas = new TextureAtlas("Moedred/MordredAll.atlas");
+        textureRegion = textureAtlas.findRegion("Walk1");
+        s = new Sprite(textureRegion);
+        s.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        
+
+
+   
 
     
 }
-    }
-    public Imagen GetImagen(){
-
-        return img;
-
-    }
+    
 
     public void MostrarMor(){
   

@@ -1,0 +1,48 @@
+
+WalkSheet.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Walk1
+  rotate: false
+  xy: 2, 2
+  size: 58, 53
+  orig: 58, 53
+  offset: 0, 0
+  index: -1
+Walk2
+  rotate: false
+  xy: 62, 3
+  size: 58, 52
+  orig: 58, 52
+  offset: 0, 0
+  index: -1
+Walk3
+  rotate: false
+  xy: 182, 4
+  size: 58, 51
+  orig: 58, 51
+  offset: 0, 0
+  index: -1
+Walk4
+  rotate: false
+  xy: 122, 4
+  size: 58, 51
+  orig: 58, 51
+  offset: 0, 0
+  index: -1
+Walk5
+  rotate: false
+  xy: 302, 6
+  size: 58, 49
+  orig: 58, 49
+  offset: 0, 0
+  index: -1
+Walk6
+  rotate: false
+  xy: 242, 6
+  size: 58, 49
+  orig: 58, 49
+  offset: 0, 0
+  index: -1
