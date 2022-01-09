@@ -16,11 +16,9 @@ public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
    private Imagen fightstage;
    Hud hud;
-//    int i = 0;
-//    Mordred mordred;
-//    Entradas entradas = new Entradas(this);
-//    public float tiempo = 0;
-   private String e;
+   Mordred mordred;
+   Entradas entradas = new Entradas(this);
+  private String e;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
     System.out.println(p1);
@@ -31,19 +29,28 @@ public class Escenarios implements Screen,TieneFondo{
         
         b= Render.batch;
         hud= new Hud(b);
-        // mordred = new Mordred();                                     
-        // Gdx.input.setInputProcessor(entradas);
+        mordred = new Mordred();                                     
+        Gdx.input.setInputProcessor(entradas);
        
     }
 
     @Override
     public void render(float delta) {
-         
+        mordred.elapsedTime += delta;
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
+        mordred.b.begin();
+        b.draw(mordred.s, mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
         
-        //mordred.anim[i].dibujar();
+        
+        mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Stance1")));
+		
+ 
+        movimiento();
+
+        mordred.b.end(); 
+ 
         
          b.end(); 
        hud.mostrarHud();
@@ -51,15 +58,8 @@ public class Escenarios implements Screen,TieneFondo{
    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
-   //  tiempo+=delta;
-     
-    //   prueba();
-    //   if(tiempo%2 == 0){
-
-    //   }
-    //   if (i>5){
-    //       i =0;
-    //   }
+  
+   
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
     }
@@ -68,29 +68,31 @@ public class Escenarios implements Screen,TieneFondo{
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
-    // public void prueba(){
-    //     if(entradas.isDown()){ 
-	// 		if(tiempo > 0.02f){ 
-	// 			tiempo = 0;
-    //             for (int i = 0; i < mordred.anim.length; i++) {
-                    
-	// 			mordred.anim[i].setPosition(mordred.anim[i].getX()+30, mordred.anim[i].getY());
-    //             System.out.println(mordred.anim[i].getX());
-                
-    //             }
-                
-    //         }
-    //     }
-    //     if(entradas.isUp()){
-    //         System.out.println("s");
-	// 		if(tiempo > 0.1f){
-	// 			tiempo = 0;
-    //             System.out.println("d");
-	// 			mordred.setX(mordred.getX()-1);	
-				
-	// 		}
-	// 	}
-    // }
+    public void movimiento(){
+        		
+		if(entradas.isDown()){ 	//entradas = input entrys
+            mordred.currentFrame++;
+            if(mordred.currentFrame > 3){
+                mordred.currentFrame = 1;
+            }
+            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Air 1-"+ mordred.currentFrame)));
+            System.out.println(mordred.s.getWidth());
+            mordred.s.setSize(500, 500);
+            
+			}
+		if(entradas.isUp()){
+            mordred.currentFrame--;
+            if(mordred.currentFrame < 1){
+                mordred.currentFrame = mordred.maxFrames;
+            }
+            
+            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk" + mordred.currentFrame)));
+            mordred.s.setX(mordred.s.getX()+10);
+		
+            
+ 
+    }
+}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public void resize(int width, int height) {

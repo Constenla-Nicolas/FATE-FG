@@ -2,6 +2,7 @@ package utiles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
  
@@ -13,8 +14,8 @@ public class Imagen extends Actor {
 	private Texture t;
 	private Sprite s;
 	private float x = 0,y = 0;
-	public Imagen(String escenario1) {
-		t = new Texture(escenario1);
+	public Imagen(String string) {
+		t = new Texture(string);
 		s = new Sprite(t);
 		 
 	}
@@ -52,12 +53,8 @@ public class Imagen extends Actor {
 		s.setX(x);
 		s.setY(y);
 	}
-	public float getX(){
-		return s.getX();
-	}
-	public float getY(){
-		return s.getY();
-	}
+
+	
 	public Vector2 getPosition(){
 		return new Vector2(x,y);
 	}
