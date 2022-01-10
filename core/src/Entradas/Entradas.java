@@ -8,6 +8,8 @@ public class Entradas implements InputProcessor {
 
     protected boolean down = false;
     protected boolean up = false;
+    protected boolean left = false;
+    protected boolean right = false;
     protected boolean enter = false;
     protected boolean d=false;
     protected boolean a=false;
@@ -23,6 +25,12 @@ public class Entradas implements InputProcessor {
     }
     public boolean isUp(){
         return up;
+    }
+    public boolean isLeft(){
+        return left;
+    }
+    public boolean isRight(){
+        return right;
     }
     public boolean isEnter(){
         return enter;
@@ -52,6 +60,12 @@ public class Entradas implements InputProcessor {
          
     
     }
+    if(keycode == Keys.LEFT){
+        left = true;
+    }
+    if(keycode == Keys.RIGHT){
+        right = true;
+    }
     if(keycode== Keys.D){
         d=true;
     }
@@ -60,13 +74,6 @@ public class Entradas implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-
-
-    
-
-
-
-
 
 
         if(keycode == Keys.DOWN){
@@ -78,6 +85,12 @@ public class Entradas implements InputProcessor {
         if(keycode == Keys.ENTER){
             enter = false ;
           
+        }
+        if(keycode == Keys.LEFT){
+            left = false;
+        }
+        if(keycode == Keys.RIGHT){
+            right = false;
         }
         if (keycode==Keys.D) {
             d = false;   

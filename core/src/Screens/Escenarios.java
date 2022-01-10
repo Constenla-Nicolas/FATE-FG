@@ -1,9 +1,12 @@
 package Screens;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
  
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 import Entradas.Entradas;
 import personajes.Mordred;
@@ -14,6 +17,8 @@ import utiles.Imagen;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
+   Rectangle player1Box;
+   Rectangle player2Box;
    private Imagen fightstage;
    Hud hud;
    Mordred mordred;
@@ -31,6 +36,8 @@ public class Escenarios implements Screen,TieneFondo{
         hud= new Hud(b);
         mordred = new Mordred();                                     
         Gdx.input.setInputProcessor(entradas);
+        player1Box = new Rectangle(mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
+        player2Box = new Rectangle(mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
        
     }
 
@@ -55,13 +62,8 @@ public class Escenarios implements Screen,TieneFondo{
          b.end(); 
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
-   
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-  
-   
-      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+        player1Box.setPosition(mordred.s.getX(), mordred.s.getY());
+        System.out.println(player1Box.overlaps(player2Box));
     }
 
 
@@ -70,24 +72,27 @@ public class Escenarios implements Screen,TieneFondo{
    
     public void movimiento(){
         		
-		if(entradas.isDown()){ 	//entradas = input entrys
+		if(entradas.isLeft()){ 	//entradas = input entrys
             mordred.currentFrame++;
-            if(mordred.currentFrame > 3){
+            if(mordred.currentFrame > mordred.maxFrames){
                 mordred.currentFrame = 1;
             }
-            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Air 1-"+ mordred.currentFrame)));
-            System.out.println(mordred.s.getWidth());
-            mordred.s.setSize(500, 500);
+            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk"+ mordred.currentFrame)));
+          
+            mordred.s.flip(true, false);
+            mordred.s.setX(mordred.s.getX()-5);
             
 			}
-		if(entradas.isUp()){
-            mordred.currentFrame--;
-            if(mordred.currentFrame < 1){
-                mordred.currentFrame = mordred.maxFrames;
+		if(entradas.isRight()){
+            mordred.currentFrame++;
+            if(mordred.currentFrame > mordred.maxFrames){
+                mordred.currentFrame = 1;
             }
             
             mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk" + mordred.currentFrame)));
-            mordred.s.setX(mordred.s.getX()+10);
+            if(mordred.s.getX() < Gdx.graphics.getWidth()- mordred.s.getWidth()) {
+            mordred.s.setX(mordred.s.getX()+5);
+            }
 		
             
  

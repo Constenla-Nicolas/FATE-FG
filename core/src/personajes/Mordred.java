@@ -29,7 +29,7 @@ public class Mordred extends personajePrefab{
         textureAtlas = new TextureAtlas("Moedred/MordredAll.atlas");
         textureRegion = textureAtlas.findRegion("Walk1");
         s = new Sprite(textureRegion);
-        s.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        s.setPosition(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/2);
         
 
 
