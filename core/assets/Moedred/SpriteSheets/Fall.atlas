@@ -1,0 +1,55 @@
+
+Fall.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Fall1
+  rotate: false
+  xy: 339, 6
+  size: 34, 55
+  orig: 34, 55
+  offset: 0, 0
+  index: -1
+Fall2
+  rotate: false
+  xy: 2, 2
+  size: 52, 59
+  orig: 52, 59
+  offset: 0, 0
+  index: -1
+Fall3
+  rotate: false
+  xy: 123, 9
+  size: 51, 52
+  orig: 51, 52
+  offset: 0, 0
+  index: -1
+Fall4
+  rotate: false
+  xy: 225, 35
+  size: 65, 26
+  orig: 65, 26
+  offset: 0, 0
+  index: -1
+Fall5
+  rotate: false
+  xy: 292, 25
+  size: 45, 36
+  orig: 45, 36
+  offset: 0, 0
+  index: -1
+Fall6
+  rotate: false
+  xy: 56, 17
+  size: 65, 44
+  orig: 65, 44
+  offset: 0, 0
+  index: -1
+Fall7
+  rotate: false
+  xy: 176, 7
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1

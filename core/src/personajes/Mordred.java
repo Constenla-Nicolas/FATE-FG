@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 import utiles.Render;
 import utiles.Imagen;
@@ -20,16 +21,15 @@ public class Mordred extends personajePrefab{
     TextureRegion textureRegion;
     public int currentFrame = 1;
     public int maxFrames = 6;
+    public Animation<TextureRegion> bruh;
 
     
 
     public Mordred(){
         spriteImagen= new Imagen("mordredSheet.png");
         b = new SpriteBatch();
-        textureAtlas = new TextureAtlas("Moedred/MordredAll.atlas");
-        textureRegion = textureAtlas.findRegion("Walk1");
-        s = new Sprite(textureRegion);
-        s.setPosition(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/2);
+        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Intro.atlas");
+        bruh = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
         
 
 
@@ -39,9 +39,7 @@ public class Mordred extends personajePrefab{
 }
     
 
-    public void MostrarMor(){
-  
-    }
+   
 
  
  

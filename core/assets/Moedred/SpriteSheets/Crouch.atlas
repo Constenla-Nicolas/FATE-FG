@@ -1,0 +1,20 @@
+
+Crouch.png
+size: 128, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Crouch1
+  rotate: false
+  xy: 69, 2
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+Crouch2
+  rotate: false
+  xy: 2, 12
+  size: 65, 44
+  orig: 65, 44
+  offset: 0, 0
+  index: -1

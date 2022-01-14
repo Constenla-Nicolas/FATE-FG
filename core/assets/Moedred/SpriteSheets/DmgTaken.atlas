@@ -1,0 +1,27 @@
+
+DmgTaken.png
+size: 64, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+DmgTaken1
+  rotate: false
+  xy: 2, 2
+  size: 35, 58
+  orig: 35, 58
+  offset: 0, 0
+  index: -1
+DmgTaken2
+  rotate: false
+  xy: 2, 123
+  size: 40, 61
+  orig: 40, 61
+  offset: 0, 0
+  index: -1
+DmgTaken3
+  rotate: false
+  xy: 2, 62
+  size: 39, 59
+  orig: 39, 59
+  offset: 0, 0
+  index: -1

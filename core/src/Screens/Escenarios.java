@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 import Entradas.Entradas;
+import personajes.Astolfo;
 import personajes.Mordred;
 import personajes.personajePrefab;
 import utiles.Config;
@@ -22,6 +23,7 @@ public class Escenarios implements Screen,TieneFondo{
    private Imagen fightstage;
    Hud hud;
    Mordred mordred;
+   Astolfo astolfo;
    Entradas entradas = new Entradas(this);
   private String e;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
@@ -34,10 +36,10 @@ public class Escenarios implements Screen,TieneFondo{
         
         b= Render.batch;
         hud= new Hud(b);
-        mordred = new Mordred();                                     
+        mordred = new Mordred();   
+        astolfo = new Astolfo();                                  
         Gdx.input.setInputProcessor(entradas);
-        player1Box = new Rectangle(mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
-        player2Box = new Rectangle(mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
+        player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
        
     }
 
@@ -47,23 +49,16 @@ public class Escenarios implements Screen,TieneFondo{
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
-        mordred.b.begin();
-        b.draw(mordred.s, mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
-        
-        
-        mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Stance1")));
-		
- 
-        movimiento();
+       astolfo.img.dibujar();
+       
+       b.draw(mordred.bruh.getKeyFrame(mordred.elapsedTime, true), 500, 500, 75, 100);
+     
 
-        mordred.b.end(); 
- 
-        
+        movimiento();
          b.end(); 
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
-        player1Box.setPosition(mordred.s.getX(), mordred.s.getY());
-        System.out.println(player1Box.overlaps(player2Box));
+        player2Box.setPosition(astolfo.img.getX(), astolfo.img.getY());
     }
 
 
@@ -73,26 +68,11 @@ public class Escenarios implements Screen,TieneFondo{
     public void movimiento(){
         		
 		if(entradas.isLeft()){ 	//entradas = input entrys
-            mordred.currentFrame++;
-            if(mordred.currentFrame > mordred.maxFrames){
-                mordred.currentFrame = 1;
-            }
-            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk"+ mordred.currentFrame)));
-          
-            mordred.s.flip(true, false);
-            mordred.s.setX(mordred.s.getX()-5);
+   
             
 			}
 		if(entradas.isRight()){
-            mordred.currentFrame++;
-            if(mordred.currentFrame > mordred.maxFrames){
-                mordred.currentFrame = 1;
-            }
-            
-            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk" + mordred.currentFrame)));
-            if(mordred.s.getX() < Gdx.graphics.getWidth()- mordred.s.getWidth()) {
-            mordred.s.setX(mordred.s.getX()+5);
-            }
+        
 		
             
  

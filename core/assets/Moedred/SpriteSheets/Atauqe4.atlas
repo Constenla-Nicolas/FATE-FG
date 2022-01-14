@@ -1,0 +1,55 @@
+
+Atauqe4.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Ataque 4-2
+  rotate: false
+  xy: 65, 2
+  size: 61, 52
+  orig: 61, 52
+  offset: 0, 0
+  index: -1
+Ataque 4-3
+  rotate: false
+  xy: 65, 56
+  size: 62, 58
+  orig: 62, 58
+  offset: 0, 0
+  index: -1
+Ataque 4-4
+  rotate: false
+  xy: 2, 30
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+Ataque 4-5
+  rotate: false
+  xy: 176, 42
+  size: 34, 72
+  orig: 34, 72
+  offset: 0, 0
+  index: -1
+Ataque 4-6
+  rotate: false
+  xy: 129, 63
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+Ataque 4-7
+  rotate: false
+  xy: 128, 2
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+Ataque 4-1
+  rotate: false
+  xy: 128, 2
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,34 @@
+
+Jump.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Jump2
+  rotate: false
+  xy: 171, 24
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+Jump3
+  rotate: false
+  xy: 128, 24
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+Jump4
+  rotate: false
+  xy: 2, 2
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+Jump5
+  rotate: false
+  xy: 65, 2
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
