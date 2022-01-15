@@ -81,6 +81,64 @@ public abstract class personajePrefab{
  public void setVidamax(int vidamax) {
      this.vidamax = vidamax;
  }
-	 
+	 public void stanceAnim(){
+
+     }
+
+     public void introAnim(){
+
+     }
+
+     public void winAnim(){
+
+     }
+     public void walkAnim(){
+
+     }
+     public void ataque1Anim(){
+
+    }
+    public void ataque2Anim(){
+
+    }
+    public void ataque3Anim(){
+
+    }
+    public void ataque4Anim(){
+
+    }
+    public void jumpAnim(){
+
+    }
+    public void crouchAnim(){
+
+    }
+    public void fallAnim(){
+
+    }    
+    public void dashAnim(){
+
+    }
+    public void dmgTakenAnim(){
+
+    }
+    public void air1Anim(){
+
+    }
+    public void air2Anim(){
+
+    }
+    public void air3Anim(){
+
+    }
+    public void air4Anim(){
+
+    }
+    
+    
+    
+    
+
+
 
 }

@@ -28,6 +28,7 @@ public class Escenarios implements Screen,TieneFondo{
    Astolfo astolfo;
    Entradas entradas = new Entradas(this);
   private String e;
+private int opc;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
     System.out.println(p1);
@@ -84,8 +85,9 @@ public class Escenarios implements Screen,TieneFondo{
 		
             
  
-//     }
-// }
+    }
+ }
+
      
 public int inputSelec() {
     try {
