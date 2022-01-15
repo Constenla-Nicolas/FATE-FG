@@ -1,0 +1,125 @@
+
+ClarentBlood.png
+size: 1024, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+ClarentBlood1
+  rotate: false
+  xy: 510, 19
+  size: 43, 55
+  orig: 43, 55
+  offset: 0, 0
+  index: -1
+ClarentBlood10
+  rotate: false
+  xy: 555, 23
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+ClarentBlood11
+  rotate: false
+  xy: 640, 4
+  size: 37, 70
+  orig: 37, 70
+  offset: 0, 0
+  index: -1
+ClarentBlood12
+  rotate: false
+  xy: 393, 22
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+ClarentBlood13
+  rotate: false
+  xy: 599, 23
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+ClarentBlood14
+  rotate: false
+  xy: 462, 22
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+ClarentBlood15
+  rotate: false
+  xy: 103, 2
+  size: 97, 72
+  orig: 97, 72
+  offset: 0, 0
+  index: -1
+ClarentBlood16
+  rotate: false
+  xy: 2, 2
+  size: 99, 72
+  orig: 99, 72
+  offset: 0, 0
+  index: -1
+ClarentBlood17
+  rotate: false
+  xy: 202, 16
+  size: 97, 58
+  orig: 97, 58
+  offset: 0, 0
+  index: -1
+ClarentBlood18
+  rotate: false
+  xy: 301, 17
+  size: 90, 57
+  orig: 90, 57
+  offset: 0, 0
+  index: -1
+ClarentBlood2
+  rotate: false
+  xy: 679, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood3
+  rotate: false
+  xy: 823, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood4
+  rotate: false
+  xy: 751, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood5
+  rotate: false
+  xy: 895, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood6
+  rotate: false
+  xy: 787, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood7
+  rotate: false
+  xy: 715, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+ClarentBlood8
+  rotate: false
+  xy: 859, 14
+  size: 34, 60
+  orig: 34, 60
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+BodySlashEX.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+BloodySlashEX1
+  rotate: false
+  xy: 285, 75
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+BloodySlashEX2
+  rotate: false
+  xy: 168, 2
+  size: 37, 70
+  orig: 37, 70
+  offset: 0, 0
+  index: -1
+BloodySlashEX3
+  rotate: false
+  xy: 168, 74
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+BloodySlashEX4
+  rotate: false
+  xy: 207, 21
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+BloodySlashEX5
+  rotate: false
+  xy: 237, 74
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+BloodySlashEX6
+  rotate: false
+  xy: 2, 13
+  size: 83, 113
+  orig: 83, 113
+  offset: 0, 0
+  index: -1
+BloodySlashEX7
+  rotate: false
+  xy: 87, 14
+  size: 79, 112
+  orig: 79, 112
+  offset: 0, 0
+  index: -1

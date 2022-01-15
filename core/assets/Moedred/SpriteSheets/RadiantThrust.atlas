@@ -1,0 +1,90 @@
+
+RadiantThrust.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+RadiantThrust1
+  rotate: false
+  xy: 570, 4
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+RadiantThrust10
+  rotate: false
+  xy: 470, 2
+  size: 48, 54
+  orig: 48, 54
+  offset: 0, 0
+  index: -1
+RadiantThrust11
+  rotate: false
+  xy: 666, 2
+  size: 43, 54
+  orig: 43, 54
+  offset: 0, 0
+  index: -1
+RadiantThrust12
+  rotate: false
+  xy: 711, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: -1
+RadiantThrust2
+  rotate: false
+  xy: 618, 5
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+RadiantThrust3
+  rotate: false
+  xy: 314, 18
+  size: 76, 38
+  orig: 76, 38
+  offset: 0, 0
+  index: -1
+RadiantThrust4
+  rotate: false
+  xy: 392, 18
+  size: 76, 38
+  orig: 76, 38
+  offset: 0, 0
+  index: -1
+RadiantThrust5
+  rotate: false
+  xy: 158, 6
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+RadiantThrust6
+  rotate: false
+  xy: 2, 6
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+RadiantThrust7
+  rotate: false
+  xy: 236, 6
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+RadiantThrust8
+  rotate: false
+  xy: 80, 6
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+RadiantThrust9
+  rotate: false
+  xy: 520, 2
+  size: 48, 54
+  orig: 48, 54
+  offset: 0, 0
+  index: -1
