@@ -119,7 +119,7 @@ public class Hud {
        table.setFillParent(true);
         cuentaAtras = new Label(String.format("%02d", sec),new Label.LabelStyle(new BitmapFont(),Color.WHITE));
         tiempotexto= new Label("TIME",new Label.LabelStyle(new BitmapFont(),Color.WHITE));
-       hp = new ProgressBar(0.0f, 1.0f, 0.01f, false, progressBarStyle);
+       hp = new ProgressBar(0.0f, 20.0f, 0.01f, false, progressBarStyle);
         hp.setValue(1.0f);
         hp.setAnimateDuration(0.25f);
         hp.setBounds(10, 10, 100, 20);

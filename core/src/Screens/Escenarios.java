@@ -14,8 +14,11 @@ import utiles.Imagen;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
+   int opc;
    private Imagen fightstage;
    Hud hud;
+   float ts;
+   float period= 0.9f;
    Mordred mordred;
    Entradas entradas = new Entradas(this);
   private String e;
@@ -23,6 +26,7 @@ public class Escenarios implements Screen,TieneFondo{
     this.e = escenario;
     System.out.println(p1);
     setFondo();
+    
  }
     @Override
     public void show() {
@@ -36,64 +40,110 @@ public class Escenarios implements Screen,TieneFondo{
 
     @Override
     public void render(float delta) {
-        mordred.elapsedTime += delta;
+        inputSelec();
+        mordred.setInput(opc);
+        mordred.update(delta);
+        
+       // mordred.elapsedTime += delta;
+        
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
-        mordred.b.begin();
-        b.draw(mordred.s, mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
+        
+       // b.draw(mordred.s, mordred.s.getX(), mordred.s.getY(), mordred.s.getWidth(), mordred.s.getHeight());
         
         
-        mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Stance1")));
+        //mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Stance1")));
 		
- 
-        movimiento();
+        ts +=Gdx.graphics.getDeltaTime();
+        if(ts > period){
+            ts-=period; 
+            
+     //   movimiento();
+        mordred.MostrarMor();
+        }
+        
 
-        mordred.b.end(); 
- 
+         
         
          b.end(); 
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
    
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-  
-   
-      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
     }
 
 
 
-     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-    public void movimiento(){
-        		
-		if(entradas.isDown()){ 	//entradas = input entrys
-            mordred.currentFrame++;
-            if(mordred.currentFrame > 3){
-                mordred.currentFrame = 1;
-            }
-            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Air 1-"+ mordred.currentFrame)));
-            System.out.println(mordred.s.getWidth());
-            mordred.s.setSize(500, 500);
+    
+//     public void movimiento(){
+        
+// 		if(entradas.isDown()){ 	//entradas = input entrys
+//             mordred.currentFrame++;
+          
             
-			}
-		if(entradas.isUp()){
-            mordred.currentFrame--;
-            if(mordred.currentFrame < 1){
-                mordred.currentFrame = mordred.maxFrames;
-            }
+//             if(mordred.currentFrame > 3){
+//                 mordred.currentFrame = 1;
+//             }
+//          //   mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Air 1-"+ mordred.currentFrame)));
+//             System.out.println(mordred.s.getWidth());
+//             mordred.s.setSize(500, 500);
             
-            mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk" + mordred.currentFrame)));
-            mordred.s.setX(mordred.s.getX()+10);
+// 			}
+// 		if(entradas.isUp()){
+//             mordred.currentFrame--;
+//             if(mordred.currentFrame < 1){
+//                 mordred.currentFrame = mordred.maxFrames;
+//             }
+            
+//             mordred.s.setRegion(mordred.textureAtlas.findRegion(String.format("Walk" + mordred.currentFrame)));
+//             mordred.s.setX(mordred.s.getX()+10);
 		
             
  
-    }
+//     }
+// }
+     
+public int inputSelec() {
+    try {
+        synchronized(entradas){
+              entradas.wait(90);
+
+        }
+        
+      } catch (InterruptedException e) {
+       
+          e.printStackTrace();
+      }
+    
+        
+        if (entradas.isDown()) {
+          
+            if (opc==0) {
+                 
+                opc=3;
+               
+            }
+            else{
+                opc--;
+              
+            }
+        }
+        if (entradas.isUp()) {
+            if(opc==3){
+             opc=0;
+            }
+            else{
+                opc++;
+               
+            }
+        }
+      
+        return opc;
 }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
     @Override
     public void resize(int width, int height) {
         // TODO Auto-generated method stub

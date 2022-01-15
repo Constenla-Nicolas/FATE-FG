@@ -1,27 +1,41 @@
 package personajes;
  
  
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+ 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
  
 
 import utiles.Imagen;
+import utiles.Render;
 
  
 
 public abstract class personajePrefab{
-  
+    protected TextureAtlas textureAtlas;
+   
+   protected TextureRegion texRegion;
   private float x, y, w, h;
-  private int vidamax;
+  protected int vidamax;
+  protected int opc;
   private Imagen i;
   private  int vidaActual;
-  public AtlasRegion Sprites;
-  public static Imagen spriteImagen;
-
-  
+  protected enum Estado{CORRER,SALTAR,STANCE}
+  Estado estadoactual, estadoanterior;
+  protected float statetimer=0;
+  protected static Imagen spriteImagen;
+  public Animation<TextureRegion> intro;
+    
     public personajePrefab(){
         
       
+    } 
+    public void update(float dt){
+
+    }
+     public void setAnims() {
+        
     }
     public Imagen getImagen() {
         return i;
@@ -31,7 +45,9 @@ public abstract class personajePrefab{
         this.i = i;
         
     }
-
+    public void setInput(int opc){
+        this.opc=opc;
+    }
     public void setX(float x){
         i.setX(this.x);
 
@@ -59,6 +75,12 @@ public abstract class personajePrefab{
 	public int getVidamax() {
         return vidamax;
     }
+ public void setVidaActual(int vidaActual) {
+     this.vidaActual = vidaActual;
+ }
+ public void setVidamax(int vidamax) {
+     this.vidamax = vidamax;
+ }
 	 
 
 }

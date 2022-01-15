@@ -90,7 +90,7 @@ public class SeleccionEscenarios implements Screen {
 
 
     private void Seleccionar() {
-        System.out.println("a");
+        
         if (input.isEnter()) {
         Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
         }
