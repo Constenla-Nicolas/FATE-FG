@@ -2,6 +2,10 @@ package personajes;
  
  
  
+import javax.tools.Diagnostic;
+
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,7 +18,7 @@ import utiles.Render;
 
 public abstract class personajePrefab{
     protected TextureAtlas textureAtlas;
-   
+   protected float cargasuper;
    protected TextureRegion texRegion;
   private float x, y, w, h;
   protected int vidamax;
@@ -81,6 +85,10 @@ public abstract class personajePrefab{
  public void setVidamax(int vidamax) {
      this.vidamax = vidamax;
  }
+ 
+ public float getCargasuper() {
+     return cargasuper;
+ }
 	 public void stanceAnim(){
 
      }
@@ -134,11 +142,7 @@ public abstract class personajePrefab{
     public void air4Anim(){
 
     }
+  
     
-    
-    
-    
-
-
 
 }

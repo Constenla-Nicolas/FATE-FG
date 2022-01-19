@@ -22,15 +22,20 @@ public class Escenarios implements Screen,TieneFondo{
    Rectangle player2Box;
    private Imagen fightstage;
    Hud hud;
+   HudBarra hb;
    float ts;
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
    Entradas entradas = new Entradas(this);
   private String e;
-private int opc;
+  private int opc;
+ private   personajePrefab p1;
+  private  personajePrefab p2;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
+    this.p1=p1;
+    this.p2=p2;
     System.out.println(p1);
     setFondo();
     
@@ -40,13 +45,14 @@ private int opc;
         
         b= Render.batch;
         hud= new Hud(b);
+        hb= new HudBarra();
         mordred = new Mordred();   
         astolfo = new Astolfo();                                  
         Gdx.input.setInputProcessor(entradas);
         player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
        
     }
-
+float a;
     @Override
     public void render(float delta) {
         inputSelec();
@@ -62,18 +68,42 @@ private int opc;
        
        b.draw(mordred.bruh.getKeyFrame(mordred.elapsedTime, true), 500, 500, 75, 100);
      
-
+        hb.dibujar();
         movimiento();
-         b.end(); 
+        a=a+0.1f;
+       
+       
+        
+         b.end();
+        ActualizarBarras();
+       
+       
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
         player2Box.setPosition(astolfo.img.getX(), astolfo.img.getY());
+
+       
     }
 
 
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
+    private void ActualizarBarras() {
+    if (p1.getVidaActual()!=p1.getVidamax()) {
+           hb.Restarvida1(p1.getVidaActual());
+        }
+    if (p2.getVidaActual()!=p2.getVidamax()) {
+        hb.Restarvida2(p2.getVidaActual());
+    }
+    if (p2.getCargasuper()!=0) {
+        hb.Actualizarsuper1(p2.getCargasuper());
+    }
+    if (p1.getCargasuper()!=0) {
+        hb.Actualizarsuper2(p1.getCargasuper());
+    }
+
+    }
     public void movimiento(){
         		
 		if(entradas.isLeft()){ 	//entradas = input entrys

@@ -46,19 +46,19 @@ public static void updateCamara(){
  * @param nmb    cuanto porciento
  * @param xyvalue config.HEIGHT o config.WIDTH si lo haces en base al tamaño de pantalla
  */
-    public static int SacarPorcentaje(float nmb, int xyvalue){
-        return (int)(nmb*xyvalue/100);
+    public static float SacarPorcentaje(float nmb, int xyvalue){
+        return (nmb*xyvalue/100);
     }
 /**
  * Para cuando quieras definir el tamanio de un texto, titulo, etc. en base a la resolucion interna del juego
  * 
  * @param porc    porcentaje de pantalla que va a ocupar
- * @param xyvalue config.HEIGHT o config.WIDTH
+ * @param f config.HEIGHT o config.WIDTH
  */
 
-public static int tamanioDeAlgo(int porc,int xyvalue){
+public static float tamanioDeAlgo(int porc,float f){
     proporcion = porc;
-   return (porc*xyvalue/100);
+   return (porc*f/100);
 }
 
 /**
@@ -66,11 +66,11 @@ public static int tamanioDeAlgo(int porc,int xyvalue){
  * 
  * @return posicion en pantalla
  * Llamar y definir primero tamanioDeAlgo() si o si;
- * @param xyvalue por donde se va a centrar, usar config.WIDTH o config.HEIGHT para centrar horizontal o vertical respectivamente
+ * @param f por donde se va a centrar, usar config.WIDTH o config.HEIGHT para centrar horizontal o vertical respectivamente
  */
-public static int centrado(int xyvalue){
+public static float centrado(float f){
 
-    return (xyvalue/2-(Config.tamanioDeAlgo(proporcion,xyvalue))/2);
+    return (f/2-(Config.tamanioDeAlgo(proporcion,f))/2);
 }
 
 }

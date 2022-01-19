@@ -1,0 +1,55 @@
+
+hud.png
+size: 256, 256
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+white-pixel
+  rotate: false
+  xy: 202, 200
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+hud_frame without_custom_meter
+  rotate: false
+  xy: 1, 163
+  size: 199, 38
+  orig: 199, 38
+  offset: 0, 0
+  index: -1
+hud_frame without_custom_meter_flipped
+  rotate: false
+  xy: 1, 123
+  size: 199, 38
+  orig: 199, 38
+  offset: 0, 0
+  index: -1
+hud_hp
+  rotate: false
+  xy: 1, 97
+  size: 199, 11
+  orig: 199, 11
+  offset: 0, 0
+  index: -1
+hud_hp_flipped
+  rotate: false
+  xy: 1, 110
+  size: 199, 11
+  orig: 199, 11
+  offset: 0, 0
+  index: -1
+hud_mp
+  rotate: false
+  xy: 1, 84
+  size: 180, 11
+  orig: 180, 11
+  offset: 0, 0
+  index: -1
+hud_mp_flipped
+  rotate: false
+  xy: 1, 71
+  size: 180, 11
+  orig: 180, 11
+  offset: 0, 0
+  index: -1
