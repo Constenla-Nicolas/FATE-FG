@@ -69,7 +69,7 @@ public class HudBarra extends ApplicationAdapter {
         table1.align(Align.bottomLeft);
 
         super1 = new ProgressBar(0.0f, 100.0f, 1.0f, false, skin, "barrasuper");
-        super1.setValue(100.0f);
+        super1.setValue(1.0f);
         table1.add(super1).prefWidth(300.0f);
         table.add(table1).expandX().align(Align.left);
 
@@ -77,6 +77,7 @@ public class HudBarra extends ApplicationAdapter {
         table1.align(Align.top);
 
         super2 = new ProgressBar(0.0f, 100.0f, 1.0f, false, skin, "barrasuper2");
+        super2.setValue(99f);
         table1.add(super2).prefWidth(300.0f);
         table.add(table1).expandX().align(Align.right);
         stage.addActor(table);
