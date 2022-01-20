@@ -1,0 +1,55 @@
+
+HippogriffSummon.png
+size: 256, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+HippogriffSummon1
+  rotate: false
+  xy: 146, 191
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+HippogriffSummon3
+  rotate: false
+  xy: 2, 2
+  size: 38, 49
+  orig: 38, 49
+  offset: 0, 0
+  index: -1
+HippogriffSummon5
+  rotate: false
+  xy: 2, 53
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+HippogriffSummon6
+  rotate: false
+  xy: 146, 139
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+HippogriffSummon2
+  rotate: false
+  xy: 146, 139
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+HippogriffSummon4
+  rotate: false
+  xy: 146, 139
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+HippogriffSummon7
+  rotate: false
+  xy: 2, 104
+  size: 142, 136
+  orig: 142, 136
+  offset: 0, 0
+  index: -1

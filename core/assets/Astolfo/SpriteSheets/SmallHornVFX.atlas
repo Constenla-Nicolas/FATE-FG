@@ -1,0 +1,41 @@
+
+SmallHornVFX.png
+size: 64, 512
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+SmallHornVFX1
+  rotate: false
+  xy: 2, 140
+  size: 40, 68
+  orig: 40, 68
+  offset: 0, 0
+  index: -1
+SmallHornVFX2
+  rotate: false
+  xy: 2, 2
+  size: 39, 66
+  orig: 39, 66
+  offset: 0, 0
+  index: -1
+SmallHornVFX3
+  rotate: false
+  xy: 2, 70
+  size: 39, 68
+  orig: 39, 68
+  offset: 0, 0
+  index: -1
+SmallHornVFX4
+  rotate: false
+  xy: 2, 210
+  size: 43, 70
+  orig: 43, 70
+  offset: 0, 0
+  index: -1
+SmallHornVFX5
+  rotate: false
+  xy: 2, 282
+  size: 55, 80
+  orig: 55, 80
+  offset: 0, 0
+  index: -1

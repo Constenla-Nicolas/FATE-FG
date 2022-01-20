@@ -1,0 +1,27 @@
+
+PhantomFlightVFX.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+PhantomFlightVFX1
+  rotate: false
+  xy: 2, 2
+  size: 144, 112
+  orig: 144, 112
+  offset: 0, 0
+  index: -1
+PhantomFlightVFX2
+  rotate: false
+  xy: 148, 6
+  size: 144, 108
+  orig: 144, 108
+  offset: 0, 0
+  index: -1
+PhantomFlightVFX3
+  rotate: false
+  xy: 294, 12
+  size: 126, 102
+  orig: 126, 102
+  offset: 0, 0
+  index: -1

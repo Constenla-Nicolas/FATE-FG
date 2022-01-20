@@ -1,0 +1,41 @@
+
+Ataque2.png
+size: 256, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Ataque 2-1
+  rotate: false
+  xy: 162, 5
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+Ataque 2-2
+  rotate: false
+  xy: 115, 8
+  size: 45, 46
+  orig: 45, 46
+  offset: 0, 0
+  index: -1
+Ataque 2-3
+  rotate: false
+  xy: 68, 3
+  size: 45, 51
+  orig: 45, 51
+  offset: 0, 0
+  index: -1
+Ataque 2-5
+  rotate: false
+  xy: 68, 3
+  size: 45, 51
+  orig: 45, 51
+  offset: 0, 0
+  index: -1
+Ataque 2-4
+  rotate: false
+  xy: 2, 2
+  size: 64, 52
+  orig: 64, 52
+  offset: 0, 0
+  index: -1

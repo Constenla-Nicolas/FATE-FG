@@ -66,7 +66,7 @@ float a;
         fightstage.dibujar();
        astolfo.img.dibujar();
        
-       b.draw(mordred.bruh.getKeyFrame(mordred.elapsedTime, true), 500, 500, 75, 100);
+       b.draw(p1.intro.getKeyFrame(mordred.elapsedTime, true), 500, 500, 75, 100);
      
         hb.dibujar();
         movimiento();

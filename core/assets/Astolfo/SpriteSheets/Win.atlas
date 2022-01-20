@@ -1,0 +1,62 @@
+
+Win.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Win1
+  rotate: false
+  xy: 160, 9
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+Win2
+  rotate: false
+  xy: 59, 10
+  size: 55, 48
+  orig: 55, 48
+  offset: 0, 0
+  index: -1
+Win3
+  rotate: false
+  xy: 204, 10
+  size: 41, 48
+  orig: 41, 48
+  offset: 0, 0
+  index: -1
+Win4
+  rotate: false
+  xy: 282, 12
+  size: 33, 46
+  orig: 33, 46
+  offset: 0, 0
+  index: -1
+Win6
+  rotate: false
+  xy: 282, 12
+  size: 33, 46
+  orig: 33, 46
+  offset: 0, 0
+  index: -1
+Win5
+  rotate: false
+  xy: 247, 2
+  size: 33, 56
+  orig: 33, 56
+  offset: 0, 0
+  index: -1
+Win7
+  rotate: false
+  xy: 116, 9
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+Win8
+  rotate: false
+  xy: 2, 6
+  size: 55, 52
+  orig: 55, 52
+  offset: 0, 0
+  index: -1

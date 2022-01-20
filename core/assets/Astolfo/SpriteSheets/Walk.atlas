@@ -1,0 +1,62 @@
+
+Walk.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Walk1
+  rotate: false
+  xy: 106, 3
+  size: 50, 47
+  orig: 50, 47
+  offset: 0, 0
+  index: -1
+Walk5
+  rotate: false
+  xy: 106, 3
+  size: 50, 47
+  orig: 50, 47
+  offset: 0, 0
+  index: -1
+Walk3
+  rotate: false
+  xy: 2, 2
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+Walk4
+  rotate: false
+  xy: 210, 4
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+Walk6
+  rotate: false
+  xy: 262, 4
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+Walk2
+  rotate: false
+  xy: 262, 4
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+Walk7
+  rotate: false
+  xy: 54, 2
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+Walk8
+  rotate: false
+  xy: 158, 3
+  size: 50, 47
+  orig: 50, 47
+  offset: 0, 0
+  index: -1
