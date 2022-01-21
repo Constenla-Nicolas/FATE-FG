@@ -1,0 +1,20 @@
+
+Guard.png
+size: 64, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Guard1
+  rotate: false
+  xy: 2, 67
+  size: 49, 51
+  orig: 49, 51
+  offset: 0, 0
+  index: -1
+Guard2
+  rotate: false
+  xy: 2, 2
+  size: 37, 63
+  orig: 37, 63
+  offset: 0, 0
+  index: -1

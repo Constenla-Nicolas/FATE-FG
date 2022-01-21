@@ -3,28 +3,25 @@ package utiles;
 import personajes.personajePrefab;
 
 public enum Retratos {
-    ASTOLFOSELEC("pngs/Astolfo2.png"),
-    MORDREDSELEC("pngs/Mordred2.png"),
-    JEANNESELEC("pngs/Jeanne2.png"),
-    ATALANTESELEC("pngs/Atalante2.png"),
-    ASTOLFO("pngs/Astolfo1.png"),
-    MORDRED("pngs/Mordred1.png"),
-    JEANNE("pngs/Jeanne1.png"),
-    ATALANTE("pngs/Atalante1.png"),
-    ASTOLFOPJ("personajes.Astolfo"),
-    MORDREDPJ("personajes.Mordred"),
-    JEANNEPJ("personajes.Jeanne"),
-    ATALANTEPJ("personajes.Atalante");
-    private String root;
     
-
-    private Retratos(String root){
-    this.root=root;  
-    }
-    // private Retratos(String root, String clase){
-
-    // }
+    ASTOLFO("pngs/Astolfo1.png","pngs/Astolfo2.png","personajes.Astolfo"),
+    MORDRED("pngs/Mordred1.png","pngs/Mordred2.png","personajes.Mordred"),
+    JEANNE("pngs/Jeanne1.png","pngs/Jeanne2.png","personajes.Jeanne"),
+    ATALANTE("pngs/Atalante1.png","pngs/Atalante2.png","personajes.Atalante");
    
+    private String root;
+    private String clase;
+    private String root2;
+    private Retratos(String root, String root2,String clase){
+        this.root=root;
+        this.root2=root2;
+        this.clase=clase;
+    }
+
+    
+    public String getRoot2() {
+        return root2;
+    }
     public String getRoot() {
         return root;
     }
@@ -34,7 +31,7 @@ public enum Retratos {
         Class c;
         personajePrefab p =null;
         try {
-            c = Class.forName(this.root); 
+            c = Class.forName(this.clase); 
             p = (personajePrefab) c.newInstance();
         
         } catch (ClassNotFoundException e) {

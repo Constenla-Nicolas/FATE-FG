@@ -1,0 +1,34 @@
+
+ClarentBloodVFX.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+ClarentBloodVFX1
+  rotate: false
+  xy: 103, 2
+  size: 97, 72
+  orig: 97, 72
+  offset: 0, 0
+  index: -1
+ClarentBloodVFX2
+  rotate: false
+  xy: 2, 2
+  size: 99, 72
+  orig: 99, 72
+  offset: 0, 0
+  index: -1
+ClarentBloodVFX3
+  rotate: false
+  xy: 202, 16
+  size: 97, 58
+  orig: 97, 58
+  offset: 0, 0
+  index: -1
+ClarentBloodVFX4
+  rotate: false
+  xy: 301, 17
+  size: 90, 57
+  orig: 90, 57
+  offset: 0, 0
+  index: -1

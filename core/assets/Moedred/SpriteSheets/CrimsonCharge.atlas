@@ -1,0 +1,62 @@
+
+CrimsonCharge.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+CrimsonCharge1
+  rotate: false
+  xy: 192, 2
+  size: 35, 56
+  orig: 35, 56
+  offset: 0, 0
+  index: -1
+CrimsonCharge2
+  rotate: false
+  xy: 153, 5
+  size: 37, 53
+  orig: 37, 53
+  offset: 0, 0
+  index: -1
+CrimsonCharge3
+  rotate: false
+  xy: 62, 6
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+CrimsonCharge4
+  rotate: false
+  xy: 278, 19
+  size: 47, 39
+  orig: 47, 39
+  offset: 0, 0
+  index: -1
+CrimsonCharge5
+  rotate: false
+  xy: 229, 19
+  size: 47, 39
+  orig: 47, 39
+  offset: 0, 0
+  index: -1
+CrimsonCharge6
+  rotate: false
+  xy: 62, 6
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+CrimsonCharge7
+  rotate: false
+  xy: 2, 6
+  size: 58, 52
+  orig: 58, 52
+  offset: 0, 0
+  index: -1
+CrimsonCharge8
+  rotate: false
+  xy: 110, 8
+  size: 41, 50
+  orig: 41, 50
+  offset: 0, 0
+  index: -1

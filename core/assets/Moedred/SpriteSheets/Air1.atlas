@@ -1,0 +1,27 @@
+
+Air1.png
+size: 64, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Air 1-1
+  rotate: false
+  xy: 2, 62
+  size: 32, 84
+  orig: 32, 84
+  offset: 0, 0
+  index: -1
+Air 1-2
+  rotate: false
+  xy: 2, 148
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+Air 1-3
+  rotate: false
+  xy: 2, 2
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1

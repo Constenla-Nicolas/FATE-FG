@@ -12,6 +12,7 @@ public class HiloServidor extends Thread {
     private int puerto = 3074; 
     private int posicionConexion=0;
     private String[][] Usuario = new String[2][2]; 
+    
      public HiloServidor(){
          try {
              s= new DatagramSocket(puerto);

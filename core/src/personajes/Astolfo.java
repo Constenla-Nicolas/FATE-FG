@@ -2,20 +2,23 @@ package personajes;
 
  
 
+import com.badlogic.gdx.Gdx;
+
 import utiles.Imagen;
 
 public class Astolfo extends personajePrefab {
-    public Astolfo(){
 
-        spriteImagen = new Imagen("astolfoSheet.jpg");
+    public Imagen img;
+    public Astolfo(){
+        img = new Imagen("Astolfo/Stance1.png");
+        img.setPosition((Gdx.graphics.getWidth()/2), Gdx.graphics.getHeight()/2);
+        
+   
     }
 
-    @Override
-    public void Terminapelea() {
-        // TODO Auto-generated method stub
-        
+
     }
  
 
     
-}
+

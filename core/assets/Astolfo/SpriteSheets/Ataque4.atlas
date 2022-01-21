@@ -1,0 +1,34 @@
+
+Ataque4.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Ataque 4-1
+  rotate: false
+  xy: 204, 50
+  size: 37, 48
+  orig: 37, 48
+  offset: 0, 0
+  index: -1
+Ataque 4-2
+  rotate: false
+  xy: 103, 31
+  size: 61, 67
+  orig: 61, 67
+  offset: 0, 0
+  index: -1
+Ataque 4-3
+  rotate: false
+  xy: 2, 2
+  size: 99, 96
+  orig: 99, 96
+  offset: 0, 0
+  index: -1
+Ataque 4-4
+  rotate: false
+  xy: 166, 15
+  size: 36, 83
+  orig: 36, 83
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+Dash.png
+size: 256, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Dash1
+  rotate: false
+  xy: 69, 7
+  size: 65, 42
+  orig: 65, 42
+  offset: 0, 0
+  index: -1
+Dash2
+  rotate: false
+  xy: 2, 2
+  size: 65, 47
+  orig: 65, 47
+  offset: 0, 0
+  index: -1
