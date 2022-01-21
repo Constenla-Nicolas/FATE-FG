@@ -1,0 +1,62 @@
+{
+com.badlogic.gdx.graphics.Color: {
+	invisible: {
+		r: 0.43803784
+		g: 1
+		b: 0.42333323
+		a: 0
+	}
+}
+com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable: {
+	hud_mp: {
+		region: hud_mp
+		minWidth: 1
+		minHeight: 11
+	}
+	hud_hp_flipped: {
+		region: hud_hp_flipped
+		minWidth: 1
+		minHeight: 11
+	}
+	hud_hp: {
+		region: hud_hp
+		minWidth: 1
+		minHeight: 11
+	}
+	hud_mp_flipped: {
+		region: hud_mp_flipped
+		minWidth: 1
+		minHeight: 11
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
+	pixelinvisible: {
+		name: white-pixel
+		color: invisible
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+	default-horizontal: {
+		background: pixelinvisible
+	}
+	default-vertical: {
+		background: pixelinvisible
+	}
+	BarraVida1: {
+		background: pixelinvisible
+		knobBefore: hud_hp
+	}
+	BarraVida2: {
+		background: pixelinvisible
+		knobAfter: hud_hp_flipped
+	}
+	barrasuper: {
+		background: pixelinvisible
+		knobBefore: hud_mp
+	}
+	barrasuper2: {
+		background: pixelinvisible
+		knobAfter: hud_mp_flipped
+	}
+}
+}

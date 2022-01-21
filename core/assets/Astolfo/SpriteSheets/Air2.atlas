@@ -1,0 +1,48 @@
+
+Air2.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Air 2-1
+  rotate: false
+  xy: 354, 31
+  size: 33, 67
+  orig: 33, 67
+  offset: 0, 0
+  index: -1
+Air 2-2
+  rotate: false
+  xy: 204, 45
+  size: 66, 53
+  orig: 66, 53
+  offset: 0, 0
+  index: -1
+Air 2-3
+  rotate: false
+  xy: 317, 26
+  size: 35, 72
+  orig: 35, 72
+  offset: 0, 0
+  index: -1
+Air 2-4
+  rotate: false
+  xy: 272, 45
+  size: 43, 53
+  orig: 43, 53
+  offset: 0, 0
+  index: -1
+Air 2-5
+  rotate: false
+  xy: 2, 2
+  size: 99, 96
+  orig: 99, 96
+  offset: 0, 0
+  index: -1
+Air 2-6
+  rotate: false
+  xy: 103, 2
+  size: 99, 96
+  orig: 99, 96
+  offset: 0, 0
+  index: -1

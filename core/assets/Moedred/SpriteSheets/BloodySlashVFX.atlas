@@ -1,0 +1,20 @@
+
+BloodySlashVFX.png
+size: 64, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+BloodySlashVFX1
+  rotate: false
+  xy: 2, 2
+  size: 47, 63
+  orig: 47, 63
+  offset: 0, 0
+  index: -1
+BloodySlashVFX2
+  rotate: false
+  xy: 2, 67
+  size: 47, 63
+  orig: 47, 63
+  offset: 0, 0
+  index: -1

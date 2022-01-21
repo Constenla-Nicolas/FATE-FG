@@ -1,0 +1,27 @@
+
+Ataque3.png
+size: 256, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Ataque 3-1
+  rotate: false
+  xy: 140, 3
+  size: 37, 51
+  orig: 37, 51
+  offset: 0, 0
+  index: -1
+Ataque 3-2
+  rotate: false
+  xy: 2, 2
+  size: 78, 52
+  orig: 78, 52
+  offset: 0, 0
+  index: -1
+Ataque 3-3
+  rotate: false
+  xy: 82, 2
+  size: 56, 52
+  orig: 56, 52
+  offset: 0, 0
+  index: -1

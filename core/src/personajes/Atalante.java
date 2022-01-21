@@ -1,5 +1,5 @@
 package personajes;
-
+ 
 import utiles.Imagen;
 
 public class Atalante extends personajePrefab{
@@ -9,6 +9,8 @@ public class Atalante extends personajePrefab{
 
     }
 
+
+ 
 
 
 }

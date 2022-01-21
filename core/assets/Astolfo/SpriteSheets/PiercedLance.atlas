@@ -1,0 +1,97 @@
+
+PiercedLance.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+PiercedLance1
+  rotate: false
+  xy: 230, 9
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+PiercedLance2
+  rotate: false
+  xy: 186, 19
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+PiercedLance3
+  rotate: false
+  xy: 274, 9
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+PiercedLance4
+  rotate: false
+  xy: 66, 27
+  size: 67, 49
+  orig: 67, 49
+  offset: 0, 0
+  index: -1
+PiercedLance5
+  rotate: false
+  xy: 437, 77
+  size: 67, 49
+  orig: 67, 49
+  offset: 0, 0
+  index: -1
+PiercedLance6
+  rotate: false
+  xy: 437, 26
+  size: 66, 49
+  orig: 66, 49
+  offset: 0, 0
+  index: -1
+PiercedLance7
+  rotate: false
+  xy: 66, 78
+  size: 95, 48
+  orig: 95, 48
+  offset: 0, 0
+  index: -1
+PiercedLance8
+  rotate: false
+  xy: 135, 2
+  size: 49, 56
+  orig: 49, 56
+  offset: 0, 0
+  index: -1
+PiercedLance9
+  rotate: false
+  xy: 163, 70
+  size: 80, 56
+  orig: 80, 56
+  offset: 0, 0
+  index: -1
+PiercedLance10
+  rotate: false
+  xy: 2, 43
+  size: 62, 83
+  orig: 62, 83
+  offset: 0, 0
+  index: -1
+PiercedLance11
+  rotate: false
+  xy: 380, 61
+  size: 55, 65
+  orig: 55, 65
+  offset: 0, 0
+  index: -1
+PiercedLance12
+  rotate: false
+  xy: 245, 60
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+PiercedLance13
+  rotate: false
+  xy: 314, 60
+  size: 64, 66
+  orig: 64, 66
+  offset: 0, 0
+  index: -1

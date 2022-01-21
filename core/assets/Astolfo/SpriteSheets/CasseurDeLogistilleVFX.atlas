@@ -1,0 +1,146 @@
+
+CasseurDeLogistilleVFX.png
+size: 128, 32
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+CasseurDeLogistilleVFX1
+  rotate: false
+  xy: 70, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX2
+  rotate: false
+  xy: 2, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX3
+  rotate: false
+  xy: 2, 2
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX4
+  rotate: false
+  xy: 46, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX5
+  rotate: false
+  xy: 22, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX6
+  rotate: false
+  xy: 70, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX7
+  rotate: false
+  xy: 22, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX8
+  rotate: false
+  xy: 22, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX9
+  rotate: false
+  xy: 2, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX10
+  rotate: false
+  xy: 58, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX11
+  rotate: false
+  xy: 34, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX12
+  rotate: false
+  xy: 2, 2
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX13
+  rotate: false
+  xy: 70, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX14
+  rotate: false
+  xy: 2, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX15
+  rotate: false
+  xy: 2, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX16
+  rotate: false
+  xy: 58, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX17
+  rotate: false
+  xy: 46, 6
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX18
+  rotate: false
+  xy: 90, 14
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX19
+  rotate: false
+  xy: 2, 2
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+CasseurDeLogistilleVFX20
+  rotate: false
+  xy: 2, 2
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1

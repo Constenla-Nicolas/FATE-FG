@@ -1,0 +1,41 @@
+
+FullActivationVFX.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+FullActivationVFX1
+  rotate: false
+  xy: 387, 14
+  size: 38, 75
+  orig: 38, 75
+  offset: 0, 0
+  index: -1
+FullActivationVFX2
+  rotate: false
+  xy: 314, 11
+  size: 71, 78
+  orig: 71, 78
+  offset: 0, 0
+  index: -1
+FullActivationVFX3
+  rotate: false
+  xy: 211, 5
+  size: 101, 84
+  orig: 101, 84
+  offset: 0, 0
+  index: -1
+FullActivationVFX4
+  rotate: false
+  xy: 2, 2
+  size: 103, 87
+  orig: 103, 87
+  offset: 0, 0
+  index: -1
+FullActivationVFX5
+  rotate: false
+  xy: 107, 3
+  size: 102, 86
+  orig: 102, 86
+  offset: 0, 0
+  index: -1

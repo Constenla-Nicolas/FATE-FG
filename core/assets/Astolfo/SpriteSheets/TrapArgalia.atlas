@@ -1,0 +1,62 @@
+
+TrapArgalia.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+TrapArgalia1
+  rotate: false
+  xy: 492, 2
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+TrapArgalia2
+  rotate: false
+  xy: 448, 2
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+TrapArgalia3
+  rotate: false
+  xy: 536, 2
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+TrapArgalia4
+  rotate: false
+  xy: 379, 2
+  size: 67, 49
+  orig: 67, 49
+  offset: 0, 0
+  index: -1
+TrapArgalia5
+  rotate: false
+  xy: 310, 2
+  size: 67, 49
+  orig: 67, 49
+  offset: 0, 0
+  index: -1
+TrapArgalia6
+  rotate: false
+  xy: 2, 4
+  size: 103, 47
+  orig: 103, 47
+  offset: 0, 0
+  index: -1
+TrapArgalia7
+  rotate: false
+  xy: 107, 9
+  size: 104, 42
+  orig: 104, 42
+  offset: 0, 0
+  index: -1
+TrapArgalia8
+  rotate: false
+  xy: 213, 3
+  size: 95, 48
+  orig: 95, 48
+  offset: 0, 0
+  index: -1
