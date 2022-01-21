@@ -11,13 +11,6 @@ Jump1
   orig: 45, 46
   offset: 0, 0
   index: -1
-Jump6
-  rotate: false
-  xy: 2, 2
-  size: 45, 46
-  orig: 45, 46
-  offset: 0, 0
-  index: -1
 Jump2
   rotate: false
   xy: 100, 62
@@ -44,5 +37,12 @@ Jump5
   xy: 2, 50
   size: 50, 75
   orig: 50, 75
+  offset: 0, 0
+  index: -1
+Jump6
+  rotate: false
+  xy: 2, 2
+  size: 45, 46
+  orig: 45, 46
   offset: 0, 0
   index: -1

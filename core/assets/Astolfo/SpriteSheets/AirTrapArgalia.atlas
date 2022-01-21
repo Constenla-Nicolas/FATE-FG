@@ -39,18 +39,18 @@ AirTrapArgalia5
   orig: 67, 52
   offset: 0, 0
   index: -1
-AirTrapArgalia7
-  rotate: false
-  xy: 158, 29
-  size: 67, 52
-  orig: 67, 52
-  offset: 0, 0
-  index: -1
 AirTrapArgalia6
   rotate: false
   xy: 2, 8
   size: 79, 73
   orig: 79, 73
+  offset: 0, 0
+  index: -1
+AirTrapArgalia7
+  rotate: false
+  xy: 158, 29
+  size: 67, 52
+  orig: 67, 52
   offset: 0, 0
   index: -1
 AirTrapArgalia8

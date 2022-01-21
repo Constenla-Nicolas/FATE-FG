@@ -25,17 +25,17 @@ Ataque 2-3
   orig: 45, 51
   offset: 0, 0
   index: -1
-Ataque 2-5
-  rotate: false
-  xy: 68, 3
-  size: 45, 51
-  orig: 45, 51
-  offset: 0, 0
-  index: -1
 Ataque 2-4
   rotate: false
   xy: 2, 2
   size: 64, 52
   orig: 64, 52
+  offset: 0, 0
+  index: -1
+Ataque 2-5
+  rotate: false
+  xy: 68, 3
+  size: 45, 51
+  orig: 45, 51
   offset: 0, 0
   index: -1

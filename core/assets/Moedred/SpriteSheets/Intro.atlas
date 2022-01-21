@@ -11,13 +11,6 @@ Intro1
   orig: 21, 56
   offset: 0, 0
   index: -1
-Intro10
-  rotate: false
-  xy: 2, 59
-  size: 34, 63
-  orig: 34, 63
-  offset: 0, 0
-  index: -1
 Intro2
   rotate: false
   xy: 116, 66
@@ -72,5 +65,12 @@ Intro9
   xy: 38, 9
   size: 34, 55
   orig: 34, 55
+  offset: 0, 0
+  index: -1
+Intro10
+  rotate: false
+  xy: 2, 59
+  size: 34, 63
+  orig: 34, 63
   offset: 0, 0
   index: -1

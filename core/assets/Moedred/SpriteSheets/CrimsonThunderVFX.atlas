@@ -1,0 +1,20 @@
+
+CrimsonThunderVFX.png
+size: 512, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Crimson ThunderVFX1
+  rotate: false
+  xy: 137, 3
+  size: 134, 135
+  orig: 134, 135
+  offset: 0, 0
+  index: -1
+Crimson ThunderVFX2
+  rotate: false
+  xy: 2, 2
+  size: 133, 136
+  orig: 133, 136
+  offset: 0, 0
+  index: -1

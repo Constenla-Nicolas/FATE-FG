@@ -11,34 +11,6 @@ PiercedLance1
   orig: 42, 49
   offset: 0, 0
   index: -1
-PiercedLance10
-  rotate: false
-  xy: 2, 43
-  size: 62, 83
-  orig: 62, 83
-  offset: 0, 0
-  index: -1
-PiercedLance11
-  rotate: false
-  xy: 380, 61
-  size: 55, 65
-  orig: 55, 65
-  offset: 0, 0
-  index: -1
-PiercedLance12
-  rotate: false
-  xy: 245, 60
-  size: 67, 66
-  orig: 67, 66
-  offset: 0, 0
-  index: -1
-PiercedLance13
-  rotate: false
-  xy: 314, 60
-  size: 64, 66
-  orig: 64, 66
-  offset: 0, 0
-  index: -1
 PiercedLance2
   rotate: false
   xy: 186, 19
@@ -93,5 +65,33 @@ PiercedLance9
   xy: 163, 70
   size: 80, 56
   orig: 80, 56
+  offset: 0, 0
+  index: -1
+PiercedLance10
+  rotate: false
+  xy: 2, 43
+  size: 62, 83
+  orig: 62, 83
+  offset: 0, 0
+  index: -1
+PiercedLance11
+  rotate: false
+  xy: 380, 61
+  size: 55, 65
+  orig: 55, 65
+  offset: 0, 0
+  index: -1
+PiercedLance12
+  rotate: false
+  xy: 245, 60
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+PiercedLance13
+  rotate: false
+  xy: 314, 60
+  size: 64, 66
+  orig: 64, 66
   offset: 0, 0
   index: -1
