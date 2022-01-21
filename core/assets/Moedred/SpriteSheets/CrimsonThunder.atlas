@@ -1,55 +1,41 @@
 
 CrimsonThunder.png
-size: 512, 256
+size: 256, 128
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 Crimson Thunder1
   rotate: false
-  xy: 346, 149
+  xy: 2, 2
   size: 43, 55
   orig: 43, 55
   offset: 0, 0
   index: -1
+Crimson thunder2
+  rotate: false
+  xy: 59, 69
+  size: 60, 55
+  orig: 60, 55
+  offset: 0, 0
+  index: -1
 Crimson Thunder3
   rotate: false
-  xy: 2, 2
+  xy: 2, 59
   size: 55, 65
   orig: 55, 65
   offset: 0, 0
   index: -1
 Crimson Thunder4
   rotate: false
-  xy: 309, 126
+  xy: 121, 46
   size: 35, 78
   orig: 35, 78
   offset: 0, 0
   index: -1
 Crimson Thunder5
   rotate: false
-  xy: 273, 122
+  xy: 158, 42
   size: 34, 82
   orig: 34, 82
-  offset: 0, 0
-  index: -1
-Crimson Thunder6
-  rotate: false
-  xy: 2, 69
-  size: 134, 135
-  orig: 134, 135
-  offset: 0, 0
-  index: -1
-Crimson Thunder7
-  rotate: false
-  xy: 138, 68
-  size: 133, 136
-  orig: 133, 136
-  offset: 0, 0
-  index: -1
-Crimson thunder2
-  rotate: false
-  xy: 59, 12
-  size: 60, 55
-  orig: 60, 55
   offset: 0, 0
   index: -1

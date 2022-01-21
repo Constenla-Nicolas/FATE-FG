@@ -11,41 +11,6 @@ Intro1
   orig: 142, 136
   offset: 0, 0
   index: -1
-Intro10
-  rotate: false
-  xy: 277, 27
-  size: 33, 50
-  orig: 33, 50
-  offset: 0, 0
-  index: -1
-Intro11
-  rotate: false
-  xy: 177, 27
-  size: 51, 50
-  orig: 51, 50
-  offset: 0, 0
-  index: -1
-Intro12
-  rotate: false
-  xy: 124, 27
-  size: 51, 50
-  orig: 51, 50
-  offset: 0, 0
-  index: -1
-Intro13
-  rotate: false
-  xy: 54, 27
-  size: 68, 50
-  orig: 68, 50
-  offset: 0, 0
-  index: -1
-Intro14
-  rotate: false
-  xy: 722, 86
-  size: 42, 49
-  orig: 42, 49
-  offset: 0, 0
-  index: -1
 Intro2
   rotate: false
   xy: 290, 79
@@ -102,3 +67,39 @@ Intro9
   orig: 45, 46
   offset: 0, 0
   index: -1
+Intro10
+  rotate: false
+  xy: 277, 27
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+Intro11
+  rotate: false
+  xy: 177, 27
+  size: 51, 50
+  orig: 51, 50
+  offset: 0, 0
+  index: -1
+Intro12
+  rotate: false
+  xy: 124, 27
+  size: 51, 50
+  orig: 51, 50
+  offset: 0, 0
+  index: -1
+Intro13
+  rotate: false
+  xy: 54, 27
+  size: 68, 50
+  orig: 68, 50
+  offset: 0, 0
+  index: -1
+Intro14
+  rotate: false
+  xy: 722, 86
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+

@@ -1,0 +1,20 @@
+
+BloodySlashEXVFX.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+BloodySlashEXVFX1
+  rotate: false
+  xy: 2, 2
+  size: 83, 113
+  orig: 83, 113
+  offset: 0, 0
+  index: -1
+BloodySlashEXVFX2
+  rotate: false
+  xy: 87, 3
+  size: 79, 112
+  orig: 79, 112
+  offset: 0, 0
+  index: -1

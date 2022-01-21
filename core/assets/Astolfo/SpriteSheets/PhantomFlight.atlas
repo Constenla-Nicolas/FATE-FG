@@ -11,14 +11,63 @@ PhantomFlight1
   orig: 37, 48
   offset: 0, 0
   index: -1
-PhantomFlight10
+PhantomFlight2
   rotate: false
-  xy: 1528, 206
+  xy: 1443, 193
+  size: 43, 61
+  orig: 43, 61
+  offset: 0, 0
+  index: -1
+PhantomFlight3
+  rotate: false
+  xy: 1366, 182
+  size: 75, 72
+  orig: 75, 72
+  offset: 0, 0
+  index: -1
+PhantomFlight4
+  rotate: false
+  xy: 218, 58
+  size: 59, 58
+  orig: 59, 58
+  offset: 0, 0
+  index: -1
+PhantomFlight5
+  rotate: false
+  xy: 1684, 205
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+PhantomFlight6
+  rotate: false
+  xy: 1807, 204
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+PhantomFlight7
+  rotate: false
+  xy: 1728, 205
+  size: 38, 49
+  orig: 38, 49
+  offset: 0, 0
+  index: -1
+PhantomFlight8
+  rotate: false
+  xy: 1807, 204
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+PhantomFlight9
+  rotate: false
+  xy: 279, 68
   size: 50, 48
   orig: 50, 48
   offset: 0, 0
   index: -1
-PhantomFlight14
+PhantomFlight10
   rotate: false
   xy: 1528, 206
   size: 50, 48
@@ -46,9 +95,9 @@ PhantomFlight13
   orig: 50, 48
   offset: 0, 0
   index: -1
-PhantomFlight9
+PhantomFlight14
   rotate: false
-  xy: 279, 68
+  xy: 1528, 206
   size: 50, 48
   orig: 50, 48
   offset: 0, 0
@@ -86,13 +135,6 @@ PhantomFlight19
   xy: 1488, 191
   size: 38, 63
   orig: 38, 63
-  offset: 0, 0
-  index: -1
-PhantomFlight2
-  rotate: false
-  xy: 1443, 193
-  size: 43, 61
-  orig: 43, 61
   offset: 0, 0
   index: -1
 PhantomFlight20
@@ -165,13 +207,6 @@ PhantomFlight29
   orig: 142, 136
   offset: 0, 0
   index: -1
-PhantomFlight3
-  rotate: false
-  xy: 1366, 182
-  size: 75, 72
-  orig: 75, 72
-  offset: 0, 0
-  index: -1
 PhantomFlight30
   rotate: false
   xy: 294, 118
@@ -198,40 +233,5 @@ PhantomFlight33
   xy: 148, 118
   size: 144, 136
   orig: 144, 136
-  offset: 0, 0
-  index: -1
-PhantomFlight4
-  rotate: false
-  xy: 218, 58
-  size: 59, 58
-  orig: 59, 58
-  offset: 0, 0
-  index: -1
-PhantomFlight5
-  rotate: false
-  xy: 1684, 205
-  size: 42, 49
-  orig: 42, 49
-  offset: 0, 0
-  index: -1
-PhantomFlight6
-  rotate: false
-  xy: 1807, 204
-  size: 33, 50
-  orig: 33, 50
-  offset: 0, 0
-  index: -1
-PhantomFlight8
-  rotate: false
-  xy: 1807, 204
-  size: 33, 50
-  orig: 33, 50
-  offset: 0, 0
-  index: -1
-PhantomFlight7
-  rotate: false
-  xy: 1728, 205
-  size: 38, 49
-  orig: 38, 49
   offset: 0, 0
   index: -1

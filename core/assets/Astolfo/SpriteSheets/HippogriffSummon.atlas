@@ -11,11 +11,25 @@ HippogriffSummon1
   orig: 42, 49
   offset: 0, 0
   index: -1
+HippogriffSummon2
+  rotate: false
+  xy: 146, 139
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
 HippogriffSummon3
   rotate: false
   xy: 2, 2
   size: 38, 49
   orig: 38, 49
+  offset: 0, 0
+  index: -1
+HippogriffSummon4
+  rotate: false
+  xy: 146, 139
+  size: 33, 50
+  orig: 33, 50
   offset: 0, 0
   index: -1
 HippogriffSummon5
@@ -26,20 +40,6 @@ HippogriffSummon5
   offset: 0, 0
   index: -1
 HippogriffSummon6
-  rotate: false
-  xy: 146, 139
-  size: 33, 50
-  orig: 33, 50
-  offset: 0, 0
-  index: -1
-HippogriffSummon2
-  rotate: false
-  xy: 146, 139
-  size: 33, 50
-  orig: 33, 50
-  offset: 0, 0
-  index: -1
-HippogriffSummon4
   rotate: false
   xy: 146, 139
   size: 33, 50

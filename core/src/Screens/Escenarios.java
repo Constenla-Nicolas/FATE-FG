@@ -46,6 +46,7 @@ public class Escenarios implements Screen,TieneFondo{
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
+        p1.mordredAnims();
         mordred = new Mordred();   
         astolfo = new Astolfo();                                  
         Gdx.input.setInputProcessor(entradas);

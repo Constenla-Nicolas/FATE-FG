@@ -18,6 +18,13 @@ Win2
   orig: 70, 55
   offset: 0, 0
   index: -1
+Win3
+  rotate: false
+  xy: 74, 51
+  size: 41, 63
+  orig: 41, 63
+  offset: 0, 0
+  index: -1
 Win4
   rotate: false
   xy: 117, 56
@@ -40,13 +47,6 @@ Win5
   offset: 0, 0
   index: -1
 Win7
-  rotate: false
-  xy: 74, 51
-  size: 41, 63
-  orig: 41, 63
-  offset: 0, 0
-  index: -1
-Win3
   rotate: false
   xy: 74, 51
   size: 41, 63

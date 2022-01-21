@@ -32,18 +32,18 @@ Win4
   orig: 33, 46
   offset: 0, 0
   index: -1
-Win6
-  rotate: false
-  xy: 282, 12
-  size: 33, 46
-  orig: 33, 46
-  offset: 0, 0
-  index: -1
 Win5
   rotate: false
   xy: 247, 2
   size: 33, 56
   orig: 33, 56
+  offset: 0, 0
+  index: -1
+Win6
+  rotate: false
+  xy: 282, 12
+  size: 33, 46
+  orig: 33, 46
   offset: 0, 0
   index: -1
 Win7
