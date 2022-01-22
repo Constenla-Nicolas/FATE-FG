@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Entradas.Entradas;
+import Screens.Batalla.Escenarios;
 import utiles.Config;
 import personajes.personajePrefab;
 import utiles.Imagen;

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Pixmap.Format;
+ 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,9 +20,9 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import personajes.personajePrefab;
-import utiles.Config;
-import utiles.Imagen;
+ import utiles.Config;
+
+ 
 import utiles.Render;
  
  
@@ -37,11 +37,11 @@ public class Hud {
     private  Pixmap pixmap;
     private int sec=99;
     private Sprite a;
-    
+    private Timer t;
     private Texture drawable;
     public Hud(SpriteBatch batch){
    
-         
+         t= new Timer();
         startTimer();
         
         viewport = new FitViewport( Config.WIDTH,Config.HEIGHT, new OrthographicCamera());
@@ -59,8 +59,12 @@ public class Hud {
           }
       };
         public void startTimer(){
-          Timer.schedule(TimerSegundos, 1f, 1f);
+          t.scheduleTask(TimerSegundos, 4f, 1f);
           
+      }
+
+      public void terminarTimer(){
+          t.clear();
       }
  
    public void mostrarHud(){

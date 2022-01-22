@@ -1,4 +1,5 @@
-package Screens;
+package Screens.Batalla;
+
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
@@ -9,6 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 import Entradas.Entradas;
+import Screens.Hud;
+import Screens.HudBarra;
+import Screens.TieneFondo;
 import personajes.Astolfo;
 import personajes.Mordred;
 import personajes.personajePrefab;
@@ -20,7 +24,7 @@ public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
    Rectangle player1Box;
    Rectangle player2Box;
-   private Imagen fightstage;
+   protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
    float ts;
@@ -36,7 +40,7 @@ public class Escenarios implements Screen,TieneFondo{
     this.e = escenario;
     this.p1=p1;
     this.p2=p2;
-    System.out.println(p1);
+ 
     setFondo();
     
  }
@@ -46,7 +50,7 @@ public class Escenarios implements Screen,TieneFondo{
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
-        p1.mordredAnims();
+        
         mordred = new Mordred();   
         astolfo = new Astolfo();                                  
         Gdx.input.setInputProcessor(entradas);
@@ -83,7 +87,11 @@ float a;
      hud.getCuentaAtras().setText(hud.getSec());
         player2Box.setPosition(astolfo.img.getX(), astolfo.img.getY());
 
-       
+        if (hud.getSec()<=95) {
+            hud.terminarTimer();
+            Render.app.setScreen(new PeleaTerminada(this.e,this.p1,this.p2));
+    }
+         
     }
 
 
