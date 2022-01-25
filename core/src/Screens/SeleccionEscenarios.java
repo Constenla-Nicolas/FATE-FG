@@ -83,6 +83,9 @@ public class SeleccionEscenarios implements Screen {
        
        flecha[opc].dibujar();
        b.end();
+
+      
+
     }
 
 

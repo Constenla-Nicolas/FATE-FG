@@ -5,7 +5,7 @@ import personajes.personajePrefab;
 public class Cliente {
     static private HiloCliente hc;
     static private boolean err;
-    static private personajePrefab pj;
+    static public personajePrefab pj;
     public static void main(String[] args) {
         hc = new HiloCliente();
         hc.start();

@@ -20,7 +20,7 @@ public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
    Rectangle player1Box;
    Rectangle player2Box;
-   private Imagen fightstage;
+   protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
    float ts;
@@ -32,6 +32,7 @@ public class Escenarios implements Screen,TieneFondo{
   private int opc;
  private   personajePrefab p1;
   private  personajePrefab p2;
+
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
     this.p1=p1;
@@ -82,8 +83,7 @@ float a;
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
         player2Box.setPosition(astolfo.img.getX(), astolfo.img.getY());
-
-       
+  
     }
 
 
