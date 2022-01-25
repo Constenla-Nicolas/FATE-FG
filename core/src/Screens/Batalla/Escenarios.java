@@ -44,6 +44,8 @@ public class Escenarios implements Screen,TieneFondo{
     setFondo();
     
  }
+    protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
+    }
     @Override
     public void show() {
         
@@ -89,7 +91,7 @@ float a;
 
         if (hud.getSec()<=95) {
             hud.terminarTimer();
-            Render.app.setScreen(new PeleaTerminada(this.e,this.p1,this.p2));
+            Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     }
          
     }

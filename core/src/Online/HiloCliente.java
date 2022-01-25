@@ -7,8 +7,10 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import utiles.Config;
+
 public class HiloCliente extends Thread {
-    DatagramSocket s;
+    private DatagramSocket s;
     boolean err=false;
     private InetAddress ipserver;
     private int puerto = 3074; 
@@ -28,8 +30,8 @@ public class HiloCliente extends Thread {
     public void run(){
        
         while(!err){
-            byte[] a = new byte[1024];
-            DatagramPacket dp = new DatagramPacket(a, a.length);
+            byte[] b = new byte[1024];
+            DatagramPacket dp = new DatagramPacket(b, b.length);
             try {
                 s.receive(dp);
                 procesarMensaje(dp);
@@ -44,6 +46,12 @@ public class HiloCliente extends Thread {
     private void procesarMensaje(DatagramPacket dp) {
         String msg = new String(dp.getData().toString().trim());
         System.out.println(msg);
+        if( msg.equals("esperar")){
+            ipserver=dp.getAddress();
+        }
+        else if(msg.equals("empieza")){
+            Config.ONLINE=true;
+        }
     }
     public void enviarMensaje(String msg){
         byte[] data = msg.getBytes();

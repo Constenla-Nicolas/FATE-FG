@@ -63,7 +63,7 @@ public abstract class personajePrefab implements Action{
   public Animation<TextureRegion> vfx4;
   private Timer tiempo;
     public personajePrefab(){
-         tiempo= new Timer(4000, this);
+         tiempo= new Timer(200, this);
       
     } 
 
