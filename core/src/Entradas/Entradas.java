@@ -15,6 +15,7 @@ public class Entradas implements InputProcessor {
     protected boolean a=false;
     protected boolean w=false;
     protected boolean s=false;
+    protected boolean inputflag=true;
     Screen app;
 
     public Entradas(Screen app){    
@@ -42,14 +43,19 @@ public class Entradas implements InputProcessor {
         return a;
     }
     
+    public void stopInput(){
+    inputflag=false;
+    
 
+    }
+    public void startInput(){
+    inputflag=true;
+    }
      
     @Override
     public boolean keyDown(int keycode) {
-        
-      //  app.tiempo = 0.08f; 
-
-      if(keycode == Keys.DOWN){
+        if (inputflag) {
+            if(keycode == Keys.DOWN){
         down = true;
     }
     if(keycode == Keys.UP){
@@ -69,6 +75,10 @@ public class Entradas implements InputProcessor {
     if(keycode== Keys.D){
         d=true;
     }
+    return false;
+        }
+
+      
     return false;
     }
 
@@ -100,37 +110,37 @@ public class Entradas implements InputProcessor {
 
     @Override
     public boolean keyTyped(char character) {
-        // TODO Auto-generated method stub
+         
         return false;
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        // TODO Auto-generated method stub
+         
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        // TODO Auto-generated method stub
+         
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        // TODO Auto-generated method stub
+         
         return false;
     }
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
-        // TODO Auto-generated method stub
+         
         return false;
     }
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
-        // TODO Auto-generated method stub
+         
         return false;
     }
 

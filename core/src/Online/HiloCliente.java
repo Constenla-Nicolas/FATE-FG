@@ -1,11 +1,14 @@
 package Online;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
 public class HiloCliente extends Thread {
     DatagramSocket s;
@@ -18,9 +21,9 @@ public class HiloCliente extends Thread {
         try {
             s= new DatagramSocket();
             ipserver = InetAddress.getByName("192.168.0.66");
-            enviarMensaje("conexion establecida");
+            enviarMensaje("conectar");
         } catch (SocketException | UnknownHostException e) {
-            // TODO Auto-generated catch block
+             
             e.printStackTrace();
         }
     }
@@ -47,7 +50,7 @@ public class HiloCliente extends Thread {
     }
     public void enviarMensaje(String msg){
         byte[] data = msg.getBytes();
-
+        
         try {
       
             DatagramPacket dp = new DatagramPacket(data, data.length,ipserver,puerto);
@@ -55,8 +58,20 @@ public class HiloCliente extends Thread {
         } catch (IOException e) {
           
             e.printStackTrace();
-        }
+        }  
+        
         
     }
+    public void buscarPuerto() throws BindException {
+        String msg= "aa";
+        byte[] data = msg.getBytes();
+        DatagramPacket dp = new DatagramPacket(data, data.length,ipserver,puerto);
+    }
 
+    public void setPuerto(int puerto) {
+        this.puerto = puerto;
+    }
+    public int getPuerto() {
+        return puerto;
+    }
 }

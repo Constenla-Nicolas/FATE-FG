@@ -1,6 +1,6 @@
 package com.mygdx.game.desktop;
 
-
+// CLIENTE
  
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
