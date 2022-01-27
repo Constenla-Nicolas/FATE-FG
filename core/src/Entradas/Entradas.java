@@ -41,6 +41,9 @@ public class Entradas implements InputProcessor {
     public boolean isA() {
         return a;
     }
+    public boolean isS(){
+        return s;
+    }
     
 
      
@@ -57,8 +60,6 @@ public class Entradas implements InputProcessor {
     }
     if(keycode == Keys.ENTER){
         enter = true;
-         
-    
     }
     if(keycode == Keys.LEFT){
         left = true;
@@ -68,6 +69,12 @@ public class Entradas implements InputProcessor {
     }
     if(keycode== Keys.D){
         d=true;
+    }
+    if(keycode== Keys.S){
+        s=true;
+    }
+    if(keycode== Keys.A){
+        a=true;
     }
     return false;
     }
@@ -94,6 +101,12 @@ public class Entradas implements InputProcessor {
         }
         if (keycode==Keys.D) {
             d = false;   
+        }
+        if(keycode== Keys.S){
+            s=true;
+        }
+        if(keycode== Keys.A){
+            a=true;
         }
         return false;
     }
