@@ -27,6 +27,9 @@ public class Escenarios implements Screen,TieneFondo{
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
+   
+    
+   float time;
    float ts;
    float period= 0.9f;
    Mordred mordred;
@@ -66,15 +69,14 @@ float a;
         mordred.setInput(opc);
         mordred.update(delta);
         
-       // mordred.elapsedTime += delta;
+        time += delta;
         
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
-       astolfo.img.dibujar();
        
-      // b.draw(p1.intro.getKeyFrame(mordred.elapsedTime, true), 500, 500, 75, 100);
-     
+    
+       movement();
         hb.dibujar();
         movimiento();
         a=a+0.1f;
@@ -82,6 +84,7 @@ float a;
        
         
          b.end();
+         
         ActualizarBarras();
        
        
@@ -96,7 +99,48 @@ float a;
          
     }
 
+    private void movement(){
 
+        if(entradas.isLeft()){ 	//entradas = input entrys
+			if(time > 0.1f){ 	//tiempo = time
+				time = 0;
+				opc++;			// opc= option;
+				if(opc > 5){
+					opc = 1;
+				}
+			}
+            
+		}
+
+        else if(entradas.isDown()){
+            
+            b.draw(p1.crouch.getKeyFrame(time), p1.getX(), p1.getY());
+        }
+		else if(entradas.isRight()){
+            b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
+		}
+        else if(entradas.isUp()){
+            
+            b.draw(p1.jump.getKeyFrame(time), p1.getX(), p1.getY());
+            p1.setY(p1.getY()+10);
+        }
+        else if(entradas.isA()){
+            b.draw(p1.ataque1.getKeyFrame(time), p1.getX(), p1.getY());
+        }
+        else if(entradas.isS()){
+            b.draw(p1.ataque2.getKeyFrame(time), p1.getX(), p1.getY());
+        }
+        else if(entradas.isD()){
+            b.draw(p1.ataque2.getKeyFrame(time), p1.getX(), p1.getY());
+        }
+
+       
+
+        else{
+            b.draw(p1.stance.getKeyFrame(time, true), p1.getX(), p1.getY());
+        }
+
+    }
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    

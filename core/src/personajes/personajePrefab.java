@@ -27,7 +27,7 @@ public abstract class personajePrefab implements Action{
   protected int opc;
   private Imagen i;
   private  int vidaActual;
-  protected enum Estado{CORRER,SALTAR,STANCE}
+  protected enum Estado{CORRER, SALTO, ANIMACION, STUN}
   protected Estado estadoactual, estadoanterior;
   protected float statetimer=0;
   protected static Imagen spriteImagen;
@@ -91,11 +91,11 @@ public abstract class personajePrefab implements Action{
         this.opc=opc;
     }
     public void setX(float x){
-        i.setX(this.x);
+        this.x = x;
 
     }
 	public void setY(float y){
-        i.setY(this.y);;
+        this.y = y;
     }
 
     public float getX(){

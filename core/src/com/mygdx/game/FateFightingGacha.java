@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  
 import Screens.*;
+import Screens.Batalla.Escenarios;
 import personajes.Mordred;
 import personajes.personajePrefab;
 import utiles.Config;
@@ -24,9 +25,9 @@ public class FateFightingGacha extends Game {
 		Render.batch=new SpriteBatch();
 		Render.app = this;
 		Config.initialize();
-		//Render.app.setScreen(new Escenarios(Background.values()[0].getRoot(), p1, p2));
+		Render.app.setScreen(new Escenarios(Background.values()[0].getRoot(), p1, p2));
 		
-		Render.app.setScreen(new PantallaCarga());
+		
 	}
 
 	@Override
