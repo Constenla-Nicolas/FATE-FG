@@ -16,28 +16,27 @@ import Screens.TieneFondo;
 import personajes.Astolfo;
 import personajes.Mordred;
 import personajes.personajePrefab;
+import personajes.personajePrefab.Estado;
 import utiles.Config;
 import utiles.Imagen;
  
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
-   Rectangle player1Box;
-   Rectangle player2Box;
+   float velocidad = 0;
+   Rectangle player1Box, player2Box;
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
-   
-    
-   float time;
-   float ts;
+   boolean aceleracion;
+   float time, ts;
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
    Entradas entradas = new Entradas(this);
   private String e;
   private int opc;
- private   personajePrefab p1;
+  private   personajePrefab p1;
   private  personajePrefab p2;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
@@ -112,7 +111,7 @@ float a;
             
 		}
 
-        else if(entradas.isDown()){
+        if(entradas.isDown()){
             
             b.draw(p1.crouch.getKeyFrame(time), p1.getX(), p1.getY());
         }
@@ -121,17 +120,32 @@ float a;
 		}
         else if(entradas.isUp()){
             
+            p1.setEstado(Estado.SALTO);
+            aceleracion = true;
+            if(velocidad <= 5 && aceleracion){
+            velocidad += 1f;
+            }
+            else if(velocidad > 5){
+                velocidad -= 1f;
+            }
+
             b.draw(p1.jump.getKeyFrame(time), p1.getX(), p1.getY());
-            p1.setY(p1.getY()+10);
+            p1.setY(p1.getY()+velocidad);
         }
         else if(entradas.isA()){
-            b.draw(p1.ataque1.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.getEstado() == Estado.SALTO){
+                b.draw(p1.air1.getKeyFrame(time, true), p1.getX(), p1.getY());
+
+            }
+            else{
+            b.draw(p1.ataque1.getKeyFrame(time, true), p1.getX(), p1.getY());
+            }
         }
         else if(entradas.isS()){
             b.draw(p1.ataque2.getKeyFrame(time), p1.getX(), p1.getY());
         }
         else if(entradas.isD()){
-            b.draw(p1.ataque2.getKeyFrame(time), p1.getX(), p1.getY());
+            b.draw(p1.ataque3.getKeyFrame(time), p1.getX(), p1.getY());
         }
 
        

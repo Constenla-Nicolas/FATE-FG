@@ -103,10 +103,10 @@ public class Entradas implements InputProcessor {
             d = false;   
         }
         if(keycode== Keys.S){
-            s=true;
+            s=false;
         }
         if(keycode== Keys.A){
-            a=true;
+            a=false;
         }
         return false;
     }

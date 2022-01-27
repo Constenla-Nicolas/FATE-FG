@@ -27,7 +27,7 @@ public abstract class personajePrefab implements Action{
   protected int opc;
   private Imagen i;
   private  int vidaActual;
-  protected enum Estado{CORRER, SALTO, ANIMACION, STUN}
+  public enum Estado{CORRER, SALTO, ANIMACION, STUN}
   protected Estado estadoactual, estadoanterior;
   protected float statetimer=0;
   protected static Imagen spriteImagen;
@@ -69,7 +69,6 @@ public abstract class personajePrefab implements Action{
 
     protected void iniciar(){
         tiempo.start();
-
         
     }
 
@@ -127,7 +126,12 @@ public abstract class personajePrefab implements Action{
  public float getCargasuper() {
      return cargasuper;
  }
-	
+	public Estado getEstado(){
+        return estadoactual;
+    }
+    public void setEstado(Estado estado){
+        this.estadoactual = estado;
+    }
   
     
 
