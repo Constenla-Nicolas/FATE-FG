@@ -138,7 +138,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public Object getValue(String key) {
-        // TODO Auto-generated method stub
+    
         return null;
       }
 
@@ -147,7 +147,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public void putValue(String key, Object value) {
-        // TODO Auto-generated method stub
+          
         
       }
 
@@ -156,7 +156,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public void setEnabled(boolean b) {
-        // TODO Auto-generated method stub
+        
         
       }
 
@@ -165,7 +165,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public boolean isEnabled() {
-        // TODO Auto-generated method stub
+        
         return false;
       }
 
@@ -174,7 +174,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public void addPropertyChangeListener(PropertyChangeListener listener) {
-        // TODO Auto-generated method stub
+      
         
       }
 
@@ -183,7 +183,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public void removePropertyChangeListener(PropertyChangeListener listener) {
-        // TODO Auto-generated method stub
+        
         
       }
 
@@ -192,7 +192,7 @@ public class Mordred extends personajePrefab{
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
+        
         
       }
 

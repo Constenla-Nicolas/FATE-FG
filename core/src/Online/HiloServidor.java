@@ -9,44 +9,51 @@ import java.net.SocketException;
 public class HiloServidor extends Thread {
     private DatagramSocket s;
     private boolean err=false;
-    private int puerto = 3074; 
+    private int puerto = 14022; 
     private int posicionConexion=0;
     private String[][] Usuario = new String[2][2]; 
     
      public HiloServidor(){
          try {
              s= new DatagramSocket(puerto);
-             System.out.println("servidor creado");
+             System.out.println("sv creado");
          } catch (SocketException e) {
-             // TODO Auto-generated catch block
+             
              e.printStackTrace();
          }
+      
           
      }
      @Override
      public void run(){
         
+        
          do {
+              
+             if (s.isClosed()) { // ignore error if the socket was intentionally closed.
+                    System.out.println("[SERVER] Socket Exception: Could not receive packet.");
+                }
              
              byte[] a = new byte[1024];
              DatagramPacket dp = new DatagramPacket(a, a.length);
-             try {  
+             try {  System.out.println("entre al try");
                  s.receive(dp); 
+                 
                 procesarMensaje(dp);
-             } catch (IOException e) {
-                 // TODO Auto-generated catch block
+              
+             } catch (Exception e) {
+                
+                 
                  e.printStackTrace();
              }
          } while (!err);
-         
-            
-             
-         
+     System.out.println("error afuera del do whle "+ err);
  
      }
      private void procesarMensaje(DatagramPacket dp) {
           
          String msg = new String(dp.getData()).trim();
+         System.out.println("msg");
             if (msg.equals("conectar")) {
                  System.out.println("usuario conectado");
                  for (int i = 0; i < Usuario.length-1; i++) {

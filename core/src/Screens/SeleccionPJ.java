@@ -192,19 +192,19 @@ public class SeleccionPJ  implements Screen,TieneFondo {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
+         
         
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
+         
         
     }
 
     @Override
     public void hide() {
-        // TODO  aaaaa
+      
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Atalante extends personajePrefab{
 
 @Override
 public void setAnims() {
-    // TODO Auto-generated method stub
+    
     super.setAnims();
 }
 
@@ -26,7 +26,7 @@ public void setAnims() {
 
 @Override
 public Object getValue(String key) {
-    // TODO Auto-generated method stub
+    
     return null;
 }
 
@@ -35,7 +35,7 @@ public Object getValue(String key) {
 
 @Override
 public void putValue(String key, Object value) {
-    // TODO Auto-generated method stub
+    
     
 }
 
@@ -44,7 +44,7 @@ public void putValue(String key, Object value) {
 
 @Override
 public void setEnabled(boolean b) {
-    // TODO Auto-generated method stub
+    
     
 }
 
@@ -53,7 +53,7 @@ public void setEnabled(boolean b) {
 
 @Override
 public boolean isEnabled() {
-    // TODO Auto-generated method stub
+    
     return false;
 }
 
@@ -62,7 +62,7 @@ public boolean isEnabled() {
 
 @Override
 public void addPropertyChangeListener(PropertyChangeListener listener) {
-    // TODO Auto-generated method stub
+    
     
 }
 
@@ -71,7 +71,7 @@ public void addPropertyChangeListener(PropertyChangeListener listener) {
 
 @Override
 public void removePropertyChangeListener(PropertyChangeListener listener) {
-    // TODO Auto-generated method stub
+    
     
 }
 
@@ -80,7 +80,7 @@ public void removePropertyChangeListener(PropertyChangeListener listener) {
 
 @Override
 public void actionPerformed(ActionEvent e) {
-    // TODO Auto-generated method stub
+    
     
 }
 }
