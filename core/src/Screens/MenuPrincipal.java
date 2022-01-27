@@ -9,7 +9,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  
 
 import Entradas.Entradas;
-import Online.Cliente;
+
+import Online.HiloServidor;
 import utiles.Config;
 import utiles.GifDecoder;
 import utiles.Imagen;
@@ -26,23 +27,24 @@ public class MenuPrincipal implements Screen,TieneFondo{
 	String  texts[] = {"Arcade", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
 	Entradas entradas = new Entradas(this);
 	float elapsed = 0;
-	 Cliente cl;
-	 
+	HiloServidor hl;
 	 
 	int opc = 1;
 	public float tiempo = 0;
 
 	@Override
 	public void show() {
-		 setFondo();
+		setFondo();
+
 		 
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
-		 
+	    hl= new HiloServidor();
+		hl.start();
 		
 		
 		Gdx.input.setInputProcessor(entradas);
-
+		
 		
 		 
 		int avance = 80;
@@ -93,7 +95,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 				Render.app.setScreen(new PantallaCarga()); //PantallaCarga = LoadingScreen
 				break;
 				case 3:
-				cl= new Cliente();
+				 
 
 
 				
