@@ -10,8 +10,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
- 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.SizeByAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -33,7 +34,8 @@ public class Hud {
     private Label cuentaAtras;
     private ProgressBar hp;
     private Label tiempotexto;
-    
+    private Actor actor;
+    private SizeByAction s;
     private  Pixmap pixmap;
     private int sec=99;
     private Sprite a;
@@ -73,7 +75,7 @@ public class Hud {
       
         
    }
-    
+ 
     
 
    public void dispose(){

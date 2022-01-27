@@ -35,13 +35,13 @@ public enum Retratos {
             p = (personajePrefab) c.newInstance();
         
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
+             
             e.printStackTrace();
         } catch (InstantiationException e) {
-            // TODO Auto-generated catch block
+             
             e.printStackTrace();
         } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
+             
             e.printStackTrace();
         }
       return p;

@@ -25,12 +25,20 @@ public class MenuPrincipal implements Screen,TieneFondo{
 	SpriteBatch b;
 	Text options[] = new Text[5];
 	String  texts[] = {"Arcade", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
-	Entradas entradas = new Entradas(this);
+	// TODO Borrar antes de presentar 
+	//Entradas entradas = new Entradas(this);
 	float elapsed = 0;
 	HiloServidor hl;
-	 
+ 
 	int opc = 1;
 	public float tiempo = 0;
+
+	public MenuPrincipal(){
+		hl= new HiloServidor();
+		hl.start();
+		
+
+	}
 
 	@Override
 	public void show() {
@@ -39,11 +47,10 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		 
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
-	    hl= new HiloServidor();
-		hl.start();
+	    
+	 
 		
-		
-		Gdx.input.setInputProcessor(entradas);
+		//Gdx.input.setInputProcessor(entradas);
 		
 		
 		 
@@ -57,56 +64,58 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			options[i].setPosition((Config.WIDTH/2)-(options[i].getWidth()/2), (Config.HEIGHT/2)+(options[0].getHeight()/2)-(options[i].getHeight()+(avance*i)));
 
 		}
-
+		 
 		
 	}
-	public  void labelInput(){
+	// TODO borrar antes de presentar
+	// public  void labelInput(){
 			 
 		
-		if(entradas.isDown()){ 	//entradas = input entrys
-			if(tiempo > 0.1f){ 	//tiempo = time
-				tiempo = 0;
-				opc++;			// opc= option;
-				if(opc > 5){
-					opc = 1;
-				}
-			}
-		}
-		if(entradas.isUp()){
-			if(tiempo > 0.1f){
-				tiempo = 0;
-				opc--;
-				if(opc < 1){
-					opc = 5;
-				}
-			}
-		}
-		for (int i = 0; i < options.length; i++) {
-			if(i==(opc-1)){
-				options[i].setColor(Color.RED);  //this is a Texts array 
-			}
-			else{
-				options[i].setColor(Color.WHITE);
-			}
-		}
-		if(entradas.isEnter()){
-			switch(opc){
-				case 1:
-				Render.app.setScreen(new PantallaCarga()); //PantallaCarga = LoadingScreen
-				break;
-				case 3:
+	// 	if(entradas.isDown()){ 	//entradas = input entrys
+	// 		if(tiempo > 0.1f){ 	//tiempo = time
+	// 			tiempo = 0;
+	// 			opc++;			// opc= option;
+	// 			if(opc > 5){
+	// 				opc = 1;
+	// 			}
+	// 		}
+	// 	}
+	// 	if(entradas.isUp()){
+	// 		if(tiempo > 0.1f){
+	// 			tiempo = 0;
+	// 			opc--;
+	// 			if(opc < 1){
+	// 				opc = 5;
+	// 			}
+	// 		}
+	// 	}
+	// 	for (int i = 0; i < options.length; i++) {
+	// 		if(i==(opc-1)){
+	// 			options[i].setColor(Color.RED);  //this is a Texts array 
+	// 		}
+	// 		else{
+	// 			options[i].setColor(Color.WHITE);
+	// 		}
+	// 	}
+	// 	if(entradas.isEnter()){
+	// 		switch(opc){
+	// 			case 1:
+	// 			Render.app.setScreen(new PantallaCarga()); //PantallaCarga = LoadingScreen
+	// 			break;
+	// 			case 3:
 				 
-
+			 
 
 				
-				Render.app.setScreen(new SeleccionPJ()); // SeleccionPJ = CharacterSelection
-				break;
-				case 5:
-				Gdx.app.exit();
-				break;
-			}
-		}
-		}
+	// 			Render.app.setScreen(new SeleccionPJ()); // SeleccionPJ = CharacterSelection
+	// 			break;
+	// 			case 5:
+	// 			Gdx.app.exit();
+	// 			break;
+	// 		}
+	// 	}
+	// 	}
+	 
 	@Override
 	public void render(float delta) {
 		
@@ -125,9 +134,9 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		}
 		
 		b.end();
-
+		
 		tiempo += delta;
-		labelInput();
+	//	labelInput();
 	}
 	
 
@@ -138,19 +147,19 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
+		 
 		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
+		 
 		
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		 
 		
 	}
 
