@@ -57,7 +57,7 @@ public class Hud {
           @Override
           public void run() {
            sec--;
-           System.out.println(sec);
+           //System.out.println(sec);
           }
       };
         public void startTimer(){

@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
  
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.math.Rectangle;
 
 import Entradas.Entradas;
@@ -23,12 +24,13 @@ import utiles.Imagen;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
-   float velocidad = 0;
+   float velocidad = 0f; 
+   float  gravedad = 1;
    Rectangle player1Box, player2Box;
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
-   boolean aceleracion;
+   boolean animacion;
    float time, ts;
    float period= 0.9f;
    Mordred mordred;
@@ -59,6 +61,9 @@ public class Escenarios implements Screen,TieneFondo{
         astolfo = new Astolfo();                                  
         Gdx.input.setInputProcessor(entradas);
         player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
+        p1.setY(Gdx.graphics.getHeight()/2);
+        p1.setX(Gdx.graphics.getWidth()/4);
+        
        
     }
 float a;
@@ -68,20 +73,18 @@ float a;
         mordred.setInput(opc);
         mordred.update(delta);
         
-        time += delta;
+        
         
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
        
     
-       movement();
+
         hb.dibujar();
-        movimiento();
         a=a+0.1f;
        
-       
-        
+       movement();
          b.end();
          
         ActualizarBarras();
@@ -91,46 +94,44 @@ float a;
      hud.getCuentaAtras().setText(hud.getSec());
         player2Box.setPosition(astolfo.img.getX(), astolfo.img.getY());
 
-        if (hud.getSec()<=95) {
-            hud.terminarTimer();
-            Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
-    }
+    //    // if (hud.getSec()<=95) {
+    //         hud.terminarTimer();
+    //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
+    // }
          
-    }
+     }
 
     private void movement(){
+        
+        if(p1.getY() < Gdx.graphics.getHeight()/2){
+            p1.setY(Gdx.graphics.getHeight()/2);
+        }
 
-        if(entradas.isLeft()){ 	//entradas = input entrys
-			if(time > 0.1f){ 	//tiempo = time
-				time = 0;
-				opc++;			// opc= option;
-				if(opc > 5){
-					opc = 1;
-				}
-			}
+        if(entradas.isLeft()){ 
+            b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
             
 		}
 
-        if(entradas.isDown()){
+        else if(entradas.isDown()){
             
             b.draw(p1.crouch.getKeyFrame(time), p1.getX(), p1.getY());
         }
 		else if(entradas.isRight()){
+            if(velocidad <= 5 && animacion){
+                velocidad += 1f;
+                }
             b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
+            
+            p1.walk.setPlayMode(PlayMode.LOOP);
+            
 		}
         else if(entradas.isUp()){
             
             p1.setEstado(Estado.SALTO);
-            aceleracion = true;
-            if(velocidad <= 5 && aceleracion){
-            velocidad += 1f;
-            }
-            else if(velocidad > 5){
-                velocidad -= 1f;
-            }
-
+            velocidad = 20;
+System.out.println("a");
             b.draw(p1.jump.getKeyFrame(time), p1.getX(), p1.getY());
-            p1.setY(p1.getY()+velocidad);
+            
         }
         else if(entradas.isA()){
             if(p1.getEstado() == Estado.SALTO){
@@ -138,20 +139,43 @@ float a;
 
             }
             else{
+                p1.ataque1.setPlayMode(PlayMode.LOOP);
             b.draw(p1.ataque1.getKeyFrame(time, true), p1.getX(), p1.getY());
+            System.out.println(p1.ataque1.getKeyFrameIndex(time));
+            
             }
         }
         else if(entradas.isS()){
-            b.draw(p1.ataque2.getKeyFrame(time), p1.getX(), p1.getY());
+            p1.ataque4.setPlayMode(PlayMode.LOOP);
+            b.draw(p1.ataque4.getKeyFrame(time), p1.getX(), p1.getY());
+            System.out.println(p1.ataque4.getKeyFrameIndex(time));
+            
         }
-        else if(entradas.isD()){
-            b.draw(p1.ataque3.getKeyFrame(time), p1.getX(), p1.getY());
+        else if(entradas.isD() || animacion){
+            if(time > 1){
+                time = 0;
+            }
+            time += 0.1f;
+            animacion = true;
+            if(animacion){
+            p1.ataque4.setPlayMode(PlayMode.LOOP);
+            for (int i = 0; i < p1.ataque4.getFrameDuration(); i++) {
+                b.draw(p1.ataque4.getKeyFrame(time), p1.getX(), p1.getY());
+                
+            }
+            System.out.println(p1.ataque4.getKeyFrameIndex(time));
+            }
+            animacion = false;
+
         }
 
        
 
         else{
             b.draw(p1.stance.getKeyFrame(time, true), p1.getX(), p1.getY());
+            if(p1.stance.isAnimationFinished(time)){
+                
+            }
         }
 
     }
@@ -173,19 +197,7 @@ float a;
     }
 
     }
-    public void movimiento(){
-        		
-		if(entradas.isLeft()){ 	//entradas = input entrys
-   
-            
-			}
-		if(entradas.isRight()){
-        
-		
-            
- 
-    }
- }
+
 
      
 public int inputSelec() {
