@@ -2,15 +2,18 @@ package utiles;
 
  
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
  
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
+ 
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+ 
 
 public class Config {// ancho y alto de la resolucion del juego en base a la resolucion del monitor
     public static final int WIDTH =Gdx.graphics.getDisplayMode().width; 
@@ -21,7 +24,8 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
     private static Camera camara;
     private static Viewport viewport;
     private static int proporcion;
- 
+    public static boolean booleano;
+    private static ArrayList<InputEvent> listInput= new ArrayList<InputEvent>();
     public static void initialize(){
         // no borres la linea de abajo, todavia la estoy testeando
         //Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width,Gdx.graphics.getDisplayMode().height);
@@ -72,5 +76,12 @@ public static float centrado(float f){
 
     return (f/2-(Config.tamanioDeAlgo(proporcion,f))/2);
 }
+
+public static ArrayList<InputEvent> getListInput() {
+    return listInput;
+}
+public static void addListInput(InputEvent list){
+    listInput.add(list);
+   }
 
 }

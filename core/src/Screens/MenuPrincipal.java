@@ -8,11 +8,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
- 
 
 import Entradas.Entradas;
- 
-import Online.HiloCliente;
+import Online.cliente;
 import utiles.Config;
 import utiles.GifDecoder;
 import utiles.Imagen;
@@ -23,16 +21,14 @@ import utiles.Text;
 
 public class MenuPrincipal implements Screen,TieneFondo{
     Imagen menu,negroiImagen;
- 
 	Animation<TextureRegion> animation;
 	SpriteBatch b;
 	Text options[] = new Text[5];
 	String  texts[] = {"Arcade", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
-	Entradas entradas = new Entradas(this);
 	float elapsed = 0;
-	HiloCliente hc;
+	private Entradas entradas= new Entradas();
 	Boolean mostrar=false;
-	 
+	 cliente cl;
 	int opc = 1;
 	public float tiempo = 0;
 
@@ -42,7 +38,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		setImgEspera();
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
- 
+		 
 		Gdx.input.setInputProcessor(entradas);
 		int avance = 80;
 		 for (int i = 0; i < options.length; i++) {
@@ -57,9 +53,20 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 		
 	}
+	private void inputwait(int tiempo) {
+
+        synchronized(entradas){
+            try {
+                entradas.wait(100,1);
+            } catch (InterruptedException e) {
+             
+                e.printStackTrace();
+            }
+        }
+    }
 	public  void labelInput(){
 			 
-		
+		 
 		if(entradas.isDown()){ 	//entradas = input entrys
 			if(tiempo > 0.1f){ 	//tiempo = time
 				tiempo = 0;
@@ -70,6 +77,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			}
 		}
 		if(entradas.isUp()){
+			 
 			if(tiempo > 0.1f){
 				tiempo = 0;
 				opc--;
@@ -80,37 +88,32 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		}
 		for (int i = 0; i < options.length; i++) {
 			if(i==(opc-1)){
-				options[i].setColor(Color.RED);  //this is a Texts array 
+				options[i].setColor(Color.RED);   
 			}
 			else{
 				options[i].setColor(Color.WHITE);
 			}
 		}
 		if(entradas.isEnter()){
-			boolean err=false;
+			inputwait(100);
+		 
 			switch(opc){
+
 				case 1:
-				Render.app.setScreen(new PantallaCarga()); //PantallaCarga = LoadingScreen
+			 
+				Render.app.setScreen(new SeleccionPJ());  
 				break;
+
 				case 2:
-				hc= new HiloCliente();
-				hc.start();
+				 cl= new cliente();
 				mostrar=true;
-				// do {err=false;
-				// 	try {
-						
-				// 		hc.buscarPuerto();
-				// 	} catch (BindException e) {
-					 
-				// 		 System.out.println("no se pudo conectar al puerto");
-				// 		 err=true;
-				// 		 hc.setPuerto(hc.getPuerto()+1);
-				// 	}
-				// }while(err);	
-				System.out.println(hc.getPuerto());
-				System.out.println("conexion exitosa");			
 				 
 				break;
+
+				case 3:
+				Render.app.setScreen(new SeleccionPJ());
+				break;
+
 				case 5:
 				Gdx.app.exit();
 				break;
@@ -146,14 +149,13 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 	private void comprobarOnline() {
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			if (Config.ONLINE) {
-			//Render.app.setScreen(new SeleccionPJ()); // SeleccionPJ = CharacterSelection
+			 
+				mostrar=false;
+			Render.app.setScreen(new SeleccionPJ()); 
 		}
-			else{
-				entradas.isEnter();
-			}
-
+		 
 		}
 	}
 	@Override
@@ -182,7 +184,11 @@ public class MenuPrincipal implements Screen,TieneFondo{
 	@Override
 	public void dispose() {
 		Recursos.TITLEMUSIC.dispose();;
-		
+	menu.dispose();
+	negroiImagen.dispose();
+	for (int i = 0; i < animation.getAnimationDuration(); i++) {
+		animation.getKeyFrames()[i].getTexture().dispose();
+	}
 	}
 	@Override
 	public void setFondo() {

@@ -3,6 +3,11 @@ package Entradas;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
+
+import Online.HiloCliente;
+import Online.cliente;
+import utiles.Config;
+ 
  
 public class Entradas implements InputProcessor {
 
@@ -16,11 +21,13 @@ public class Entradas implements InputProcessor {
     protected boolean w=false;
     protected boolean s=false;
     protected boolean inputflag=true;
-    Screen app;
-
-    public Entradas(Screen app){    
-        this.app = app;
+    
+   
+ 
+    public Entradas() {
     }
+    
+     
     public boolean isDown(){
         return down;
     }
@@ -42,6 +49,9 @@ public class Entradas implements InputProcessor {
     public boolean isA() {
         return a;
     }
+    public boolean isS() {
+        return s;
+    }
     
     public void stopInput(){
     inputflag=false;
@@ -54,6 +64,7 @@ public class Entradas implements InputProcessor {
      
     @Override
     public boolean keyDown(int keycode) {
+        mandarOnline(keycode);
         if (inputflag) {
             if(keycode == Keys.DOWN){
         down = true;
@@ -75,6 +86,12 @@ public class Entradas implements InputProcessor {
     if(keycode== Keys.D){
         d=true;
     }
+    if(keycode==Keys.S){
+        s=true;
+    }
+    if(keycode==Keys.A){
+        a=true;
+    }
     return false;
         }
 
@@ -82,15 +99,18 @@ public class Entradas implements InputProcessor {
     return false;
     }
 
+   
     @Override
     public boolean keyUp(int keycode) {
-
-
+        
+      
         if(keycode == Keys.DOWN){
             down = false;
+         
         }
         if(keycode == Keys.UP){
-            up = false;
+             up = false;
+          
         }
         if(keycode == Keys.ENTER){
             enter = false ;
@@ -98,16 +118,40 @@ public class Entradas implements InputProcessor {
         }
         if(keycode == Keys.LEFT){
             left = false;
+           
         }
         if(keycode == Keys.RIGHT){
+          
             right = false;
         }
         if (keycode==Keys.D) {
-            d = false;   
+         
+            d = false; 
+        }
+        if(keycode==Keys.A){
+            a= false;
+       
+        }
+        if(keycode==Keys.S){
+            s=false;
+           
         }
         return false;
     }
 
+    private void mandarOnline(int keycode) {
+        
+       
+        if(Config.ONLINE){
+            for (int i = 11; i < Direcciones.values().length; i++) {
+          if (keycode==Integer.parseInt(Direcciones.values()[i].getString())) {
+              System.out.println(Direcciones.values()[i].getString());
+             
+          cliente.getHiloC().enviarMensaje(Direcciones.values()[i].getString());
+        }   
+        }
+        }
+    }
     @Override
     public boolean keyTyped(char character) {
          

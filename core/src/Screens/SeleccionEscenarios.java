@@ -5,34 +5,45 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Entradas.Entradas;
+import Online.cliente;
+import Screens.Batalla.Escenarios;
 import utiles.Config;
 import personajes.personajePrefab;
 import utiles.Imagen;
+import utiles.InputEvent;
 import utiles.Recursos;
 import utiles.Render;
 
-public class SeleccionEscenarios implements Screen {
-    private Entradas input = new Entradas(this);
+public class SeleccionEscenarios implements Screen,InputEvent {
+    //private Entradas input = new Entradas(this);
    
-    personajePrefab j1;
-    personajePrefab j2;
+   private personajePrefab j1;
+   private personajePrefab j2;
     Imagen Escena[]=new Imagen[Background.values().length];
     Imagen portrait[]=new Imagen[Background.values().length];
     SpriteBatch b;
     Imagen flecha[]= new Imagen[4];
     int opc=0;
-    public SeleccionEscenarios(personajePrefab jugador1,personajePrefab jugador2){
-        
+    private Entradas entradas= new Entradas();
+    public SeleccionEscenarios(){
+        Config.addListInput(this);
         b= Render.batch;
-       
-         this.j1=jugador1;
-         this.j2=jugador2;
+      
          mostrarRetrato();
-
-         
-
     }
-
+    public SeleccionEscenarios(personajePrefab j1, personajePrefab j2){
+        b= Render.batch;
+      
+        mostrarRetrato();
+    this.j1=j1;
+    this.j2=j2;
+    }
+    public void setJ1(personajePrefab j1) {
+        this.j1 = j1;
+    }
+    public void setJ2(personajePrefab j2) {
+        this.j2 = j2;
+    }
     private void mostrarRetrato() {
         for (int i = 0; i < Escena.length; i++) {
             portrait[i]=new Imagen(Background.values()[i].getRoot2());
@@ -63,7 +74,7 @@ public class SeleccionEscenarios implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(input);
+        Gdx.input.setInputProcessor(entradas);
        for (int i = 0; i < Escena.length; i++) {
             Escena[i]=new Imagen(Background.values()[i].getRoot());
             Escena[i].setSize(Config.WIDTH,Config.HEIGHT);
@@ -76,7 +87,8 @@ public class SeleccionEscenarios implements Screen {
         Render.cleaner();
        b.begin();
        Escena[inputSelec()].dibujar();
-       Seleccionar();
+
+       //if(cl.cliente1==true){Seleccionar();}
       for (int i = 0; i < portrait.length; i++) {
         portrait[i].dibujar();
       }
@@ -94,15 +106,15 @@ public class SeleccionEscenarios implements Screen {
 
     private void Seleccionar() {
         
-        if (input.isEnter()) {
+        if (entradas.isEnter()) {
         Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
         }
     }
 
     public int inputSelec() {
         try {
-            synchronized(input){
-                  input.wait(90);
+            synchronized(entradas){
+                 entradas.wait(90);
  
             }
             
@@ -112,7 +124,7 @@ public class SeleccionEscenarios implements Screen {
           }
         
             
-            if (input.isDown()) {
+            if (entradas.isDown()) {
               
                 if (opc==0) {
                      
@@ -124,7 +136,7 @@ public class SeleccionEscenarios implements Screen {
                   
                 }
             }
-            if (input.isUp()) {
+            if (entradas.isUp()) {
                 if(opc==3){
                  opc=0;
                 }
@@ -170,6 +182,17 @@ public class SeleccionEscenarios implements Screen {
     public void dispose() {
          
         
+    }
+   
+    @Override
+    public void handleInput() {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public int inputQueLlega() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
    

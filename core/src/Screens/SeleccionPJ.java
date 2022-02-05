@@ -8,79 +8,49 @@ import com.badlogic.gdx.Screen;
  
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
- 
+
+import Entradas.Direcciones;
 import Entradas.Entradas;
+import Online.cliente;
+import personajes.Astolfo;
+import personajes.Mordred;
 import personajes.personajePrefab;
 import utiles.*;
  
 
-public class SeleccionPJ  implements Screen,TieneFondo {
+public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     private Imagen fondoImagen;
-    private Entradas input = new Entradas(this);
+   
 	private SpriteBatch b;
     private Imagen flecha[]= new Imagen[4];
+    private Imagen flecha2[]= new Imagen[4];
 	private Imagen[][] portrait= new Imagen[4][2]; // 0 es astolfo, 1 mordred, 2 jeanne, 3 atalante
     private Imagen[] portraitEnemigo=new Imagen[4];
     private personajePrefab jugador;
     private personajePrefab jugador2;
-    int opc =0;
-    int cont;
-     float ts, period;
+    private int opc,opc2=0,opcOFF=0;
+  
+   
     boolean npc=false;
-
-
+    cliente cl;
+    private Entradas entradas= new Entradas();
     AtlasRegion[] a;
+   
     @Override
     public void show() { 
-       
-        Gdx.input.setInputProcessor(input);
+        Config.addListInput(this);
+        Gdx.input.setInputProcessor(entradas);
          setFondo();
 		b = Render.batch;
         mostrarRetrato(); 
         listapj();
-        
+         
         
     }
 
     
 
-    public int inputSelec() {
-        try {
-            synchronized(input){
-                  input.wait(90);
- 
-            }
-            
-          } catch (InterruptedException e) {
-           
-              e.printStackTrace();
-          }
-        
-            
-            if (input.isDown()) {
-              
-                if (opc==0) {
-                     
-                    opc=3;
-                    System.out.println(opc);
-                }
-                else{
-                    opc--;
-                  
-                }
-            }
-            if (input.isUp()) {
-                if(opc==3){
-                 opc=0;
-                }
-                else{
-                    opc++;
-                   
-                }
-            }
-          
-            return opc;
-    }
+  
 
     private void listapj(){
         
@@ -99,6 +69,7 @@ public class SeleccionPJ  implements Screen,TieneFondo {
             if(j==3){posy=posy-Config.SacarPorcentaje(3, Config.HEIGHT);}
             portrait[j][0].setPosition(posx, posy);
             flecha[j].setPosition(posx+Config.SacarPorcentaje(5, Config.WIDTH), posy+Config.SacarPorcentaje(31,Config.HEIGHT)); 
+            flecha2[j].setPosition(posx+Config.SacarPorcentaje(5, Config.WIDTH), posy+Config.SacarPorcentaje(31,Config.HEIGHT));  
         }
   
         }
@@ -112,6 +83,9 @@ public class SeleccionPJ  implements Screen,TieneFondo {
     for (int i = 0; i < Retratos.values().length; i++) {
         flecha[i] = new Imagen(Recursos.FLECHA);
         flecha[i].setSize(Config.tamanioDeAlgo(4, Config.WIDTH),Config.tamanioDeAlgo(10, Config.HEIGHT));
+        flecha2[i] = new Imagen(Recursos.FLECHA);
+        flecha2[i].setSize(Config.tamanioDeAlgo(4, Config.WIDTH),Config.tamanioDeAlgo(10, Config.HEIGHT));
+        flecha2[i].getS().setColor(80,2,2,0.2f);
         portrait[i][1] = new Imagen(Retratos.values()[i].getRoot());
         portrait[i][1].setSize(Config.tamanioDeAlgo(35, Config.WIDTH), Config.tamanioDeAlgo(70, Config.HEIGHT));
         portrait[i][1].setPosition(Config.centrado(Config.WIDTH)- Config.SacarPorcentaje(18.3f, Config.WIDTH),Config.centrado(Config.HEIGHT)+Config.SacarPorcentaje(10.42f,  Config.HEIGHT));  
@@ -131,60 +105,204 @@ public class SeleccionPJ  implements Screen,TieneFondo {
 
     @Override
     public void render(float delta) {
-        // if (Config.ONLINE==true) { }
-           
-        // else{}
+    
        Render.cleaner();
          
         
        b.begin();
-       
-     ts +=Gdx.graphics.getRawDeltaTime();
-     if(ts > period){
-         ts-=period; 
-         
-    handleEvent();
-     }
+        
+     
+        Accionar();
+    
+      
      for (int i = 0; i < portrait.length; i++) {
             portrait[i][0].dibujar();
         }
        fondoImagen.dibujar();
-       flecha[opc].dibujar();
+        if (Config.ONLINE) {
+            portrait[opc][1].dibujar();
+            portraitEnemigo[opc2].dibujar();
+              flecha[opc].dibujar();
+              flecha2[opc2].dibujar();
+        }
+        else{
+            flecha[opcOFF].dibujar();
+        }
        b.end();
-        
-    }
-
-    private void handleEvent() {
-  
-       
     
-
-         if (!npc) { portrait[inputSelec()][1].dibujar();
-              if(input.isEnter()) {
-               
-
-  
-              jugador= Retratos.values()[inputSelec()].getClase();
-            npc =true;
+    }
+     
+     private void Accionar() {
+           try {
+                synchronized(entradas){
+                    entradas.wait(140);
+                }
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+        if (Config.ONLINE) { 
              
-
-         }
-        } else {
-             portraitEnemigo[inputSelec()].dibujar();
-
-             if (input.isEnter()) {
+            if (entradas.isLeft()) {
+             
+                cliente.getHiloC().enviarMensaje(Direcciones.IZQUIERDA.getString());
+            } 
+            if (entradas.isRight()) {
+                 
+                cliente.getHiloC().enviarMensaje(Direcciones.DERECHA.getString());
+            } 
+            if (entradas.isEnter()) {
+               
+                cliente.getHiloC().enviarMensaje(Direcciones.ENTER.getString());
+            }
+        }
+        else{
             
-            
-              jugador2= Retratos.values()[inputSelec()].getClase(); 
-              System.out.println(jugador);
-              System.out.println(jugador2);
-              Render.app.setScreen(new SeleccionEscenarios(jugador,jugador2));
+
+           
+             
+         if (npc) {
+             portraitEnemigo[inputOffline()].dibujar();
+
+             if (entradas.isEnter()) {
+              jugador2= Retratos.values()[inputOffline()].getClase(); 
+              Render.app.setScreen(new SeleccionEscenarios(jugador, jugador2));
          }
          }
+         else{portrait[inputOffline()][1].dibujar();
+             if(entradas.isEnter()) {
+            npc =true;
+            jugador= Retratos.values()[inputOffline()].getClase();
+              }
+         }
+
+        
+        
+        }
+
+        
 
         }
     
 
+
+    public int inputQueLlega() {
+        boolean enter=false;
+        if (cliente.getHiloC().MiPropioMensaje()) {
+         
+            switch (cliente.getHiloC().getDir()) {
+                case IZQUIERDA:
+                     
+                    if (opc==0) {
+                      
+                     opc=3;
+                      
+                 }
+                 else{
+                     opc--;
+                      
+                 }
+                    break;
+     
+                    case DERECHA:
+                    if(opc==3){
+                     opc=0;
+                    }
+                    else{
+                        opc++;
+                       
+                    }
+                    
+                    break;
+                    case ENTER:
+                  enter=true;
+                   // entradas.stopInput();
+                    break;
+                default:
+                    break;
+            }
+             
+        }
+     
+        else{
+          
+             switch (cliente.getHiloC().getDir()) {
+           case IZQUIERDA:
+                
+               if (opc2==0) {
+                 
+                opc2=3;
+                 
+            }
+            else{
+                opc2--;
+                 
+            }
+               break;
+
+               case DERECHA:
+           
+                  if(opc2==3){
+                opc2=0;
+               }
+               else{
+                   opc2++;
+                  
+               }
+               
+               break;
+               case ENTER:
+               jugador2=new Astolfo();
+                System.out.println(jugador2);
+               //    jugador2=Retratos.values()[opc].getClase();
+                
+               break;
+           default:
+               break;
+       }
+        
+       
+        }
+
+ 
+        return 0;
+}
+
+     
+
+    public int inputOffline() {
+
+       
+        
+
+              if (entradas.isLeft()) {
+              
+                if (opcOFF==0) {
+                     
+                    opcOFF=3;
+                     
+                }
+                else{
+                    opcOFF--;
+                    
+                }
+                
+            }
+            if (entradas.isRight()) {
+                if(opcOFF==3){
+                 opcOFF=0;
+                }
+                else{
+                    opcOFF++;
+                   
+                }
+                
+            }
+          
+           
+            return opcOFF;
+    }
+    
+  
     @Override
     public void resize(int width, int height) {
         Config.getViewport().update(width, height);
@@ -223,6 +341,19 @@ public class SeleccionPJ  implements Screen,TieneFondo {
       
         fondoImagen=new Imagen(Recursos.SELECCPJ);
 		fondoImagen.setSize(Config.WIDTH, Config.HEIGHT);
+    }
+
+
+
+
+
+    @Override
+    public void handleInput() {
+        
+         inputQueLlega();
+        cliente.getHiloC().getDir().dontActive();
+         
+        
     }
  
   

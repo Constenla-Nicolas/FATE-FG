@@ -1,4 +1,4 @@
-package Screens;
+package Screens.Batalla;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
@@ -9,14 +9,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 import Entradas.Entradas;
+import Screens.Hud;
+import Screens.HudBarra;
+import Screens.TieneFondo;
 import personajes.Astolfo;
 import personajes.Mordred;
 import personajes.personajePrefab;
 import utiles.Config;
 import utiles.Imagen;
- 
+import utiles.InputEvent;
 import utiles.Render;
-public class Escenarios implements Screen,TieneFondo{
+public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
    Rectangle player1Box;
    Rectangle player2Box;
@@ -27,8 +30,8 @@ public class Escenarios implements Screen,TieneFondo{
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
-   Entradas entradas = new Entradas(this);
-  private String e;
+   Entradas entradas = new Entradas();
+    private String e;
   private int opc;
  private   personajePrefab p1;
   private  personajePrefab p2;
@@ -39,8 +42,11 @@ public class Escenarios implements Screen,TieneFondo{
     this.p2=p2;
     System.out.println(p1);
     setFondo();
+    Config.addListInput(this);
     
  }
+ protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
+}
     @Override
     public void show() {
         
@@ -192,6 +198,16 @@ public int inputSelec() {
         fightstage= new Imagen(e);
         fightstage.setSize(Config.tamanioDeAlgo(100, Config.WIDTH),Config.tamanioDeAlgo(100, Config.HEIGHT));
         fightstage.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
+    }
+    @Override
+    public void handleInput() {
+        // TODO Auto-generated method stub
+       
+    }
+    @Override
+    public int inputQueLlega() {
+        // TODO Auto-generated method stub
+        return 0;
     }
     
 }
