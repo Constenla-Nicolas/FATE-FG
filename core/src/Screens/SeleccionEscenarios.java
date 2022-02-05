@@ -9,10 +9,11 @@ import Screens.Batalla.Escenarios;
 import utiles.Config;
 import personajes.personajePrefab;
 import utiles.Imagen;
+import utiles.InputEvent;
 import utiles.Recursos;
 import utiles.Render;
 
-public class SeleccionEscenarios implements Screen {
+public class SeleccionEscenarios implements Screen,InputEvent {
     private Entradas input = new Entradas(this);
    
     personajePrefab j1;
@@ -25,7 +26,7 @@ public class SeleccionEscenarios implements Screen {
     public SeleccionEscenarios(personajePrefab jugador1,personajePrefab jugador2){
         
         b= Render.batch;
-       
+        Config.addListInput(this);
          this.j1=jugador1;
          this.j2=jugador2;
          mostrarRetrato();
@@ -167,6 +168,12 @@ public class SeleccionEscenarios implements Screen {
     @Override
     public void dispose() {
          
+        
+    }
+
+    @Override
+    public void handleInput() {
+        // TODO Auto-generated method stub
         
     }
 

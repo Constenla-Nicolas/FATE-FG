@@ -77,7 +77,7 @@ float a;
     
        movement();
         hb.dibujar();
-        movimiento();
+       
         a=a+0.1f;
        
        
@@ -173,20 +173,7 @@ float a;
     }
 
     }
-    public void movimiento(){
-        		
-		if(entradas.isLeft()){ 	//entradas = input entrys
-   
-            
-			}
-		if(entradas.isRight()){
-        
-		
-            
- 
-    }
- }
-
+    
      
 public int inputSelec() {
     try {
