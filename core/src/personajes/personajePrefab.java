@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
- 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 import utiles.Imagen;
  
@@ -22,12 +22,13 @@ public abstract class personajePrefab implements Action{
     protected TextureAtlas textureAtlas;
    protected float cargasuper;
    protected TextureRegion texRegion;
-  protected float x, y, w, h;
+  protected float x, y, texHeight;
+int texWidth;
   protected int vidamax;
   protected int opc;
   private Imagen i;
   private  int vidaActual;
-  public enum Estado{CORRER, SALTO, ANIMACION, STUN}
+  public enum Estado{CORRER, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUE1, ATAQUE2 ,ATAQUE3, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoactual, estadoanterior;
   protected float statetimer=0;
   protected static Imagen spriteImagen;
@@ -36,6 +37,7 @@ public abstract class personajePrefab implements Action{
   public Animation<TextureRegion> stance;
   public Animation<TextureRegion> win;
   public Animation<TextureRegion> walk;
+  public Animation<TextureRegion> walkLeft;
   public Animation<TextureRegion> ataque1;
   public Animation<TextureRegion> ataque2;
   public Animation<TextureRegion> ataque3;
@@ -105,10 +107,10 @@ public abstract class personajePrefab implements Action{
     }
 
     public float getW() {
-        return w;
+        return texWidth;
     }
 	public float getH() {
-        return h;
+        return texHeight;
     }
     public int getVidaActual() {
         return vidaActual;

@@ -24,8 +24,9 @@ import utiles.Imagen;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
+   Estado asd;
    float velocidad = 0f; 
-   float  gravedad = 1;
+   float  gravedad = 10f;
    Rectangle player1Box, player2Box;
    protected Imagen fightstage;
    Hud hud;
@@ -35,6 +36,7 @@ public class Escenarios implements Screen,TieneFondo{
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
+   boolean a1, a2, a3 = false;
    Entradas entradas = new Entradas(this);
   private String e;
   private int opc;
@@ -63,6 +65,7 @@ public class Escenarios implements Screen,TieneFondo{
         player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
         p1.setY(Gdx.graphics.getHeight()/2);
         p1.setX(Gdx.graphics.getWidth()/4);
+        p1.setEstado(Estado.STANCE);
         
        
     }
@@ -72,6 +75,7 @@ float a;
         inputSelec();
         mordred.setInput(opc);
         mordred.update(delta);
+        time += delta;
         
         
         
@@ -83,8 +87,8 @@ float a;
 
         hb.dibujar();
         a=a+0.1f;
-       
        movement();
+       
          b.end();
          
         ActualizarBarras();
@@ -102,81 +106,236 @@ float a;
      }
 
     private void movement(){
+        p1.setY(p1.getY() + (velocidad -= gravedad));
         
         if(p1.getY() < Gdx.graphics.getHeight()/2){
             p1.setY(Gdx.graphics.getHeight()/2);
+            p1.setEstado(Estado.STANCE);
         }
-
-        if(entradas.isLeft()){ 
-            b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
-            
-		}
-
-        else if(entradas.isDown()){
-            
-            b.draw(p1.crouch.getKeyFrame(time), p1.getX(), p1.getY());
-        }
-		else if(entradas.isRight()){
-            if(velocidad <= 5 && animacion){
-                velocidad += 1f;
-                }
-            b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
-            
-            p1.walk.setPlayMode(PlayMode.LOOP);
-            
-		}
-        else if(entradas.isUp()){
-            
+        
+        if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             p1.setEstado(Estado.SALTO);
-            velocidad = 20;
-System.out.println("a");
+            velocidad = 50;
+
+        }
+        else if(entradas.isDown()){
+            p1.setEstado(Estado.AGACHADO);
+
+
+        }
+        else if(entradas.isA() && (!a2 && !a3) || (!p1.ataque1.isAnimationFinished(time) && a1) ){
+            a1 = true;
+            if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1){
+                p1.setEstado(Estado.AEREO1);
+                
+                }
+                else{
+                    p1.setEstado(Estado.ATAQUE1);
+                    
+                }
+                
+
+        }
+        else if(entradas.isS() || (!p1.ataque2.isAnimationFinished(time) && a2) && (!a1 && !a3)){
+            a2 = true;
+            if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2){
+                p1.setEstado(Estado.AEREO2);
+                }
+                else{
+                    p1.setEstado(Estado.ATAQUE2);
+                } 
+            }
+            else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && a3) && (!a1 && !a2)){
+                a3 = true;
+                
+                if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3){
+                    p1.setEstado(Estado.AEREO3);
+                    }
+                    else{
+                        p1.setEstado(Estado.ATAQUE3);
+                    } 
+                }
+        else if(entradas.isRight()){
+            if(p1.getEstado() != Estado.SALTO){
+            p1.setEstado(Estado.CORRER);
+            }
+            p1.setX(p1.getX() + 20);
+
+        }      
+        else if(entradas.isLeft()){
+            if(p1.getEstado() != Estado.SALTO){
+                p1.setEstado(Estado.CORRER);
+                
+                }
+                p1.setX(p1.getX() - 20);
+               }
+       
+        asd = p1.getEstado();
+        
+        System.out.println(p1.getEstado());
+        switch(asd){
+            case SALTO:
             b.draw(p1.jump.getKeyFrame(time), p1.getX(), p1.getY());
             
-        }
-        else if(entradas.isA()){
-            if(p1.getEstado() == Estado.SALTO){
-                b.draw(p1.air1.getKeyFrame(time, true), p1.getX(), p1.getY());
-
-            }
-            else{
-                p1.ataque1.setPlayMode(PlayMode.LOOP);
-            b.draw(p1.ataque1.getKeyFrame(time, true), p1.getX(), p1.getY());
-            System.out.println(p1.ataque1.getKeyFrameIndex(time));
-            
-            }
-        }
-        else if(entradas.isS()){
-            p1.ataque4.setPlayMode(PlayMode.LOOP);
-            b.draw(p1.ataque4.getKeyFrame(time), p1.getX(), p1.getY());
-            System.out.println(p1.ataque4.getKeyFrameIndex(time));
-            
-        }
-        else if(entradas.isD() || animacion){
-            if(time > 1){
+            break;
+            case CORRER:
+            b.draw(p1.walk.getKeyFrame(time, true), p1.getX()+100, p1.getY(), -200, 200);
+            break;
+            case AGACHADO:
+            b.draw(p1.crouch.getKeyFrame(time), p1.getX(), p1.getY());
+            break;
+            case ATAQUE1:
+            p1.air1.setPlayMode(PlayMode.NORMAL);
+            b.draw(p1.air1.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.air1.isAnimationFinished(time)){
                 time = 0;
             }
-            time += 0.1f;
-            animacion = true;
-            if(animacion){
-            p1.ataque4.setPlayMode(PlayMode.LOOP);
-            for (int i = 0; i < p1.ataque4.getFrameDuration(); i++) {
-                b.draw(p1.ataque4.getKeyFrame(time), p1.getX(), p1.getY());
+            
+            a2 = false;
+            a3 = false;
+            break;
+            case ATAQUE2:
+            p1.ataque2.setPlayMode(PlayMode.NORMAL);
+            b.draw(p1.air2.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.air2.isAnimationFinished(time)){
+                time = 0;
+            }
+            a1 = false;
+            a3 = false;
+            break;
+            case ATAQUE3:
+            p1.ataque4.setPlayMode(PlayMode.NORMAL);
+            b.draw(p1.air4.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.air4.isAnimationFinished(time)){
+                time = 0;
+            }
+            a1 = false;
+            a2 = false;
+            break;
+            case AEREO1:
+            p1.air1.setPlayMode(PlayMode.NORMAL);
+            b.draw(p1.air1.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.air1.isAnimationFinished(time)){
+                time = 0;
+            }
+            
+            a1 = false;
+            a2 = false;
+            a3 = false;
+            break;
+            
+            case AEREO2:
+            p1.air2.setPlayMode(PlayMode.NORMAL);
+            b.draw(p1.air2.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.air2.isAnimationFinished(time)){
+                time = 0;
+            }
+            
+            a1 = false;
+            a2 = false;
+            a3 = false;
+            break;
+            case AEREO3:
+            p1.air3.setPlayMode(PlayMode.NORMAL);
+            b.draw(p1.air3.getKeyFrame(time), p1.getX(), p1.getY());
+            if(p1.air3.isAnimationFinished(time)){
+                time = 0;
                 
+            a1 = false;
+            a2 = false;
+            a3 = false;
             }
-            System.out.println(p1.ataque4.getKeyFrameIndex(time));
-            }
-            animacion = false;
+            break;
+            default:
+            a1 = false;
+            a2 = false;
+            a3 = false;
+            b.draw(p1.stance.getKeyFrame(time, true), p1.getX(), p1.getY(), 200, 200);
+                break;
 
         }
 
-       
 
-        else{
-            b.draw(p1.stance.getKeyFrame(time, true), p1.getX(), p1.getY());
-            if(p1.stance.isAnimationFinished(time)){
+
+
+
+
+        //  if(entradas.isLeft()){ 
+        //     p1.setEstado(Estado.CORRER);
+        //     p1.setX(p1.getX() - 6);
+        //     b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
+            
+        //     p1.walk.setPlayMode(PlayMode.LOOP_REVERSED);
+		// }
+
+        // else if(entradas.isDown()){
+            
+        //     b.draw(p1.crouch.getKeyFrame(time), p1.getX(), p1.getY());
+        // }
+		// else if(entradas.isRight()){
+        //     p1.setEstado(Estado.CORRER);
+        //     p1.setX(p1.getX() + 10);
+        //     b.draw(p1.walk.getKeyFrame(time, true), p1.getX(), p1.getY());	
+            
+        //     p1.walk.setPlayMode(PlayMode.LOOP);
+            
+		// }
+        // else if(entradas.isUp() && p1.getEstado() == Estado.STANCE){
+           
+        //     p1.setEstado(Estado.SALTO);
+        //     velocidad = 50;
+            
+            
+        //     b.draw(p1.jump.getKeyFrame(time, true), p1.getX(), p1.getY());
+
+            
+        // }
+        // else if(entradas.isA()){
+        //     if(p1.getEstado() == Estado.SALTO){
+        //         b.draw(p1.air1.getKeyFrame(time, true), p1.getX(), p1.getY());
                 
-            }
-        }
+
+        //     }
+        //     else{
+        //         p1.ataque1.setPlayMode(PlayMode.LOOP);
+        //     b.draw(p1.ataque1.getKeyFrame(time, true), p1.getX(), p1.getY());
+        //     System.out.println(p1.ataque1.getKeyFrameIndex(time));
+            
+        //     }
+        // }
+        // else if(entradas.isS()){
+        //     p1.ataque4.setPlayMode(PlayMode.LOOP);
+        //     b.draw(p1.ataque4.getKeyFrame(time), p1.getX(), p1.getY());
+        //     System.out.println(p1.ataque4.getKeyFrameIndex(time));
+            
+        // }
+        // else if(entradas.isD() || animacion){
+        //     if(time > 1){
+        //         time = 0;
+        //     }
+        //     time += 0.1f;
+        //     animacion = true;
+        //     if(animacion){
+        //     p1.ataque4.setPlayMode(PlayMode.LOOP);
+        //     for (int i = 0; i < p1.ataque4.getFrameDuration(); i++) {
+        //         b.draw(p1.ataque4.getKeyFrame(time), p1.getX(), p1.getY());
+                
+        //     }
+        //     }
+        //     animacion = false;
+
+        // }
+
+        // else if(p1.getY() == Gdx.graphics.getHeight()/2){
+
+        //     p1.setEstado(Estado.STANCE);
+        //     b.draw(p1.jump.getKeyFrame(time, true), p1.getX(), p1.getY());
+            
+        // }
+        // else {
+        //     b.draw(p1.jump.getKeyFrame(time, true), p1.getX(), p1.getY());
+            
+        // }
 
     }
 

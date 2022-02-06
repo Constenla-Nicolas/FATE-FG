@@ -25,9 +25,13 @@ public class Astolfo extends personajePrefab {
 
 @Override
 public void setAnims() {
+
+    
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Intro.atlas");
+    
     intro = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Stance.atlas");
     stance = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
