@@ -86,6 +86,7 @@ float a;
     
 
         hb.dibujar();
+       
         a=a+0.1f;
        movement();
        
@@ -356,8 +357,7 @@ float a;
     }
 
     }
-
-
+    
      
 public int inputSelec() {
     try {

@@ -49,7 +49,9 @@ public class Imagen extends Actor {
 		s.draw(Render.batch);
 	}
 
-	
+	public Sprite getS() {
+		return s;
+	}
 	public void setTransparencia(Float a) {
 		s.setAlpha(a);
 	}
