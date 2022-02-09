@@ -28,11 +28,11 @@ int texWidth;
   protected int opc;
   private Imagen i;
   private  int vidaActual;
-  public enum Estado{CORRER, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUE1, ATAQUE2 ,ATAQUE3, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
-  protected Estado estadoactual, estadoanterior;
+  public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
+  protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
   protected static Imagen spriteImagen;
-  
+  public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
   public Animation<TextureRegion> win;
@@ -129,10 +129,16 @@ int texWidth;
      return cargasuper;
  }
 	public Estado getEstado(){
-        return estadoactual;
+        return estadoActual;
     }
     public void setEstado(Estado estado){
-        this.estadoactual = estado;
+        this.estadoActual = estado;
+    }
+    public Estado getEstadoAnterior(){
+        return estadoAnterior;
+    }
+    public void setEstadoAnterior(Estado estado){
+        this.estadoAnterior = estado;
     }
   
     
