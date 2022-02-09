@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import Online.HiloServidor;
 import Online.server;
 import Screens.*;
- 
+import Screens.Batalla.Escenarios;
+import personajes.Astolfo;
+import personajes.Mordred;
+import personajes.personajePrefab;
 import utiles.Config;
  
 import utiles.Render;
@@ -16,6 +19,7 @@ public class FateFightingGacha extends Game {
 	 
 	int x,y;
 	 private server  sv;
+	 personajePrefab p1, p2;
 	  
 	@Override
 	public void create () {
@@ -24,9 +28,12 @@ public class FateFightingGacha extends Game {
 		Render.app = this;
 		Config.initialize();
 		sv = new server();
-	 
-		//Render.app.setScreen(new Escenarios(Background.values()[0].getRoot(), p1, p2));
-		Render.app.setScreen(new SeleccionPJ());
+		p1 = new Astolfo();
+		p2 = new Astolfo();
+		
+
+		Render.app.setScreen(new Escenarios(Background.values()[0].getRoot(), p1, p2));
+		
 		
 	}
 	 
