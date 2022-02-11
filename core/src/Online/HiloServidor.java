@@ -20,7 +20,7 @@ import Screens.Background;
 public class HiloServidor extends Thread {
     private DatagramSocket s;
     private boolean err=false,creado=false;
-    private int puerto = 25565; 
+    private int puerto = 8080; 
     private int contconexion=0;
     private SvClientes[] Usuario = new SvClientes[2]; 
     private int posconexion;
@@ -56,6 +56,11 @@ public class HiloServidor extends Thread {
     }
     public direcciones getDir() {
         return dir;
+    }
+    public void enviarHP(int nmb){
+
+
+        
     }
     public void enviarAtodos(String string) {
         if (getUsuario()==getUsuarios()[0]) {
@@ -212,7 +217,9 @@ public class HiloServidor extends Thread {
  
                     break;
                     case ESCENARIOS:
-                    Config.eraseInput(Config.getListInput().get(0));
+                    
+                    
+                         Config.eraseInput(Config.getListInput().get(0));
                     System.out.println("estoy a punto de crear un escenario");
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
@@ -220,6 +227,7 @@ public class HiloServidor extends Thread {
                             Render.app.setScreen(new Escenarios(Background.values()[SeleccionEscenarios.getOpc()].getRoot(), Usuario[0].getP1(), Usuario[1].getP1()));
                         }
                     });
+                  
  
 
                     break;

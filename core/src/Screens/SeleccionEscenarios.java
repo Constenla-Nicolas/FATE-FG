@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Entradas.Entradas;
+import Entradas.direcciones;
 import Online.server;
 import Screens.Batalla.Escenarios;
 import utiles.Config;
@@ -23,6 +24,8 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     Imagen portrait[]=new Imagen[Background.values().length];
     SpriteBatch b;
     Imagen flecha[]= new Imagen[4];
+
+    private int cont;
     static int opc=0;
     public SeleccionEscenarios(personajePrefab jugador1,personajePrefab jugador2){
         System.out.println("sv entro en selec escenario");
@@ -77,7 +80,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
     @Override
     public void render(float delta) {
-        System.out.println("render de selec escenario");
+         
         Render.cleaner();
        b.begin();
        Escena[opc].dibujar();
@@ -88,14 +91,6 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
 
 
-
-
-    // private void Seleccionar() {
-        
-    //     if (input.isEnter()) {
-    //     Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
-    //     }
-    // }
  
 
     
@@ -166,7 +161,11 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 }
                 
                 break;
-                 
+                case ENTER:
+                    
+                    server.getHl().enviarAtodos(direcciones.ESCENARIOS.getString());
+                
+                break;
             default:
                 break;
         }

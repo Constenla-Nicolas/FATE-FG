@@ -31,8 +31,8 @@ public class FateFightingGacha extends Game {
 		p1 = new Astolfo();
 		p2 = new Astolfo();
 		
-
-		Render.app.setScreen(new Escenarios(Background.values()[0].getRoot(), p1, p2));
+		Render.app.setScreen(new SeleccionPJ());
+		//Render.app.setScreen(new Escenarios(Background.values()[0].getRoot(), p1, p2));
 		
 		
 	}
