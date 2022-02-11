@@ -2,38 +2,46 @@ package personajes;
  
  
  
+import javax.swing.Action;
+import javax.swing.Timer;
 import javax.tools.Diagnostic;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
- 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 import utiles.Imagen;
-import utiles.Render;
+ 
 
  
 
-public abstract class personajePrefab{
+public abstract class personajePrefab implements Action{
     protected TextureAtlas textureAtlas;
    protected float cargasuper;
    protected TextureRegion texRegion;
-  private float x, y, w, h;
+  protected float x, y, texHeight;
+int texWidth;
+Imagen img;
   protected int vidamax;
   protected int opc;
   private Imagen i;
   private  int vidaActual;
-  protected enum Estado{CORRER,SALTAR,STANCE}
-  Estado estadoactual, estadoanterior;
+  public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
+  protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
-  protected static Imagen spriteImagen;
-  
+  protected static Imagen spriteImagen;   
+  public Rectangle box1;
+  public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
   public Animation<TextureRegion> win;
   public Animation<TextureRegion> walk;
+  public Animation<TextureRegion> walkLeft;
   public Animation<TextureRegion> ataque1;
   public Animation<TextureRegion> ataque2;
   public Animation<TextureRegion> ataque3;
@@ -59,193 +67,23 @@ public abstract class personajePrefab{
   public Animation<TextureRegion> vfx2;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
-  
+  private Timer tiempo;
+
+ 
+
+  public void sethitbox(){
+    img = new Imagen("Astolfo/Stance1.png");
+    img.setPosition((Gdx.graphics.getWidth()/2), Gdx.graphics.getHeight()/2);
+      box1 = new Rectangle(img.getX(), img.getY(), img.getAncho(), img.getAlto());
+  }
     public personajePrefab(){
-         
+         tiempo= new Timer(200, this);
       
     } 
 
-    public void mordredAnims(){
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Intro.atlas");
-        intro = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Stance.atlas");
-        stance = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Win.atlas");
-        win = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Walk.atlas");
-        walk = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Ataque1.atlas");
-        ataque1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Ataque2.atlas");
-        ataque2 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
+    protected void iniciar(){
+        tiempo.start();
         
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Ataque3.atlas");
-        ataque3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Ataque4.atlas");
-        ataque4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Jump.atlas");
-        jump = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Crouch.atlas");
-        crouch = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Fall.atlas");
-        fall = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Guard.atlas");
-        guard = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Dash.atlas");
-        dash = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/DmgTaken.atlas");
-        dmgTaken = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Air1.atlas");
-        air1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Air2.atlas");
-        air2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Air3.atlas");
-        air3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Air4.atlas");
-        air4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/BloodySlash.atlas");
-        special1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/BloodySlashEX.atlas");
-        special2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/CrimsonCharge.atlas");
-        special3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/CrimsonThunder.atlas");
-        special4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/HeavySplitter.atlas");
-        special5 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/RadiantThrust.atlas");
-        special6 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/ClarentBlood.atlas");
-        noblePhantasm = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/BloodySlashVFX.atlas");
-        vfx1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/BloodySlashEXVFX.atlas");
-        vfx2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/CrimsonThunder.atlas");
-        vfx3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Moedred/SpriteSheets/ClarentBloodVFX.atlas");
-        vfx4 = new Animation<TextureRegion>(1f/30F, textureAtlas.getRegions());
-    
-
-    
-    }
-
-    public void astolfoAnims(){
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Intro.atlas");
-        intro = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Stance.atlas");
-        stance = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Win.atlas");
-        win = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Walk.atlas");
-        walk = new Animation<TextureRegion>(1f/15F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque1.atlas");
-        ataque1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque2.atlas");
-        ataque2 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque3.atlas");
-        ataque3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque4.atlas");
-        ataque4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Jump1.atlas");
-        jump = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Crouch.atlas");
-        crouch = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Fall.atlas");
-        fall = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Guard.atlas");
-        guard = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Dash.atlas");
-        dash = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/DmgTaken.atlas");
-        dmgTaken = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air1.atlas");
-        air1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air2.atlas");
-        air2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air3.atlas");
-        air3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/CasseurDeLogistille.atlas");
-        special1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/HippogriffRide.atlas");
-        special2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/TrapArgalia.atlas");
-        special3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/PiercedLance.atlas");
-        special4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-        
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/SmallHorn.atlas");
-        special5 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/AirTrapArgalia.atlas");
-        special6 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/PhantomFlight.atlas");
-        noblePhantasm = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/CasseurDeLogistilleVFX.atlas");
-        vfx1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/FullActivationVFX.atlas");
-        vfx2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/SmallHornVFX.atlas");
-        vfx3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
-
-        textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/PhantomFlightVFX.atlas");
-        vfx4 = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
-
-        
-    
-
-    
     }
 
     public void update(float dt){
@@ -266,11 +104,11 @@ public abstract class personajePrefab{
         this.opc=opc;
     }
     public void setX(float x){
-        i.setX(this.x);
+        this.x = x;
 
     }
 	public void setY(float y){
-        i.setY(this.y);;
+        this.y = y;
     }
 
     public float getX(){
@@ -281,10 +119,10 @@ public abstract class personajePrefab{
     }
 
     public float getW() {
-        return w;
+        return img.getAncho();
     }
 	public float getH() {
-        return h;
+        return img.getAlto();
     }
     public int getVidaActual() {
         return vidaActual;
@@ -302,7 +140,18 @@ public abstract class personajePrefab{
  public float getCargasuper() {
      return cargasuper;
  }
-	
+	public Estado getEstado(){
+        return estadoActual;
+    }
+    public void setEstado(Estado estado){
+        this.estadoActual = estado;
+    }
+    public Estado getEstadoAnterior(){
+        return estadoAnterior;
+    }
+    public void setEstadoAnterior(Estado estado){
+        this.estadoAnterior = estado;
+    }
   
     
 
