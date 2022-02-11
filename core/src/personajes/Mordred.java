@@ -42,10 +42,10 @@ public class Mordred extends personajePrefab{
       }
       @Override
       public void setAnims() {
-          
+
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Intro.atlas");
         intro = new Animation<TextureRegion>(1f/10F, textureAtlas.getRegions());
-
+        
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Stance.atlas");
         stance = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
@@ -54,6 +54,9 @@ public class Mordred extends personajePrefab{
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Walk.atlas");
         walk = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
+        
+        
+        
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Ataque1.atlas");
         ataque1 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());

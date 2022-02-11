@@ -25,90 +25,94 @@ public class Astolfo extends personajePrefab {
 
 @Override
 public void setAnims() {
+
+    
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Intro.atlas");
-    intro = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    
+    intro = new Animation<TextureRegion>(1f/14F, textureAtlas.getRegions());
+    
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Stance.atlas");
-    stance = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    stance = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Win.atlas");
-    win = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    win = new Animation<TextureRegion>(1f/8F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Walk.atlas");
-    walk = new Animation<TextureRegion>(1f/15F, textureAtlas.getRegions());
+    walk = new Animation<TextureRegion>(1f/8F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque1.atlas");
-    ataque1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    ataque1 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque2.atlas");
-    ataque2 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
+    ataque2 = new Animation<TextureRegion>(1f/5F, textureAtlas.getRegions());
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque3.atlas");
-    ataque3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    ataque3 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Ataque4.atlas");
-    ataque4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    ataque4 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Jump1.atlas");
-    jump = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    jump = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Crouch.atlas");
     crouch = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Fall.atlas");
-    fall = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    fall = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Guard.atlas");
-    guard = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    guard = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Dash.atlas");
-    dash = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    dash = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/DmgTaken.atlas");
-    dmgTaken = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    dmgTaken = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air1.atlas");
-    air1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    air1 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air2.atlas");
-    air2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    air2 = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air3.atlas");
-    air3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    air3 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/CasseurDeLogistille.atlas");
-    special1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    special1 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/HippogriffRide.atlas");
-    special2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    special2 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/TrapArgalia.atlas");
-    special3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    special3 = new Animation<TextureRegion>(1f/8F, textureAtlas.getRegions());
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/PiercedLance.atlas");
-    special4 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    special4 = new Animation<TextureRegion>(1f/13F, textureAtlas.getRegions());
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/SmallHorn.atlas");
-    special5 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    special5 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/AirTrapArgalia.atlas");
-    special6 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    special6 = new Animation<TextureRegion>(1f/8F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/PhantomFlight.atlas");
-    noblePhantasm = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    noblePhantasm = new Animation<TextureRegion>(1f/33F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/CasseurDeLogistilleVFX.atlas");
-    vfx1 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    vfx1 = new Animation<TextureRegion>(1f/20F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/FullActivationVFX.atlas");
-    vfx2 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    vfx2 = new Animation<TextureRegion>(1f/5F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/SmallHornVFX.atlas");
-    vfx3 = new Animation<TextureRegion>(1f/7F, textureAtlas.getRegions());
+    vfx3 = new Animation<TextureRegion>(1f/5F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/PhantomFlightVFX.atlas");
-    vfx4 = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
+    vfx4 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
 
     
 

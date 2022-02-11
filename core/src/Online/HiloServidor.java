@@ -20,7 +20,7 @@ import Screens.Background;
 public class HiloServidor extends Thread {
     private DatagramSocket s;
     private boolean err=false,creado=false;
-    private int puerto = 8080; 
+    private int puerto = 25565; 
     private int contconexion=0;
     private SvClientes[] Usuario = new SvClientes[2]; 
     private int posconexion;
@@ -47,7 +47,7 @@ public class HiloServidor extends Thread {
     }
 
     public void stopSv(){
-        enviarAtodos("server cerrado");
+        //enviarAtodos("server cerrado");
         System.out.println("cerrando server");
         if (!s.isClosed()) {
            s.close();
