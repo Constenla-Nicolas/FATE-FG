@@ -28,7 +28,6 @@ public class Escenarios implements Screen,TieneFondo{
    SpriteBatch b;
    float velocidad = 0f; 
    float  gravedad = 10f;
-   Rectangle player1Box, player2Box;
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
@@ -62,9 +61,10 @@ public class Escenarios implements Screen,TieneFondo{
         
         mordred = new Mordred();   
         astolfo = new Astolfo(); 
+        p1.sethitbox();
+        p2.sethitbox();
                                        
         Gdx.input.setInputProcessor(entradas);
-        player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
         p1.setY(Gdx.graphics.getHeight()/2);
         p1.setX(Gdx.graphics.getWidth()/4);
         p2.setY(Gdx.graphics.getHeight()/2f);
@@ -93,6 +93,7 @@ float a;
        
         a=a+0.1f;
        movement();
+       colision();
          b.end();
          
         ActualizarBarras();
@@ -100,7 +101,9 @@ float a;
        
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
-        player2Box.setPosition(astolfo.img.getX(), astolfo.img.getY());
+        p1.box1.setPosition(p1.getX(), p1.getY());
+        
+        p2.box1.setPosition(p2.getX(), p2.getY());
 
     //    // if (hud.getSec()<=95) {
     //         hud.terminarTimer();
@@ -108,6 +111,12 @@ float a;
     // }
          
      }
+
+     private void colision(){
+         if(p1.box1.overlaps(p2.box1)){
+             System.out.println("a");
+         }
+     } 
 
     private void movement(){
         
@@ -164,7 +173,7 @@ float a;
                 
 
         }
-        else if(entradas.isS() || (!p1.ataque2.isAnimationFinished(time) && a2) && (!a1 && !a3)){
+        else if(entradas.isS() && (!a1 && !a3) || (!p1.ataque2.isAnimationFinished(time) && a2) ){
             a2 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
                 p1.setEstado(Estado.AEREO2);
@@ -247,7 +256,6 @@ float a;
             }
         
         p1.setEstadoAnterior(p1.getEstado());
-        System.out.println(p1.getEstado());
 
 
         switch(p1.getEstado()){
@@ -260,6 +268,9 @@ float a;
             p1.currentFrame.flip(true, false);
             }
             b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.jump.isAnimationFinished(time)){
+                time = 0;
+            }
             break;
             
             case AGACHADO:
@@ -271,7 +282,11 @@ float a;
             p1.currentFrame.flip(true, false);
             }
             b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.crouch.isAnimationFinished(time)){
+                time = 0;
+            }
             break;
+
             case ATAQUED:
             p1.currentFrame = p1.ataque4.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -288,6 +303,7 @@ float a;
             a2 = false;
             a3 = false;
             break;
+
             case ATAQUEM:
             p1.currentFrame = p1.ataque2.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -303,6 +319,7 @@ float a;
             a1 = false;
             a3 = false;
             break;
+
             case ATAQUEF:
             p1.currentFrame = p1.ataque3.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -318,6 +335,7 @@ float a;
             a1 = false;
             a2 = false;
             break;
+
             case AEREO1:
             p1.air1.setPlayMode(PlayMode.NORMAL);
             p1.currentFrame = p1.air1.getKeyFrame(time);
@@ -364,10 +382,10 @@ float a;
             b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.air3.isAnimationFinished(time)){
                 time = 0;
-                
+            }
             a1 = false;
             a2 = false;
-            }
+            
             break;
             case CORRER:
             p1.currentFrame = p1.walk.getKeyFrame(time);
@@ -375,6 +393,9 @@ float a;
                 p1.currentFrame.flip(true, false);
             }
             b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.walk.isAnimationFinished(time)){
+                time = 0;
+            }
             
             break;
             case CORRERL:
@@ -384,6 +405,9 @@ float a;
             }
             
             b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.walk.isAnimationFinished(time)){
+                time = 0;
+            }
             
             break;
             default:

@@ -6,12 +6,14 @@ import javax.swing.Action;
 import javax.swing.Timer;
 import javax.tools.Diagnostic;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 import utiles.Imagen;
  
@@ -24,6 +26,7 @@ public abstract class personajePrefab implements Action{
    protected TextureRegion texRegion;
   protected float x, y, texHeight;
 int texWidth;
+Imagen img;
   protected int vidamax;
   protected int opc;
   private Imagen i;
@@ -31,7 +34,8 @@ int texWidth;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
-  protected static Imagen spriteImagen;
+  protected static Imagen spriteImagen;   
+  public Rectangle box1;
   public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
@@ -64,6 +68,14 @@ int texWidth;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
   private Timer tiempo;
+
+ 
+
+  public void sethitbox(){
+    img = new Imagen("Astolfo/Stance1.png");
+    img.setPosition((Gdx.graphics.getWidth()/2), Gdx.graphics.getHeight()/2);
+      box1 = new Rectangle(img.getX(), img.getY(), img.getWidth(), img.getHeight());
+  }
     public personajePrefab(){
          tiempo= new Timer(200, this);
       
