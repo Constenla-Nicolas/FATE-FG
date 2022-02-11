@@ -80,6 +80,14 @@ public static float centrado(float f){
 public static ArrayList<InputEvent> getListInput() {
     return listInput;
 }
+
+public static void eraseInput(Object pos){
+  
+    listInput.remove(pos);
+
+}
+
+
 public static void addListInput(InputEvent list){
     listInput.add(list);
    }

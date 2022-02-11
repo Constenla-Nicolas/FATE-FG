@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import Entradas.Direcciones;
 import Entradas.Entradas;
 import Online.cliente;
 import Screens.Batalla.Escenarios;
@@ -25,25 +26,23 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     Imagen flecha[]= new Imagen[4];
     int opc=0;
     private Entradas entradas= new Entradas();
-    public SeleccionEscenarios(){
-        Config.addListInput(this);
-        b= Render.batch;
-      
-         mostrarRetrato();
-    }
+     
     public SeleccionEscenarios(personajePrefab j1, personajePrefab j2){
         b= Render.batch;
-      
-        mostrarRetrato();
-    this.j1=j1;
+      Config.addListInput(this);
+      if (cliente.getHiloC().getIdcliente()==0) {
+          
+          cliente.getHiloC().enviarMensaje(Direcciones.SELECCIONESCENARIOS.getString());
+          System.out.println("soy el cliente 0");
+      }else if (cliente.getHiloC().getIdcliente()==1) {
+          entradas.stopInput();
+      }
+    
+         this.j1=j1;
     this.j2=j2;
+    Gdx.input.setInputProcessor(entradas);
     }
-    public void setJ1(personajePrefab j1) {
-        this.j1 = j1;
-    }
-    public void setJ2(personajePrefab j2) {
-        this.j2 = j2;
-    }
+    
     private void mostrarRetrato() {
         for (int i = 0; i < Escena.length; i++) {
             portrait[i]=new Imagen(Background.values()[i].getRoot2());
@@ -74,7 +73,8 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(entradas);
+        mostrarRetrato();
+        
        for (int i = 0; i < Escena.length; i++) {
             Escena[i]=new Imagen(Background.values()[i].getRoot());
             Escena[i].setSize(Config.WIDTH,Config.HEIGHT);
@@ -86,9 +86,20 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     public void render(float delta) {
         Render.cleaner();
        b.begin();
-       Escena[inputSelec()].dibujar();
+       
 
-       //if(cl.cliente1==true){Seleccionar();}
+
+
+       if (Config.ONLINE) {
+           
+           Escena[opc].dibujar();
+       }
+       else{
+          Escena[inputOffline()].dibujar(); 
+       }
+       
+
+      
       for (int i = 0; i < portrait.length; i++) {
         portrait[i].dibujar();
       }
@@ -104,14 +115,9 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
 
 
-    private void Seleccionar() {
-        
-        if (entradas.isEnter()) {
-        Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
-        }
-    }
-
-    public int inputSelec() {
+    
+    
+    public int inputOffline() {
         try {
             synchronized(entradas){
                  entradas.wait(90);
@@ -124,7 +130,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
           }
         
             
-            if (entradas.isDown()) {
+            if (entradas.isLeft()) {
               
                 if (opc==0) {
                      
@@ -136,7 +142,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                   
                 }
             }
-            if (entradas.isUp()) {
+            if (entradas.isRight()) {
                 if(opc==3){
                  opc=0;
                 }
@@ -145,7 +151,9 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                    
                 }
             }
-          
+            if (entradas.isEnter()) {
+                Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
+                }
             return opc;
     }
 
@@ -180,18 +188,57 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
     @Override
     public void dispose() {
-         
+        for (int i = 0; i < portrait.length; i++) {
+            portrait[i].dispose();
+            Escena[i].dispose();
+        }
+         for (int i = 0; i < Escena.length; i++) {
+            flecha[i].dispose();
+         }
         
     }
    
     @Override
     public void handleInput() {
-        // TODO Auto-generated method stub
+         System.out.println("handle input de selesc");
+         inputQueLlega();
+       cliente.getHiloC().getDir().dontActive();
         
     }
     @Override
     public int inputQueLlega() {
-        // TODO Auto-generated method stub
+       
+        switch (cliente.getHiloC().getDir()) {
+            case IZQUIERDA:
+                 
+                if (opc==0) {
+                  
+                 opc=3;
+                  
+             }
+             else{
+                 opc--;
+                  
+             }
+                break;
+ 
+                case DERECHA:
+                if(opc==3){
+                 opc=0;
+                }
+                else{
+                    opc++;
+                   
+                }
+                
+                break;
+                case ENTER:
+                cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString());
+                
+                break;
+            default:
+                break;
+        }
         return 0;
     }
 

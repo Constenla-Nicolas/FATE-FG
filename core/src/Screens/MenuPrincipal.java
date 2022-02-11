@@ -107,7 +107,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 				case 2:
 				 cl= new cliente();
 				mostrar=true;
-				 
+				entradas.stopInput();
 				break;
 
 				case 3:
@@ -125,6 +125,10 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		Render.cleaner();
 
 		b.begin();
+		if (mostrar) {
+			negroiImagen.dibujar();
+			entradas.stopInput();
+		}
 		Recursos.TITLEMUSIC.play();
 		elapsed += Gdx.graphics.getDeltaTime();
 		b.draw(animation.getKeyFrame(elapsed),0.0f, 0.0f,Config.WIDTH,Config.HEIGHT);
@@ -133,31 +137,18 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			options[i].dibujar();
 		}
 		tiempo += delta;
-		if (mostrar) {
-			negroiImagen.dibujar();
-			entradas.stopInput();
-		}
+		
 		labelInput();
 		b.end();
 
-		comprobarOnline();
+		 
 		
 		
 		
 	}
 	
 
-	private void comprobarOnline() {
-		
-		for (int i = 0; i < 10; i++) {
-			if (Config.ONLINE) {
-			 
-				mostrar=false;
-			Render.app.setScreen(new SeleccionPJ()); 
-		}
-		 
-		}
-	}
+ 
 	@Override
 	public void resize(int width, int height) {
 		Config.getViewport().update(width, height);

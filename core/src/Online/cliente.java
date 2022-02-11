@@ -1,13 +1,13 @@
 package Online;
 
-import Entradas.Entradas;
 import personajes.personajePrefab;
 
 public class cliente {
     private static HiloCliente hiloC;
-    public static boolean cliente1=false;
+  
     protected boolean escenarios;
-    protected boolean SeleccionEscenarios;
+    private static personajePrefab j1;
+    private static personajePrefab j2;
     
     
     public cliente(){
@@ -20,6 +20,17 @@ public class cliente {
         return hiloC;
     }
 
-     
+     public static void setJ1(personajePrefab j1) {
+         cliente.j1 = j1;
+     }
+     public static void setJ2(personajePrefab j2) {
+         cliente.j2 = j2;
+     }
+     public static personajePrefab getJ1() {
+         return j1;
+     }
+     public static personajePrefab getJ2() {
+         return j2;
+     }
     
 }

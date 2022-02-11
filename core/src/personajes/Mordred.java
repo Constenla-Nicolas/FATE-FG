@@ -24,10 +24,7 @@ public class Mordred extends personajePrefab{
     
 
     public Mordred(){
-        spriteImagen= new Imagen("mordredSheet.png");
-
-      //  s = new Sprite(texRegion);
-      //  s.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        
        
 }
     

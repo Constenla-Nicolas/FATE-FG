@@ -29,16 +29,19 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     private personajePrefab jugador;
     private personajePrefab jugador2;
     private int opc,opc2=0,opcOFF=0;
-  
+     
    
     boolean npc=false;
-    cliente cl;
+     
     private Entradas entradas= new Entradas();
     AtlasRegion[] a;
    
+    public SeleccionPJ(){
+    Config.addListInput(this); 
+    }
     @Override
     public void show() { 
-        Config.addListInput(this);
+        
         Gdx.input.setInputProcessor(entradas);
          setFondo();
 		b = Render.batch;
@@ -105,20 +108,18 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
 
     @Override
     public void render(float delta) {
-    
-       Render.cleaner();
-         
         
+       Render.cleaner();
        b.begin();
         
      
-        Accionar();
+       Offline();
     
       
      for (int i = 0; i < portrait.length; i++) {
             portrait[i][0].dibujar();
         }
-       fondoImagen.dibujar();
+        fondoImagen.dibujar();
         if (Config.ONLINE) {
             portrait[opc][1].dibujar();
             portraitEnemigo[opc2].dibujar();
@@ -129,38 +130,21 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
             flecha[opcOFF].dibujar();
         }
        b.end();
-    
+      
     }
      
-     private void Accionar() {
+     private void Offline() {
+       
            try {
                 synchronized(entradas){
-                    entradas.wait(140);
+                    entradas.wait(190);
                 }
             } catch (Exception e) {
                 //TODO: handle exception
             }
-        if (Config.ONLINE) { 
-             
-            if (entradas.isLeft()) {
-             
-                cliente.getHiloC().enviarMensaje(Direcciones.IZQUIERDA.getString());
-            } 
-            if (entradas.isRight()) {
-                 
-                cliente.getHiloC().enviarMensaje(Direcciones.DERECHA.getString());
-            } 
-            if (entradas.isEnter()) {
-               
-                cliente.getHiloC().enviarMensaje(Direcciones.ENTER.getString());
-            }
-        }
-        else{
-            
-
+        if (!Config.ONLINE) { 
            
-             
-         if (npc) {
+              if (npc) {
              portraitEnemigo[inputOffline()].dibujar();
 
              if (entradas.isEnter()) {
@@ -174,10 +158,10 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
             jugador= Retratos.values()[inputOffline()].getClase();
               }
          }
-
-        
-        
+ 
+            
         }
+ 
 
         
 
@@ -186,7 +170,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
 
 
     public int inputQueLlega() {
-        boolean enter=false;
+      
         if (cliente.getHiloC().MiPropioMensaje()) {
          
             switch (cliente.getHiloC().getDir()) {
@@ -214,11 +198,16 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
                     
                     break;
                     case ENTER:
-                  enter=true;
-                   // entradas.stopInput();
+                    entradas.stopInput();
+                   cliente.setJ1(Retratos.values()[opc].getClase());
+                    
+                   cliente.getHiloC().enviarMensaje(Direcciones.values()[opc].getString());
+                     
                     break;
                 default:
                     break;
+
+                  
             }
              
         }
@@ -251,9 +240,8 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
                
                break;
                case ENTER:
-               jugador2=new Astolfo();
-                System.out.println(jugador2);
-               //    jugador2=Retratos.values()[opc].getClase();
+                    cliente.setJ2(Retratos.values()[opc].getClase());
+                  
                 
                break;
            default:
@@ -262,7 +250,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         
        
         }
-
+    
  
         return 0;
 }
@@ -326,6 +314,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     @Override
     public void dispose() {
        b.dispose();
+       fondoImagen.dispose();
         for (int i = 0; i < portrait.length; i++) {
             for (int j = 0; j < portrait[0].length; j++) {
                 portrait[i][j].dispose();
@@ -335,6 +324,10 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
             portraitEnemigo[i].dispose();
         }
        fondoImagen.dispose();
+       for (int i = 0; i < a.length; i++) {
+           flecha[i].dispose();
+           flecha2[i].dispose();
+       }
     }
     @Override
     public void setFondo() {
@@ -346,12 +339,16 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
 
 
 
-
+ 
     @Override
     public void handleInput() {
-        
-         inputQueLlega();
+
+       
+         System.out.println("handleinput de seleccion pj");
+        inputQueLlega(); 
+ 
         cliente.getHiloC().getDir().dontActive();
+      
          
         
     }

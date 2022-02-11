@@ -7,13 +7,16 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.Arrays;
+ 
 import java.util.regex.PatternSyntaxException;
 
+import com.badlogic.gdx.Gdx;
+
 import Entradas.Direcciones;
- 
- 
+import Screens.SeleccionEscenarios;
+import Screens.SeleccionPJ;
 import utiles.Config;
+import utiles.Render;
  
 
 public class HiloCliente extends Thread {
@@ -25,6 +28,8 @@ public class HiloCliente extends Thread {
     private int idcliente;
     private String parte1;//partes del string
     private String parte2;
+    private int cont;
+
     public HiloCliente(){
         
         try { 
@@ -48,29 +53,35 @@ public class HiloCliente extends Thread {
                 s.receive(dp);
                 procesarMensaje(dp);
                
+
+                
             } catch (IOException e) {
                  
                 e.printStackTrace();
             }
             
+            
         }
 
     }
     private void llamarEvento() {
-         
+          
             if(dir.isActive()){
-               
+                
                 for (int i = 0; i < Config.getListInput().size(); i++) {
-                 Config.getListInput().get(i).handleInput(); 
+                   Config.getListInput().get(i).handleInput();
+                 
+                  
+             
                 }
                 
-           
+                
           }
       
         
     }
     public void identificarMensaje(String msg){
-        System.out.println("entro en identifiar mensaje" +msg);
+        System.out.println("entro en identifiar mensaje: " +msg);
          
         try {
             String partes[]= msg.split("<>"); 
@@ -95,7 +106,10 @@ public class HiloCliente extends Thread {
             
             dir.doActive();
     }
-    public boolean MiPropioMensaje(){
+     public int getIdcliente() {
+         return idcliente;
+     }
+public boolean MiPropioMensaje(){
         
         if (Integer.parseInt(parte2)!=idcliente) {
                     System.out.println("llego el nro "+parte2+" y el idcliente es "+idcliente);
@@ -119,14 +133,11 @@ public class HiloCliente extends Thread {
         }
         else if(!prmera){
            
-           identificarMensaje(msg);
-
-          decidirAccion(dir);
+            identificarMensaje(msg);
+            
+          decidirAccion();
           llamarEvento();
         }
-     
-        
-
     }
     private void primeraConexion(String msg) {
         if (Integer.parseInt(msg)==0) {
@@ -139,22 +150,53 @@ public class HiloCliente extends Thread {
     public Direcciones getDir() {
         return dir;
     }
-    public void decidirAccion(Direcciones dir){
+    public void decidirAccion(){
         switch (dir) { 
             case SELECCIONPJ:
              
-              
+               
                Config.ONLINE=true;
+               Gdx.app.postRunnable(new Runnable() {
+                public void run(){
+                    System.out.println("creando selecPJ....");
+                    Render.app.setScreen(Direcciones.SELECCIONPJ.getClase());
+   
+                }
+            });
+
             break;
             case SELECCIONESCENARIOS:
+             
+            if (cont==0) {
+                Config.eraseInput(Config.getListInput().get(0));
+                Gdx.app.postRunnable(new Runnable() {
+                public void run(){
+                    System.out.println("creando selecesc....");
+                    Render.app.setScreen(new SeleccionEscenarios(cliente.getJ1(),cliente.getJ2()));
+          
+                }
+            });
+            }
+            cont++;
             
-                
+            
+            
             break;
             case ESCENARIOS:
-            
+            Config.eraseInput(Config.getListInput().get(0));
+            Gdx.app.postRunnable(new Runnable() {
+                public void run(){
+                    
+                }
+            });
             break;
             case PELEATERMINADA:
-             
+            Config.eraseInput(Config.getListInput().get(0));
+            Gdx.app.postRunnable(new Runnable() {
+                public void run(){
+                    Render.app.setScreen(new SeleccionEscenarios(cliente.getJ1(),cliente.getJ2()));
+                }
+            });
             break;
             default:
             break;
@@ -199,6 +241,7 @@ public class HiloCliente extends Thread {
        }
     
     public void enviarMensaje(String msg){
+        System.out.println("este mensaje se va a enviar " + msg);
         byte[] data = msg.getBytes();
         
         try {

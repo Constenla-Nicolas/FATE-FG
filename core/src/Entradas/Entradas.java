@@ -20,6 +20,7 @@ public class Entradas implements InputProcessor {
     protected boolean a=false;
     protected boolean w=false;
     protected boolean s=false;
+    protected boolean space=false;
     protected boolean inputflag=true;
     
    
@@ -52,7 +53,9 @@ public class Entradas implements InputProcessor {
     public boolean isS() {
         return s;
     }
-    
+    public boolean isSpace() {
+        return space;
+    }
     public void stopInput(){
     inputflag=false;
     
@@ -64,9 +67,11 @@ public class Entradas implements InputProcessor {
      
     @Override
     public boolean keyDown(int keycode) {
+       
+    if (inputflag) { 
+        System.out.println("sysout adentro de entradas :"+ keycode);
         mandarOnline(keycode);
-        if (inputflag) {
-            if(keycode == Keys.DOWN){
+         if(keycode == Keys.DOWN){
         down = true;
     }
     if(keycode == Keys.UP){
@@ -92,8 +97,12 @@ public class Entradas implements InputProcessor {
     if(keycode==Keys.A){
         a=true;
     }
-    return false;
-        }
+     if (keycode==Keys.SPACE) {
+         space=true;
+     }
+    }
+        
+        
 
       
     return false;
@@ -114,6 +123,7 @@ public class Entradas implements InputProcessor {
         }
         if(keycode == Keys.ENTER){
             enter = false ;
+             
           
         }
         if(keycode == Keys.LEFT){
@@ -133,8 +143,10 @@ public class Entradas implements InputProcessor {
        
         }
         if(keycode==Keys.S){
-            s=false;
-           
+            s=false;  
+        }
+        if (keycode==Keys.SPACE) {
+            space=true;
         }
         return false;
     }
@@ -143,9 +155,9 @@ public class Entradas implements InputProcessor {
         
        
         if(Config.ONLINE){
-            for (int i = 11; i < Direcciones.values().length; i++) {
+            for (int i = 14; i < Direcciones.values().length; i++) {
           if (keycode==Integer.parseInt(Direcciones.values()[i].getString())) {
-              System.out.println(Direcciones.values()[i].getString());
+               
              
           cliente.getHiloC().enviarMensaje(Direcciones.values()[i].getString());
         }   
