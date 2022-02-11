@@ -28,7 +28,7 @@ public class FateFightingGacha extends Game {
 		Render.app = this;
 		Config.initialize();
 		sv = new server();
-		p1 = new Astolfo();
+		p1 = new Mordred();
 		p2 = new Astolfo();
 		
 		Render.app.setScreen(new SeleccionPJ());

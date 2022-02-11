@@ -90,7 +90,7 @@ float a;
     
 
         hb.dibujar();
-       
+       b.draw(p2.stance.getKeyFrame(time), p2.getX(), p2.getY());
         a=a+0.1f;
        movement();
        colision();
