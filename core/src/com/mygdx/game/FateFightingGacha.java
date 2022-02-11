@@ -45,8 +45,12 @@ public class FateFightingGacha extends Game {
 	
 	@Override
 	public void dispose () {
+		 if (Config.ONLINE) {
+			 
+	 sv.dispose();
+	 
+		 }
 		 
-		 sv.dispose();
 		super.dispose();
 	}
 }

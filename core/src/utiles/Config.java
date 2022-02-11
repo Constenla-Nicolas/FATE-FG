@@ -88,5 +88,9 @@ public static float centrado(float f){
 
     return (f/2-(Config.tamanioDeAlgo(proporcion,f))/2);
 }
-    
+public static void eraseInput(Object pos){
+  
+    listInput.remove(pos);
+
+}
 }

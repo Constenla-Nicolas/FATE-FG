@@ -3,24 +3,27 @@ package Entradas;
 import com.badlogic.gdx.Screen;
 
 public enum direcciones {
+    ASTOLFO("A"),
+    MORDRED("M"),
+    JEANNE("J"),
+    ATALANTE("AT"), 
     CONECTAR("conectar"),
-    ENTER("66"),
-    ARRIBA("19"),
-    ABAJO("20"),
-    IZQUIERDA("21"),
-    DERECHA("22"),
     ATAQUEF("fuerte"),
     ATAQUEM("medio"),
     ATAQUED("debil"),
     SALTAR("saltar"),
     AGACHARSE("crouch"),
     SELECCIONPJ("Screens.SeleccionPJ"),
-    SELECCIONESCENARIOS("Screens.SeleccionEscenarios"),
+    SELECCIONESCENARIOS("SelecEscc"),
     ESCENARIOS("Screens.Escenarios"),
-    PELEATERMINADA("Screens.PeleaTerminada");
+    PELEATERMINADA("Screens.PeleaTerminada"),
+     ENTER("66"),
+    ARRIBA("19"),
+    ABAJO("20"),
+    IZQUIERDA("21"),
+    DERECHA("22");
     String string;
-    
-     boolean active;
+    boolean active;
     direcciones(String string){
         this.string=string;
         
@@ -38,7 +41,10 @@ public enum direcciones {
         return active;
     }
 
-   
+   public void dontActive() {
+       active=false;
+    }
+
 
 
     public String getString() {
@@ -65,6 +71,9 @@ public enum direcciones {
       return p;
     }
 
+
+
+    
 
 
     

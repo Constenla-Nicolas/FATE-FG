@@ -11,12 +11,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.mygdx.game.FateFightingGacha;
 
-import Entradas.Entradas;
 import Entradas.direcciones;
-import Online.SvClientes;
+ 
 import Online.server;
 import personajes.personajePrefab;
 import utiles.*;
@@ -24,13 +21,13 @@ import utiles.*;
 
 public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
     private Imagen fondoImagen;
-    private float delta;
+    
 	private SpriteBatch b;
     private Imagen flecha[]= new Imagen[4];
-   
+    int listo=0;
 	private Imagen[][] portrait= new Imagen[4][2]; // 0 es astolfo, 1 mordred, 2 jeanne, 3 atalante
     private Imagen[] portraitEnemigo=new Imagen[4];
-    
+    private boolean uno,dos;
     int opc =0;
     int cont;
      float ts, period;
@@ -110,7 +107,7 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
         // else{}
        Render.cleaner();
           
-        this.delta=delta;
+        
 
 // if (direcciones.ARRIBA.isActive()) {
 //     //server.getUsuario().y++;
@@ -181,28 +178,22 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
 
     @Override
     public void handleInput() {
-        int listo=0;
-
-            try {
-                synchronized(server.getHl()){
-                    server.getHl().wait(80);
-                }
-                
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            
+        System.out.println("handle input de selecPJ");
+               if (server.getHl().getDir().compareTo(direcciones.ENTER)==0) {
+                    
+                cont++;
              
-            
-             System.out.println(server.getHl().getDir().getString());
-             server.getHl().enviarAtodos(server.getHl().getDir().getString());
-            if (server.getHl().getDir().getString().equals(direcciones.ENTER.getString())) {
-                   listo++; 
-            }
-            if (listo==2) {
-                server.getHl().enviarAtodos(direcciones.SELECCIONESCENARIOS.getString());
-            }
+               }
+               if (cont==2) {
+                   server.getHl().enviarAtodos(direcciones.SELECCIONESCENARIOS.getString());
+                   cont=0;
+               }
+             
+             
+           
+             
+             server.getHl().getDir().dontActive();
+          
          
         
  

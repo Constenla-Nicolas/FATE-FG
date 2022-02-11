@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Entradas.Entradas;
+import Online.server;
 import Screens.Batalla.Escenarios;
 import utiles.Config;
 import personajes.personajePrefab;
@@ -22,9 +23,9 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     Imagen portrait[]=new Imagen[Background.values().length];
     SpriteBatch b;
     Imagen flecha[]= new Imagen[4];
-    int opc=0;
+    static int opc=0;
     public SeleccionEscenarios(personajePrefab jugador1,personajePrefab jugador2){
-        
+        System.out.println("sv entro en selec escenario");
         b= Render.batch;
         Config.addListInput(this);
          this.j1=jugador1;
@@ -66,24 +67,22 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(input);
+        
        for (int i = 0; i < Escena.length; i++) {
             Escena[i]=new Imagen(Background.values()[i].getRoot());
             Escena[i].setSize(Config.WIDTH,Config.HEIGHT);
        }
-
+        
     }
 
     @Override
     public void render(float delta) {
+        System.out.println("render de selec escenario");
         Render.cleaner();
        b.begin();
-       Escena[inputSelec()].dibujar();
-       Seleccionar();
-      for (int i = 0; i < portrait.length; i++) {
-        portrait[i].dibujar();
-      }
+       Escena[opc].dibujar();
        
-       flecha[opc].dibujar();
+      
        b.end();
     }
 
@@ -91,53 +90,12 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
 
 
-    private void Seleccionar() {
+    // private void Seleccionar() {
         
-        if (input.isEnter()) {
-        Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
-        }
-    }
-
-    public int inputSelec() {
-        try {
-            synchronized(input){
-                  input.wait(90);
- 
-            }
-            
-          } catch (InterruptedException e) {
-           
-              e.printStackTrace();
-          }
-        
-            
-            if (input.isDown()) {
-              
-                if (opc==0) {
-                     
-                    opc=3;
-                   
-                }
-                else{
-                    opc--;
-                  
-                }
-            }
-            if (input.isUp()) {
-                if(opc==3){
-                 opc=0;
-                }
-                else{
-                    opc++;
-                   
-                }
-            }
-          
-            return opc;
-    }
-
-
-
+    //     if (input.isEnter()) {
+    //     Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
+    //     }
+    // }
  
 
     
@@ -173,11 +131,46 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
     @Override
     public void handleInput() {
-        // TODO Auto-generated method stub
-        
+        inputQueLlega();
+      System.out.println("handle input de selecesc sv");
+
     }
 
-   
-   
+   public static int getOpc() {
+       return opc;
+   }
+
+    public int inputQueLlega() {
+       
+        switch (server.getHl().getDir()) {
+            case IZQUIERDA:
+                 
+                if (opc==0) {
+                  
+                 opc=3;
+                  
+             }
+             else{
+                 opc--;
+                  
+             }
+                break;
+ 
+                case DERECHA:
+                if(opc==3){
+                 opc=0;
+                }
+                else{
+                    opc++;
+                   
+                }
+                
+                break;
+                 
+            default:
+                break;
+        }
+        return 0;
+    }
     
 }
