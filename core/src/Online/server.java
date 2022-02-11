@@ -19,7 +19,7 @@ public class server {
     }
     public void dispose() {
 
-        if(hl!=null){hl.stopSv();}
+      //  if(hl!=null){hl.stopSv();}
     }
 
     public static SvClientes getUsuario(){

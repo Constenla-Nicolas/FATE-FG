@@ -5,10 +5,16 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
- 
+
+import com.badlogic.gdx.Gdx;
+
 import Entradas.direcciones;
+import Screens.SeleccionEscenarios;
+import Screens.Batalla.Escenarios;
 import utiles.Config;
- 
+import utiles.Render;
+import utiles.Retratos;
+import Screens.Background;
  
 
 public class HiloServidor extends Thread {
@@ -18,7 +24,7 @@ public class HiloServidor extends Thread {
     private int contconexion=0;
     private SvClientes[] Usuario = new SvClientes[2]; 
     private int posconexion;
-
+    private int cont;
     
     private direcciones dir;
      public HiloServidor(){
@@ -61,7 +67,7 @@ public class HiloServidor extends Thread {
         }
         byte[] data = string.getBytes();
         for (int i = 0; i < Usuario.length; i++) {
-       try {    
+       try {System.out.println("dentro de enviar a todos "+ string);    
         DatagramPacket dp = new DatagramPacket(data, data.length,Usuario[i].getIp(),Usuario[i].getPuerto());
         s.send(dp);
         } catch (IOException e) {
@@ -100,7 +106,7 @@ public class HiloServidor extends Thread {
                    s.receive(dp); 
                     
                    procesarMensaje(dp);
-                   llamarEvento();
+                  
                    } catch (Exception e) {
                                    
                             if (s.isClosed()) {
@@ -120,7 +126,9 @@ public class HiloServidor extends Thread {
       
      }
      private void llamarEvento() {
+          
         if (dir.isActive()){
+            
                 for (int i = 0; i < Config.getListInput().size(); i++) {
                  Config.getListInput().get(i).handleInput(); 
           }
@@ -151,12 +159,15 @@ public class HiloServidor extends Thread {
         
         
          String msg = new String(dp.getData()).trim();
+         
           for (int i = 0; i < direcciones.values().length; i++) {
               if (direcciones.values()[i].getString().equals(msg)) {
                   dir= direcciones.values()[i];
                   
               }
+              
           }
+          
            if (dir==direcciones.CONECTAR){
              
                 switch (contconexion) {
@@ -181,13 +192,64 @@ public class HiloServidor extends Thread {
                     enviarMensaje("Sv lleno, intente mas tarde", dp.getAddress(), dp.getPort());
                         break;
                 }}
-          identificarUsuario(dp);
-          dir.doActive();
-         
-        //  for (int i = 0; i < Usuario.length; i++) {
-        //     System.out.println("cliente "+(i+1)+": "+ Usuario[i].getIp());
-        //     System.out.println(Usuario[i].getPuerto());
-        //  }
+                else{
+                System.out.println(dir.getString());
+                identificarUsuario(dp);
+           
+                switch (dir) {
+                    case SELECCIONESCENARIOS:
+                    
+                   
+                        Config.eraseInput(Config.getListInput().get(0));
+                       System.out.println("estoy a punto de crear un selecest");
+                    Gdx.app.postRunnable(new Runnable() {
+                        public void run(){
+                            Render.app.setScreen(new SeleccionEscenarios(server.getUsuarios()[0].getP1(), server.getUsuarios()[1].getP1()));
+                        }
+                    }); 
+               
+                    
+ 
+                    break;
+                    case ESCENARIOS:
+                    Config.eraseInput(Config.getListInput().get(0));
+                    System.out.println("estoy a punto de crear un escenario");
+                    Gdx.app.postRunnable(new Runnable() {
+                        public void run(){
+                             
+                            Render.app.setScreen(new Escenarios(Background.values()[SeleccionEscenarios.getOpc()].getRoot(), Usuario[0].getP1(), Usuario[1].getP1()));
+                        }
+                    });
+ 
+
+                    break;
+                    case ASTOLFO:
+                    System.out.println("llego un astolfo");
+                        Usuario[posconexion].setP1(Retratos.ASTOLFO.getClase());
+                        System.out.println(Usuario[posconexion].getP1());
+                        break;
+                     case MORDRED: 
+                     System.out.println("llego un mordred");
+                     Usuario[posconexion].setP1(Retratos.MORDRED.getClase());
+                     System.out.println(Usuario[posconexion].getP1());
+                        break;
+                        case JEANNE: 
+                        System.out.println("llego un jeanne");
+                        Usuario[posconexion].setP1(Retratos.JEANNE.getClase());
+                      break;
+                      case ATALANTE: 
+                      System.out.println("llego un atalante");
+                      Usuario[posconexion].setP1(Retratos.ATALANTE.getClase());;
+                      break;
+                    default:
+                    
+                        break;
+                }
+                dir.doActive();
+                enviarAtodos(dir.getString());
+                
+                llamarEvento();
+                }
          
      } 
  
