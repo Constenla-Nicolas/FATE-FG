@@ -137,7 +137,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
        
            try {
                 synchronized(entradas){
-                    entradas.wait(190);
+                    entradas.wait(90);
                 }
             } catch (Exception e) {
                 //TODO: handle exception

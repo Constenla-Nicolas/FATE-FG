@@ -8,7 +8,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+import Entradas.Direcciones;
 import Entradas.Entradas;
+import Online.cliente;
 import Screens.Hud;
 import Screens.HudBarra;
 import Screens.TieneFondo;
@@ -43,7 +45,12 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     System.out.println(p1);
     setFondo();
     Config.addListInput(this);
+    if (cliente.getHiloC().getIdcliente()==0) {
+        System.out.println("soy el cliente 0");
+       cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString()); 
+    }
     
+   
  }
  protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
 }
@@ -57,7 +64,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         mordred = new Mordred();   
         astolfo = new Astolfo();                                  
         Gdx.input.setInputProcessor(entradas);
-        player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
+        //player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
        
     }
 float a;
@@ -72,7 +79,7 @@ float a;
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
-       astolfo.img.dibujar();
+      // astolfo.img.dibujar();
        
       // b.draw(p1.intro.getKeyFrame(mordred.elapsedTime, true), 500, 500, 75, 100);
      
@@ -201,12 +208,65 @@ public int inputSelec() {
     }
     @Override
     public void handleInput() {
-        // TODO Auto-generated method stub
+        System.out.println("handle input de escenario");
+        inputQueLlega();
        
     }
     @Override
     public int inputQueLlega() {
-        // TODO Auto-generated method stub
+        
+        if (cliente.getHiloC().MiPropioMensaje()) {
+         
+            switch (cliente.getHiloC().getDir()) {
+                case IZQUIERDA:
+                     
+                   
+                    break;
+     
+                case DERECHA:
+                  
+
+                    break;
+                case ARRIBA:
+                  
+
+                    break;
+                case ABAJO:
+
+                break;
+
+                case HP:
+
+                break;
+                default:
+                    break;
+
+                  
+            }
+             
+        }
+     
+        else{
+          
+             switch (cliente.getHiloC().getDir()) {
+           case IZQUIERDA:
+              
+               break;
+
+            case DERECHA:
+           
+                
+               break;
+               
+           default:
+               break;
+       }
+        
+       
+        }
+
+
+
         return 0;
     }
     

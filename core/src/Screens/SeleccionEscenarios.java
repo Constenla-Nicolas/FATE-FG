@@ -24,7 +24,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     Imagen portrait[]=new Imagen[Background.values().length];
     SpriteBatch b;
     Imagen flecha[]= new Imagen[4];
-    int opc=0;
+    static int opc=0;
     private Entradas entradas= new Entradas();
      
     public SeleccionEscenarios(personajePrefab j1, personajePrefab j2){
@@ -233,13 +233,18 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 
                 break;
                 case ENTER:
-                cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString());
+                entradas.stopInput();
                 
+                System.out.println("llego un enter");
                 break;
             default:
                 break;
         }
         return 0;
+    }
+
+    public static int getOpc() {
+        return opc;
     }
 
    

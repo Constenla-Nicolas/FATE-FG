@@ -155,7 +155,7 @@ public class Entradas implements InputProcessor {
         
        
         if(Config.ONLINE){
-            for (int i = 14; i < Direcciones.values().length; i++) {
+            for (int i = 15; i < Direcciones.values().length; i++) {
           if (keycode==Integer.parseInt(Direcciones.values()[i].getString())) {
                
              

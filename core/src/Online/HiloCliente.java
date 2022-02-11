@@ -13,8 +13,10 @@ import java.util.regex.PatternSyntaxException;
 import com.badlogic.gdx.Gdx;
 
 import Entradas.Direcciones;
+import Screens.Background;
 import Screens.SeleccionEscenarios;
 import Screens.SeleccionPJ;
+import Screens.Batalla.Escenarios;
 import utiles.Config;
 import utiles.Render;
  
@@ -28,7 +30,7 @@ public class HiloCliente extends Thread {
     private int idcliente;
     private String parte1;//partes del string
     private String parte2;
-    private int cont;
+    private int cont,cont2;
 
     public HiloCliente(){
         
@@ -183,12 +185,21 @@ public boolean MiPropioMensaje(){
             
             break;
             case ESCENARIOS:
-            Config.eraseInput(Config.getListInput().get(0));
+             
+                if (cont2==0) {
+
+                    System.out.println("voy a hacer algo con escenario");
+                    Config.eraseInput(Config.getListInput().get(0));
             Gdx.app.postRunnable(new Runnable() {
                 public void run(){
-                    
+                    Render.app.setScreen(new Escenarios(Background.values()[SeleccionEscenarios.getOpc()].getRoot(), cliente.getJ1(), cliente.getJ2()));
                 }
             });
+                }
+                  
+             cont2++;
+            
+            
             break;
             case PELEATERMINADA:
             Config.eraseInput(Config.getListInput().get(0));
