@@ -33,18 +33,28 @@ public enum direcciones {
     }
 
     public void setPOSX(int nmb){
-        this.string= this.string+".."+Integer.toString(nmb);
+        this.string= this.string+","+Integer.toString(nmb);
       }
     
       public void setPOSY(int nmb){
-        this.string= this.string+".."+Integer.toString(nmb);
+        this.string= this.string+","+Integer.toString(nmb);
       }
     
     
        public void restarHP(int nmb){
-        this.string= this.string+".."+Integer.toString(nmb);
+        this.string= this.string+","+Integer.toString(nmb);
+       }
+       public void reHP(){
+        this.string="HP";
+
        }
 
+       public void reposx(){
+        this.string="POSX";
+    }
+    public void reposy(){
+        this.string="POSY";
+    }   
     public void doActive() {
          active= true;
      
@@ -57,6 +67,7 @@ public enum direcciones {
 
    public void dontActive() {
        active=false;
+        
     }
 
 

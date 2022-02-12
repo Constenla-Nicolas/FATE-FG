@@ -106,8 +106,7 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
            
         // else{}
        Render.cleaner();
-          
-        
+         
 
 // if (direcciones.ARRIBA.isActive()) {
 //     //server.getUsuario().y++;

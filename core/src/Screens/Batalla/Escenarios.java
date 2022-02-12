@@ -532,8 +532,10 @@ public int inputSelec() {
                     if (opc==0) {
                       
                      opc=3;
-                     direcciones.POSX.setPOSX(2);
-                      server.getHl().enviarAtodos(direcciones.POSX.getString());
+                          server.getHl().getDir().POSX.setPOSX(4);
+                          server.getHl().enviarAtodos(server.getHl().getDir().POSX.getString());
+                          server.getHl().getDir().POSX.reposx();
+                     
                  }      
                  else{
                      opc--;
@@ -541,8 +543,9 @@ public int inputSelec() {
                  }
                     break;
                     case ARRIBA:
-                    direcciones.POSY.setPOSY(2);
-                    server.getHl().enviarAtodos(direcciones.POSY.getString());
+                    server.getHl().getDir().POSY.setPOSY(4);
+                    server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
+                    server.getHl().getDir().POSY.reposy();
 
                     break;
                     case DERECHA:
@@ -563,8 +566,11 @@ public int inputSelec() {
 
                     case ATAQUED:
                     // if (toca la hitbox) {
-                    //     direcciones.HP.restarHP(2);
-                    // server.getHl().enviarAtodos(direcciones.HP.getString());
+                        //  
+                        //     server.getHl().getDir().HP.restarHP(4);
+                        //     server.getHl().enviarAtodos(server.getHl().getDir().HP.getString());
+                        //     server.getHl().getDir().HP.reHP();
+                        
                     // }  
                     break;
                 default:

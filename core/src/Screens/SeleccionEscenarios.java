@@ -128,7 +128,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     public void handleInput() {
         inputQueLlega();
       System.out.println("handle input de selecesc sv");
-
+     
     }
 
    public static int getOpc() {
@@ -162,7 +162,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 
                 break;
                 case ENTER:
-                    
+
                     server.getHl().enviarAtodos(direcciones.ESCENARIOS.getString());
                 
                 break;
