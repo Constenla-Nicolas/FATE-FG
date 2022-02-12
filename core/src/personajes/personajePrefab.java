@@ -68,7 +68,7 @@ Imagen img;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
   private Timer tiempo;
-
+  
  
 
   public void sethitbox(){

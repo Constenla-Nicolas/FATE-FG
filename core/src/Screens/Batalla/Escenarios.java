@@ -48,7 +48,8 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     this.e = escenario;
     this.p1=p1;
     this.p2=p2;
- 
+    p1.setAnims();
+    p2.setAnims();
     setFondo();
     Config.addListInput(this);
     if (cliente.getHiloC().getIdcliente()==0) {
@@ -445,11 +446,11 @@ float a;
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
     private void ActualizarBarras() {
-    if (p1.getVidaActual()!=p1.getVidamax()) {
-           hb.Restarvida1(p1.getVidaActual());
+    if (cliente.getJ1().getVidaActual()!=cliente.getJ1().getVidamax()) {
+           hb.Restarvida1(cliente.getJ1().getVidaActual());
         }
-    if (p2.getVidaActual()!=p2.getVidamax()) {
-        hb.Restarvida2(p2.getVidaActual());
+    if (cliente.getJ2().getVidaActual()!=cliente.getJ2().getVidamax()) {
+        hb.Restarvida2(cliente.getJ2().getVidaActual());
     }
     if (p2.getCargasuper()!=0) {
         hb.Actualizarsuper1(p2.getCargasuper());
@@ -499,7 +500,8 @@ public int inputSelec() {
         return opc;
 }
 
-
+ 
+    
 
 
     @Override
@@ -544,21 +546,23 @@ public int inputSelec() {
         inputQueLlega();
        
     }
+    
     @Override
     public int inputQueLlega() {
         
         if (cliente.getHiloC().MiPropioMensaje()) {
          
             switch (cliente.getHiloC().getDir()) {
-                case IZQUIERDA:
+                case POSX:
+                  //   cliente.getJ1().posx=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
                      
-                   
                     break;
      
                 case DERECHA:
                   
 
                     break;
+                    
                 case ARRIBA:
                   
 
@@ -568,7 +572,7 @@ public int inputSelec() {
                 break;
 
                 case HP:
-
+                cliente.getJ1().setVidaActual(cliente.getJ1().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
                 default:
                     break;
@@ -582,14 +586,19 @@ public int inputSelec() {
           
              switch (cliente.getHiloC().getDir()) {
            case IZQUIERDA:
-              
+           //cliente.getJ2().posx=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
                break;
 
             case DERECHA:
            
                 
                break;
-               
+            
+            case HP:
+            cliente.getJ2().setVidaActual(cliente.getJ2().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+
+            break;
+
            default:
                break;
        }

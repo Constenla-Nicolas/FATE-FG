@@ -6,11 +6,7 @@ import java.beans.PropertyChangeListener;
 import utiles.Imagen;
 
 public class Atalante extends personajePrefab{
-    public Atalante(){
-
-   
-
-    }
+    
 
     @Override
     public Object getValue(String key) {

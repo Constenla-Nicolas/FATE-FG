@@ -240,6 +240,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
                
                break;
                case ENTER:
+               System.out.println("entra en este enter");
                     cliente.setJ2(Retratos.values()[opc].getClase());
                   
                 

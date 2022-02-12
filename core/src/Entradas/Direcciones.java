@@ -17,6 +17,8 @@ public enum Direcciones {
     ESCENARIOS("Screens.Escenarios"),
     PELEATERMINADA("Screens.PeleaTerminada"),
     SELECCIONPJ("Screens.SeleccionPJ"),
+    POSX("POSX"),
+    POSY("POSY"),
     HP("HP"),
     ENTER("66"),
     ARRIBA("19"),
@@ -35,6 +37,19 @@ public enum Direcciones {
     public void doActive() {
         active= true;
     
+   }
+
+  public void setPOSX(int nmb){
+    this.string= this.string+".."+Integer.toString(nmb);
+  }
+
+  public void setPOSY(int nmb){
+    this.string= this.string+".."+Integer.toString(nmb);
+  }
+
+
+   public void restarHP(int nmb){
+    this.string=Integer.toString(nmb);
    }
    public boolean isActive() {
        

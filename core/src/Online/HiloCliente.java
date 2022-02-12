@@ -31,6 +31,7 @@ public class HiloCliente extends Thread {
     private String parte1;//partes del string
     private String parte2;
     private int cont,cont2;
+    private String parte3;
 
     public HiloCliente(){
         
@@ -94,8 +95,12 @@ public class HiloCliente extends Thread {
        
 
         } catch (PatternSyntaxException e) {
-         parte1= msg;
-         System.out.println("entre en el catch " + parte1);
+ 
+
+            String partes[]=msg.split("..");
+
+            parte1=partes[0];
+            parte3=partes[1];
         }
        
         for (int i = 0; i < Direcciones.values().length; i++) {
@@ -165,6 +170,17 @@ public boolean MiPropioMensaje(){
    
                 }
             });
+
+            break;
+            case HP:
+            dir.restarHP(Integer.parseInt(parte3));
+
+            break;
+            case POSX:
+
+            break;
+            case POSY:
+
 
             break;
             case SELECCIONESCENARIOS:

@@ -4,11 +4,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
 public class Jeanne extends personajePrefab {
-  
-    public Jeanne(){
- 
-         
-    }
+   
 
     @Override
     public Object getValue(String key) {
