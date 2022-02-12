@@ -552,6 +552,15 @@ public int inputSelec() {
        
     }
     
+    public void caida(){
+        cliente.getJ1().setY(cliente.getJ1().getY() + (velocidad -= gravedad));
+        
+        if(cliente.getJ1().getY() < Gdx.graphics.getHeight()/2){
+            cliente.getJ1().setY(Gdx.graphics.getHeight()/2);
+            cliente.getJ1().setEstado(Estado.STANCE);
+        }
+    }
+    
     @Override
     public int inputQueLlega() {
         
@@ -566,24 +575,127 @@ public int inputSelec() {
 
                 //cliente.getJ1().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
                 break;
-                case DERECHA:
-                  
-
-                    break;
+                
                     
                 case ARRIBA:
+                cliente.getJ1().currentFrame = cliente.getJ1().jump.getKeyFrame(time);
+            if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+            if(cliente.getJ1().jump.isAnimationFinished(time)){
+                time = 0;
+            }
                   
 
                     break;
                 case ABAJO:
-
+                cliente.getJ1().currentFrame = cliente.getJ1().crouch.getKeyFrame(time);
+                if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
+                    cliente.getJ1().currentFrame.flip(true, false);
+                }
+                else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
+                    cliente.getJ1().currentFrame.flip(true, false);
+                }
+                b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+                if(cliente.getJ1().crouch.isAnimationFinished(time)){
+                    time = 0;
+                }
                 break;
 
+                case ATAQUED:
+                cliente.getJ1().currentFrame = cliente.getJ1().ataque4.getKeyFrame(time);
+                if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
+                    cliente.getJ1().currentFrame.flip(true, false);
+                }
+                else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
+                    cliente.getJ1().currentFrame.flip(true, false);
+                }
+                b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+                if(cliente.getJ1().ataque4.isAnimationFinished(time)){
+                    time = 0;
+                }
+                
+                a2 = false;
+                a3 = false;
+                
+                
+                break;
+                
+                case ATAQUEM:
+                cliente.getJ1().currentFrame = cliente.getJ1().ataque2.getKeyFrame(time);
+            if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+            if(cliente.getJ1().ataque2.isAnimationFinished(time)){
+                time = 0;
+            }
+            a1 = false;
+            a3 = false;
+            break;
+            
+            case ATAQUEF:
+            cliente.getJ1().currentFrame = cliente.getJ1().ataque3.getKeyFrame(time);
+            if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+            if(cliente.getJ1().ataque3.isAnimationFinished(time)){
+                time = 0;
+            }
+            a1 = false;
+            a2 = false;
+            break;
+
+                case DERECHA:
+                cliente.getJ1().currentFrame = cliente.getJ1().walk.getKeyFrame(time);
+                if(cliente.getJ1().currentFrame.isFlipX()){
+                    cliente.getJ1().currentFrame.flip(true, false);
+                }
+                b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+                if(cliente.getJ1().walk.isAnimationFinished(time)){
+                    time = 0;
+                }
+
+                    break;
+                    case IZQUIERDA:
+                    cliente.getJ1().currentFrame = cliente.getJ1().walk.getKeyFrame(time);
+                    if(!cliente.getJ1().currentFrame.isFlipX()){
+                        cliente.getJ1().currentFrame.flip(true, false);
+                    }
+                    
+                    b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+                    if(cliente.getJ1().walk.isAnimationFinished(time)){
+                        time = 0;
+                    }
+                    
+                    break;
                 case HP:
                 
                 cliente.getJ1().setVidaActual(cliente.getJ1().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
                 default:
+                a1 = false;
+            a2 = false;
+            a3 = false;
+            cliente.getJ1().currentFrame = cliente.getJ1().stance.getKeyFrame(time,true);
+            if (cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX())  {
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
                     break;
 
                   
@@ -603,22 +715,126 @@ public int inputSelec() {
 
             //   cliente.getJ2().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
               break;
-           case IZQUIERDA:
            
-               break;
+                case ARRIBA:
+                cliente.getJ2().currentFrame = cliente.getJ2().jump.getKeyFrame(time);
+            if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
+                cliente.getJ2().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
+                cliente.getJ2().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+            if(cliente.getJ2().jump.isAnimationFinished(time)){
+                time = 0;
+            }
+                  
 
-            case DERECHA:
-           
+                    break;
+                case ABAJO:
+                cliente.getJ2().currentFrame = cliente.getJ2().crouch.getKeyFrame(time);
+                if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
+                    cliente.getJ2().currentFrame.flip(true, false);
+                }
+                else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
+                    cliente.getJ2().currentFrame.flip(true, false);
+                }
+                b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+                if(cliente.getJ2().crouch.isAnimationFinished(time)){
+                    time = 0;
+                }
+                break;
+
+                case ATAQUED:
+                cliente.getJ2().currentFrame = cliente.getJ2().ataque4.getKeyFrame(time);
+                if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
+                    cliente.getJ2().currentFrame.flip(true, false);
+                }
+                else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
+                    cliente.getJ2().currentFrame.flip(true, false);
+                }
+                b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+                if(cliente.getJ2().ataque4.isAnimationFinished(time)){
+                    time = 0;
+                }
                 
-               break;
+                a2 = false;
+                a3 = false;
+                
+                
+                break;
+                
+                case ATAQUEM:
+                cliente.getJ2().currentFrame = cliente.getJ2().ataque2.getKeyFrame(time);
+            if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ1().currentFrame.isFlipX()){
+                cliente.getJ2().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
+                cliente.getJ2().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+            if(cliente.getJ2().ataque2.isAnimationFinished(time)){
+                time = 0;
+            }
+            a1 = false;
+            a3 = false;
+            break;
             
-            case HP:
-            cliente.getJ2().setVidaActual(cliente.getJ2().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
-
+            case ATAQUEF:
+            cliente.getJ2().currentFrame = cliente.getJ2().ataque3.getKeyFrame(time);
+            if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
+                cliente.getJ2().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
+                cliente.getJ2().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+            if(cliente.getJ2().ataque3.isAnimationFinished(time)){
+                time = 0;
+            }
+            a1 = false;
+            a2 = false;
             break;
 
-           default:
-               break;
+                case DERECHA:
+                cliente.getJ2().currentFrame = cliente.getJ2().walk.getKeyFrame(time);
+                if(cliente.getJ2().currentFrame.isFlipX()){
+                    cliente.getJ2().currentFrame.flip(true, false);
+                }
+                b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+                if(cliente.getJ2().walk.isAnimationFinished(time)){
+                    time = 0;
+                }
+
+                    break;
+                    case IZQUIERDA:
+                    cliente.getJ2().currentFrame = cliente.getJ2().walk.getKeyFrame(time);
+                    if(!cliente.getJ2().currentFrame.isFlipX()){
+                        cliente.getJ2().currentFrame.flip(true, false);
+                    }
+                    
+                    b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+                    if(cliente.getJ2().walk.isAnimationFinished(time)){
+                        time = 0;
+                    }
+                    
+                    break;
+                case HP:
+                cliente.getJ2().setVidaActual(cliente.getJ2().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+                break;
+                default:
+                a1 = false;
+            a2 = false;
+            a3 = false;
+            cliente.getJ2().currentFrame = cliente.getJ2().stance.getKeyFrame(time,true);
+            if (cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX())  {
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
+                cliente.getJ1().currentFrame.flip(true, false);
+            }
+            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+                    break;
        }
         
        
