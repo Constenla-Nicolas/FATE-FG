@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.math.Rectangle;
 
 import Entradas.Entradas;
+import Entradas.direcciones;
+import Online.server;
 import Screens.Hud;
 import Screens.HudBarra;
 import Screens.TieneFondo;
@@ -22,9 +24,9 @@ import personajes.personajePrefab;
 import personajes.personajePrefab.Estado;
 import utiles.Config;
 import utiles.Imagen;
- 
+import utiles.InputEvent;
 import utiles.Render;
-public class Escenarios implements Screen,TieneFondo{
+public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
    float velocidad = 0f; 
    float  gravedad = 10f;
@@ -46,7 +48,7 @@ public class Escenarios implements Screen,TieneFondo{
     this.e = escenario;
     this.p1=p1;
     this.p2=p2;
- 
+    Config.addListInput(this);
     setFondo();
     
  }
@@ -55,67 +57,67 @@ public class Escenarios implements Screen,TieneFondo{
     @Override
     public void show() {
         
-        b= Render.batch;
-        hud= new Hud(b);
-        hb= new HudBarra();
+        // b= Render.batch;
+        // hud= new Hud(b);
+        // hb= new HudBarra();
         
-        mordred = new Mordred();   
-        astolfo = new Astolfo(); 
-        p1.sethitbox();
-        p2.sethitbox();
+        // mordred = new Mordred();   
+        // astolfo = new Astolfo(); 
+        // //p1.sethitbox();
+        // //p2.sethitbox();
                                        
-        Gdx.input.setInputProcessor(entradas);
-        p1.setY(Gdx.graphics.getHeight()/2);
-        p1.setX(Gdx.graphics.getWidth()/4);
-        p2.setY(Gdx.graphics.getHeight()/2f);
-        p2.setX(Gdx.graphics.getWidth()/2);
-        p1.setEstado(Estado.STANCE);
+        // Gdx.input.setInputProcessor(entradas);
+        // p1.setY(Gdx.graphics.getHeight()/2);
+        // p1.setX(Gdx.graphics.getWidth()/4);
+        // p2.setY(Gdx.graphics.getHeight()/2f);
+        // p2.setX(Gdx.graphics.getWidth()/2);
+        // p1.setEstado(Estado.STANCE);
         
        
     }
 float a;
     @Override
     public void render(float delta) {
-        inputSelec();
-        mordred.setInput(opc);
-        mordred.update(delta);
-        time += delta;
+    //     inputSelec();
+    //     mordred.setInput(opc);
+    //     mordred.update(delta);
+    //     time += delta;
         
         
         
-        Render.cleaner();
-       b.begin();
-        fightstage.dibujar();
+    //     Render.cleaner();
+    //    b.begin();
+    //     fightstage.dibujar();
        
     
 
-        hb.dibujar();
-       b.draw(p2.stance.getKeyFrame(time), p2.getX(), p2.getY());
-        a=a+0.1f;
-       movement();
-       colision();
-         b.end();
+    //     hb.dibujar();
+    //    b.draw(p2.stance.getKeyFrame(time), p2.getX(), p2.getY());
+    //     a=a+0.1f;
+    //    movement();
+    //    colision();
+    //      b.end();
          
-        ActualizarBarras();
+     
        
        
-       hud.mostrarHud();
-     hud.getCuentaAtras().setText(hud.getSec());
-        p1.box1.setPosition(p1.getX(), p1.getY());
+    //    hud.mostrarHud();
+    //  hud.getCuentaAtras().setText(hud.getSec());
+    //   //  p1.box1.setPosition(p1.getX(), p1.getY());
         
-        p2.box1.setPosition(p2.getX(), p2.getY());
+    //   //  p2.box1.setPosition(p2.getX(), p2.getY());
 
-    //    // if (hud.getSec()<=95) {
-    //         hud.terminarTimer();
-    //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
-    // }
+    // //    // if (hud.getSec()<=95) {
+    // //         hud.terminarTimer();
+    // //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
+    // // }
          
      }
 
      private void colision(){
-         if(p1.box1.overlaps(p2.box1)){
-             System.out.println("a");
-         }
+        //  if(p1.box1.overlaps(p2.box1)){
+        //      System.out.println("a");
+        //  }
      } 
 
     private void movement(){
@@ -440,21 +442,6 @@ float a;
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
-    private void ActualizarBarras() {
-    if (p1.getVidaActual()!=p1.getVidamax()) {
-           hb.Restarvida1(p1.getVidaActual());
-        }
-    if (p2.getVidaActual()!=p2.getVidamax()) {
-        hb.Restarvida2(p2.getVidaActual());
-    }
-    if (p2.getCargasuper()!=0) {
-        hb.Actualizarsuper1(p2.getCargasuper());
-    }
-    if (p1.getCargasuper()!=0) {
-        hb.Actualizarsuper2(p1.getCargasuper());
-    }
-
-    }
     
      
 public int inputSelec() {
@@ -533,6 +520,94 @@ public int inputSelec() {
         fightstage= new Imagen(e);
         fightstage.setSize(Config.tamanioDeAlgo(100, Config.WIDTH),Config.tamanioDeAlgo(100, Config.HEIGHT));
         fightstage.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
+    }
+    @Override
+    public void handleInput() {
+
+            //esto es usuario 1
+        if (server.getUsuario()== server.getUsuarios()[0]) {
+            switch (server.getHl().getDir()) {
+                case IZQUIERDA:
+                     
+                    if (opc==0) {
+                      
+                     opc=3;
+                     direcciones.POSX.setPOSX(2);
+                      server.getHl().enviarAtodos(direcciones.POSX.getString());
+                 }      
+                 else{
+                     opc--;
+                      
+                 }
+                    break;
+                    case ARRIBA:
+                    direcciones.POSY.setPOSY(2);
+                    server.getHl().enviarAtodos(direcciones.POSY.getString());
+
+                    break;
+                    case DERECHA:
+                    if(opc==3){
+                     opc=0;
+                    }
+                    else{
+                        opc++;
+                       
+                    }
+                    
+                    break;
+                    case ENTER:
+                     
+                    
+                    System.out.println("llego un enter");
+                    break;
+
+                    case ATAQUED:
+                    // if (toca la hitbox) {
+                    //     direcciones.HP.restarHP(2);
+                    // server.getHl().enviarAtodos(direcciones.HP.getString());
+                    // }  
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        else{ // esto es usuario 2
+            switch (server.getHl().getDir()) {
+                case IZQUIERDA:
+                     
+                    if (opc==0) {
+                      
+                     opc=3;
+                      
+                 }
+                 else{
+                     opc--;
+                      
+                 }
+                    break;
+     
+                    case DERECHA:
+                    if(opc==3){
+                     opc=0;
+                    }
+                    else{
+                        opc++;
+                       
+                    }
+                    
+                    break;
+                    case ENTER:
+                     
+                    
+                    System.out.println("llego un enter");
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
     
 }
