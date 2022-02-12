@@ -32,7 +32,7 @@ public class HiloCliente extends Thread {
     private String parte2;
     private int cont,cont2;
     private String parte3;
-
+    private String parte4;
     public HiloCliente(){
         
         try { 
@@ -89,26 +89,33 @@ public class HiloCliente extends Thread {
         try {
             String partes[]= msg.split("<>"); 
 
- 
-          parte1= partes[0];
-          parte2= partes[1];
+            parte1= partes[0];
+            parte2= partes[1];
+       if (parte1.contains(",")) {
+            String partes2[]=parte1.split(","); 
+           
+           parte3 = partes2[0];
+           parte4=partes2[1];
+          
+            parte1=parte3;
+            System.out.println("parte 1 "+parte1);
+            System.out.println("p2 "+parte2);
+            System.out.println("p3 "+parte3); 
+            System.out.println(parte4); 
+       }
        
-
-        } catch (PatternSyntaxException e) {
- 
-
-            String partes[]=msg.split("..");
-
-            parte1=partes[0];
-            parte3=partes[1];
+        } catch (PatternSyntaxException e) {       
+           
         }
        
         for (int i = 0; i < Direcciones.values().length; i++) {
-              
-            if (Direcciones.values()[i].getString().equals(parte1)) {
-                dir= Direcciones.values()[i];
-               
-            }
+            
+                if (Direcciones.values()[i].getString().equals(parte1)) {
+                    dir= Direcciones.values()[i];
+                   
+                }
+            
+           
         }
             
             dir.doActive();
@@ -119,7 +126,7 @@ public class HiloCliente extends Thread {
 public boolean MiPropioMensaje(){
         
         if (Integer.parseInt(parte2)!=idcliente) {
-                    System.out.println("llego el nro "+parte2+" y el idcliente es "+idcliente);
+                    System.out.println("llego la id "+parte2+" y el id mio  es "+idcliente);
                     return false;
                     }
 
@@ -173,14 +180,14 @@ public boolean MiPropioMensaje(){
 
             break;
             case HP:
-            dir.restarHP(Integer.parseInt(parte3));
-
+            dir.HPaRestar(Integer.parseInt(parte4));
+          
             break;
             case POSX:
-
+            dir.setPOSX(Integer.parseInt(parte3));
             break;
             case POSY:
-
+            dir.setPOSY(Integer.parseInt(parte3));
 
             break;
             case SELECCIONESCENARIOS:

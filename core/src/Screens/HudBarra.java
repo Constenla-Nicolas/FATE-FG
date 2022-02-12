@@ -33,6 +33,7 @@ public class HudBarra extends ApplicationAdapter {
     
 
     public HudBarra() {
+        
         stage = new Stage(new ScreenViewport());
         skin = new Skin(Gdx.files.internal("hudbarras/hud.json"));
         Gdx.input.setInputProcessor(stage);
@@ -90,9 +91,7 @@ public class HudBarra extends ApplicationAdapter {
         stage.draw();
     }
 
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
-    }
+  
 
     public void dispose() {
         stage.dispose();

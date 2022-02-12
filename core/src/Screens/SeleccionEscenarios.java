@@ -201,13 +201,16 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     @Override
     public void handleInput() {
          System.out.println("handle input de selesc");
+       
+        
+
          inputQueLlega();
        cliente.getHiloC().getDir().dontActive();
         
     }
     @Override
     public int inputQueLlega() {
-       
+            System.out.println("que esta entrando al switch"+cliente.getHiloC().getDir());
         switch (cliente.getHiloC().getDir()) {
             case IZQUIERDA:
                  
@@ -237,6 +240,9 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 
                 System.out.println("llego un enter");
                 break;
+
+         
+                
             default:
                 break;
         }

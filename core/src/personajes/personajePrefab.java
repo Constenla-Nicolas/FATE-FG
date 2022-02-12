@@ -80,7 +80,7 @@ Imagen img;
          tiempo= new Timer(200, this);
       
     } 
-
+    
     protected void iniciar(){
         tiempo.start();
         

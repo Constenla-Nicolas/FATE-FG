@@ -40,15 +40,15 @@ public enum Direcciones {
    }
 
   public void setPOSX(int nmb){
-    this.string= this.string+".."+Integer.toString(nmb);
+    this.string=Integer.toString(nmb);
   }
 
   public void setPOSY(int nmb){
-    this.string= this.string+".."+Integer.toString(nmb);
+    this.string=Integer.toString(nmb);
   }
 
 
-   public void restarHP(int nmb){
+   public void HPaRestar(int nmb){
     this.string=Integer.toString(nmb);
    }
    public boolean isActive() {

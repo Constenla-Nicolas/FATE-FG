@@ -119,16 +119,19 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
      for (int i = 0; i < portrait.length; i++) {
             portrait[i][0].dibujar();
         }
-        fondoImagen.dibujar();
+        
         if (Config.ONLINE) {
             portrait[opc][1].dibujar();
             portraitEnemigo[opc2].dibujar();
+            fondoImagen.dibujar();
               flecha[opc].dibujar();
               flecha2[opc2].dibujar();
         }
         else{
+            fondoImagen.dibujar();
             flecha[opcOFF].dibujar();
         }
+        
        b.end();
       
     }
@@ -346,6 +349,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
 
        
          System.out.println("handleinput de seleccion pj");
+         
         inputQueLlega(); 
  
         cliente.getHiloC().getDir().dontActive();

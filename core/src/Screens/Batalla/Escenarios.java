@@ -89,29 +89,34 @@ float a;
         
         Render.cleaner();
        b.begin();
+        
         fightstage.dibujar();
-      // astolfo.img.dibujar();
+       
        
     
-
-        hb.dibujar();
+    
+        
        b.draw(p2.stance.getKeyFrame(time), p2.getX(), p2.getY());
         a=a+0.1f;
        movement();
        colision();
          b.end();
          
+        b.begin();
+        hb.dibujar();
+        b.end();
+
+
         ActualizarBarras();
-       
-       
-       hud.mostrarHud();
-     hud.getCuentaAtras().setText(hud.getSec());
+
+        hud.mostrarHud();
+        hud.getCuentaAtras().setText(hud.getSec());
         p1.box1.setPosition(p1.getX(), p1.getY());
         
         p2.box1.setPosition(p2.getX(), p2.getY());
 
-    //    // if (hud.getSec()<=95) {
-    //         hud.terminarTimer();
+    //    if (hud.getSec()<=95) {
+    //        // hud.terminarTimer();
     //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     // }
          
@@ -554,10 +559,13 @@ public int inputSelec() {
          
             switch (cliente.getHiloC().getDir()) {
                 case POSX:
-                  //   cliente.getJ1().posx=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
+                  //   cliente.getJ1().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
                      
                     break;
-     
+                case POSY:
+
+                //cliente.getJ1().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
+                break;
                 case DERECHA:
                   
 
@@ -572,6 +580,7 @@ public int inputSelec() {
                 break;
 
                 case HP:
+                
                 cliente.getJ1().setVidaActual(cliente.getJ1().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
                 default:
@@ -583,10 +592,19 @@ public int inputSelec() {
         }
      
         else{
-          
+            
              switch (cliente.getHiloC().getDir()) {
+
+                case POSX:
+                cliente.getJ2().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()))   ;
+                   
+                  break;
+              case POSY:
+
+            //   cliente.getJ2().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
+              break;
            case IZQUIERDA:
-           //cliente.getJ2().posx=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
+           
                break;
 
             case DERECHA:
