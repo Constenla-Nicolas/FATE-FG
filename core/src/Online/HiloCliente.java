@@ -37,7 +37,7 @@ public class HiloCliente extends Thread {
         
         try { 
             s= new DatagramSocket();
-            ipserver = InetAddress.getByName("26.137.140.220");
+            ipserver = InetAddress.getByName("26.64.240.173");
             System.out.println(ipserver);
             enviarMensaje(Direcciones.CONECTAR.getString());
         } catch (SocketException | UnknownHostException e) {
@@ -97,11 +97,12 @@ public class HiloCliente extends Thread {
            parte3 = partes2[0];
            parte4=partes2[1];
           
-            parte1=parte3;
+            
             System.out.println("parte 1 "+parte1);
             System.out.println("p2 "+parte2);
             System.out.println("p3 "+parte3); 
             System.out.println(parte4); 
+            parte1=parte3;
        }
        
         } catch (PatternSyntaxException e) {       
@@ -117,7 +118,13 @@ public class HiloCliente extends Thread {
             
            
         }
-            
+            if (dir.compareTo(Direcciones.POSX)==0) {
+               dir.POSX.setPOSX(Integer.parseInt(parte4)); 
+            }
+            else if(dir.compareTo(Direcciones.POSY)==0){
+                dir.POSY.setPOSY(Integer.parseInt(parte4));
+            }
+             
             dir.doActive();
     }
      public int getIdcliente() {
@@ -184,10 +191,10 @@ public boolean MiPropioMensaje(){
           
             break;
             case POSX:
-            dir.setPOSX(Integer.parseInt(parte3));
+            dir.setPOSX(Integer.parseInt(parte4));
             break;
             case POSY:
-            dir.setPOSY(Integer.parseInt(parte3));
+            dir.setPOSY(Integer.parseInt(parte4));
 
             break;
             case SELECCIONESCENARIOS:

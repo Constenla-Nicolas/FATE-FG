@@ -48,6 +48,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     this.e = escenario;
     this.p1=p1;
     this.p2=p2;
+  
     p1.setAnims();
     p2.setAnims();
     setFondo();
@@ -56,8 +57,10 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         System.out.println("soy el cliente 0");
        cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString()); 
     }
-    
-   
+    p1.setX(450);
+   p1.setY(500);
+    p2.setX(700);
+   p2.setY(500);
  }
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
     }
@@ -86,11 +89,11 @@ float a;
         
         Render.cleaner();
        b.begin();
-        
+        fightstage.dibujar();
       b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
         
       b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-        fightstage.dibujar();
+        
        
        
     
@@ -563,6 +566,7 @@ public int inputSelec() {
          
             switch (cliente.getHiloC().getDir()) {
                 case POSX:
+                System.out.println("no se que haago "+Integer.parseInt(cliente.getHiloC().getDir().getString()));
                 cliente.getJ1().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()));     
                     break;
                 case POSY:
