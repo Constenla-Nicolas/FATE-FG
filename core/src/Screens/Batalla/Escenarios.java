@@ -56,11 +56,20 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     if (cliente.getHiloC().getIdcliente()==0) {
         System.out.println("soy el cliente 0");
        cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString()); 
+       
+       p1.setX(450);
+       p1.setY(500);
+       p2.setX(700);
+       p2.setY(500);
     }
-    p1.setX(450);
-   p1.setY(500);
-    p2.setX(700);
-   p2.setY(500);
+    else{
+
+        p1.setX(700);
+        p1.setY(500);
+        p2.setX(450);
+        p2.setY(500);
+    }
+    
  }
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
     }
@@ -567,11 +576,12 @@ public int inputSelec() {
             switch (cliente.getHiloC().getDir()) {
                 case POSX:
                 System.out.println("no se que haago "+Integer.parseInt(cliente.getHiloC().getDir().getString()));
-                cliente.getJ1().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()));     
+                System.out.println(p1.getX());
+                p1.setX(p1.getX() + Integer.parseInt(cliente.getHiloC().getDir().getString()));     
                     break;
                 case POSY:
 
-                cliente.getJ1().setY(Integer.parseInt(cliente.getHiloC().getDir().getString()));
+                p2.setY(p1.getY() + Integer.parseInt(cliente.getHiloC().getDir().getString()));
                 break;
                 
                     
@@ -706,7 +716,7 @@ public int inputSelec() {
              switch (cliente.getHiloC().getDir()) {
 
                 case POSX:
-                cliente.getJ2().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()));
+                p2.setX(p2.getX() + Integer.parseInt(cliente.getHiloC().getDir().getString()));  
                    
                   break;
               case POSY:
@@ -826,10 +836,12 @@ public int inputSelec() {
             a3 = false;
             cliente.getJ2().currentFrame = cliente.getJ2().stance.getKeyFrame(time,true);
             if (cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX())  {
-                cliente.getJ1().currentFrame.flip(true, false);
+                
+      System.out.println(cliente.getJ2().currentFrame.getTexture());
+                cliente.getJ2().currentFrame.flip(true, false);
             }
             else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+                cliente.getJ2().currentFrame.flip(true, false);
             }
            //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
                     break;
