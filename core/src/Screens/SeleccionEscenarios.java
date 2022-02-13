@@ -91,7 +91,15 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
 
        if (Config.ONLINE) {
-           
+        if (entradas.isLeft()) {
+            entradas.mandarOnline(21);
+         }
+         if (entradas.isRight()) {
+            entradas.mandarOnline(22);
+         }
+         if(entradas.isEnter()){
+            entradas.mandarOnline(66);
+         }
            Escena[opc].dibujar();
        }
        else{

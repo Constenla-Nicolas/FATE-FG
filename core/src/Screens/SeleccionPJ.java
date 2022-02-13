@@ -121,6 +121,15 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         }
         
         if (Config.ONLINE) {
+            if (entradas.isLeft()) {
+                entradas.mandarOnline(21);
+             }
+             if (entradas.isRight()) {
+                entradas.mandarOnline(22);
+             }
+             if(entradas.isEnter()){
+                entradas.mandarOnline(66);
+             }
             portrait[opc][1].dibujar();
             portraitEnemigo[opc2].dibujar();
             fondoImagen.dibujar();

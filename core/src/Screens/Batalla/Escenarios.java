@@ -48,27 +48,28 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     this.e = escenario;
     this.p1=p1;
     this.p2=p2;
-  
-    p1.setAnims();
-    p2.setAnims();
-    setFondo();
-    Config.addListInput(this);
-    if (cliente.getHiloC().getIdcliente()==0) {
+      if (cliente.getHiloC().getIdcliente()==0) {
         System.out.println("soy el cliente 0");
        cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString()); 
-       
        p1.setX(450);
        p1.setY(500);
        p2.setX(700);
        p2.setY(500);
+       
     }
     else{
-
         p1.setX(700);
         p1.setY(500);
         p2.setX(450);
         p2.setY(500);
     }
+       
+  
+    p1.setAnims();
+    p2.setAnims();
+    setFondo();
+    Config.addListInput(this);
+  
     
  }
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
@@ -79,9 +80,9 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
-        cliente.getJ1().currentFrame = cliente.getJ1().stance.getKeyFrame(1);
+        p1.currentFrame = p1.stance.getKeyFrame(1);
         
-        cliente.getJ2().currentFrame = cliente.getJ2().stance.getKeyFrame(1);
+        p2.currentFrame = p2.stance.getKeyFrame(1);
         p1.sethitbox();
         p2.sethitbox();
                                        
@@ -99,14 +100,15 @@ float a;
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
-      b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+
         
-      b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-        
-       
-       
-    
-    
+      b.draw(p1.currentFrame, p1.getX(), p1.getY());
+      b.draw(p2.currentFrame, p2.getX(), p2.getY());
+        // System.out.println(p1.getX());
+        // System.out.println(p2.getX());
+      
+     movement();
+    System.out.println(p1.getEstado());
         
         a=a+0.1f;
        colision();
@@ -129,33 +131,31 @@ float a;
     //        // hud.terminarTimer();
     //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     // }
-         
+      
+     
+    
      }
 
-     private void colision(){
+    
+    private void colision(){
          if(p1.box1.overlaps(p2.box1)){
          }
      } 
 
     private void movement(){
         
-        p1.setY(p1.getY() + (velocidad -= gravedad));
-        
-        if(p1.getY() < Gdx.graphics.getHeight()/2){
-            p1.setY(Gdx.graphics.getHeight()/2);
-            p1.setEstado(Estado.STANCE);
-        }
+       
         
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
             }
             p1.setEstado(Estado.SALTO);
             velocidad = 50;
-
+            entradas.mandarOnline(19);
         }
         else if(entradas.isDown()){
             p1.setEstado(Estado.AGACHADO);
-
+            entradas.mandarOnline(20);
 
         }
         else if(entradas.isA() && (!a2 && !a3) || (!p1.ataque1.isAnimationFinished(time) && a1) ){
@@ -179,7 +179,7 @@ float a;
                 }
                 if(entradas.isLeft()){
                     p1.setX(p1.getX() - 20);
-
+                    
                 }
 
             }
@@ -262,8 +262,8 @@ float a;
                 p1.currentFrame.flip(true, false);
                 
             }
-            p1.setX(p1.getX() + 20);
-            
+           //1.setX(p1.getX() p + 20);
+            entradas.mandarOnline(22);
 
         }      
         else if(entradas.isLeft()){
@@ -271,182 +271,183 @@ float a;
                 p1.setEstado(Estado.CORRERL);
                 }
                 
-                p1.setX(p1.getX() - 20);
+            //    p1.setX(p1.getX() - 20);
+                entradas.mandarOnline(21);
             }
         
         p1.setEstadoAnterior(p1.getEstado());
 
 
-        switch(p1.getEstado()){
-            case SALTO:
-            p1.currentFrame = p1.jump.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.jump.isAnimationFinished(time)){
-                time = 0;
-            }
-            break;
+        // switch(p1.getEstado()){
+        //     case SALTO:
+        //     p1.currentFrame = p1.jump.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.jump.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
+        //     break;
             
-            case AGACHADO:
-            p1.currentFrame = p1.crouch.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.crouch.isAnimationFinished(time)){
-                time = 0;
-            }
-            break;
+        //     case AGACHADO:
+        //     p1.currentFrame = p1.crouch.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.crouch.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
+        //     break;
 
-            case ATAQUED:
-            p1.currentFrame = p1.ataque4.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.ataque4.isAnimationFinished(time)){
-                time = 0;
-            }
+        //     case ATAQUED:
+        //     p1.currentFrame = p1.ataque4.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.ataque4.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
             
-            a2 = false;
-            a3 = false;
-            break;
+        //     a2 = false;
+        //     a3 = false;
+        //     break;
 
-            case ATAQUEM:
-            p1.currentFrame = p1.ataque2.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.ataque2.isAnimationFinished(time)){
-                time = 0;
-            }
-            a1 = false;
-            a3 = false;
-            break;
+        //     case ATAQUEM:
+        //     p1.currentFrame = p1.ataque2.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.ataque2.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
+        //     a1 = false;
+        //     a3 = false;
+        //     break;
 
-            case ATAQUEF:
-            p1.currentFrame = p1.ataque3.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.ataque3.isAnimationFinished(time)){
-                time = 0;
-            }
-            a1 = false;
-            a2 = false;
-            break;
+        //     case ATAQUEF:
+        //     p1.currentFrame = p1.ataque3.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.ataque3.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
+        //     a1 = false;
+        //     a2 = false;
+        //     break;
 
-            case AEREO1:
-            p1.air1.setPlayMode(PlayMode.NORMAL);
-            p1.currentFrame = p1.air1.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.air1.isAnimationFinished(time)){
-                time = 0;
-            }
+        //     case AEREO1:
+        //     p1.air1.setPlayMode(PlayMode.NORMAL);
+        //     p1.currentFrame = p1.air1.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.air1.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
             
-            a2 = false;
-            a3 = false;
-            break;
+        //     a2 = false;
+        //     a3 = false;
+        //     break;
             
-            case AEREO2:
-            p1.currentFrame = p1.air2.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.air2.isAnimationFinished(time)){
-                time = 0;
-            }
+        //     case AEREO2:
+        //     p1.currentFrame = p1.air2.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.air2.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
             
-            a1 = false;
-            a3 = false;
-            break;
-            case AEREO3:
+        //     a1 = false;
+        //     a3 = false;
+        //     break;
+        //     case AEREO3:
             
-            p1.currentFrame = p1.air3.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.air3.isAnimationFinished(time)){
-                time = 0;
-            }
-            a1 = false;
-            a2 = false;
+        //     p1.currentFrame = p1.air3.getKeyFrame(time);
+        //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //     p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.air3.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
+        //     a1 = false;
+        //     a2 = false;
             
-            break;
-            case CORRER:
-            p1.currentFrame = p1.walk.getKeyFrame(time);
-            if(p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.walk.isAnimationFinished(time)){
-                time = 0;
-            }
+        //     break;
+        //     case CORRER:
+        //     p1.currentFrame = p1.walk.getKeyFrame(time);
+        //     if(p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.walk.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
             
-            break;
-            case CORRERL:
-            p1.currentFrame = p1.walk.getKeyFrame(time);
-            if(!p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
+        //     break;
+        //     case CORRERL:
+        //     p1.currentFrame = p1.walk.getKeyFrame(time);
+        //     if(!p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
             
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.walk.isAnimationFinished(time)){
-                time = 0;
-            }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     if(p1.walk.isAnimationFinished(time)){
+        //         time = 0;
+        //     }
             
-            break;
-            default:
-            a1 = false;
-            a2 = false;
-            a3 = false;
-            p1.currentFrame = p1.stance.getKeyFrame(time,true);
-            if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+        //     break;
+        //     default:
+        //     a1 = false;
+        //     a2 = false;
+        //     a3 = false;
+        //     p1.currentFrame = p1.stance.getKeyFrame(time,true);
+        //     if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //     else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        //         p1.currentFrame.flip(true, false);
+        //     }
+        //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             
            
-                break;
+        //         break;
 
                 
-        }
+        // }
 
 
 
@@ -460,11 +461,11 @@ float a;
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
     private void ActualizarBarras() {
-    if (cliente.getJ1().getVidaActual()!=cliente.getJ1().getVidamax()) {
-           hb.Restarvida1(cliente.getJ1().getVidaActual());
+    if (p1.getVidaActual()!=p1.getVidamax()) {
+           hb.Restarvida1(p1.getVidaActual());
         }
-    if (cliente.getJ2().getVidaActual()!=cliente.getJ2().getVidamax()) {
-        hb.Restarvida2(cliente.getJ2().getVidaActual());
+    if (p1.getVidaActual()!=p1.getVidamax()) {
+        hb.Restarvida2(p1.getVidaActual());
     }
     if (p2.getCargasuper()!=0) {
         hb.Actualizarsuper1(p2.getCargasuper());
@@ -561,8 +562,8 @@ public int inputSelec() {
     }
     @Override
     public void handleInput() {
-        System.out.println("handle input de escenario");
-        inputQueLlega();
+       // System.out.println("handle input de escenario");
+      inputQueLlega();
        cliente.getHiloC().getDir().dontActive();
     }
     
@@ -571,59 +572,62 @@ public int inputSelec() {
     @Override
     public int inputQueLlega() {
         
+           
         if (cliente.getHiloC().MiPropioMensaje()) {
-         
+        
             switch (cliente.getHiloC().getDir()) {
                 case POSX:
-                System.out.println("no se que haago "+Integer.parseInt(cliente.getHiloC().getDir().getString()));
-                System.out.println(p1.getX());
-                p1.setX(p1.getX() + Integer.parseInt(cliente.getHiloC().getDir().getString()));     
+                
+                 
+                p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
+                    p1.setEstado(Estado.CORRER);
                     break;
-                case POSY:
 
-                p2.setY(p1.getY() + Integer.parseInt(cliente.getHiloC().getDir().getString()));
+                case POSY:
+                p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); 
+                
                 break;
                 
                     
                 case ARRIBA:
-                cliente.getJ1().currentFrame = cliente.getJ1().jump.getKeyFrame(time);
-            if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+                p1.currentFrame = p1.jump.getKeyFrame(time);
+            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-            if(cliente.getJ1().jump.isAnimationFinished(time)){
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.jump.isAnimationFinished(time)){
                 time = 0;
             }
                   
 
                     break;
                 case ABAJO:
-                cliente.getJ1().currentFrame = cliente.getJ1().crouch.getKeyFrame(time);
-                if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
-                    cliente.getJ1().currentFrame.flip(true, false);
+                p1.currentFrame = p1.crouch.getKeyFrame(time);
+                if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+                    p1.currentFrame.flip(true, false);
                 }
-                else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
-                    cliente.getJ1().currentFrame.flip(true, false);
+                else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+                    p1.currentFrame.flip(true, false);
                 }
-               //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-                if(cliente.getJ1().crouch.isAnimationFinished(time)){
+               //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+                if(p1.crouch.isAnimationFinished(time)){
                     time = 0;
                 }
                 break;
 
                 case ATAQUED:
-                cliente.getJ1().currentFrame = cliente.getJ1().ataque4.getKeyFrame(time);
-                if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
-                    cliente.getJ1().currentFrame.flip(true, false);
+                p1.currentFrame = p1.ataque4.getKeyFrame(time);
+                if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+                    p1.currentFrame.flip(true, false);
                 }
-                else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
-                    cliente.getJ1().currentFrame.flip(true, false);
+                else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+                    p1.currentFrame.flip(true, false);
                 }
-               //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-                if(cliente.getJ1().ataque4.isAnimationFinished(time)){
+               //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+                if(p1.ataque4.isAnimationFinished(time)){
                     time = 0;
                 }
                 
@@ -634,15 +638,15 @@ public int inputSelec() {
                 break;
                 
                 case ATAQUEM:
-                cliente.getJ1().currentFrame = cliente.getJ1().ataque2.getKeyFrame(time);
-            if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+                p1.currentFrame = p1.ataque2.getKeyFrame(time);
+            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-            if(cliente.getJ1().ataque2.isAnimationFinished(time)){
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.ataque2.isAnimationFinished(time)){
                 time = 0;
             }
             a1 = false;
@@ -650,15 +654,15 @@ public int inputSelec() {
             break;
             
             case ATAQUEF:
-            cliente.getJ1().currentFrame = cliente.getJ1().ataque3.getKeyFrame(time);
-            if(cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+            p1.currentFrame = p1.ataque3.getKeyFrame(time);
+            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-            if(cliente.getJ1().ataque3.isAnimationFinished(time)){
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            if(p1.ataque3.isAnimationFinished(time)){
                 time = 0;
             }
             a1 = false;
@@ -666,44 +670,45 @@ public int inputSelec() {
             break;
 
                 case DERECHA:
-                cliente.getJ1().currentFrame = cliente.getJ1().walk.getKeyFrame(time);
-                if(cliente.getJ1().currentFrame.isFlipX()){
-                    cliente.getJ1().currentFrame.flip(true, false);
+                p1.currentFrame = p1.walk.getKeyFrame(time);
+                if(p1.currentFrame.isFlipX()){
+                    p1.currentFrame.flip(true, false);
                 }
-               //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-                if(cliente.getJ1().walk.isAnimationFinished(time)){
+               //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+                if(p1.walk.isAnimationFinished(time)){
                     time = 0;
                 }
-
+                p1.setEstado(Estado.CORRER);
                     break;
                     case IZQUIERDA:
-                    cliente.getJ1().currentFrame = cliente.getJ1().walk.getKeyFrame(time);
-                    if(!cliente.getJ1().currentFrame.isFlipX()){
-                        cliente.getJ1().currentFrame.flip(true, false);
+                    p1.currentFrame = p1.walk.getKeyFrame(time);
+                    if(!p1.currentFrame.isFlipX()){
+                        p1.currentFrame.flip(true, false);
                     }
                     
-                   //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
-                    if(cliente.getJ1().walk.isAnimationFinished(time)){
+                   //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+                    if(p1.walk.isAnimationFinished(time)){
                         time = 0;
                     }
-                    
+                    p1.setEstado(Estado.CORRER);
                     break;
                 case HP:
                 
-                cliente.getJ1().setVidaActual(cliente.getJ1().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+                p1.setVidaActual(p1.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
                 default:
+                System.out.println("entre al default");
                 a1 = false;
             a2 = false;
             a3 = false;
-            cliente.getJ1().currentFrame = cliente.getJ1().stance.getKeyFrame(time,true);
-            if (cliente.getJ1().getX() > cliente.getJ2().getX() && !cliente.getJ1().currentFrame.isFlipX())  {
-                cliente.getJ1().currentFrame.flip(true, false);
+            p1.currentFrame = p1.stance.getKeyFrame(time,true);
+            if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
+                p1.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ1().currentFrame.flip(true, false);
+            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+         
                     break;
 
                   
@@ -711,58 +716,58 @@ public int inputSelec() {
              
         }
      
-        else{
+        else if(!cliente.getHiloC().MiPropioMensaje()) {
             
              switch (cliente.getHiloC().getDir()) {
 
                 case POSX:
-                p2.setX(p2.getX() + Integer.parseInt(cliente.getHiloC().getDir().getString()));  
-                   
-                  break;
-              case POSY:
-
-              cliente.getJ2().setY(Integer.parseInt(cliente.getHiloC().getDir().getString()));
-              break;
+ 
+                p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());     
+                    break;
+                case POSY:
+                p2.setY(p2.getY() + cliente.getHiloC().darmayonesa()); 
+                
+                break;
            
                 case ARRIBA:
-                cliente.getJ2().currentFrame = cliente.getJ2().jump.getKeyFrame(time);
-            if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+                p2.currentFrame = p2.jump.getKeyFrame(time);
+            if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+            else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-            if(cliente.getJ2().jump.isAnimationFinished(time)){
+           //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+            if(p2.jump.isAnimationFinished(time)){
                 time = 0;
             }
                   
 
                     break;
                 case ABAJO:
-                cliente.getJ2().currentFrame = cliente.getJ2().crouch.getKeyFrame(time);
-                if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
-                    cliente.getJ2().currentFrame.flip(true, false);
+                p2.currentFrame = p2.crouch.getKeyFrame(time);
+                if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+                    p2.currentFrame.flip(true, false);
                 }
-                else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                    cliente.getJ2().currentFrame.flip(true, false);
+                else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+                    p2.currentFrame.flip(true, false);
                 }
-               //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-                if(cliente.getJ2().crouch.isAnimationFinished(time)){
+               //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+                if(p2.crouch.isAnimationFinished(time)){
                     time = 0;
                 }
                 break;
 
                 case ATAQUED:
-                cliente.getJ2().currentFrame = cliente.getJ2().ataque4.getKeyFrame(time);
-                if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
-                    cliente.getJ2().currentFrame.flip(true, false);
+                p2.currentFrame = p2.ataque4.getKeyFrame(time);
+                if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+                    p2.currentFrame.flip(true, false);
                 }
-                else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                    cliente.getJ2().currentFrame.flip(true, false);
+                else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+                    p2.currentFrame.flip(true, false);
                 }
-               //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-                if(cliente.getJ2().ataque4.isAnimationFinished(time)){
+               //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+                if(p2.ataque4.isAnimationFinished(time)){
                     time = 0;
                 }
                 
@@ -773,15 +778,15 @@ public int inputSelec() {
                 break;
                 
                 case ATAQUEM:
-                cliente.getJ2().currentFrame = cliente.getJ2().ataque2.getKeyFrame(time);
-            if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ1().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+                p2.currentFrame = p2.ataque2.getKeyFrame(time);
+            if(p2.getX() > p1.getX() && !p1.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+            else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-            if(cliente.getJ2().ataque2.isAnimationFinished(time)){
+           //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+            if(p2.ataque2.isAnimationFinished(time)){
                 time = 0;
             }
             a1 = false;
@@ -789,15 +794,15 @@ public int inputSelec() {
             break;
             
             case ATAQUEF:
-            cliente.getJ2().currentFrame = cliente.getJ2().ataque3.getKeyFrame(time);
-            if(cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+            p2.currentFrame = p2.ataque3.getKeyFrame(time);
+            if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+            else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-            if(cliente.getJ2().ataque3.isAnimationFinished(time)){
+           //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+            if(p2.ataque3.isAnimationFinished(time)){
                 time = 0;
             }
             a1 = false;
@@ -805,50 +810,51 @@ public int inputSelec() {
             break;
 
                 case DERECHA:
-                cliente.getJ2().currentFrame = cliente.getJ2().walk.getKeyFrame(time);
-                if(cliente.getJ2().currentFrame.isFlipX()){
-                    cliente.getJ2().currentFrame.flip(true, false);
+                p2.currentFrame = p2.walk.getKeyFrame(time);
+                if(p2.currentFrame.isFlipX()){
+                    p2.currentFrame.flip(true, false);
                 }
-               //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-                if(cliente.getJ2().walk.isAnimationFinished(time)){
+               //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+                if(p2.walk.isAnimationFinished(time)){
                     time = 0;
                 }
 
                     break;
                     case IZQUIERDA:
-                    cliente.getJ2().currentFrame = cliente.getJ2().walk.getKeyFrame(time);
-                    if(!cliente.getJ2().currentFrame.isFlipX()){
-                        cliente.getJ2().currentFrame.flip(true, false);
+                    p2.currentFrame = p2.walk.getKeyFrame(time);
+                    if(!p2.currentFrame.isFlipX()){
+                        p2.currentFrame.flip(true, false);
                     }
                     
-                   //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
-                    if(cliente.getJ2().walk.isAnimationFinished(time)){
+                   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+                    if(p2.walk.isAnimationFinished(time)){
                         time = 0;
                     }
                     
                     break;
                 case HP:
-                cliente.getJ2().setVidaActual(cliente.getJ2().getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+                p2.setVidaActual(p2.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
                 default:
                 a1 = false;
             a2 = false;
             a3 = false;
-            cliente.getJ2().currentFrame = cliente.getJ2().stance.getKeyFrame(time,true);
-            if (cliente.getJ2().getX() > cliente.getJ1().getX() && !cliente.getJ2().currentFrame.isFlipX())  {
+            p2.currentFrame = p2.stance.getKeyFrame(time,true);
+            if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
                 
-      System.out.println(cliente.getJ2().currentFrame.getTexture());
-                cliente.getJ2().currentFrame.flip(true, false);
+      System.out.println(p2.currentFrame.getTexture());
+                p2.currentFrame.flip(true, false);
             }
-            else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
-                cliente.getJ2().currentFrame.flip(true, false);
+            else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
             }
-           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+           //b.draw(p2.currentFrame, p2.getX(), p2.getY());
                     break;
        }
         
        
         }
+         
 
 
 

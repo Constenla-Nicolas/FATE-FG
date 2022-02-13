@@ -33,11 +33,12 @@ public class HiloCliente extends Thread {
     private int cont,cont2;
     private String parte3;
     private String parte4;
+    private int nmb;
     public HiloCliente(){
         
         try { 
             s= new DatagramSocket();
-            ipserver = InetAddress.getByName("26.137.140.220");
+            ipserver = InetAddress.getByName("26.64.240.173");
             System.out.println(ipserver);
             enviarMensaje(Direcciones.CONECTAR.getString());
         } catch (SocketException | UnknownHostException e) {
@@ -101,8 +102,10 @@ public class HiloCliente extends Thread {
             System.out.println("parte 1 "+parte1);
             System.out.println("p2 "+parte2);
             System.out.println("p3 "+parte3); 
-            System.out.println(parte4); 
+            System.out.println("p4 "+parte4); 
             parte1=parte3;
+            
+            
        }
        
         } catch (PatternSyntaxException e) {       
@@ -118,11 +121,14 @@ public class HiloCliente extends Thread {
             
            
         }
-            if (dir.compareTo(Direcciones.POSX)==0) {
-               dir.POSX.setPOSX(Integer.parseInt(parte4)); 
+           if (parte1.equals(Direcciones.POSX.getString())) {
+               dir=Direcciones.POSX;
+                mayonesa(Integer.parseInt(parte4));
+                System.out.println("la direccion es" +dir.getString());
             }
-            else if(dir.compareTo(Direcciones.POSY)==0){
-                dir.POSY.setPOSY(Integer.parseInt(parte4));
+            if (parte1.equals(Direcciones.POSY.getString())) {
+                dir=Direcciones.POSY;
+                mayonesa(Integer.parseInt(parte4));
             }
              
             dir.doActive();
@@ -130,10 +136,17 @@ public class HiloCliente extends Thread {
      public int getIdcliente() {
          return idcliente;
      }
+   
+     public void mayonesa(int nmb){
+        this.nmb=nmb;
+     }
+     public int darmayonesa(){
+         return nmb;
+     }
 public boolean MiPropioMensaje(){
         
         if (Integer.parseInt(parte2)!=idcliente) {
-                    System.out.println("llego la id "+parte2+" y el id mio  es "+idcliente);
+                    //System.out.println("llego la id "+parte2+" y el id mio  es "+idcliente);
                     return false;
                     }
 
@@ -190,13 +203,7 @@ public boolean MiPropioMensaje(){
             dir.HPaRestar(Integer.parseInt(parte4));
           
             break;
-            case POSX:
-            dir.setPOSX(Integer.parseInt(parte4));
-            break;
-            case POSY:
-            dir.setPOSY(Integer.parseInt(parte4));
-
-            break;
+           
             case SELECCIONESCENARIOS:
              
             if (cont==0) {

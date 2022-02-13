@@ -30,6 +30,7 @@ public class Entradas implements InputProcessor {
     
      
     public boolean isDown(){
+       
         return down;
     }
     public boolean isUp(){
@@ -69,8 +70,8 @@ public class Entradas implements InputProcessor {
     public boolean keyDown(int keycode) {
        
     if (inputflag) { 
-        System.out.println("sysout adentro de entradas :"+ keycode);
-        mandarOnline(keycode);
+        
+        
          if(keycode == Keys.DOWN){
         down = true;
     }
@@ -151,7 +152,7 @@ public class Entradas implements InputProcessor {
         return false;
     }
 
-    private void mandarOnline(int keycode) {
+    public void mandarOnline(int keycode) {
         
        
         if(Config.ONLINE){
