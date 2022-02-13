@@ -28,7 +28,7 @@ import utiles.InputEvent;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
-   float velocidad = 0f; 
+   float velocidad = 0f,velocidad2=0f; 
    float  gravedad = 10f;
    protected Imagen fightstage;
    Hud hud;
@@ -150,7 +150,13 @@ float a;
             p1.setY(Gdx.graphics.getHeight()/2);
             p1.setEstado(Estado.STANCE);
         }
+          
+        p2.setY(p2.getY() + (velocidad2 -= gravedad));
         
+        if(p2.getY() < Gdx.graphics.getHeight()/2){
+            p2.setY(Gdx.graphics.getHeight()/2);
+            p2.setEstado(Estado.STANCE);
+        }
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
             }
@@ -747,7 +753,7 @@ public int inputSelec() {
                 time = 0;
             }
                   
-
+            velocidad2=50;
                     break;
                 case ABAJO:
                 p2.currentFrame = p2.crouch.getKeyFrame(time);
