@@ -67,9 +67,9 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
+        cliente.getJ1().currentFrame = cliente.getJ1().stance.getKeyFrame(1);
         
-        mordred = new Mordred();   
-        astolfo = new Astolfo(); 
+        cliente.getJ2().currentFrame = cliente.getJ2().stance.getKeyFrame(1);
         p1.sethitbox();
         p2.sethitbox();
                                        
@@ -81,24 +81,22 @@ float a;
     @Override
     public void render(float delta) {
         inputSelec();
-        mordred.setInput(opc);
-        mordred.update(delta);
         time += delta;
-        
         
         
         Render.cleaner();
        b.begin();
         
+      b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+        
+      b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
         fightstage.dibujar();
        
        
     
     
         
-       b.draw(p2.stance.getKeyFrame(time), p2.getX(), p2.getY());
         a=a+0.1f;
-       movement();
        colision();
          b.end();
          
@@ -124,7 +122,6 @@ float a;
 
      private void colision(){
          if(p1.box1.overlaps(p2.box1)){
-             System.out.println("a");
          }
      } 
 
@@ -277,7 +274,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.jump.isAnimationFinished(time)){
                 time = 0;
             }
@@ -291,7 +288,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.crouch.isAnimationFinished(time)){
                 time = 0;
             }
@@ -305,7 +302,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.ataque4.isAnimationFinished(time)){
                 time = 0;
             }
@@ -322,7 +319,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.ataque2.isAnimationFinished(time)){
                 time = 0;
             }
@@ -338,7 +335,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.ataque3.isAnimationFinished(time)){
                 time = 0;
             }
@@ -355,7 +352,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.air1.isAnimationFinished(time)){
                 time = 0;
             }
@@ -372,7 +369,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.air2.isAnimationFinished(time)){
                 time = 0;
             }
@@ -389,7 +386,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
             p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.air3.isAnimationFinished(time)){
                 time = 0;
             }
@@ -402,7 +399,7 @@ float a;
             if(p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.walk.isAnimationFinished(time)){
                 time = 0;
             }
@@ -414,7 +411,7 @@ float a;
                 p1.currentFrame.flip(true, false);
             }
             
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.walk.isAnimationFinished(time)){
                 time = 0;
             }
@@ -431,7 +428,7 @@ float a;
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
             }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             
            
                 break;
@@ -468,41 +465,46 @@ float a;
     
      
 public int inputSelec() {
-    try {
-        synchronized(entradas){
-              entradas.wait(90);
+    if(!Config.ONLINE){
 
-        }
-        
-      } catch (InterruptedException e) {
-       
-          e.printStackTrace();
-      }
+        try {
+            synchronized(entradas){
+                  entradas.wait(90);
     
+            }
+            
+          } catch (InterruptedException e) {
+           
+              e.printStackTrace();
+          }
         
-        if (entradas.isDown()) {
-          
-            if (opc==0) {
-                 
-                opc=3;
-               
-            }
-            else{
-                opc--;
+            
+            if (entradas.isDown()) {
               
+                if (opc==0) {
+                     
+                    opc=3;
+                   
+                }
+                else{
+                    opc--;
+                  
+                }
             }
-        }
-        if (entradas.isUp()) {
-            if(opc==3){
-             opc=0;
+            if (entradas.isUp()) {
+                if(opc==3){
+                 opc=0;
+                }
+                else{
+                    opc++;
+                   
+                }
             }
-            else{
-                opc++;
-               
-            }
-        }
-      
-        return opc;
+          
+    }
+    
+    return opc;
+    
 }
 
  
@@ -549,17 +551,10 @@ public int inputSelec() {
     public void handleInput() {
         System.out.println("handle input de escenario");
         inputQueLlega();
-       
+       cliente.getHiloC().getDir().dontActive();
     }
     
-    public void caida(){
-        cliente.getJ1().setY(cliente.getJ1().getY() + (velocidad -= gravedad));
-        
-        if(cliente.getJ1().getY() < Gdx.graphics.getHeight()/2){
-            cliente.getJ1().setY(Gdx.graphics.getHeight()/2);
-            cliente.getJ1().setEstado(Estado.STANCE);
-        }
-    }
+   
     
     @Override
     public int inputQueLlega() {
@@ -568,12 +563,11 @@ public int inputSelec() {
          
             switch (cliente.getHiloC().getDir()) {
                 case POSX:
-                  //   cliente.getJ1().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
-                     
+                cliente.getJ1().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()));     
                     break;
                 case POSY:
 
-                //cliente.getJ1().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
+                cliente.getJ1().setY(Integer.parseInt(cliente.getHiloC().getDir().getString()));
                 break;
                 
                     
@@ -585,7 +579,7 @@ public int inputSelec() {
             else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
                 cliente.getJ1().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
             if(cliente.getJ1().jump.isAnimationFinished(time)){
                 time = 0;
             }
@@ -600,7 +594,7 @@ public int inputSelec() {
                 else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
                     cliente.getJ1().currentFrame.flip(true, false);
                 }
-                b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+               //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
                 if(cliente.getJ1().crouch.isAnimationFinished(time)){
                     time = 0;
                 }
@@ -614,7 +608,7 @@ public int inputSelec() {
                 else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
                     cliente.getJ1().currentFrame.flip(true, false);
                 }
-                b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+               //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
                 if(cliente.getJ1().ataque4.isAnimationFinished(time)){
                     time = 0;
                 }
@@ -633,7 +627,7 @@ public int inputSelec() {
             else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
                 cliente.getJ1().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
             if(cliente.getJ1().ataque2.isAnimationFinished(time)){
                 time = 0;
             }
@@ -649,7 +643,7 @@ public int inputSelec() {
             else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
                 cliente.getJ1().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
             if(cliente.getJ1().ataque3.isAnimationFinished(time)){
                 time = 0;
             }
@@ -662,7 +656,7 @@ public int inputSelec() {
                 if(cliente.getJ1().currentFrame.isFlipX()){
                     cliente.getJ1().currentFrame.flip(true, false);
                 }
-                b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+               //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
                 if(cliente.getJ1().walk.isAnimationFinished(time)){
                     time = 0;
                 }
@@ -674,7 +668,7 @@ public int inputSelec() {
                         cliente.getJ1().currentFrame.flip(true, false);
                     }
                     
-                    b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+                   //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
                     if(cliente.getJ1().walk.isAnimationFinished(time)){
                         time = 0;
                     }
@@ -695,7 +689,7 @@ public int inputSelec() {
             else if(cliente.getJ1().getX() < cliente.getJ2().getX() && cliente.getJ1().currentFrame.isFlipX()){
                 cliente.getJ1().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
+           //b.draw(cliente.getJ1().currentFrame, cliente.getJ1().getX(), cliente.getJ1().getY());
                     break;
 
                   
@@ -708,12 +702,12 @@ public int inputSelec() {
              switch (cliente.getHiloC().getDir()) {
 
                 case POSX:
-                cliente.getJ2().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()))   ;
+                cliente.getJ2().setX(Integer.parseInt(cliente.getHiloC().getDir().getString()));
                    
                   break;
               case POSY:
 
-            //   cliente.getJ2().posy=  Integer.parseInt(cliente.getHiloC().getDir().getString()) ;
+              cliente.getJ2().setY(Integer.parseInt(cliente.getHiloC().getDir().getString()));
               break;
            
                 case ARRIBA:
@@ -724,7 +718,7 @@ public int inputSelec() {
             else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
                 cliente.getJ2().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
             if(cliente.getJ2().jump.isAnimationFinished(time)){
                 time = 0;
             }
@@ -739,7 +733,7 @@ public int inputSelec() {
                 else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
                     cliente.getJ2().currentFrame.flip(true, false);
                 }
-                b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+               //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
                 if(cliente.getJ2().crouch.isAnimationFinished(time)){
                     time = 0;
                 }
@@ -753,7 +747,7 @@ public int inputSelec() {
                 else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
                     cliente.getJ2().currentFrame.flip(true, false);
                 }
-                b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+               //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
                 if(cliente.getJ2().ataque4.isAnimationFinished(time)){
                     time = 0;
                 }
@@ -772,7 +766,7 @@ public int inputSelec() {
             else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
                 cliente.getJ2().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
             if(cliente.getJ2().ataque2.isAnimationFinished(time)){
                 time = 0;
             }
@@ -788,7 +782,7 @@ public int inputSelec() {
             else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
                 cliente.getJ2().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
             if(cliente.getJ2().ataque3.isAnimationFinished(time)){
                 time = 0;
             }
@@ -801,7 +795,7 @@ public int inputSelec() {
                 if(cliente.getJ2().currentFrame.isFlipX()){
                     cliente.getJ2().currentFrame.flip(true, false);
                 }
-                b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+               //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
                 if(cliente.getJ2().walk.isAnimationFinished(time)){
                     time = 0;
                 }
@@ -813,7 +807,7 @@ public int inputSelec() {
                         cliente.getJ2().currentFrame.flip(true, false);
                     }
                     
-                    b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+                   //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
                     if(cliente.getJ2().walk.isAnimationFinished(time)){
                         time = 0;
                     }
@@ -833,7 +827,7 @@ public int inputSelec() {
             else if(cliente.getJ2().getX() < cliente.getJ1().getX() && cliente.getJ2().currentFrame.isFlipX()){
                 cliente.getJ1().currentFrame.flip(true, false);
             }
-            b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
+           //b.draw(cliente.getJ2().currentFrame, cliente.getJ2().getX(), cliente.getJ2().getY());
                     break;
        }
         

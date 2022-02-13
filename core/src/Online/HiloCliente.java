@@ -37,7 +37,7 @@ public class HiloCliente extends Thread {
         
         try { 
             s= new DatagramSocket();
-            ipserver = InetAddress.getByName("26.64.240.173");
+            ipserver = InetAddress.getByName("26.137.140.220");
             System.out.println(ipserver);
             enviarMensaje(Direcciones.CONECTAR.getString());
         } catch (SocketException | UnknownHostException e) {
@@ -239,39 +239,7 @@ public boolean MiPropioMensaje(){
 
 
 
-        //     case ENTER:
-        //     Direcciones.ENTER.doActive();
-        //     break;
-        //     case ARRIBA:
-        //     Direcciones.ARRIBA.doActive();
-        //     break;
-        //     case ABAJO:
-        //     Direcciones.ABAJO.doActive();
-        //     break;
-        //     case DERECHA:
-             
-        //     Direcciones.DERECHA.doActive();
-        //     break;
-        //     case IZQUIERDA:
- 
-        //     dir.doActive();
-        //     break;
-        //     case ATAQUED:
-        //     Direcciones.ATAQUED.doActive();
-        //     break;
-        //     case ATAQUEM:
-        //     Direcciones.ATAQUEM.doActive();
-        //     break;
-            
-        //     case ATAQUEF:
-        //     Direcciones.ATAQUEF.doActive();
-        //     break;
-        //     case AGACHARSE:
-        //     Direcciones.AGACHARSE.doActive();
-        //     break;
-        //    default:
-           
-        //        break;
+      
        }
     
     public void enviarMensaje(String msg){
