@@ -39,9 +39,10 @@ public class SvClientes implements Actualizable {
     }
     
     public personajePrefab getP1() {
-        return p1;
+        return this.p1;
     }
     public void setP1(personajePrefab p1) {
+        System.out.println("el pj de la concha de tu vieja es"+p1);
         this.p1 = p1;
     }
     public direcciones getDir() {

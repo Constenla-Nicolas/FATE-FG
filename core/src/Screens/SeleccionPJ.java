@@ -15,6 +15,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import Entradas.direcciones;
  
 import Online.server;
+import personajes.Astolfo;
+import personajes.Mordred;
 import personajes.personajePrefab;
 import utiles.*;
  
@@ -25,6 +27,7 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
 	private SpriteBatch b;
     private Imagen flecha[]= new Imagen[4];
     int listo=0;
+    public personajePrefab p;
 	private Imagen[][] portrait= new Imagen[4][2]; // 0 es astolfo, 1 mordred, 2 jeanne, 3 atalante
     private Imagen[] portraitEnemigo=new Imagen[4];
     private boolean uno,dos;
@@ -39,6 +42,7 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
     public void show() { 
        
         Config.addListInput(this);
+        p = new Mordred();
          setFondo();
 		b = Render.batch;
         mostrarRetrato(); 
@@ -114,6 +118,11 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
 
         
        b.begin();
+
+
+
+
+ 
        
      ts +=Gdx.graphics.getRawDeltaTime();
      if(ts > period){
@@ -178,6 +187,7 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
     @Override
     public void handleInput() {
         System.out.println("handle input de selecPJ");
+       
                if (server.getHl().getDir().compareTo(direcciones.ENTER)==0) {
                     
                 cont++;

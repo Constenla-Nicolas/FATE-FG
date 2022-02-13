@@ -11,6 +11,8 @@ import com.badlogic.gdx.Gdx;
 import Entradas.direcciones;
 import Screens.SeleccionEscenarios;
 import Screens.Batalla.Escenarios;
+import personajes.Astolfo;
+import personajes.personajePrefab;
 import utiles.Config;
 import utiles.Render;
 import utiles.Retratos;
@@ -25,6 +27,7 @@ public class HiloServidor extends Thread {
     private SvClientes[] Usuario = new SvClientes[2]; 
     private int posconexion;
     private int cont;
+    private direcciones pj[]=new direcciones[2];
     
     private direcciones dir;
      public HiloServidor(){
@@ -159,6 +162,9 @@ public class HiloServidor extends Thread {
      
         
      }
+
+    
+
      private void procesarMensaje(DatagramPacket dp) {
          
         
@@ -223,7 +229,7 @@ public class HiloServidor extends Thread {
                     System.out.println("estoy a punto de crear un escenario");
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
-                             
+                             System.out.println(Usuario[0].getP1()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +Usuario[1].getP1());
                             Render.app.setScreen(new Escenarios(Background.values()[SeleccionEscenarios.getOpc()].getRoot(), Usuario[0].getP1(), Usuario[1].getP1()));
                         }
                     });
@@ -232,23 +238,16 @@ public class HiloServidor extends Thread {
 
                     break;
                     case ASTOLFO:
-                    System.out.println("llego un astolfo");
-                        Usuario[posconexion].setP1(Retratos.ASTOLFO.getClase());
-                        System.out.println(Usuario[posconexion].getP1());
-                        break;
-                     case MORDRED: 
-                     System.out.println("llego un mordred");
-                     Usuario[posconexion].setP1(Retratos.MORDRED.getClase());
-                     System.out.println(Usuario[posconexion].getP1());
-                        break;
-                        case JEANNE: 
-                        System.out.println("llego un jeanne");
-                        Usuario[posconexion].setP1(Retratos.JEANNE.getClase());
-                      break;
-                      case ATALANTE: 
-                      System.out.println("llego un atalante");
-                      Usuario[posconexion].setP1(Retratos.ATALANTE.getClase());;
-                      break;
+                    pj[posconexion]=direcciones.ASTOLFO;
+
+
+                break;
+             case MORDRED: 
+                break;
+                case JEANNE: 
+              break;
+              case ATALANTE: 
+              break;
                     default:
                     
                         break;
@@ -259,8 +258,31 @@ public class HiloServidor extends Thread {
                 llamarEvento();
                 }
          
-     } 
- 
+     }
+     public direcciones[] getPj() {
+        return pj;
+    }   
+     public void enviarMensajeCaida(String msg,InetAddress ipdestino, int puerto){
+        if (getUsuarios()[0].getIp()==ipdestino) {
+            msg=msg+"<>0";
+            
+        }
+        else{
+            msg=msg+"<>1";
+        }
+         byte[] data = msg.getBytes();
+        
+         try {
+             
+             
+             DatagramPacket dp = new DatagramPacket(data, data.length,ipdestino,puerto);
+             s.send(dp);
+         } catch (IOException e) {
+           
+             e.printStackTrace();
+         }
+     }
+     
     public void enviarMensaje(String msg,InetAddress ipdestino, int puerto){
          byte[] data = msg.getBytes();
         
