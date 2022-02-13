@@ -144,7 +144,12 @@ float a;
 
     private void movement(){
         
-       
+        p1.setY(p1.getY() + (velocidad -= gravedad));
+        
+        if(p1.getY() < Gdx.graphics.getHeight()/2){
+            p1.setY(Gdx.graphics.getHeight()/2);
+            p1.setEstado(Estado.STANCE);
+        }
         
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
@@ -262,7 +267,7 @@ float a;
                 p1.currentFrame.flip(true, false);
                 
             }
-           //1.setX(p1.getX() p + 20);
+           // p1.setX(p1.getX() + 20);
             entradas.mandarOnline(22);
 
         }      
