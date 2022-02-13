@@ -75,11 +75,12 @@ float a;
         time += delta;
         
         
+        
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
        
-        movement();
+    
         
        colision();
          b.end();
@@ -106,14 +107,10 @@ float a;
     private void movement(){
         
         p1.setY(p1.getY() + (velocidad -= gravedad));
-        p2.setY(p2.getY() + (velocidad -= gravedad));
+        
         if(p1.getY() < Gdx.graphics.getHeight()/2){
             p1.setY(Gdx.graphics.getHeight()/2);
             p1.setEstado(Estado.STANCE);
-        }
-        if(p2.getY() < Gdx.graphics.getHeight()/2){
-            p2.setY(Gdx.graphics.getHeight()/2);
-            p2.setEstado(Estado.STANCE);
         }
         
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
@@ -509,52 +506,52 @@ public int inputSelec() {
         fightstage.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
     }
 
-//     public void caida(){
+    public void caida(){
          
        
-//         if (server.getUsuario()== server.getUsuarios()[0]) {
+        if (server.getUsuario()== server.getUsuarios()[0]) {
 
-//     server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
-//     server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[0].getIp(), server.getUsuarios()[0].getPuerto());
-//     server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[1].getPuerto());
-//     server.getHl().getDir().POSY.reposy();
+    server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
+    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[0].getIp(), server.getUsuarios()[0].getPuerto());
+     
+    server.getHl().getDir().POSY.reposy();
 
-// if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
+if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
 
-//     server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
-//     server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[0].getIp(), server.getUsuarios()[0].getPuerto());
-//     server.getHl().getDir().POSY.reposy();
-//     server.getUsuario().getP1().setEstado(Estado.STANCE);
-// }
-//         }
-//         else{
-//             server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
-//     server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
-//     server.getHl().getDir().POSY.reposy();
+    server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
+    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[0].getIp(), server.getUsuarios()[0].getPuerto());
+    server.getHl().getDir().POSY.reposy();
+    server.getUsuario().getP1().setEstado(Estado.STANCE);
+}
+        }
+        else{
+            server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
+    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
+    server.getHl().getDir().POSY.reposy();
 
-// if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
+if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
 
-//     server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
-//     server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
-//     server.getHl().getDir().POSY.reposy();
-//     server.getUsuario().getP1().setEstado(Estado.STANCE);
-// }
+    server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
+    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
+    server.getHl().getDir().POSY.reposy();
+    server.getUsuario().getP1().setEstado(Estado.STANCE);
+}
 
-//         }
+        }
 
         
         
-//     }
+    }
 
     @Override
     public void handleInput() {
        
              
             switch (server.getHl().getDir()) {
-                     case IZQUIERDA:
+                case IZQUIERDA:
                      
                  
-                      server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
+                server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
                 
                     
                     break;
@@ -564,8 +561,6 @@ public int inputSelec() {
                     
                     break;
                     case ARRIBA:
-
-                    velocidad = 50;
                     server.getHl().getDir().POSY.setPOSY(20);
                     server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
                     server.getHl().getDir().POSY.reposy();
