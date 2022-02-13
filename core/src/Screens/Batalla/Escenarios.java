@@ -507,6 +507,8 @@ public int inputSelec() {
     }
 
     public void caida(){
+         
+       
         if (server.getUsuario()== server.getUsuarios()[0]) {
 
     server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
@@ -558,7 +560,7 @@ if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
                     case IZQUIERDA:
                      
                     
-                          server.getHl().getDir().POSX.setPOSX(4);
+                          server.getHl().getDir().POSX.setPOSX(2);
                     
                           server.getHl().enviarAtodos(server.getHl().getDir().POSX.getString());
                           server.getHl().getDir().POSX.reposx();      
