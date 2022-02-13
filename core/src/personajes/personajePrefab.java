@@ -23,7 +23,7 @@ import utiles.Imagen;
 
  
 
-public class personajePrefab implements Action{
+public abstract class personajePrefab implements Action{
     protected TextureAtlas textureAtlas;
    protected float cargasuper;
    protected TextureRegion texRegion;

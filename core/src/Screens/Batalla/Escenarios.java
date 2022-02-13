@@ -55,6 +55,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     setFondo();
     
  }
+    
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
     }
     @Override
@@ -63,7 +64,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
-             
+         
         Gdx.input.setInputProcessor(entradas);
         
        
@@ -80,7 +81,7 @@ float a;
         fightstage.dibujar();
        
     
-        hb.dibujar();
+        
        colision();
          b.end();
          
@@ -544,48 +545,7 @@ if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
        
             //esto es usuario 1
         if (server.getUsuario()== server.getUsuarios()[0]) { 
-            if (server.getHl().getPj()[0].equals(direcciones.ASTOLFO)&& cont==0) {
-
-            p1= new Astolfo();
-            cont++;
-            System.out.println("TE VOY RE CAGAR A TIROS HIJO DE PUTA");
-              
-        p1.setY(Gdx.graphics.getHeight()/2);
-        
-        p1.setX(Gdx.graphics.getHeight()/2);
-        server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
-    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
-    server.getHl().getDir().POSY.reposy();
-
-    server.getHl().getDir().POSX.setPOSX(Gdx.graphics.getHeight()/2);
-    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSX.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
-    server.getHl().getDir().POSX.reposx();
-          
-        // server.getHl().getUsuarios()[0].getP1().setX(Gdx.graphics.getHeight()/4);
-        
-        // server.getHl().getUsuarios()[1].getP1().setY(Gdx.graphics.getHeight()/2);
-        
-        // server.getHl().getUsuarios()[1].getP1().setY(Gdx.graphics.getHeight()/2);
-        } 
-        else if (server.getHl().getPj()[0].equals(direcciones.MORDRED)&& cont==0) {
-            p1= new Mordred();
-            cont++;
-            
-            System.out.println("TE VOY RE CAGAR A TIROS HIJO DE PUTA");
-              
-        p1.setY(Gdx.graphics.getHeight()/2);
-        
-        p1.setX(Gdx.graphics.getHeight()/2);
-        } 
-        else if (server.getHl().getPj()[0].equals(direcciones.ATALANTE)&& cont==0) {
-            p1= new Atalante();
-            cont++;
-        } 
-        else if (server.getHl().getPj()[0].equals(direcciones.JEANNE)&& cont==0) {
-            p1= new Jeanne();
-            cont++;
-        }
-        
+     
 
             switch (server.getHl().getDir()) {
                 
@@ -599,6 +559,7 @@ if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
                      
                     
                           server.getHl().getDir().POSX.setPOSX(4);
+                    
                           server.getHl().enviarAtodos(server.getHl().getDir().POSX.getString());
                           server.getHl().getDir().POSX.reposx();      
                 
@@ -634,47 +595,25 @@ if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
         }
 
 
-        else{ // esto es usuario 2
-            if (server.getHl().getPj()[1].equals(direcciones.ASTOLFO)&& cont2==0) {
-                p2= new Astolfo();
-                cont2++;
-            } 
-            else if (server.getHl().getPj()[1].equals(direcciones.MORDRED)&& cont2==0) {
-                p2= new Mordred();
-                cont2++;
-            } 
-            else if (server.getHl().getPj()[1].equals(direcciones.ATALANTE)&& cont2==0) {
-                p2= new Atalante();
-                cont2++;
-            } 
-            else if (server.getHl().getPj()[1].equals(direcciones.JEANNE)&& cont2==0) {
-                p2= new Jeanne();
-                cont2++;
-            } 
-
+        else{  
             switch (server.getHl().getDir()) {
                 case IZQUIERDA:
                      
-                    if (opc==0) {
-                      
-                     opc=3;
-                      
-                 }
-                 else{
-                     opc--;
-                      
-                 }
+                server.getHl().getDir().POSX.setPOSX(4);
+                server.getHl().enviarAtodos(server.getHl().getDir().POSX.getString());
+                server.getHl().getDir().POSX.reposx();  
+                    
                     break;
      
                     case DERECHA:
-                    if(opc==3){
-                     opc=0;
-                    }
-                    else{
-                        opc++;
-                       
-                    }
+                   
                     
+                    break;
+                    case ARRIBA:
+                    server.getHl().getDir().POSY.setPOSY(20);
+                    server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
+                    server.getHl().getDir().POSY.reposy();
+
                     break;
                     case ENTER:
                      
@@ -682,6 +621,7 @@ if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
                     System.out.println("llego un enter");
                     break;
                 default:
+                    System.out.println("no me encuentro instruccion");
                     break;
             }
         }

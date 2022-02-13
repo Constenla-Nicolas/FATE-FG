@@ -27,7 +27,7 @@ public class HiloServidor extends Thread {
     private SvClientes[] Usuario = new SvClientes[2]; 
     private int posconexion;
     private int cont;
-    private direcciones pj[]=new direcciones[2];
+ 
     
     private direcciones dir;
      public HiloServidor(){
@@ -50,7 +50,7 @@ public class HiloServidor extends Thread {
     }
 
     public void stopSv(){
-        //enviarAtodos("server cerrado");
+        enviarAtodos("server cerrado");
         System.out.println("cerrando server");
         if (!s.isClosed()) {
            s.close();
@@ -60,11 +60,7 @@ public class HiloServidor extends Thread {
     public direcciones getDir() {
         return dir;
     }
-    public void enviarHP(int nmb){
-
-
-        
-    }
+   
     public void enviarAtodos(String string) {
         if (getUsuario()==getUsuarios()[0]) {
             string=string+"<>0";
@@ -229,7 +225,7 @@ public class HiloServidor extends Thread {
                     System.out.println("estoy a punto de crear un escenario");
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
-                             System.out.println(Usuario[0].getP1()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +Usuario[1].getP1());
+                             System.out.println(Usuario[0].getP1()+"AAAAAAAAAA" +Usuario[1].getP1());
                             Render.app.setScreen(new Escenarios(Background.values()[SeleccionEscenarios.getOpc()].getRoot(), Usuario[0].getP1(), Usuario[1].getP1()));
                         }
                     });
@@ -238,19 +234,19 @@ public class HiloServidor extends Thread {
 
                     break;
                     case ASTOLFO:
-                    pj[posconexion]=direcciones.ASTOLFO;
-
-
-                break;
-             case MORDRED: 
-                break;
-                case JEANNE: 
-              break;
-              case ATALANTE: 
-              break;
+                    Usuario[posconexion].setP1(Retratos.ASTOLFO.getClase());
+                    break;
+                    case MORDRED: 
+                    Usuario[posconexion].setP1(Retratos.MORDRED.getClase());
+                    break;
+                    case JEANNE: 
+                    break;
+                    case ATALANTE: 
+                    break;
                     default:
                     
-                        break;
+                    
+                    break;
                 }
                 dir.doActive();
                 enviarAtodos(dir.getString());
@@ -259,9 +255,7 @@ public class HiloServidor extends Thread {
                 }
          
      }
-     public direcciones[] getPj() {
-        return pj;
-    }   
+     
      public void enviarMensajeCaida(String msg,InetAddress ipdestino, int puerto){
         if (getUsuarios()[0].getIp()==ipdestino) {
             msg=msg+"<>0";
