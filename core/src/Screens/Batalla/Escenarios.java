@@ -8,6 +8,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -37,7 +38,8 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
- 
+    Pixmap pixmap = new Pixmap(128, 128, Pixmap.Format.RGBA8888);
+      
    boolean animacion;
    int cont, cont2;
    float time, ts;
@@ -62,6 +64,9 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     p1.setY(500);
     p2.setX(700);
     p2.setY(500);
+    pixmap.setBlending(Pixmap.Blending.None);
+    pixmap.setColor(Color.RED);
+    
  }
 
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
@@ -92,9 +97,10 @@ float a;
         b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
         if (ts>.1f ) {
             colision(); 
+            gestorEstados();
             ts=0;
                 }
-
+            
        
 
         b.end();
@@ -108,6 +114,70 @@ float a;
     //         server.getHl().enviarAtodos(direcciones.PELEATERMINADA.getString());
     // }
 
+     }
+     public void gestorEstados (){
+         switch (p1.getEstado()) {
+            
+            case ATAQUEF:
+            pixmap.fillRectangle((int)p1.getCollide().getX(),(int) p1.getCollide().getY(), 55,48);
+            b.draw(new Texture(pixmap), p1.getCollide().getX(), p1.getCollide().getY());
+            
+            
+            break;
+            case ATAQUEM:
+
+          
+
+            break;
+            case ATAQUED:
+
+           
+        
+            break;
+            case AEREO1:
+         
+
+            break;
+            case AEREO2:
+          
+            break;
+            case AEREO3:
+         
+            break;
+             default:
+                 break;
+         }
+
+         switch (p2.getEstado()) {
+           
+            case ATAQUEF:
+            
+            
+            
+            break;
+            case ATAQUEM:
+
+          
+
+            break;
+            case ATAQUED:
+
+           
+        
+            break;
+            case AEREO1:
+         
+
+            break;
+            case AEREO2:
+          
+            break;
+            case AEREO3:
+         
+            break;
+             default:
+                 break;
+         }
      }
 
      private void colision() {
@@ -566,8 +636,6 @@ public personajePrefab Pjug(){
 
             switch (server.getHl().getDir()) {
                 case IZQUIERDA:
-
-              
                    server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
                    Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
                     
@@ -583,13 +651,39 @@ public personajePrefab Pjug(){
                     Pjug().getCollide().setPosition(Pjug().getCollide().x , Pjug().getCollide().y+100);
                     server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
                     server.getHl().getDir().POSY.reposy();
-
+                    
                     break;
                     case ENTER:
 
 
                     System.out.println("llego un enter");
                     break;
+                    case ATAQUEF:
+                    Pjug().setEstado(Estado.ATAQUEF);
+                
+
+                    break;
+                    case ATAQUEM:
+
+                    Pjug().setEstado(Estado.ATAQUEM);
+
+                    break;
+                    case ATAQUED:
+
+                    Pjug().setEstado(Estado.ATAQUED);
+                
+                    break;
+                    case AEREO1:
+                    Pjug().setEstado(Estado.AEREO1);
+
+                    break;
+                    case AEREO2:
+                    Pjug().setEstado(Estado.AEREO2);
+                    break;
+                    case AEREO3:
+                    Pjug().setEstado(Estado.AEREO3);
+                    break;
+
                 default:
                     System.out.println("no me encuentro instruccion");
                     break;
