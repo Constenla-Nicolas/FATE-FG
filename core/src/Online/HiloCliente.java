@@ -100,7 +100,7 @@ public class HiloCliente extends Thread {
         
     }
     public void identificarMensaje(String msg){
-        System.out.println("entro en identifiar mensaje: " +msg);
+        // System.out.println("entro en identifiar mensaje: " +msg);
          
         try {
             String partes[]= msg.split("<>"); 
@@ -114,10 +114,10 @@ public class HiloCliente extends Thread {
            parte4=partes2[1];
           
             
-            System.out.println("parte 1 "+parte1);
-            System.out.println("p2 "+parte2);
-            System.out.println("p3 "+parte3); 
-            System.out.println("p4 "+parte4); 
+            // System.out.println("parte 1 "+parte1);
+            // System.out.println("p2 "+parte2);
+            // System.out.println("p3 "+parte3); 
+            // System.out.println("p4 "+parte4); 
             parte1=parte3;
             
             
@@ -178,7 +178,7 @@ public boolean MiPropioMensaje(){
         if (prmera) {
             primeraConexion(msg);
             prmera=false;
-            System.out.println("primera"+ idcliente);
+            // System.out.println("primera"+ idcliente);
         }
         else if(!prmera){
            
@@ -207,7 +207,7 @@ public boolean MiPropioMensaje(){
                Config.ONLINE=true;
                Gdx.app.postRunnable(new Runnable() {
                 public void run(){
-                    System.out.println("creando selecPJ....");
+                    // System.out.println("creando selecPJ....");
                     Render.app.setScreen(Direcciones.SELECCIONPJ.getClase());
    
                 }
@@ -221,7 +221,7 @@ public boolean MiPropioMensaje(){
            case CERRAR:
            Gdx.app.postRunnable(new Runnable() {
             public void run(){
-                System.out.println("Volviendo al menu...");
+                // System.out.println("Volviendo al menu...");
                 Render.app.setScreen(new MenuPrincipal());
 
             }
@@ -235,7 +235,7 @@ public boolean MiPropioMensaje(){
                 Config.eraseInput(Config.getListInput().get(0));
                 Gdx.app.postRunnable(new Runnable() {
                 public void run(){
-                    System.out.println("creando selecesc....");
+                    // System.out.println("creando selecesc....");
                     Render.app.setScreen(new SeleccionEscenarios(cliente.getJ1(),cliente.getJ2()));
           
                 }
@@ -250,7 +250,7 @@ public boolean MiPropioMensaje(){
              
                 if (cont2==0) {
 
-                    System.out.println("voy a hacer algo con escenario");
+                    // System.out.println("voy a hacer algo con escenario");
                     Config.eraseInput(Config.getListInput().get(0));
             Gdx.app.postRunnable(new Runnable() {
                 public void run(){
@@ -282,7 +282,7 @@ public boolean MiPropioMensaje(){
        }
     
     public void enviarMensaje(String msg){
-        System.out.println("este mensaje se va a enviar " + msg);
+        // System.out.println("este mensaje se va a enviar " + msg);
         byte[] data = msg.getBytes();
         
         try {

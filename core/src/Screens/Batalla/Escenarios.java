@@ -50,7 +50,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     this.p2=p2;
       if (cliente.getHiloC().getIdcliente()==0) {
         System.out.println("soy el cliente 0");
-       cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString());
+       cliente.enviarMensaje("escenarios");
        p1.setX(450);
        p1.setY(Config.HEIGHT/2);
        p2.setX(700);
@@ -144,18 +144,23 @@ float a;
 
     private void movement(){
 
-        System.out.println(p2.getEstado());
 
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
-        if(p1.getY() < Config.HEIGHT/2){
+        if(p1.getY() <= Config.HEIGHT/2){
             p1.setY(Config.HEIGHT/2);
+            System.out.println("aaaaaa");
+            p1.setEstado(Estado.STANCE);
         }
 
         p2.setY(p2.getY() + (velocidad2 -= gravedad));
 
         if(p2.getY() <= Config.HEIGHT/2){
             p2.setY(Config.HEIGHT/2);
+            
+            System.out.println("bbbbbbb");
+            p2.setEstado(Estado.STANCE);
+
         }
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
@@ -293,11 +298,7 @@ float a;
             //    p1.setX(p1.getX() - 20);
                 entradas.mandarOnline(21);
             }
-            else{
-                p1.setEstado(Estado.STANCE);
-                 
-
-            }
+           
 
         p1.setEstadoAnterior(p1.getEstado());
 
@@ -757,81 +758,76 @@ public int inputSelec() {
     }
     @Override
     public void handleInput() {
-       // System.out.println("handle input de escenario");
-      inputQueLlega();
-       cliente.getHiloC().getDir().dontActive();
-    }
+        System.out.println("handle input de escenario");
+       
+
+       if (cliente.getHiloC().MiPropioMensaje()) {
+
+        switch (cliente.getMsg()) {
+        //     case POSX:
 
 
-
-    @Override
-    public int inputQueLlega() {
-
-
-        if (cliente.getHiloC().MiPropioMensaje()) {
-
-            switch (cliente.getHiloC().getDir()) {
-                case POSX:
-
-
-                p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
-                    p1.setEstado(Estado.CORRER);
-                    break;
-                    
-                case POSY:
-                p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
-                p1.setEstado(Estado.SALTO);
-                break;
+        //     p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
+        //         p1.setEstado(Estado.CORRER);
+        //         break;
                 
-                   
-                case HP:
-
-                p1.setVidaActual(p1.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
-                break;
-                case ABAJO:
-
-                break;
-                
-                default:
+        //     case POSY:
+        //     p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
+        //     p1.setEstado(Estado.SALTO);
+        //     break;
+            
                
-         
-                    break;
+        //     case HP:
 
+        //     p1.setVidaActual(p1.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+        //     break;
+        //     case ABAJO:
 
-            }
-
-        }
-
-        else if(!cliente.getHiloC().MiPropioMensaje()) {
-
-             switch (cliente.getHiloC().getDir()) {
-
-                case POSX:
-                p2.setEstado(Estado.CORRER);
-                p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());
-                p1.setEstado(Estado.CORRER);
-                    break;
-                case POSY:
-                p2.setY(p2.getY() + cliente.getHiloC().darmayonesa());
-                p2.setEstado(Estado.SALTO);
-
-                break;
+        //     break;
+        //     case ATAQUED:
+        //     p1.setEstado(Estado.ATAQUED);
+            
+            default:
            
-                
-                case HP:
-                p2.setVidaActual(p2.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+     
                 break;
-                default:
-                    break;
-       }
 
 
         }
 
-
-
-
-        return 0;
     }
+
+    else if(!cliente.getHiloC().MiPropioMensaje()) {
+
+         switch (cliente.getMsg()) {
+
+            // case POSX:
+            // p2.setEstado(Estado.CORRER);
+            // p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());
+            // p1.setEstado(Estado.CORRER);
+            //     break;
+            // case POSY:
+            // p2.setY(p2.getY() + cliente.getHiloC().darmayonesa());
+            // p2.setEstado(Estado.SALTO);
+
+            // break;
+       
+            
+            // case HP:
+            // p2.setVidaActual(p2.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
+            // break;
+            default:
+                break;
+   }
+
+
+    }
+
+
+     
+    }
+
+
+ 
 
 }
