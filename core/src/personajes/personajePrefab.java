@@ -32,13 +32,13 @@ int texWidth, texHeight;
 Imagen img;
   protected int vidamax = 100;
   protected int opc;
-  private Imagen i;
+ 
   private  int vidaActual;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
-  protected static Imagen spriteImagen;   
-  public Rectangle box1;
+//  protected static Imagen spriteImagen;   
+  private Rectangle collide;
   public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
@@ -70,24 +70,22 @@ Imagen img;
   public Animation<TextureRegion> vfx2;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
-  private Timer tiempo;
+   
 
  
-
-  public void sethitbox(){
-    img = new Imagen("Astolfo/Stance1.png");
-    img.setPosition((Gdx.graphics.getWidth()/2), Gdx.graphics.getHeight()/2);
-      box1 = new Rectangle(img.getX(), img.getY(), img.getAncho(), img.getAlto());
+ 
+  public Rectangle getCollide() {
+      return collide;
   }
     public personajePrefab(){
-         tiempo= new Timer(200, this);
-      
+         
+          
+         collide=new Rectangle(0, 0, 50, 60);
     } 
-
-    protected void iniciar(){
-        tiempo.start();
-        
+    public void setCollide(int x, int y) {
+        collide.setCenter(x, y);
     }
+   
 
     public void update(float dt){
 
@@ -95,23 +93,19 @@ Imagen img;
      public void setAnims() {
         
     }
-    public Imagen getImagen() {
-        return i;
-    }
-    public void setImagen(Imagen i){
-
-        this.i = i;
-        
-    }
+    
     public void setInput(int opc){
         this.opc=opc;
     }
     public void setX(int x){
         this.x = x;
-
+        collide.setPosition(x, y);
+        
     }
 	public void setY(int y){
         this.y = y;
+        collide.setPosition(x, y);
+         
     }
 
     public int getX(){

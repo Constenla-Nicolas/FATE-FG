@@ -6,12 +6,15 @@ import java.security.Key;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
- 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-
 import Entradas.Entradas;
 import Entradas.direcciones;
 import Online.server;
@@ -30,11 +33,11 @@ import utiles.InputEvent;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
-   int velocidad = 0; 
-   int  gravedad = 10;
+
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
+ 
    boolean animacion;
    int cont, cont2;
    float time, ts;
@@ -43,8 +46,10 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    Astolfo astolfo;
    boolean a1, a2, a3, leftW = false;
    Entradas entradas = new Entradas(this);
-  private String e;
-  private int opc;
+   private String e;
+   private int opc;
+   float velocidad = 0f,velocidad2=0f;
+   float  gravedad = 10f;
   private   personajePrefab p1;
   private  personajePrefab p2;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
@@ -53,38 +58,44 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     this.p2=p2;
     Config.addListInput(this);
     setFondo();
-    
+    p1.setX(450);
+    p1.setY(500);
+    p2.setX(700);
+    p2.setY(500);
  }
-    
+
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
     }
     @Override
     public void show() {
-        
+
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
-         
+
         Gdx.input.setInputProcessor(entradas);
-        
-       
+
+
     }
 float a;
-    @Override
+ @Override
     public void render(float delta) {
         time += delta;
-        
-        
-        
+
+
+
+
         Render.cleaner();
        b.begin();
-        fightstage.dibujar();
-       
-    
-         b.end();
-         
-     
-       
+       fightstage.dibujar();
+        b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
+        b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
+
+
+        colision();
+
+        b.end();
+
        
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
@@ -93,20 +104,57 @@ float a;
     //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     //         server.getHl().enviarAtodos(direcciones.PELEATERMINADA.getString());
     // }
-         
+
      }
 
-   
+     private void colision() {
+        if (Intersector.overlaps(p1.getCollide(), p2.getCollide())) {
+            System.out.println("se tocan");
+            if (server.getHl().getDir().compareTo(direcciones.DERECHA)==0) {
+                server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
+            Pjug().getCollide().setX(Pjug().getCollide().getX()+-15);
+            if (Pjug().getCollide().getY() <Config.HEIGHT/2+10) {
+                server.getHl().enviarAtodos(direcciones.POSX.getString()+",-30");
+                Pjug().getCollide().setX(Pjug().getCollide().getX()+-30);
+            }
+            }
+            else if (server.getHl().getDir().compareTo(direcciones.IZQUIERDA)==0) {
+                server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
+            Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
+            if (Pjug().getCollide().getY() <Config.HEIGHT/2+10) {
+                server.getHl().enviarAtodos(direcciones.POSX.getString()+",30");
+                Pjug().getCollide().setX(Pjug().getCollide().getX()+30);
+            }
+            }
+            
+            
+        }
+
+
+
+         p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
+         p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
+        if(p1.getCollide().getY() < Config.HEIGHT/2){
+            p1.getCollide().setY(Config.HEIGHT/2);
+            p1.setEstado(Estado.STANCE);
+        }
+        if(p2.getCollide().getY() <Config.HEIGHT/2){
+            p2.getCollide().setY(Config.HEIGHT/2);
+            p2.setEstado(Estado.STANCE);
+        }
+
+    }
+
 
     // private void movement(){
-        
+
     //     p1.setY(p1.getY() + (velocidad -= gravedad));
-        
+
     //     if(p1.getY() < Gdx.graphics.getHeight()/2){
     //         p1.setY(Gdx.graphics.getHeight()/2);
     //         p1.setEstado(Estado.STANCE);
     //     }
-        
+
     //     if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
     //         if(p1.getEstado() == Estado.CORRERL){
     //         }
@@ -144,13 +192,13 @@ float a;
     //             }
 
     //         }
-                
+
     //             }
     //             else{
     //                 p1.setEstado(Estado.ATAQUED);
-                    
+
     //             }
-                
+
 
     //     }
     //     else if(entradas.isS() && (!a1 && !a3) || (!p1.ataque2.isAnimationFinished(time) && a2) ){
@@ -160,81 +208,81 @@ float a;
     //             if(p1.getX() < p2.getX()){
     //                 if(entradas.isRight()){
     //                     p1.setX(p1.getX() + 15);
-    
+
     //                 }
     //                 if(entradas.isLeft()){
     //                     p1.setX(p1.getX() - 8);
-    
+
     //                 }
     //             }
     //             else{
     //                 if(entradas.isRight()){
     //                     p1.setX(p1.getX() + 8);
-    
+
     //                 }
     //                 if(entradas.isLeft()){
     //                     p1.setX(p1.getX() - 15);
-    
+
     //                 }
-    
+
     //             }
     //         }
     //             else{
     //                 p1.setEstado(Estado.ATAQUEM);
-    //             } 
+    //             }
     //         }
     //         else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && a3) && (!a1 && !a2)){
     //             a3 = true;
-                
+
     //             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
     //                 p1.setEstado(Estado.AEREO3);
     //                 if(p1.getX() < p2.getX()){
     //                     if(entradas.isRight()){
     //                         p1.setX(p1.getX() + 10);
-        
+
     //                     }
     //                     if(entradas.isLeft()){
     //                         p1.setX(p1.getX() - 5);
-        
+
     //                     }
     //                 }
     //                 else{
     //                     if(entradas.isRight()){
     //                         p1.setX(p1.getX() + 5);
-        
+
     //                     }
     //                     if(entradas.isLeft()){
     //                         p1.setX(p1.getX() - 10);
-        
+
     //                     }
-        
+
     //                 }
     //                 }
     //                 else{
     //                     p1.setEstado(Estado.ATAQUEF);
-    //                 } 
+    //                 }
     //             }
     //     else if(entradas.isRight() && (!a2 && !a3 && !a1)){
     //         if(p1.getEstado() != Estado.SALTO){
     //         p1.setEstado(Estado.CORRER);
     //         }
     //         if(p1.currentFrame.isFlipX()){
-                
+
     //             p1.currentFrame.flip(true, false);
-                
+
     //         }
     //         p1.setX(p1.getX() + 20);
-            
 
-    //     }      
+
+    //     }
     //     else if(entradas.isLeft()){
     //         if(p1.getEstado() != Estado.SALTO){
     //             p1.setEstado(Estado.CORRERL);
     //             }
-                
+
     //             p1.setX(p1.getX() - 20);
     //         }
-        
+
     //     p1.setEstadoAnterior(p1.getEstado());
 
 
@@ -252,7 +300,7 @@ float a;
     //             time = 0;
     //         }
     //         break;
-            
+
     //         case AGACHADO:
     //         p1.currentFrame = p1.crouch.getKeyFrame(time);
     //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -279,7 +327,7 @@ float a;
     //         if(p1.ataque4.isAnimationFinished(time)){
     //             time = 0;
     //         }
-            
+
     //         a2 = false;
     //         a3 = false;
     //         break;
@@ -329,11 +377,11 @@ float a;
     //         if(p1.air1.isAnimationFinished(time)){
     //             time = 0;
     //         }
-            
+
     //         a2 = false;
     //         a3 = false;
     //         break;
-            
+
     //         case AEREO2:
     //         p1.currentFrame = p1.air2.getKeyFrame(time);
     //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -346,12 +394,12 @@ float a;
     //         if(p1.air2.isAnimationFinished(time)){
     //             time = 0;
     //         }
-            
+
     //         a1 = false;
     //         a3 = false;
     //         break;
     //         case AEREO3:
-            
+
     //         p1.currentFrame = p1.air3.getKeyFrame(time);
     //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
     //             p1.currentFrame.flip(true, false);
@@ -365,7 +413,7 @@ float a;
     //         }
     //         a1 = false;
     //         a2 = false;
-            
+
     //         break;
     //         case CORRER:
     //         p1.currentFrame = p1.walk.getKeyFrame(time);
@@ -376,19 +424,19 @@ float a;
     //         if(p1.walk.isAnimationFinished(time)){
     //             time = 0;
     //         }
-            
+
     //         break;
     //         case CORRERL:
     //         p1.currentFrame = p1.walk.getKeyFrame(time);
     //         if(!p1.currentFrame.isFlipX()){
     //             p1.currentFrame.flip(true, false);
     //         }
-            
+
     //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
     //         if(p1.walk.isAnimationFinished(time)){
     //             time = 0;
     //         }
-            
+
     //         break;
     //         default:
     //         a1 = false;
@@ -402,11 +450,11 @@ float a;
     //             p1.currentFrame.flip(true, false);
     //         }
     //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            
-           
+
+
     //             break;
 
-                
+
     //     }
 
 
@@ -414,37 +462,38 @@ float a;
 
 
 
-      
+
 
     // }
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-    
-     
+
+
+
+
 public int inputSelec() {
     try {
         synchronized(entradas){
               entradas.wait(90);
 
         }
-        
+
       } catch (InterruptedException e) {
-       
+
           e.printStackTrace();
       }
-    
-        
+
+
         if (entradas.isDown()) {
-          
+
             if (opc==0) {
-                 
+
                 opc=3;
-               
+
             }
             else{
                 opc--;
-              
+
             }
         }
         if (entradas.isUp()) {
@@ -453,10 +502,10 @@ public int inputSelec() {
             }
             else{
                 opc++;
-               
+
             }
         }
-      
+
         return opc;
 }
 
@@ -465,31 +514,31 @@ public int inputSelec() {
 
     @Override
     public void resize(int width, int height) {
-        //  
-        
+        //
+
     }
 
     @Override
     public void pause() {
-        //  
-        
+        //
+
     }
 
     @Override
     public void resume() {
-        //  
-        
+        //
+
     }
 
     @Override
     public void hide() {
-        //  
-        
+        //
+
     }
 
     @Override
     public void dispose() {
-    
+
     Render.batch.dispose();
     hud.dispose();
     }
@@ -499,43 +548,59 @@ public int inputSelec() {
         fightstage.setSize(Config.tamanioDeAlgo(100, Config.WIDTH),Config.tamanioDeAlgo(100, Config.HEIGHT));
         fightstage.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
     }
+public personajePrefab Pjug(){
+    if (server.getUsuario()==server.getUsuarios()[0]) {
+         
+        return p1;
+        
+    }
 
-    
+    else if(server.getUsuario()==server.getUsuarios()[1]){
+       
+         
+        return p2;
+
+    }
+    return null;
+}
+
 
     @Override
     public void handleInput() {
-       
-             
+
+
             switch (server.getHl().getDir()) {
                 case IZQUIERDA:
-                     
-                 
-                server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
-                
+
+              
+                   server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
+                   Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
                     
                     break;
-     
+
                     case DERECHA:
+   
                     server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
-                    
+                    Pjug().getCollide().setPosition(Pjug().getCollide().x + 15, Pjug().getCollide().y);
                     break;
                     case ARRIBA:
                     server.getHl().getDir().POSY.setPOSY(50);
+                    Pjug().getCollide().setPosition(Pjug().getCollide().x , Pjug().getCollide().y+100);
                     server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
                     server.getHl().getDir().POSY.reposy();
 
                     break;
                     case ENTER:
-                     
-                    
+
+
                     System.out.println("llego un enter");
                     break;
                 default:
                     System.out.println("no me encuentro instruccion");
                     break;
             }
-        
-        
+
+
     }
-    
+
 }

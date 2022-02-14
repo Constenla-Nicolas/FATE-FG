@@ -17,6 +17,7 @@ public enum direcciones {
     SELECCIONESCENARIOS("SelecEscc"),
     ESCENARIOS("Screens.Escenarios"),
     PELEATERMINADA("Screens.PeleaTerminada"),
+    CERRAR("cerrar"),
     POSX("POSX"),
     POSY("POSY"),
     HP("HP"),

@@ -50,7 +50,7 @@ public class HiloServidor extends Thread {
     }
 
     public void stopSv(){
-        enviarAtodos("server cerrado");
+        enviarAtodos(direcciones.CERRAR.getString());
         System.out.println("cerrando server");
         if (!s.isClosed()) {
            s.close();
@@ -182,7 +182,7 @@ public class HiloServidor extends Thread {
                     case 0:
                         System.out.println("usuario conectado");
                      Usuario[contconexion]=new SvClientes(dp.getAddress(),dp.getPort());
-                    
+                     
                       enviarMensaje("0" , Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
                       
                       contconexion++;
@@ -225,14 +225,13 @@ public class HiloServidor extends Thread {
                     System.out.println("estoy a punto de crear un escenario");
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
-                             System.out.println(Usuario[0].getP1()+"AAAAAAAAAA" +Usuario[1].getP1());
+                            
                             Render.app.setScreen(new Escenarios(Background.values()[SeleccionEscenarios.getOpc()].getRoot(), Usuario[0].getP1(), Usuario[1].getP1()));
                         }
                     });
                   
- 
-
                     break;
+                     
                     case ASTOLFO:
                     Usuario[posconexion].setP1(Retratos.ASTOLFO.getClase());
                     break;
@@ -256,7 +255,7 @@ public class HiloServidor extends Thread {
          
      }
      
-     public void enviarMensajeCaida(String msg,InetAddress ipdestino, int puerto){
+     public void enviarMov(String msg,InetAddress ipdestino, int puerto){
         if (getUsuarios()[0].getIp()==ipdestino) {
             msg=msg+"<>0";
             
