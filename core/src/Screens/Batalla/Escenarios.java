@@ -140,6 +140,8 @@ float a;
 
     private void movement(){
 
+        System.out.println(p2.getEstado());
+
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
         if(p1.getY() < Config.HEIGHT/2){
@@ -171,21 +173,21 @@ float a;
                 p1.setEstado(Estado.AEREO1);
                 if(p1.getX() < p2.getX()){
                 if(entradas.isRight()){
-                    p1.setX(p1.getX() + 20);
+                    p1.setX(p1.getX());
 
                 }
                 if(entradas.isLeft()){
-                    p1.setX(p1.getX() - 10);
+                    p1.setX(p1.getX());
 
                 }
             }
             else{
                 if(entradas.isRight()){
-                    p1.setX(p1.getX() + 10);
+                    p1.setX(p1.getX());
 
                 }
                 if(entradas.isLeft()){
-                    p1.setX(p1.getX() - 20);
+                    p1.setX(p1.getX());
 
                 }
 
@@ -454,6 +456,178 @@ float a;
 
                 
         }
+        
+p2.setEstadoAnterior(p2.getEstado());
+
+
+switch(p2.getEstado()){
+    case SALTO:
+    p2.currentFrame = p2.jump.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.jump.isAnimationFinished(time)){
+        time = 0;
+    }
+    break;
+    
+    case AGACHADO:
+    p2.currentFrame = p2.crouch.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    
+    break;
+
+    case ATAQUED:
+    p2.currentFrame = p2.ataque4.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.ataque4.isAnimationFinished(time)){
+        time = 0;
+    }
+    
+    a2 = false;
+    a3 = false;
+    break;
+
+    case ATAQUEM:
+    p2.currentFrame = p2.ataque2.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.ataque2.isAnimationFinished(time)){
+        time = 0;
+    }
+    a1 = false;
+    a3 = false;
+    break;
+
+    case ATAQUEF:
+    p2.currentFrame = p2.ataque3.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.ataque3.isAnimationFinished(time)){
+        time = 0;
+    }
+    a1 = false;
+    a2 = false;
+    break;
+
+    case AEREO1:
+    p2.air1.setPlayMode(PlayMode.NORMAL);
+    p2.currentFrame = p2.air1.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.air1.isAnimationFinished(time)){
+        time = 0;
+    }
+    
+    a2 = false;
+    a3 = false;
+    break;
+    
+    case AEREO2:
+    p2.currentFrame = p2.air2.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.air2.isAnimationFinished(time)){
+        time = 0;
+    }
+    
+    a1 = false;
+    a3 = false;
+    break;
+    case AEREO3:
+    
+    p2.currentFrame = p2.air3.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.air3.isAnimationFinished(time)){
+        time = 0;
+    }
+    a1 = false;
+    a2 = false;
+    
+    break;
+    case CORRER:
+    p2.currentFrame = p2.walk.getKeyFrame(time);
+    if(p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.walk.isAnimationFinished(time)){
+        time = 0;
+    }
+    
+    break;
+    case CORRERL:
+    p2.currentFrame = p2.walk.getKeyFrame(time);
+    if(!p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    if(p2.walk.isAnimationFinished(time)){
+        time = 0;
+    }
+    
+    break;
+    default:
+    a1 = false;
+    a2 = false;
+    a3 = false;
+    p2.currentFrame = p2.stance.getKeyFrame(time,true);
+    if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    
+   
+        break;
+
+        
+}
 
 
 
@@ -592,7 +766,7 @@ public int inputSelec() {
 
                 case POSY:
                 p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
-
+                p1.setEstado(Estado.SALTO);
                 break;
                 
                    
@@ -617,9 +791,11 @@ public int inputSelec() {
                 case POSX:
 
                 p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());
+                p1.setEstado(Estado.CORRER);
                     break;
                 case POSY:
                 p2.setY(p2.getY() + cliente.getHiloC().darmayonesa());
+                p2.setEstado(Estado.SALTO);
 
                 break;
            
