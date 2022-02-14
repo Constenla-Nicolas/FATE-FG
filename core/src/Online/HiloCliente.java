@@ -14,6 +14,7 @@ import com.badlogic.gdx.Gdx;
 
 import Entradas.Direcciones;
 import Screens.Background;
+import Screens.MenuPrincipal;
 import Screens.SeleccionEscenarios;
 import Screens.SeleccionPJ;
 import Screens.Batalla.Escenarios;
@@ -124,7 +125,7 @@ public class HiloCliente extends Thread {
            if (parte1.equals(Direcciones.POSX.getString())) {
                dir=Direcciones.POSX;
                 mayonesa(Integer.parseInt(parte4));
-                System.out.println("la direccion es" +dir.getString());
+                
             }
             if (parte1.equals(Direcciones.POSY.getString())) {
                 dir=Direcciones.POSY;
@@ -203,7 +204,17 @@ public boolean MiPropioMensaje(){
             dir.HPaRestar(Integer.parseInt(parte4));
           
             break;
-           
+           case CERRAR:
+           Gdx.app.postRunnable(new Runnable() {
+            public void run(){
+                System.out.println("Volviendo al menu...");
+                Render.app.setScreen(new MenuPrincipal());
+
+            }
+        });
+        this.interrupt();
+
+           break;
             case SELECCIONESCENARIOS:
              
             if (cont==0) {

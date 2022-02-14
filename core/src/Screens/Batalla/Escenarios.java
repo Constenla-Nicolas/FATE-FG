@@ -7,7 +7,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
- 
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.math.Rectangle;
@@ -28,7 +28,7 @@ import utiles.InputEvent;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
-   float velocidad = 0f,velocidad2=0f; 
+   float velocidad = 0f,velocidad2=0f;
    float  gravedad = 10f;
    protected Imagen fightstage;
    Hud hud;
@@ -50,12 +50,12 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     this.p2=p2;
       if (cliente.getHiloC().getIdcliente()==0) {
         System.out.println("soy el cliente 0");
-       cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString()); 
+       cliente.getHiloC().enviarMensaje(Direcciones.ESCENARIOS.getString());
        p1.setX(450);
        p1.setY(500);
        p2.setX(700);
        p2.setY(500);
-       
+
     }
     else{
         p1.setX(700);
@@ -63,56 +63,54 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         p2.setX(450);
         p2.setY(500);
     }
-       
-  
+
+
     p1.setAnims();
     p2.setAnims();
     setFondo();
     Config.addListInput(this);
-  
-    
+
+
  }
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
     }
     @Override
     public void show() {
-        
+
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
         p1.currentFrame = p1.stance.getKeyFrame(1);
-        
+
         p2.currentFrame = p2.stance.getKeyFrame(1);
-        p1.sethitbox();
-        p2.sethitbox();
-                                       
+
+
         Gdx.input.setInputProcessor(entradas);
-        //player2Box = new Rectangle(astolfo.img.getX(), astolfo.img.getY(), astolfo.img.getWidth(), astolfo.img.getHeight());
-       
+
     }
 float a;
     @Override
     public void render(float delta) {
         inputSelec();
         time += delta;
-        
-        
+
+
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
 
-        
+
       b.draw(p1.currentFrame, p1.getX(), p1.getY());
       b.draw(p2.currentFrame, p2.getX(), p2.getY());
         // System.out.println(p1.getX());
         // System.out.println(p2.getX());
-      
+
      movement();
-        
+
         a=a+0.1f;
-       colision();
+
          b.end();
-         
+
         b.begin();
         hb.dibujar();
         b.end();
@@ -122,38 +120,35 @@ float a;
 
         hud.mostrarHud();
         hud.getCuentaAtras().setText(hud.getSec());
-        p1.box1.setPosition(p1.getX(), p1.getY());
-        
-        p2.box1.setPosition(p2.getX(), p2.getY());
+        // p1.box1.setPosition(p1.getX(), p1.getY());
+
+        // p2.box1.setPosition(p2.getX(), p2.getY());
 
     //    if (hud.getSec()<=95) {
     //        // hud.terminarTimer();
     //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     // }
-      
-     
-    
+
+
+
      }
 
-    
-    private void colision(){
-         if(p1.box1.overlaps(p2.box1)){
-         }
-     } 
+
+
 
     private void movement(){
-        
+
         p1.setY(p1.getY() + (velocidad -= gravedad));
-        
-        if(p1.getY() < Gdx.graphics.getHeight()/2){
-            p1.setY(Gdx.graphics.getHeight()/2);
+
+        if(p1.getY() < Config.HEIGHT/2){
+            p1.setY(Config.HEIGHT/2);
             p1.setEstado(Estado.STANCE);
         }
-          
+
         p2.setY(p2.getY() + (velocidad2 -= gravedad));
-        
-        if(p2.getY() < Gdx.graphics.getHeight()/2){
-            p2.setY(Gdx.graphics.getHeight()/2);
+
+        if(p2.getY() < Config.HEIGHT/2){
+            p2.setY(Config.HEIGHT/2);
             p2.setEstado(Estado.STANCE);
         }
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
@@ -189,17 +184,17 @@ float a;
                 }
                 if(entradas.isLeft()){
                     p1.setX(p1.getX() - 20);
-                    
+
                 }
 
             }
-                
+
                 }
                 else{
                     p1.setEstado(Estado.ATAQUED);
-                    
+
                 }
-                
+
 
         }
         else if(entradas.isS() && (!a1 && !a3) || (!p1.ataque2.isAnimationFinished(time) && a2) ){
@@ -209,82 +204,82 @@ float a;
                 if(p1.getX() < p2.getX()){
                     if(entradas.isRight()){
                         p1.setX(p1.getX() + 15);
-    
+
                     }
                     if(entradas.isLeft()){
                         p1.setX(p1.getX() - 8);
-    
+
                     }
                 }
                 else{
                     if(entradas.isRight()){
                         p1.setX(p1.getX() + 8);
-    
+
                     }
                     if(entradas.isLeft()){
                         p1.setX(p1.getX() - 15);
-    
+
                     }
-    
+
                 }
             }
                 else{
                     p1.setEstado(Estado.ATAQUEM);
-                } 
+                }
             }
             else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && a3) && (!a1 && !a2)){
                 a3 = true;
-                
+
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
                     if(p1.getX() < p2.getX()){
                         if(entradas.isRight()){
                             p1.setX(p1.getX() + 10);
-        
+
                         }
                         if(entradas.isLeft()){
                             p1.setX(p1.getX() - 5);
-        
+
                         }
                     }
                     else{
                         if(entradas.isRight()){
                             p1.setX(p1.getX() + 5);
-        
+
                         }
                         if(entradas.isLeft()){
                             p1.setX(p1.getX() - 10);
-        
+
                         }
-        
+
                     }
                     }
                     else{
                         p1.setEstado(Estado.ATAQUEF);
-                    } 
+                    }
                 }
         else if(entradas.isRight() && (!a2 && !a3 && !a1)){
             if(p1.getEstado() != Estado.SALTO){
             p1.setEstado(Estado.CORRER);
             }
             if(p1.currentFrame.isFlipX()){
-                
+
                 p1.currentFrame.flip(true, false);
-                
+
             }
            // p1.setX(p1.getX() + 20);
             entradas.mandarOnline(22);
 
-        }      
+        }
         else if(entradas.isLeft()){
             if(p1.getEstado() != Estado.SALTO){
                 p1.setEstado(Estado.CORRERL);
                 }
-                
+
             //    p1.setX(p1.getX() - 20);
                 entradas.mandarOnline(21);
             }
-        
+
         p1.setEstadoAnterior(p1.getEstado());
 
 
@@ -302,7 +297,7 @@ float a;
         //         time = 0;
         //     }
         //     break;
-            
+
         //     case AGACHADO:
         //     p1.currentFrame = p1.crouch.getKeyFrame(time);
         //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -329,7 +324,7 @@ float a;
         //     if(p1.ataque4.isAnimationFinished(time)){
         //         time = 0;
         //     }
-            
+
         //     a2 = false;
         //     a3 = false;
         //     break;
@@ -379,11 +374,11 @@ float a;
         //     if(p1.air1.isAnimationFinished(time)){
         //         time = 0;
         //     }
-            
+
         //     a2 = false;
         //     a3 = false;
         //     break;
-            
+
         //     case AEREO2:
         //     p1.currentFrame = p1.air2.getKeyFrame(time);
         //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -396,12 +391,12 @@ float a;
         //     if(p1.air2.isAnimationFinished(time)){
         //         time = 0;
         //     }
-            
+
         //     a1 = false;
         //     a3 = false;
         //     break;
         //     case AEREO3:
-            
+
         //     p1.currentFrame = p1.air3.getKeyFrame(time);
         //     if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
         //         p1.currentFrame.flip(true, false);
@@ -415,7 +410,7 @@ float a;
         //     }
         //     a1 = false;
         //     a2 = false;
-            
+
         //     break;
         //     case CORRER:
         //     p1.currentFrame = p1.walk.getKeyFrame(time);
@@ -426,19 +421,19 @@ float a;
         //     if(p1.walk.isAnimationFinished(time)){
         //         time = 0;
         //     }
-            
+
         //     break;
         //     case CORRERL:
         //     p1.currentFrame = p1.walk.getKeyFrame(time);
         //     if(!p1.currentFrame.isFlipX()){
         //         p1.currentFrame.flip(true, false);
         //     }
-            
+
         //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
         //     if(p1.walk.isAnimationFinished(time)){
         //         time = 0;
         //     }
-            
+
         //     break;
         //     default:
         //     a1 = false;
@@ -452,11 +447,11 @@ float a;
         //         p1.currentFrame.flip(true, false);
         //     }
         //    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            
-           
+
+
         //         break;
 
-                
+
         // }
 
 
@@ -464,12 +459,12 @@ float a;
 
 
 
-      
+
 
     }
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+
     private void ActualizarBarras() {
     if (p1.getVidaActual()!=p1.getVidamax()) {
            hb.Restarvida1(p1.getVidaActual());
@@ -485,33 +480,33 @@ float a;
     }
 
     }
-    
-     
+
+
 public int inputSelec() {
     if(!Config.ONLINE){
 
         try {
             synchronized(entradas){
                   entradas.wait(90);
-    
+
             }
-            
+
           } catch (InterruptedException e) {
-           
+
               e.printStackTrace();
           }
-        
-            
+
+
             if (entradas.isDown()) {
-              
+
                 if (opc==0) {
-                     
+
                     opc=3;
-                   
+
                 }
                 else{
                     opc--;
-                  
+
                 }
             }
             if (entradas.isUp()) {
@@ -520,47 +515,48 @@ public int inputSelec() {
                 }
                 else{
                     opc++;
-                   
+
                 }
             }
-          
+
     }
-    
+
     return opc;
-    
+
 }
 
- 
-    
+
+
 
 
     @Override
     public void resize(int width, int height) {
-        //  
-        
+        //
+
     }
 
     @Override
     public void pause() {
-        //  
-        
+        //
+
     }
 
     @Override
     public void resume() {
-        //  
-        
+        //
+
     }
 
     @Override
     public void hide() {
-        //  
-        
+        //
+
     }
 
     @Override
     public void dispose() {
-    
+    p1.currentFrame.getTexture().dispose();
+    p1.currentFrame.getTexture().dispose();
     Render.batch.dispose();
     hud.dispose();
     }
@@ -576,29 +572,29 @@ public int inputSelec() {
       inputQueLlega();
        cliente.getHiloC().getDir().dontActive();
     }
-    
-   
-    
+
+
+
     @Override
     public int inputQueLlega() {
-        
-           
+
+
         if (cliente.getHiloC().MiPropioMensaje()) {
-        
+
             switch (cliente.getHiloC().getDir()) {
                 case POSX:
-                
-                 
+
+
                 p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
                     p1.setEstado(Estado.CORRER);
                     break;
 
                 case POSY:
                 p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
-                
+
                 break;
-                
-                    
+
+
                 case ARRIBA:
                 p1.currentFrame = p1.jump.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -611,7 +607,7 @@ public int inputSelec() {
             if(p1.jump.isAnimationFinished(time)){
                 time = 0;
             }
-                  
+
 
                     break;
                 case ABAJO:
@@ -623,7 +619,7 @@ public int inputSelec() {
                     p1.currentFrame.flip(true, false);
                 }
                //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-                
+
                 break;
 
                 case ATAQUED:
@@ -638,13 +634,13 @@ public int inputSelec() {
                 if(p1.ataque4.isAnimationFinished(time)){
                     time = 0;
                 }
-                
+
                 a2 = false;
                 a3 = false;
-                
-                
+
+
                 break;
-                
+
                 case ATAQUEM:
                 p1.currentFrame = p1.ataque2.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -660,7 +656,7 @@ public int inputSelec() {
             a1 = false;
             a3 = false;
             break;
-            
+
             case ATAQUEF:
             p1.currentFrame = p1.ataque3.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -692,14 +688,14 @@ public int inputSelec() {
                     if(!p1.currentFrame.isFlipX()){
                         p1.currentFrame.flip(true, false);
                     }
-                    
+
                    //b.draw(p1.currentFrame, p1.getX(), p1.getY());
                     if(p1.walk.isAnimationFinished(time)){
                         time = 0;
                     }
                     break;
                 case HP:
-                
+
                 p1.setVidaActual(p1.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
                 default:
@@ -714,27 +710,27 @@ public int inputSelec() {
             else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
             }
-         
+
                     break;
 
-                  
+
             }
-             
+
         }
-     
+
         else if(!cliente.getHiloC().MiPropioMensaje()) {
-            
+
              switch (cliente.getHiloC().getDir()) {
 
                 case POSX:
- 
-                p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());     
+
+                p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());
                     break;
                 case POSY:
-                p2.setY(p2.getY() + cliente.getHiloC().darmayonesa()); 
-                
+                p2.setY(p2.getY() + cliente.getHiloC().darmayonesa());
+
                 break;
-           
+
                 case ARRIBA:
                 p2.currentFrame = p2.jump.getKeyFrame(time);
             if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
@@ -747,7 +743,7 @@ public int inputSelec() {
             if(p2.jump.isAnimationFinished(time)){
                 time = 0;
             }
-                  
+
             velocidad2=50;
                     break;
                 case ABAJO:
@@ -759,7 +755,7 @@ public int inputSelec() {
                     p2.currentFrame.flip(true, false);
                 }
                //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-                
+
                 break;
 
                 case ATAQUED:
@@ -774,13 +770,13 @@ public int inputSelec() {
                 if(p2.ataque4.isAnimationFinished(time)){
                     time = 0;
                 }
-                
+
                 a2 = false;
                 a3 = false;
-                
-                
+
+
                 break;
-                
+
                 case ATAQUEM:
                 p2.currentFrame = p2.ataque2.getKeyFrame(time);
             if(p2.getX() > p1.getX() && !p1.currentFrame.isFlipX()){
@@ -796,7 +792,7 @@ public int inputSelec() {
             a1 = false;
             a3 = false;
             break;
-            
+
             case ATAQUEF:
             p2.currentFrame = p2.ataque3.getKeyFrame(time);
             if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
@@ -829,12 +825,12 @@ public int inputSelec() {
                     if(!p2.currentFrame.isFlipX()){
                         p2.currentFrame.flip(true, false);
                     }
-                    
+
                    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
                     if(p2.walk.isAnimationFinished(time)){
                         time = 0;
                     }
-                    
+
                     break;
                 case HP:
                 p2.setVidaActual(p2.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
@@ -845,7 +841,7 @@ public int inputSelec() {
             a3 = false;
             p2.currentFrame = p2.stance.getKeyFrame(time,true);
             if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
-                
+
                 p2.currentFrame.flip(true, false);
             }
             else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
@@ -854,14 +850,14 @@ public int inputSelec() {
            //b.draw(p2.currentFrame, p2.getX(), p2.getY());
                     break;
        }
-        
-       
+
+
         }
-         
+
 
 
 
         return 0;
     }
-    
+
 }

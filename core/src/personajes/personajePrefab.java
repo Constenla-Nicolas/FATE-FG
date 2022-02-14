@@ -71,11 +71,7 @@ Imagen img;
   
  
 
-  public void sethitbox(){
-    img = new Imagen("Astolfo/Stance1.png");
-    img.setPosition((Gdx.graphics.getWidth()/2), Gdx.graphics.getHeight()/2);
-      box1 = new Rectangle(img.getX(), img.getY(), img.getAncho(), img.getAlto());
-  }
+  
     public personajePrefab(){
          tiempo= new Timer(200, this);
       
