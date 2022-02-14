@@ -27,7 +27,7 @@ public abstract class personajePrefab implements Action{
     protected TextureAtlas textureAtlas;
    protected float cargasuper;
    protected TextureRegion texRegion;
-  protected int x, y;
+  protected float x, y;
 int texWidth, texHeight;
 Imagen img;
   protected int vidamax = 100;
@@ -97,21 +97,21 @@ Imagen img;
     public void setInput(int opc){
         this.opc=opc;
     }
-    public void setX(int x){
+    public void setX(float x){
         this.x = x;
         collide.setPosition(x, y);
         
     }
-	public void setY(int y){
+	public void setY(float y){
         this.y = y;
         collide.setPosition(x, y);
          
     }
 
-    public int getX(){
+    public float getX(){
         return x;
     }
-	public int getY(){
+	public float getY(){
         return y;
     }
 
@@ -184,7 +184,7 @@ Imagen img;
         // TODO Auto-generated method stub
         
     }
-  
+     
     
 
 }

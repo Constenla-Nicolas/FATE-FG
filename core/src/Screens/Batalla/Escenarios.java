@@ -84,15 +84,18 @@ float a;
 
 
 
-
+        ts+=delta;
         Render.cleaner();
        b.begin();
        fightstage.dibujar();
         b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
         b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
+        if (ts>.1f ) {
+            colision(); 
+            ts=0;
+                }
 
-
-        colision();
+       
 
         b.end();
 
@@ -113,24 +116,16 @@ float a;
             if (server.getHl().getDir().compareTo(direcciones.DERECHA)==0) {
                 server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
             Pjug().getCollide().setX(Pjug().getCollide().getX()+-15);
-            if (Pjug().getCollide().getY() <Config.HEIGHT/2+10) {
-                server.getHl().enviarAtodos(direcciones.POSX.getString()+",-30");
-                Pjug().getCollide().setX(Pjug().getCollide().getX()+-30);
-            }
+            
             }
             else if (server.getHl().getDir().compareTo(direcciones.IZQUIERDA)==0) {
                 server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
             Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
-            if (Pjug().getCollide().getY() <Config.HEIGHT/2+10) {
-                server.getHl().enviarAtodos(direcciones.POSX.getString()+",30");
-                Pjug().getCollide().setX(Pjug().getCollide().getX()+30);
-            }
+           
             }
             
             
         }
-
-
 
          p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
          p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
