@@ -98,7 +98,7 @@ float a;
         inputSelec();
          time += delta;
          ts+=delta;
-        if (ts>.1f ) {
+        if (ts>.05f ) {
             movement();
             ts=0;
                 }
@@ -202,7 +202,7 @@ float a;
                 }
                 else{
                     p1.setEstado(Estado.ATAQUED);
-
+                    cliente.getHiloC().enviarMensaje(Direcciones.ATAQUED.getString());
                 }
                 
                 
@@ -271,6 +271,7 @@ float a;
                     }
                     else{
                         p1.setEstado(Estado.ATAQUEF);
+                        cliente.getHiloC().enviarMensaje(Direcciones.ATAQUEF.getString());
                     }
                 }
         else if(entradas.isRight() && (!a2 && !a3 && !a1)){
