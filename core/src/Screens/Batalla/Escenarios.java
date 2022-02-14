@@ -108,7 +108,6 @@ float a;
         // System.out.println(p2.getX());
       
      movement();
-    System.out.println(p1.getEstado());
         
         a=a+0.1f;
        colision();
@@ -595,7 +594,7 @@ public int inputSelec() {
                     break;
 
                 case POSY:
-                p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); 
+                p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
                 
                 break;
                 
@@ -624,9 +623,7 @@ public int inputSelec() {
                     p1.currentFrame.flip(true, false);
                 }
                //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-                if(p1.crouch.isAnimationFinished(time)){
-                    time = 0;
-                }
+                
                 break;
 
                 case ATAQUED:
@@ -689,7 +686,6 @@ public int inputSelec() {
                 if(p1.walk.isAnimationFinished(time)){
                     time = 0;
                 }
-                p1.setEstado(Estado.CORRER);
                     break;
                     case IZQUIERDA:
                     p1.currentFrame = p1.walk.getKeyFrame(time);
@@ -701,7 +697,6 @@ public int inputSelec() {
                     if(p1.walk.isAnimationFinished(time)){
                         time = 0;
                     }
-                    p1.setEstado(Estado.CORRER);
                     break;
                 case HP:
                 
@@ -764,9 +759,7 @@ public int inputSelec() {
                     p2.currentFrame.flip(true, false);
                 }
                //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-                if(p2.crouch.isAnimationFinished(time)){
-                    time = 0;
-                }
+                
                 break;
 
                 case ATAQUED:
@@ -853,7 +846,6 @@ public int inputSelec() {
             p2.currentFrame = p2.stance.getKeyFrame(time,true);
             if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
                 
-      System.out.println(p2.currentFrame.getTexture());
                 p2.currentFrame.flip(true, false);
             }
             else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
