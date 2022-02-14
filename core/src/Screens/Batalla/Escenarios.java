@@ -144,12 +144,11 @@ float a;
 
     private void movement(){
 
-
+        System.out.println(p1.getEstado());
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
         if(p1.getY() <= Config.HEIGHT/2){
             p1.setY(Config.HEIGHT/2);
-            System.out.println("aaaaaa");
             p1.setEstado(Estado.STANCE);
         }
 
@@ -158,7 +157,6 @@ float a;
         if(p2.getY() <= Config.HEIGHT/2){
             p2.setY(Config.HEIGHT/2);
             
-            System.out.println("bbbbbbb");
             p2.setEstado(Estado.STANCE);
 
         }
@@ -776,12 +774,11 @@ public int inputSelec() {
 
 
                 p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
-                    p1.setEstado(Estado.CORRER);
                     break;
                     
                 case POSY:
                 p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
-                p1.setEstado(Estado.SALTO);
+         
                 break;
                 
                    
