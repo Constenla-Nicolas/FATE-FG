@@ -185,32 +185,32 @@ float a;
      }
 
      private void colision() {
-        if (Intersector.overlaps(p1.getCollide(), p2.getCollide())) {
-            System.out.println("se tocan");
-            if (server.getHl().getDir().compareTo(direcciones.DERECHA)==0) {
-                server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
-            Pjug().getCollide().setX(Pjug().getCollide().getX()+-15);
+    //     if (Intersector.overlaps(p1.getCollide(), p2.getCollide())) {
+    //         System.out.println("se tocan");
+    //         if (server.getMsg().equals("izquierda")) {
+    //             server.enviarAtodos(direcciones.POSX.getString()+",-15");
+    //         Pjug().getCollide().setX(Pjug().getCollide().getX()+-15);
             
-            }
-            else if (server.getHl().getDir().compareTo(direcciones.IZQUIERDA)==0) {
-                server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
-            Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
+    //         }
+    //         else if (server.getMsg().equals("izquierda")) {
+    //             server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
+    //         Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
            
-            }
+    //         }
             
             
-        }
+    //     }
 
-         p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
-         p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
-        if(p1.getCollide().getY() < Config.HEIGHT/2){
-            p1.getCollide().setY(Config.HEIGHT/2);
-            p1.setEstado(Estado.STANCE);
-        }
-        if(p2.getCollide().getY() <Config.HEIGHT/2){
-            p2.getCollide().setY(Config.HEIGHT/2);
-            p2.setEstado(Estado.STANCE);
-        }
+    //      p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
+    //      p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
+    //     if(p1.getCollide().getY() < Config.HEIGHT/2){
+    //         p1.getCollide().setY(Config.HEIGHT/2);
+    //         p1.setEstado(Estado.STANCE);
+    //     }
+    //     if(p2.getCollide().getY() <Config.HEIGHT/2){
+    //         p2.getCollide().setY(Config.HEIGHT/2);
+    //         p2.setEstado(Estado.STANCE);
+    //     }
 
     }
 
@@ -313,54 +313,54 @@ public personajePrefab Pjug(){
     public void handleInput() {
 
 
-            switch (server.getHl().getDir()) {
-                case IZQUIERDA:
-                   server.getHl().enviarAtodos(direcciones.POSX.getString()+",-15");
+            switch (server.getMsg().toLowerCase()) {
+                case "izquierda":
+                   server.enviarAtodos(direcciones.POSX.getString()+",-15");
                    Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
                     
                     break;
 
-                    case DERECHA:
+                    case "derecha":
    
-                    server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
+                    server.enviarAtodos("derecha"+",15");
                     Pjug().getCollide().setPosition(Pjug().getCollide().x + 15, Pjug().getCollide().y);
                     break;
-                    case ARRIBA:
-                    server.getHl().getDir().POSY.setPOSY(50);
-                    Pjug().getCollide().setPosition(Pjug().getCollide().x , Pjug().getCollide().y+100);
-                    server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
-                    server.getHl().getDir().POSY.reposy();
+                    case "arriba":
+                    // server.getHl().getDir().POSY.setPOSY(50);
+                    // Pjug().getCollide().setPosition(Pjug().getCollide().x , Pjug().getCollide().y+100);
+                    // server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
+                    // server.getHl().getDir().POSY.reposy();
                     
                     break;
-                    case ENTER:
+                    case "abajo":
 
 
                     
                     break;
-                    case ATAQUEF:
+                    case "ataquef":
                     System.out.println("llego un ataque fuerte");
                     Pjug().setEstado(Estado.ATAQUEF);
                 
 
                     break;
-                    case ATAQUEM:
+                    case "ataquem":
 
                     Pjug().setEstado(Estado.ATAQUEM);
 
                     break;
-                    case ATAQUED:
+                    case "ataqued":
 
                     Pjug().setEstado(Estado.ATAQUED);
                 
                     break;
-                    case AEREO1:
+                    case "aereo1":
                     Pjug().setEstado(Estado.AEREO1);
 
                     break;
-                    case AEREO2:
+                    case "aereo2":
                     Pjug().setEstado(Estado.AEREO2);
                     break;
-                    case AEREO3:
+                    case "aereo3":
                     Pjug().setEstado(Estado.AEREO3);
                     break;
 

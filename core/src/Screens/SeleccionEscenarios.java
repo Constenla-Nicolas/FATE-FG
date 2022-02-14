@@ -126,19 +126,9 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
     @Override
     public void handleInput() {
-        inputQueLlega();
-      System.out.println("handle input de selecesc sv");
-     
-    }
-
-   public static int getOpc() {
-       return opc;
-   }
-
-    public int inputQueLlega() {
-       
-        switch (server.getHl().getDir()) {
-            case IZQUIERDA:
+        server.enviarAtodos(server.getMsg());
+       switch (server.getMsg()) {
+            case "izquierda":
                  
                 if (opc==0) {
                   
@@ -151,7 +141,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
              }
                 break;
  
-                case DERECHA:
+                case "derecha":
                 if(opc==3){
                  opc=0;
                 }
@@ -161,15 +151,21 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 }
                 
                 break;
-                case ENTER:
+                case "enter":
 
-                    server.getHl().enviarAtodos(direcciones.ESCENARIOS.getString());
+                    server.getHl().enviarAtodos("escenarios");
                 
                 break;
             default:
                 break;
         }
-        return 0;
+      System.out.println("handle input de selecesc sv");
+     
     }
+
+   public static int getOpc() {
+       return opc;
+   }
+ 
     
 }

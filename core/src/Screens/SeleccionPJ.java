@@ -187,21 +187,18 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
     @Override
     public void handleInput() {
         System.out.println("handle input de selecPJ");
-       
-               if (server.getHl().getDir().compareTo(direcciones.ENTER)==0) {
+                server.enviarAtodos(server.getMsg());
+               if (server.getMsg().equals("enter")) {
                     
                 cont++;
              
                }
                if (cont==2) {
-                   server.getHl().enviarAtodos(direcciones.SELECCIONESCENARIOS.getString());
+                   server.enviarAtodos("seleccionescenario");
                    cont=0;
                }
              
-             
-           
-             
-             server.getHl().getDir().dontActive();
+              
           
          
         

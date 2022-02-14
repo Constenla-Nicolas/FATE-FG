@@ -11,8 +11,7 @@ import com.badlogic.gdx.Gdx;
 import Entradas.direcciones;
 import Screens.SeleccionEscenarios;
 import Screens.Batalla.Escenarios;
-import personajes.Astolfo;
-import personajes.personajePrefab;
+ 
 import utiles.Config;
 import utiles.Render;
 import utiles.Retratos;
@@ -25,11 +24,11 @@ public class HiloServidor extends Thread {
     private int puerto = 8080; 
     private int contconexion=0;
     private SvClientes[] Usuario = new SvClientes[2]; 
-    private int posconexion;
+    private int nroUsuario;
     private int cont;
- 
-    
-    // private direcciones dir;
+    String msg ;
+    int cant;
+   
      public HiloServidor(){
         creado =crearserver();
       
@@ -57,7 +56,12 @@ public class HiloServidor extends Thread {
         }
         this.interrupt();
     }
-   
+   public String getMsg() {
+       return msg;
+   }
+   public int getCant() {
+       return cant;
+   }
     public void enviarAtodos(String string) {
         if (getUsuario()==getUsuarios()[0]) {
             string=string+"<>0";
@@ -68,7 +72,7 @@ public class HiloServidor extends Thread {
         }
         byte[] data = string.getBytes();
         for (int i = 0; i < Usuario.length; i++) {
-       try {System.out.println("dentro de enviar a todos "+ string);    
+       try {  
         DatagramPacket dp = new DatagramPacket(data, data.length,Usuario[i].getIp(),Usuario[i].getPuerto());
         s.send(dp);
         } catch (IOException e) {
@@ -77,12 +81,13 @@ public class HiloServidor extends Thread {
         }     
 
         }
-        
+        System.out.println("se va a enviar a todos "+ string);  
     }
 
-    public DatagramSocket getS() {
+    public DatagramSocket getSocket() {
         return s;
     }
+    
      @Override
      public void run(){
             
@@ -138,13 +143,13 @@ public class HiloServidor extends Thread {
         return Usuario;
     }
     public SvClientes getUsuario() {
-         return Usuario[posconexion];
+         return Usuario[nroUsuario];
      }
      public void identificarUsuario(DatagramPacket dp){
          
         for (int i = 0; i < Usuario.length; i++) {
           if(Usuario[i].getIp().equals(dp.getAddress()) && Usuario[i].getPuerto()==dp.getPort()){
-              posconexion=i;
+              nroUsuario=i;
                
           }
           
@@ -159,17 +164,12 @@ public class HiloServidor extends Thread {
          
         
         
-         String msg = new String(dp.getData()).trim();
-         
-        //   for (int i = 0; i < direcciones.values().length; i++) {
-        //       if (direcciones.values()[i].getString().equals(msg)) {
-        //           dir= direcciones.values()[i];
-                  
-        //       }
-              
-        //   }
+         msg= new String(dp.getData()).trim();
+         msg=msg.toLowerCase();
+       
+    
           
-           if (msg=="conectar"){
+           if (msg.equals("conectar")){
              
                 switch (contconexion) {
                     
@@ -177,14 +177,14 @@ public class HiloServidor extends Thread {
                         System.out.println("usuario conectado");
                      Usuario[contconexion]=new SvClientes(dp.getAddress(),dp.getPort());
                      
-                      enviarMensaje("usuario0" , Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
+                      enviarMensaje("0" , Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
                       
                       contconexion++;
                       break;
                     case 1:
                     System.out.println("usuario conectado");
                     Usuario[contconexion]=new SvClientes(dp.getAddress(),dp.getPort());
-                    enviarMensaje("usuario1", Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
+                    enviarMensaje("1", Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
                        contconexion++;
                        enviarAtodos("seleccionpj");
                        Config.ONLINE=true;
@@ -194,18 +194,15 @@ public class HiloServidor extends Thread {
                         break;
                 }}
                 else{
-                System.out.println(msg);
+                
                 identificarUsuario(dp);
-           
                 switch (msg.toLowerCase()) {
                     case "seleccionescenarios":
-                    
-                   
                         Config.eraseInput(Config.getListInput().get(0));
                        System.out.println("estoy a punto de crear un selecest");
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
-                            Render.app.setScreen(new SeleccionEscenarios(server.getUsuarios()[0].getP1(), server.getUsuarios()[1].getP1()));
+                            Render.app.setScreen(new SeleccionEscenarios(Usuario[0].getP1(),Usuario[1].getP1()));
                         }
                     }); 
                
@@ -226,15 +223,17 @@ public class HiloServidor extends Thread {
                   
                     break;
                      
-                    case "astolfo":
-                    Usuario[posconexion].setP1(Retratos.ASTOLFO.getClase());
+                    case "personajes.Astolfo":
+                    Usuario[nroUsuario].setP1(Retratos.ASTOLFO.getClase());
                     break;
-                    case "mordred": 
-                    Usuario[posconexion].setP1(Retratos.MORDRED.getClase());
+                    case "personajes.Mordred": 
+                    Usuario[nroUsuario].setP1(Retratos.MORDRED.getClase());
                     break;
-                    case "jeanne": 
+                    case "personajes.Jeanne": 
+                    Usuario[nroUsuario].setP1(Retratos.JEANNE.getClase());
                     break;
-                    case "atalante": 
+                    case "personajes.Atalante": 
+                    Usuario[nroUsuario].setP1(Retratos.ATALANTE.getClase());
                     break;
                     default:
                     
@@ -264,8 +263,8 @@ public class HiloServidor extends Thread {
              e.printStackTrace();
          }
      }
-     public int getPosconexion() {
-         return posconexion;
+     public int getnroUsuario() {
+         return nroUsuario;
      }
 
   

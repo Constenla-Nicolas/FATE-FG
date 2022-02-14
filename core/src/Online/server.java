@@ -15,13 +15,18 @@ public class server {
         return hl;
     }
     public  DatagramSocket getSocket(){
-        return (hl.getS());
+        return (hl.getSocket());
     }
     public void dispose() {
 
         if(hl!=null){hl.stopSv();}
     }
-
+    public static String getMsg(){
+        return hl.getMsg();
+    }
+    public static void enviarAtodos(String string){
+        hl.enviarAtodos(string);
+    }
     public static SvClientes getUsuario(){
  
 
@@ -30,5 +35,7 @@ public class server {
     public static SvClientes[] getUsuarios(){
         return hl.getUsuarios();
     }
-   
+   public int getCantidad(){
+       return hl.getCant();
+   }
 }
