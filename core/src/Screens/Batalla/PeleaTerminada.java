@@ -13,7 +13,7 @@ import utiles.Imagen;
  
 import utiles.Render;
 
-public class PeleaTerminada  extends Escenarios implements Screen {
+public class PeleaTerminada  extends Escenarios {
     SpriteBatch b;
     public PeleaTerminada(Imagen e, personajePrefab p1, personajePrefab p2){
         super(e,p1,p2);
@@ -63,6 +63,7 @@ public class PeleaTerminada  extends Escenarios implements Screen {
         
         
     }
+    
 
     @Override
     public void hide() {
