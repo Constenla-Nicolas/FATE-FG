@@ -34,7 +34,7 @@ public class Hud {
     private ProgressBar hp;
     private Label tiempotexto;
     
-    private  Pixmap pixmap;
+ 
     private int sec=99;
     private Sprite a;
     
@@ -66,7 +66,7 @@ public class Hud {
    public void mostrarHud(){
        Render.batch.setProjectionMatrix(stage.getCamera().combined);
        stage.draw();
-      
+        
         
    }
     
@@ -74,7 +74,7 @@ public class Hud {
 
    public void dispose(){
        stage.dispose();
-       pixmap.dispose();
+     
    }
     
    private void table() {
