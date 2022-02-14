@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
- 
+import java.util.Enumeration;
 import java.util.regex.PatternSyntaxException;
 
 import com.badlogic.gdx.Gdx;
@@ -35,14 +36,27 @@ public class HiloCliente extends Thread {
     private String parte3;
     private String parte4;
     private int nmb;
+    Enumeration e;
+    Enumeration ee;
     public HiloCliente(){
-        
-        try { 
+         
+        try 
+        { e = NetworkInterface.getNetworkInterfaces(); 
+            while(e.hasMoreElements())
+            {
+    NetworkInterface n = (NetworkInterface) e.nextElement();
+    Enumeration ee = n.getInetAddresses();
+    while (ee.hasMoreElements())
+    {
+          ipserver = (InetAddress) ee.nextElement();
+         
+    }
+            }
             s= new DatagramSocket();
-            ipserver = InetAddress.getByName("26.137.140.220");
+            
             System.out.println(ipserver);
             enviarMensaje(Direcciones.CONECTAR.getString());
-        } catch (SocketException | UnknownHostException e) {
+        } catch (SocketException e) {
              
             e.printStackTrace();
         }
