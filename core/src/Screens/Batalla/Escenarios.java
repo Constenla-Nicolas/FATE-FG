@@ -144,18 +144,23 @@ float a;
 
     private void movement(){
 
-        System.out.println(p2.getEstado());
 
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
-        if(p1.getY() < Config.HEIGHT/2){
+        if(p1.getY() <= Config.HEIGHT/2){
             p1.setY(Config.HEIGHT/2);
+            System.out.println("aaaaaa");
+            p1.setEstado(Estado.STANCE);
         }
 
         p2.setY(p2.getY() + (velocidad2 -= gravedad));
 
         if(p2.getY() <= Config.HEIGHT/2){
             p2.setY(Config.HEIGHT/2);
+            
+            System.out.println("bbbbbbb");
+            p2.setEstado(Estado.STANCE);
+
         }
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
@@ -293,12 +298,7 @@ float a;
             //    p1.setX(p1.getX() - 20);
                 entradas.mandarOnline(21);
             }
-            else{
-                p1.setEstado(Estado.STANCE);
-                
-            cliente.getHiloC().enviarMensaje(Direcciones.SALTAR.getString());
-
-            }
+           
 
         p1.setEstadoAnterior(p1.getEstado());
 
@@ -792,6 +792,8 @@ public int inputSelec() {
                 case ABAJO:
 
                 break;
+                case ATAQUED:
+                p1.setEstado(Estado.ATAQUED);
                 
                 default:
                
