@@ -93,10 +93,16 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
 float a;
     @Override
     public void render(float delta) {
+
+        
         inputSelec();
-        time += delta;
-
-
+         time += delta;
+         ts+=delta;
+        System.out.println(ts);
+        if (ts>.1f ) {
+            movement();
+            ts=0;
+                }
         Render.cleaner();
        b.begin();
         fightstage.dibujar();
@@ -104,11 +110,9 @@ float a;
 
       b.draw(p1.currentFrame, p1.getX(), p1.getY());
       b.draw(p2.currentFrame, p2.getX(), p2.getY());
-        // System.out.println(p1.getX());
-        // System.out.println(p2.getX());
+ 
 
-     movement();
-
+ 
         a=a+0.1f;
 
          b.end();
@@ -130,6 +134,7 @@ float a;
     //        // hud.terminarTimer();
     //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     // }
+       
 
 
 
@@ -589,7 +594,7 @@ public int inputSelec() {
                 p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
                     p1.setEstado(Estado.CORRER);
                     break;
-
+                    
                 case POSY:
                 p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
 
@@ -600,6 +605,10 @@ public int inputSelec() {
 
                 p1.setVidaActual(p1.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
                 break;
+                case ABAJO:
+
+                break;
+                
                 default:
                
          
@@ -615,7 +624,7 @@ public int inputSelec() {
              switch (cliente.getHiloC().getDir()) {
 
                 case POSX:
-
+                p2.setEstado(Estado.CORRER);
                 p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());
                     break;
                 case POSY:
