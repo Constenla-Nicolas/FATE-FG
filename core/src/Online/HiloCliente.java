@@ -39,7 +39,7 @@ public class HiloCliente extends Thread {
         
         try { 
             s= new DatagramSocket();
-            ipserver = InetAddress.getByName("26.137.140.220");
+            ipserver = InetAddress.getByName("26.64.240.173");
             System.out.println(ipserver);
             enviarMensaje(Direcciones.CONECTAR.getString());
         } catch (SocketException | UnknownHostException e) {
