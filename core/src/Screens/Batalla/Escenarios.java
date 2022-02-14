@@ -295,8 +295,7 @@ float a;
             }
             else{
                 p1.setEstado(Estado.STANCE);
-                
-            cliente.getHiloC().enviarMensaje(Direcciones.SALTAR.getString());
+                 
 
             }
 
