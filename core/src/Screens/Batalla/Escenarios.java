@@ -38,7 +38,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
-   boolean a1, a2, a3, leftW = false;
+   
    Entradas entradas = new Entradas();
   private String e;
   private int opc;
@@ -144,7 +144,8 @@ float a;
 
     private void movement(){
 
-        System.out.println(p1.getEstado());
+        System.out.println(p1.a1);
+        
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
         if(p1.getY() <= Config.HEIGHT/2){
@@ -172,33 +173,14 @@ float a;
             entradas.mandarOnline(20);
 
         }
-        else if(entradas.isA() && (!a2 && !a3) || (!p1.ataque1.isAnimationFinished(time) && a1) ){
-            a1 = true;
+        else if(entradas.isA() && (!p1.a2 && !p1.a3) || (!p1.ataque1.isAnimationFinished(time) && p1.a1) ){
+            System.out.println("a");
+            p1.a1 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
                 p1.setEstado(Estado.AEREO1);
                 
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO1.getString());
-                if(p1.getX() < p2.getX()){
-                if(entradas.isRight()){
-                    p1.setX(p1.getX());
-
-                }
-                if(entradas.isLeft()){
-                    p1.setX(p1.getX());
-
-                }
-            }
-            else{
-                if(entradas.isRight()){
-                    p1.setX(p1.getX());
-
-                }
-                if(entradas.isLeft()){
-                    p1.setX(p1.getX());
-
-                }
-
-            }
+              
 
                 }
                 else{
@@ -209,40 +191,20 @@ float a;
                 
 
         }
-        else if(entradas.isS() && (!a1 && !a3) || (!p1.ataque2.isAnimationFinished(time) && a2) ){
-            a2 = true;
+        else if(entradas.isS() && (!p1.a1 && !p1.a3) || (!p1.ataque2.isAnimationFinished(time) && p1.a2) ){
+            p1.a2 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
                 p1.setEstado(Estado.AEREO2);
                 
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO2.getString());
-                if(p1.getX() < p2.getX()){
-                    if(entradas.isRight()){
-                        p1.setX(p1.getX() + 15);
-
-                    }
-                    if(entradas.isLeft()){
-                        p1.setX(p1.getX() - 8);
-
-                    }
-                }
-                else{
-                    if(entradas.isRight()){
-                        p1.setX(p1.getX() + 8);
-
-                    }
-                    if(entradas.isLeft()){
-                        p1.setX(p1.getX() - 15);
-
-                    }
-
-                }
+             
             }
                 else{
                     p1.setEstado(Estado.ATAQUEM);
                 }
             }
-            else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && a3) && (!a1 && !a2)){
-                a3 = true;
+            else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && p1.a3) && (!p1.a1 && !p1.a2)){
+                p1.a3 = true;
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
@@ -275,7 +237,7 @@ float a;
                         cliente.getHiloC().enviarMensaje(Direcciones.ATAQUEF.getString());
                     }
                 }
-        else if(entradas.isRight() && (!a2 && !a3 && !a1)){
+        else if(entradas.isRight() && (!p1.a2 && !p1.a3 && !p1.a1)){
             if(p1.getEstado() != Estado.SALTO){
             p1.setEstado(Estado.CORRER);
             }
@@ -288,7 +250,7 @@ float a;
             entradas.mandarOnline(22);
 
         }
-        else if(entradas.isLeft() && (!a2 && !a3 && !a1)){
+        else if(entradas.isLeft() && (!p1.a2 && !p1.a3 && !p1.a1)){
             if(p1.getEstado() != Estado.SALTO){
                 p1.setEstado(Estado.CORRERL);
                 }
@@ -341,8 +303,8 @@ float a;
                 time = 0;
             }
             
-            a2 = false;
-            a3 = false;
+            p1.a2 = false;
+            p1.a3 = false;
             break;
 
             case ATAQUEM:
@@ -357,8 +319,8 @@ float a;
             if(p1.ataque2.isAnimationFinished(time)){
                 time = 0;
             }
-            a1 = false;
-            a3 = false;
+            p1.a1 = false;
+            p1.a3 = false;
             break;
 
             case ATAQUEF:
@@ -373,8 +335,8 @@ float a;
             if(p1.ataque3.isAnimationFinished(time)){
                 time = 0;
             }
-            a1 = false;
-            a2 = false;
+            p1.a1 = false;
+            p1.a2 = false;
             break;
 
             case AEREO1:
@@ -391,8 +353,8 @@ float a;
                 time = 0;
             }
             
-            a2 = false;
-            a3 = false;
+            p1.a2 = false;
+            p1.a3 = false;
             break;
             
             case AEREO2:
@@ -408,8 +370,8 @@ float a;
                 time = 0;
             }
             
-            a1 = false;
-            a3 = false;
+            p1.a1 = false;
+            p1.a3 = false;
             break;
             case AEREO3:
             
@@ -424,8 +386,8 @@ float a;
             if(p1.air3.isAnimationFinished(time)){
                 time = 0;
             }
-            a1 = false;
-            a2 = false;
+            p1.a1 = false;
+            p1.a2 = false;
             
             break;
             case CORRER:
@@ -452,9 +414,9 @@ float a;
             
             break;
             default:
-            a1 = false;
-            a2 = false;
-            a3 = false;
+            p1.a1 = false;
+            p1.a2 = false;
+            p1.a3 = false;
             p1.currentFrame = p1.stance.getKeyFrame(time,true);
             if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
                 p1.currentFrame.flip(true, false);
@@ -513,8 +475,8 @@ switch(p2.getEstado()){
         time = 0;
     }
     
-    a2 = false;
-    a3 = false;
+    p2.a2 = false;
+    p2.a3 = false;
     break;
 
     case ATAQUEM:
@@ -529,8 +491,8 @@ switch(p2.getEstado()){
     if(p2.ataque2.isAnimationFinished(time)){
         time = 0;
     }
-    a1 = false;
-    a3 = false;
+    p2.a1 = false;
+    p2.a3 = false;
     break;
 
     case ATAQUEF:
@@ -545,8 +507,8 @@ switch(p2.getEstado()){
     if(p2.ataque3.isAnimationFinished(time)){
         time = 0;
     }
-    a1 = false;
-    a2 = false;
+    p2.a1 = false;
+    p2.a2 = false;
     break;
 
     case AEREO1:
@@ -563,8 +525,8 @@ switch(p2.getEstado()){
         time = 0;
     }
     
-    a2 = false;
-    a3 = false;
+    p2.a2 = false;
+    p2.a3 = false;
     break;
     
     case AEREO2:
@@ -580,8 +542,8 @@ switch(p2.getEstado()){
         time = 0;
     }
     
-    a1 = false;
-    a3 = false;
+    p2.a1 = false;
+    p2.a3 = false;
     break;
     case AEREO3:
     
@@ -596,8 +558,8 @@ switch(p2.getEstado()){
     if(p2.air3.isAnimationFinished(time)){
         time = 0;
     }
-    a1 = false;
-    a2 = false;
+    p2.a1 = false;
+    p2.a2 = false;
     
     break;
     case CORRER:
@@ -624,9 +586,9 @@ switch(p2.getEstado()){
     
     break;
     default:
-    a1 = false;
-    a2 = false;
-    a3 = false;
+    p2.a1 = false;
+    p2.a2 = false;
+    p2.a3 = false;
     p2.currentFrame = p2.stance.getKeyFrame(time,true);
     if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
         p2.currentFrame.flip(true, false);
@@ -790,7 +752,6 @@ public int inputSelec() {
 
                 break;
                 case ATAQUED:
-                p1.setEstado(Estado.ATAQUED);
                 
                 default:
                
