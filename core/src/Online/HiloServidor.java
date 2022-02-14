@@ -29,7 +29,7 @@ public class HiloServidor extends Thread {
     private int cont;
  
     
-    private direcciones dir;
+    // private direcciones dir;
      public HiloServidor(){
         creado =crearserver();
       
@@ -50,15 +50,12 @@ public class HiloServidor extends Thread {
     }
 
     public void stopSv(){
-        enviarAtodos(direcciones.CERRAR.getString());
+        enviarAtodos("cerrar");
         System.out.println("cerrando server");
         if (!s.isClosed()) {
            s.close();
         }
         this.interrupt();
-    }
-    public direcciones getDir() {
-        return dir;
     }
    
     public void enviarAtodos(String string) {
@@ -130,16 +127,13 @@ public class HiloServidor extends Thread {
       
      }
      private void llamarEvento() {
-          
-        if (dir.isActive()){
-            
                 for (int i = 0; i < Config.getListInput().size(); i++) {
                  Config.getListInput().get(i).handleInput(); 
           }
 
       }
         
-    }
+    
     public SvClientes[] getUsuarios() {
         return Usuario;
     }
@@ -167,15 +161,15 @@ public class HiloServidor extends Thread {
         
          String msg = new String(dp.getData()).trim();
          
-          for (int i = 0; i < direcciones.values().length; i++) {
-              if (direcciones.values()[i].getString().equals(msg)) {
-                  dir= direcciones.values()[i];
+        //   for (int i = 0; i < direcciones.values().length; i++) {
+        //       if (direcciones.values()[i].getString().equals(msg)) {
+        //           dir= direcciones.values()[i];
                   
-              }
+        //       }
               
-          }
+        //   }
           
-           if (dir==direcciones.CONECTAR){
+           if (msg=="conectar"){
              
                 switch (contconexion) {
                     
@@ -183,16 +177,16 @@ public class HiloServidor extends Thread {
                         System.out.println("usuario conectado");
                      Usuario[contconexion]=new SvClientes(dp.getAddress(),dp.getPort());
                      
-                      enviarMensaje("0" , Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
+                      enviarMensaje("usuario0" , Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
                       
                       contconexion++;
                       break;
                     case 1:
                     System.out.println("usuario conectado");
                     Usuario[contconexion]=new SvClientes(dp.getAddress(),dp.getPort());
-                    enviarMensaje("1", Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
+                    enviarMensaje("usuario1", Usuario[contconexion].getIp(), Usuario[contconexion].getPuerto());
                        contconexion++;
-                       enviarAtodos(direcciones.SELECCIONPJ.getString());
+                       enviarAtodos("seleccionpj");
                        Config.ONLINE=true;
                     break;
                     default:
@@ -200,11 +194,11 @@ public class HiloServidor extends Thread {
                         break;
                 }}
                 else{
-                System.out.println(dir.getString());
+                System.out.println(msg);
                 identificarUsuario(dp);
            
-                switch (dir) {
-                    case SELECCIONESCENARIOS:
+                switch (msg.toLowerCase()) {
+                    case "seleccionescenarios":
                     
                    
                         Config.eraseInput(Config.getListInput().get(0));
@@ -218,7 +212,7 @@ public class HiloServidor extends Thread {
                     
  
                     break;
-                    case ESCENARIOS:
+                    case "escenarios":
                     
                     
                          Config.eraseInput(Config.getListInput().get(0));
@@ -232,49 +226,30 @@ public class HiloServidor extends Thread {
                   
                     break;
                      
-                    case ASTOLFO:
+                    case "astolfo":
                     Usuario[posconexion].setP1(Retratos.ASTOLFO.getClase());
                     break;
-                    case MORDRED: 
+                    case "mordred": 
                     Usuario[posconexion].setP1(Retratos.MORDRED.getClase());
                     break;
-                    case JEANNE: 
+                    case "jeanne": 
                     break;
-                    case ATALANTE: 
+                    case "atalante": 
                     break;
                     default:
                     
                     
                     break;
                 }
-                dir.doActive();
-                enviarAtodos(dir.getString());
+                 
+                //enviarAtodos(dir.getString());
                 
                 llamarEvento();
                 }
          
      }
      
-     public void enviarMov(String msg,InetAddress ipdestino, int puerto){
-        if (getUsuarios()[0].getIp()==ipdestino) {
-            msg=msg+"<>0";
-            
-        }
-        else{
-            msg=msg+"<>1";
-        }
-         byte[] data = msg.getBytes();
-        
-         try {
-             
-             
-             DatagramPacket dp = new DatagramPacket(data, data.length,ipdestino,puerto);
-             s.send(dp);
-         } catch (IOException e) {
-           
-             e.printStackTrace();
-         }
-     }
+     
      
     public void enviarMensaje(String msg,InetAddress ipdestino, int puerto){
          byte[] data = msg.getBytes();
