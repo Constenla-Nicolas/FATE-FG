@@ -81,8 +81,6 @@ float a;
         fightstage.dibujar();
        
     
-        
-       colision();
          b.end();
          
      
@@ -98,322 +96,318 @@ float a;
          
      }
 
-     private void colision(){
-        //  if(p1.box1.overlaps(p2.box1)){
-        //      System.out.println("a");
-        //  }
-     } 
+   
 
-    private void movement(){
+    // private void movement(){
         
-        p1.setY(p1.getY() + (velocidad -= gravedad));
+    //     p1.setY(p1.getY() + (velocidad -= gravedad));
         
-        if(p1.getY() < Gdx.graphics.getHeight()/2){
-            p1.setY(Gdx.graphics.getHeight()/2);
-            p1.setEstado(Estado.STANCE);
-        }
+    //     if(p1.getY() < Gdx.graphics.getHeight()/2){
+    //         p1.setY(Gdx.graphics.getHeight()/2);
+    //         p1.setEstado(Estado.STANCE);
+    //     }
         
-        if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
-            if(p1.getEstado() == Estado.CORRERL){
-            }
-            p1.setEstado(Estado.SALTO);
-            velocidad = 50;
+    //     if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
+    //         if(p1.getEstado() == Estado.CORRERL){
+    //         }
+    //         p1.setEstado(Estado.SALTO);
+    //         velocidad = 50;
 
-        }
-        else if(entradas.isDown()){
-            p1.setEstado(Estado.AGACHADO);
+    //     }
+    //     else if(entradas.isDown()){
+    //         p1.setEstado(Estado.AGACHADO);
 
 
-        }
-        else if(entradas.isA() && (!a2 && !a3) || (!p1.ataque1.isAnimationFinished(time) && a1) ){
-            a1 = true;
-            if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
-                p1.setEstado(Estado.AEREO1);
-                if(p1.getX() < p2.getX()){
-                if(entradas.isRight()){
-                    p1.setX(p1.getX() + 20);
+    //     }
+    //     else if(entradas.isA() && (!a2 && !a3) || (!p1.ataque1.isAnimationFinished(time) && a1) ){
+    //         a1 = true;
+    //         if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
+    //             p1.setEstado(Estado.AEREO1);
+    //             if(p1.getX() < p2.getX()){
+    //             if(entradas.isRight()){
+    //                 p1.setX(p1.getX() + 20);
 
-                }
-                if(entradas.isLeft()){
-                    p1.setX(p1.getX() - 10);
+    //             }
+    //             if(entradas.isLeft()){
+    //                 p1.setX(p1.getX() - 10);
 
-                }
-            }
-            else{
-                if(entradas.isRight()){
-                    p1.setX(p1.getX() + 10);
+    //             }
+    //         }
+    //         else{
+    //             if(entradas.isRight()){
+    //                 p1.setX(p1.getX() + 10);
 
-                }
-                if(entradas.isLeft()){
-                    p1.setX(p1.getX() - 20);
+    //             }
+    //             if(entradas.isLeft()){
+    //                 p1.setX(p1.getX() - 20);
 
-                }
+    //             }
 
-            }
+    //         }
                 
-                }
-                else{
-                    p1.setEstado(Estado.ATAQUED);
+    //             }
+    //             else{
+    //                 p1.setEstado(Estado.ATAQUED);
                     
-                }
+    //             }
                 
 
-        }
-        else if(entradas.isS() && (!a1 && !a3) || (!p1.ataque2.isAnimationFinished(time) && a2) ){
-            a2 = true;
-            if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
-                p1.setEstado(Estado.AEREO2);
-                if(p1.getX() < p2.getX()){
-                    if(entradas.isRight()){
-                        p1.setX(p1.getX() + 15);
+    //     }
+    //     else if(entradas.isS() && (!a1 && !a3) || (!p1.ataque2.isAnimationFinished(time) && a2) ){
+    //         a2 = true;
+    //         if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
+    //             p1.setEstado(Estado.AEREO2);
+    //             if(p1.getX() < p2.getX()){
+    //                 if(entradas.isRight()){
+    //                     p1.setX(p1.getX() + 15);
     
-                    }
-                    if(entradas.isLeft()){
-                        p1.setX(p1.getX() - 8);
+    //                 }
+    //                 if(entradas.isLeft()){
+    //                     p1.setX(p1.getX() - 8);
     
-                    }
-                }
-                else{
-                    if(entradas.isRight()){
-                        p1.setX(p1.getX() + 8);
+    //                 }
+    //             }
+    //             else{
+    //                 if(entradas.isRight()){
+    //                     p1.setX(p1.getX() + 8);
     
-                    }
-                    if(entradas.isLeft()){
-                        p1.setX(p1.getX() - 15);
+    //                 }
+    //                 if(entradas.isLeft()){
+    //                     p1.setX(p1.getX() - 15);
     
-                    }
+    //                 }
     
-                }
-            }
-                else{
-                    p1.setEstado(Estado.ATAQUEM);
-                } 
-            }
-            else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && a3) && (!a1 && !a2)){
-                a3 = true;
+    //             }
+    //         }
+    //             else{
+    //                 p1.setEstado(Estado.ATAQUEM);
+    //             } 
+    //         }
+    //         else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && a3) && (!a1 && !a2)){
+    //             a3 = true;
                 
-                if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
-                    p1.setEstado(Estado.AEREO3);
-                    if(p1.getX() < p2.getX()){
-                        if(entradas.isRight()){
-                            p1.setX(p1.getX() + 10);
+    //             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
+    //                 p1.setEstado(Estado.AEREO3);
+    //                 if(p1.getX() < p2.getX()){
+    //                     if(entradas.isRight()){
+    //                         p1.setX(p1.getX() + 10);
         
-                        }
-                        if(entradas.isLeft()){
-                            p1.setX(p1.getX() - 5);
+    //                     }
+    //                     if(entradas.isLeft()){
+    //                         p1.setX(p1.getX() - 5);
         
-                        }
-                    }
-                    else{
-                        if(entradas.isRight()){
-                            p1.setX(p1.getX() + 5);
+    //                     }
+    //                 }
+    //                 else{
+    //                     if(entradas.isRight()){
+    //                         p1.setX(p1.getX() + 5);
         
-                        }
-                        if(entradas.isLeft()){
-                            p1.setX(p1.getX() - 10);
+    //                     }
+    //                     if(entradas.isLeft()){
+    //                         p1.setX(p1.getX() - 10);
         
-                        }
+    //                     }
         
-                    }
-                    }
-                    else{
-                        p1.setEstado(Estado.ATAQUEF);
-                    } 
-                }
-        else if(entradas.isRight() && (!a2 && !a3 && !a1)){
-            if(p1.getEstado() != Estado.SALTO){
-            p1.setEstado(Estado.CORRER);
-            }
-            if(p1.currentFrame.isFlipX()){
+    //                 }
+    //                 }
+    //                 else{
+    //                     p1.setEstado(Estado.ATAQUEF);
+    //                 } 
+    //             }
+    //     else if(entradas.isRight() && (!a2 && !a3 && !a1)){
+    //         if(p1.getEstado() != Estado.SALTO){
+    //         p1.setEstado(Estado.CORRER);
+    //         }
+    //         if(p1.currentFrame.isFlipX()){
                 
-                p1.currentFrame.flip(true, false);
+    //             p1.currentFrame.flip(true, false);
                 
-            }
-            p1.setX(p1.getX() + 20);
+    //         }
+    //         p1.setX(p1.getX() + 20);
             
 
-        }      
-        else if(entradas.isLeft()){
-            if(p1.getEstado() != Estado.SALTO){
-                p1.setEstado(Estado.CORRERL);
-                }
+    //     }      
+    //     else if(entradas.isLeft()){
+    //         if(p1.getEstado() != Estado.SALTO){
+    //             p1.setEstado(Estado.CORRERL);
+    //             }
                 
-                p1.setX(p1.getX() - 20);
-            }
+    //             p1.setX(p1.getX() - 20);
+    //         }
         
-        p1.setEstadoAnterior(p1.getEstado());
+    //     p1.setEstadoAnterior(p1.getEstado());
 
 
-        switch(p1.getEstado()){
-            case SALTO:
-            p1.currentFrame = p1.jump.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.jump.isAnimationFinished(time)){
-                time = 0;
-            }
-            break;
+    //     switch(p1.getEstado()){
+    //         case SALTO:
+    //         p1.currentFrame = p1.jump.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.jump.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
+    //         break;
             
-            case AGACHADO:
-            p1.currentFrame = p1.crouch.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.crouch.isAnimationFinished(time)){
-                time = 0;
-            }
-            break;
+    //         case AGACHADO:
+    //         p1.currentFrame = p1.crouch.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.crouch.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
+    //         break;
 
-            case ATAQUED:
-            p1.currentFrame = p1.ataque4.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.ataque4.isAnimationFinished(time)){
-                time = 0;
-            }
+    //         case ATAQUED:
+    //         p1.currentFrame = p1.ataque4.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.ataque4.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
             
-            a2 = false;
-            a3 = false;
-            break;
+    //         a2 = false;
+    //         a3 = false;
+    //         break;
 
-            case ATAQUEM:
-            p1.currentFrame = p1.ataque2.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.ataque2.isAnimationFinished(time)){
-                time = 0;
-            }
-            a1 = false;
-            a3 = false;
-            break;
+    //         case ATAQUEM:
+    //         p1.currentFrame = p1.ataque2.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.ataque2.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
+    //         a1 = false;
+    //         a3 = false;
+    //         break;
 
-            case ATAQUEF:
-            p1.currentFrame = p1.ataque3.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.ataque3.isAnimationFinished(time)){
-                time = 0;
-            }
-            a1 = false;
-            a2 = false;
-            break;
+    //         case ATAQUEF:
+    //         p1.currentFrame = p1.ataque3.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.ataque3.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
+    //         a1 = false;
+    //         a2 = false;
+    //         break;
 
-            case AEREO1:
-            p1.air1.setPlayMode(PlayMode.NORMAL);
-            p1.currentFrame = p1.air1.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.air1.isAnimationFinished(time)){
-                time = 0;
-            }
+    //         case AEREO1:
+    //         p1.air1.setPlayMode(PlayMode.NORMAL);
+    //         p1.currentFrame = p1.air1.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.air1.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
             
-            a2 = false;
-            a3 = false;
-            break;
+    //         a2 = false;
+    //         a3 = false;
+    //         break;
             
-            case AEREO2:
-            p1.currentFrame = p1.air2.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.air2.isAnimationFinished(time)){
-                time = 0;
-            }
+    //         case AEREO2:
+    //         p1.currentFrame = p1.air2.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.air2.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
             
-            a1 = false;
-            a3 = false;
-            break;
-            case AEREO3:
+    //         a1 = false;
+    //         a3 = false;
+    //         break;
+    //         case AEREO3:
             
-            p1.currentFrame = p1.air3.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.air3.isAnimationFinished(time)){
-                time = 0;
-            }
-            a1 = false;
-            a2 = false;
+    //         p1.currentFrame = p1.air3.getKeyFrame(time);
+    //         if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //         p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.air3.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
+    //         a1 = false;
+    //         a2 = false;
             
-            break;
-            case CORRER:
-            p1.currentFrame = p1.walk.getKeyFrame(time);
-            if(p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.walk.isAnimationFinished(time)){
-                time = 0;
-            }
+    //         break;
+    //         case CORRER:
+    //         p1.currentFrame = p1.walk.getKeyFrame(time);
+    //         if(p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.walk.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
             
-            break;
-            case CORRERL:
-            p1.currentFrame = p1.walk.getKeyFrame(time);
-            if(!p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
+    //         break;
+    //         case CORRERL:
+    //         p1.currentFrame = p1.walk.getKeyFrame(time);
+    //         if(!p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
             
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            if(p1.walk.isAnimationFinished(time)){
-                time = 0;
-            }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         if(p1.walk.isAnimationFinished(time)){
+    //             time = 0;
+    //         }
             
-            break;
-            default:
-            a1 = false;
-            a2 = false;
-            a3 = false;
-            p1.currentFrame = p1.stance.getKeyFrame(time,true);
-            if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            b.draw(p1.currentFrame, p1.getX(), p1.getY());
+    //         break;
+    //         default:
+    //         a1 = false;
+    //         a2 = false;
+    //         a3 = false;
+    //         p1.currentFrame = p1.stance.getKeyFrame(time,true);
+    //         if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+    //             p1.currentFrame.flip(true, false);
+    //         }
+    //         b.draw(p1.currentFrame, p1.getX(), p1.getY());
             
            
-                break;
+    //             break;
 
                 
-        }
+    //     }
 
 
 
@@ -422,7 +416,7 @@ float a;
 
       
 
-    }
+    // }
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
@@ -506,42 +500,7 @@ public int inputSelec() {
         fightstage.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
     }
 
-    public void caida(){
-         
-       
-        if (server.getUsuario()== server.getUsuarios()[0]) {
-
-    server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
-    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[0].getIp(), server.getUsuarios()[0].getPuerto());
-     
-    server.getHl().getDir().POSY.reposy();
-
-if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
-
-    server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
-    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[0].getIp(), server.getUsuarios()[0].getPuerto());
-    server.getHl().getDir().POSY.reposy();
-    server.getUsuario().getP1().setEstado(Estado.STANCE);
-}
-        }
-        else{
-            server.getHl().getDir().POSY.setPOSY(velocidad -= gravedad);
-    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
-    server.getHl().getDir().POSY.reposy();
-
-if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
-
-    server.getHl().getDir().POSY.setPOSY(Gdx.graphics.getHeight()/2);
-    server.getHl().enviarMensajeCaida(server.getHl().getDir().POSY.getString(), server.getUsuarios()[1].getIp(), server.getUsuarios()[0].getPuerto());
-    server.getHl().getDir().POSY.reposy();
-    server.getUsuario().getP1().setEstado(Estado.STANCE);
-}
-
-        }
-
-        
-        
-    }
+    
 
     @Override
     public void handleInput() {
@@ -561,7 +520,7 @@ if(server.getUsuario().getP1().getY() < Gdx.graphics.getHeight()/2){
                     
                     break;
                     case ARRIBA:
-                    server.getHl().getDir().POSY.setPOSY(20);
+                    server.getHl().getDir().POSY.setPOSY(50);
                     server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
                     server.getHl().getDir().POSY.reposy();
 
