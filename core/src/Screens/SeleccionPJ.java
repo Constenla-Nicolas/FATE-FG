@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import Entradas.Direcciones;
 import Entradas.Entradas;
 import Online.cliente;
-import personajes.Astolfo;
-import personajes.Mordred;
 import personajes.personajePrefab;
 import utiles.*;
  
@@ -78,7 +76,6 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         }
  
     
-    
     public void mostrarRetrato( ){
 
 
@@ -122,13 +119,13 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         
         if (Config.ONLINE) {
             if (entradas.isLeft()) {
-                entradas.mandarOnline(21);
+               cliente.enviarMensaje("izquierda");
              }
              if (entradas.isRight()) {
-                entradas.mandarOnline(22);
+                cliente.enviarMensaje("derecha");
              }
              if(entradas.isEnter()){
-                entradas.mandarOnline(66);
+                cliente.enviarMensaje("enter");
              }
             portrait[opc][1].dibujar();
             portraitEnemigo[opc2].dibujar();
@@ -181,93 +178,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     
 
 
-    public int inputQueLlega() {
-      
-        if (cliente.getHiloC().MiPropioMensaje()) {
-         
-            switch (cliente.getHiloC().getDir()) {
-                case IZQUIERDA:
-                     
-                    if (opc==0) {
-                      
-                     opc=3;
-                      
-                 }
-                 else{
-                     opc--;
-                      
-                 }
-                    break;
-     
-                    case DERECHA:
-                    if(opc==3){
-                     opc=0;
-                    }
-                    else{
-                        opc++;
-                       
-                    }
-                    
-                    break;
-                    case ENTER:
-                    entradas.stopInput();
-                   cliente.setJ1(Retratos.values()[opc].getClase());
-                    
-                   cliente.getHiloC().enviarMensaje(Direcciones.values()[opc].getString());
-                     
-                    break;
-                default:
-                    break;
-
-                  
-            }
-             
-        }
-     
-        else{
-          
-             switch (cliente.getHiloC().getDir()) {
-           case IZQUIERDA:
-                
-               if (opc2==0) {
-                 
-                opc2=3;
-                 
-            }
-            else{
-                opc2--;
-                 
-            }
-               break;
-
-               case DERECHA:
-           
-                  if(opc2==3){
-                opc2=0;
-               }
-               else{
-                   opc2++;
-                  
-               }
-               
-               break;
-               case ENTER:
-               System.out.println("entra en este enter");
-                    cliente.setJ2(Retratos.values()[opc2].getClase());
-                  
-                
-               break;
-           default:
-               break;
-       }
-        
-       
-        }
     
- 
-        return 0;
-}
-
      
 
     public int inputOffline() {
@@ -358,10 +269,89 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
 
        
          System.out.println("handleinput de seleccion pj");
+         if (cliente.getHiloC().MiPropioMensaje()) {
          
-        inputQueLlega(); 
+            switch (cliente.getMsg()) {
+                case "izquierda":
+                     
+                    if (opc==0) {
+                      
+                     opc=3;
+                      
+                 }
+                 else{
+                     opc--;
+                      
+                 }
+                    break;
+     
+                    case "derecha":
+                    if(opc==3){
+                     opc=0;
+                    }
+                    else{
+                        opc++;
+                       
+                    }
+                    
+                    break;
+                    case "enter":
+                    entradas.stopInput();
+                   cliente.setJ1(Retratos.values()[opc].getClase());
+                    
+                   cliente.enviarMensaje(Retratos.values()[opc].getClase().toString());
+                     
+                    break;
+                default:
+                    break;
+
+                  
+            }
+             
+        }
+     
+        else{
+          
+             switch (cliente.getMsg()) {
+           case "izquierda":
+                
+               if (opc2==0) {
+                 
+                opc2=3;
+                 
+            }
+            else{
+                opc2--;
+                 
+            }
+               break;
+
+               case "derecha":
+           
+                  if(opc2==3){
+                opc2=0;
+               }
+               else{
+                   opc2++;
+                  
+               }
+               
+               break;
+               case "enter":
+                
+                    cliente.setJ2(Retratos.values()[opc2].getClase());
+                  
+                
+               break;
+           default:
+               break;
+       }
+        
+       
+        }
+    
  
-        cliente.getHiloC().getDir().dontActive();
+       
       
          
         

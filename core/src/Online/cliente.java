@@ -32,5 +32,11 @@ public class cliente {
      public static personajePrefab getJ2() {
          return j2;
      }
+    public static String getMsg(){
+        return hiloC.getMsg();
+    }
+    public static void enviarMensaje(String string){
+          hiloC.enviarMensaje(string);
+    }
     
 }

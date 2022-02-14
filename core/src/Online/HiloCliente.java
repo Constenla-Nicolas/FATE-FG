@@ -28,7 +28,7 @@ public class HiloCliente extends Thread {
     private boolean err=false, prmera=true;
     private InetAddress ipserver;
     private int puerto = 8080; 
-    private Direcciones dir;
+    String msg;
     private int idcliente;
     private String parte1;//partes del string
     private String parte2;
@@ -55,7 +55,7 @@ public class HiloCliente extends Thread {
             s= new DatagramSocket();
             
             System.out.println(ipserver);
-            enviarMensaje(Direcciones.CONECTAR.getString());
+            enviarMensaje("conectar");
         } catch (SocketException e) {
              
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class HiloCliente extends Thread {
     }
     private void llamarEvento() {
           
-            if(dir.isActive()){
+           
                 
                 for (int i = 0; i < Config.getListInput().size(); i++) {
                    Config.getListInput().get(i).handleInput();
@@ -95,18 +95,24 @@ public class HiloCliente extends Thread {
                 }
                 
                 
-          }
+          
       
         
     }
-    public void identificarMensaje(String msg){
-        // System.out.println("entro en identifiar mensaje: " +msg);
+    
+    public String getMsg() {
+        return msg;
+    }
+    public void identificarMensaje(){
+     System.out.println("entro en identifiar mensaje: " +msg);
          
         try {
             String partes[]= msg.split("<>"); 
 
             parte1= partes[0];
             parte2= partes[1];
+            System.out.println("parte 1 "+parte1);
+            System.out.println("p2 "+parte2);
        if (parte1.contains(",")) {
             String partes2[]=parte1.split(","); 
            
@@ -114,50 +120,26 @@ public class HiloCliente extends Thread {
            parte4=partes2[1];
           
             
-            // System.out.println("parte 1 "+parte1);
-            // System.out.println("p2 "+parte2);
-            // System.out.println("p3 "+parte3); 
-            // System.out.println("p4 "+parte4); 
+            System.out.println("parte 1 "+parte1);
+            System.out.println("p2 "+parte2);
+            System.out.println("Que "+parte3); 
+            System.out.println("Cuanto "+parte4); 
             parte1=parte3;
             
             
        }
-       
+        msg=parte1;
         } catch (PatternSyntaxException e) {       
            
         }
        
-        for (int i = 0; i < Direcciones.values().length; i++) {
-            
-                if (Direcciones.values()[i].getString().equals(parte1)) {
-                    dir= Direcciones.values()[i];
-                   
-                }
-            
-           
-        }
-           if (parte1.equals(Direcciones.POSX.getString())) {
-               dir=Direcciones.POSX;
-                mayonesa(Integer.parseInt(parte4));
-                
-            }
-            if (parte1.equals(Direcciones.POSY.getString())) {
-                dir=Direcciones.POSY;
-                mayonesa(Integer.parseInt(parte4));
-            }
-             
-            dir.doActive();
+       System.out.println(msg);
     }
      public int getIdcliente() {
          return idcliente;
      }
    
-     public void mayonesa(int nmb){
-        this.nmb=nmb;
-     }
-     public int darmayonesa(){
-         return nmb;
-     }
+    
 public boolean MiPropioMensaje(){
         
         if (Integer.parseInt(parte2)!=idcliente) {
@@ -169,26 +151,28 @@ public boolean MiPropioMensaje(){
             return true;
         }
     }
-
+        
 
 
     private void procesarMensaje(DatagramPacket dp) {
          
-        String msg = new String(dp.getData()).trim();
+       msg = new String(dp.getData()).trim();
+       msg= msg.toLowerCase();
+       
         if (prmera) {
-            primeraConexion(msg);
+            primeraConexion();
             prmera=false;
-            // System.out.println("primera"+ idcliente);
+            System.out.println("soy el cliente "+ idcliente);
         }
         else if(!prmera){
            
-            identificarMensaje(msg);
+            identificarMensaje();
             
           decidirAccion();
           llamarEvento();
         }
     }
-    private void primeraConexion(String msg) {
+    private void primeraConexion() {
         if (Integer.parseInt(msg)==0) {
             idcliente=0;
         }
@@ -196,12 +180,10 @@ public boolean MiPropioMensaje(){
            idcliente=1;
         }
     }
-    public Direcciones getDir() {
-        return dir;
-    }
+    
     public void decidirAccion(){
-        switch (dir) { 
-            case SELECCIONPJ:
+        switch (msg) { 
+            case "seleccionpj":
              
                
                Config.ONLINE=true;
@@ -214,22 +196,19 @@ public boolean MiPropioMensaje(){
             });
 
             break;
-            case HP:
-            dir.HPaRestar(Integer.parseInt(parte4));
-          
-            break;
-           case CERRAR:
-           Gdx.app.postRunnable(new Runnable() {
-            public void run(){
+            
+           case "cerrar":
+                Gdx.app.postRunnable(new Runnable() {
+                public void run(){
                 // System.out.println("Volviendo al menu...");
                 Render.app.setScreen(new MenuPrincipal());
 
-            }
-        });
-        this.interrupt();
+                 }
+                });
+                this.interrupt();
 
            break;
-            case SELECCIONESCENARIOS:
+            case "seleccionescenario":
              
             if (cont==0) {
                 Config.eraseInput(Config.getListInput().get(0));
@@ -242,11 +221,11 @@ public boolean MiPropioMensaje(){
             });
             }
             cont++;
-            
+         
             
             
             break;
-            case ESCENARIOS:
+            case "escenarios":
              
                 if (cont2==0) {
 
@@ -263,7 +242,7 @@ public boolean MiPropioMensaje(){
             
             
             break;
-            case PELEATERMINADA:
+            case "peleaterminada":
             Config.eraseInput(Config.getListInput().get(0));
             Gdx.app.postRunnable(new Runnable() {
                 public void run(){

@@ -32,7 +32,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
       Config.addListInput(this);
       if (cliente.getHiloC().getIdcliente()==0) {
           
-          cliente.getHiloC().enviarMensaje(Direcciones.SELECCIONESCENARIOS.getString());
+          cliente.enviarMensaje("seleccionescenarios");
           System.out.println("soy el cliente 0");
       }else if (cliente.getHiloC().getIdcliente()==1) {
           entradas.stopInput();
@@ -91,14 +91,24 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
 
        if (Config.ONLINE) {
+        try {
+            synchronized(entradas){
+                 entradas.wait(90);
+ 
+            }
+            
+          } catch (InterruptedException e) {
+           
+              e.printStackTrace();
+          }
         if (entradas.isLeft()) {
-            entradas.mandarOnline(21);
+          cliente.enviarMensaje("izquierda");
          }
          if (entradas.isRight()) {
-            entradas.mandarOnline(22);
+         cliente.enviarMensaje("derecha");
          }
          if(entradas.isEnter()){
-            entradas.mandarOnline(66);
+         cliente.enviarMensaje("enter");
          }
            Escena[opc].dibujar();
        }
@@ -209,18 +219,8 @@ public class SeleccionEscenarios implements Screen,InputEvent {
     @Override
     public void handleInput() {
          System.out.println("handle input de selesc");
-       
-        
-
-         inputQueLlega();
-       cliente.getHiloC().getDir().dontActive();
-        
-    }
-    @Override
-    public int inputQueLlega() {
-            System.out.println("que esta entrando al switch"+cliente.getHiloC().getDir());
-        switch (cliente.getHiloC().getDir()) {
-            case IZQUIERDA:
+         switch (cliente.getMsg()) {
+            case "izquierda":
                  
                 if (opc==0) {
                   
@@ -233,7 +233,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
              }
                 break;
  
-                case DERECHA:
+                case "derecha":
                 if(opc==3){
                  opc=0;
                 }
@@ -243,7 +243,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 }
                 
                 break;
-                case ENTER:
+                case "enter":
                 entradas.stopInput();
                 
                 System.out.println("llego un enter");
@@ -254,8 +254,12 @@ public class SeleccionEscenarios implements Screen,InputEvent {
             default:
                 break;
         }
-        return 0;
+        
+ 
+      
+        
     }
+   
 
     public static int getOpc() {
         return opc;
