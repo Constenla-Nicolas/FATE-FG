@@ -31,6 +31,7 @@ Imagen img;
   protected int opc;
   private Imagen i;
   private  int vidaActual;
+  public boolean a1, a2, a3, leftW = false;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
