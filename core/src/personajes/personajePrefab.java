@@ -142,6 +142,7 @@ Imagen img;
     }
     public void setEstado(Estado estado){
         this.estadoActual = estado;
+        System.out.println(estadoActual);
     }
     public Estado getEstadoAnterior(){
         return estadoAnterior;

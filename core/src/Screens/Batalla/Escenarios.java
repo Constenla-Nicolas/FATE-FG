@@ -95,7 +95,7 @@ float a;
        fightstage.dibujar();
         b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
         b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
-        if (ts>.1f ) {
+        if (ts>.05f ) {
             colision(); 
             gestorEstados();
             ts=0;
@@ -119,6 +119,7 @@ float a;
          switch (p1.getEstado()) {
             
             case ATAQUEF:
+            System.out.println("voy a dibujar");
             pixmap.fillRectangle((int)p1.getCollide().getX(),(int) p1.getCollide().getY(), 55,48);
             b.draw(new Texture(pixmap), p1.getCollide().getX(), p1.getCollide().getY());
             
@@ -151,6 +152,9 @@ float a;
          switch (p2.getEstado()) {
            
             case ATAQUEF:
+            pixmap.fillRectangle((int)p2.getCollide().getX(),(int) p2.getCollide().getY(), 55,48);
+            b.draw(new Texture(pixmap), p2.getCollide().getX(), p2.getCollide().getY());
+            
             
             
             
@@ -656,9 +660,10 @@ public personajePrefab Pjug(){
                     case ENTER:
 
 
-                    System.out.println("llego un enter");
+                    
                     break;
                     case ATAQUEF:
+                    System.out.println("llego un ataque fuerte");
                     Pjug().setEstado(Estado.ATAQUEF);
                 
 
