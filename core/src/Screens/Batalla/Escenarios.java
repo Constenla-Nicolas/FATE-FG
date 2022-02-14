@@ -98,7 +98,6 @@ float a;
         inputSelec();
          time += delta;
          ts+=delta;
-        System.out.println(ts);
         if (ts>.1f ) {
             movement();
             ts=0;
@@ -176,6 +175,8 @@ float a;
             a1 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
                 p1.setEstado(Estado.AEREO1);
+                
+            cliente.getHiloC().enviarMensaje(Direcciones.AEREO1.getString());
                 if(p1.getX() < p2.getX()){
                 if(entradas.isRight()){
                     p1.setX(p1.getX());
@@ -211,6 +212,8 @@ float a;
             a2 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
                 p1.setEstado(Estado.AEREO2);
+                
+            cliente.getHiloC().enviarMensaje(Direcciones.AEREO2.getString());
                 if(p1.getX() < p2.getX()){
                     if(entradas.isRight()){
                         p1.setX(p1.getX() + 15);
@@ -242,6 +245,8 @@ float a;
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
+                    
+            cliente.getHiloC().enviarMensaje(Direcciones.AEREO3.getString());
                     if(p1.getX() < p2.getX()){
                         if(entradas.isRight()){
                             p1.setX(p1.getX() + 10);
