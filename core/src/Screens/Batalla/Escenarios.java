@@ -98,7 +98,7 @@ float a;
         inputSelec();
          time += delta;
          ts+=delta;
-        if (ts>.01f ) {
+        if (ts>.03f ) {
             movement();
             ts=0;
                 }
@@ -167,7 +167,7 @@ float a;
             }
             p1.setEstado(Estado.SALTO);
             velocidad = 50;
-            cliente.enviarMensaje("arriba,50"); 
+            cliente.enviarMensaje("arriba"); 
         }
         else if(entradas.isDown()){
             p1.setEstado(Estado.AGACHADO);
@@ -175,18 +175,16 @@ float a;
 
         }
         else if(entradas.isA() && (!p1.a2 && !p1.a3) || (!p1.ataque1.isAnimationFinished(time) && p1.a1) ){
-            System.out.println("a");
+             
             p1.a1 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
                 p1.setEstado(Estado.AEREO1);
-                
-            cliente.getHiloC().enviarMensaje(Direcciones.AEREO1.getString());
-              
+                cliente.enviarMensaje("aereo1");
 
                 }
                 else{
                     p1.setEstado(Estado.ATAQUED);
-                    cliente.getHiloC().enviarMensaje(Direcciones.ATAQUED.getString());
+                    cliente.enviarMensaje("ataqued");
                 }
                 
                 
@@ -729,10 +727,11 @@ public int inputSelec() {
         switch (cliente.getMsg()) {
             case "posx":
             p1.setX(p1.getX()+cliente.getCantidad());
-            System.out.println(p1.getX());
+            
             break;
             
             case "izquierda":
+            
             p1.setEstado(Estado.CORRERL);
 
             break;
@@ -793,6 +792,7 @@ public int inputSelec() {
 
             break;
             case "izquierda":
+            System.out.println("soeaumnaeotutnmaoeumnta");
             p2.setEstado(Estado.CORRERL);
 
             break;

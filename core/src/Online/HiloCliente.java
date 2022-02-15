@@ -123,7 +123,7 @@ public class HiloCliente extends Thread {
             System.out.println("parte 1 "+parte1);
             System.out.println("p2 "+parte2);
             System.out.println("Que "+parte3); 
-            System.out.println("Cuanto "+parte4); 
+            System.out.println("Cuanto "+ Integer.parseInt(parte4)); 
             parte1=parte3;
             
             
