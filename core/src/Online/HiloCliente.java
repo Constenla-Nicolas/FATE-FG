@@ -41,23 +41,29 @@ public class HiloCliente extends Thread {
     public HiloCliente(){
          
         try 
-        { e = NetworkInterface.getNetworkInterfaces(); 
-            while(e.hasMoreElements())
-            {
-    NetworkInterface n = (NetworkInterface) e.nextElement();
-    Enumeration ee = n.getInetAddresses();
-    while (ee.hasMoreElements())
-    {
-          ipserver = (InetAddress) ee.nextElement();
+        { 
+    //         e = NetworkInterface.getNetworkInterfaces(); 
+    //         while(e.hasMoreElements())
+    //         {
+    // NetworkInterface n = (NetworkInterface) e.nextElement();
+    // Enumeration ee = n.getInetAddresses();
+    // while (ee.hasMoreElements())
+    // {
+    //       ipserver = (InetAddress) ee.nextElement();
          
-    }
-            }
+    // }
+            // }
+            ipserver = InetAddress.getByName("26.137.140.220");
+
             s= new DatagramSocket();
             
             System.out.println(ipserver);
             enviarMensaje("conectar");
         } catch (SocketException e) {
              
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
          
