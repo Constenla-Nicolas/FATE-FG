@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
- 
+import com.badlogic.gdx.math.Rectangle;
 
 import utiles.Imagen;
 import utiles.Render;
@@ -26,7 +26,7 @@ public class Mordred extends personajePrefab{
     
 
     public Mordred(){
-    
+      collide=new Rectangle(0, 0, 50, 60);
 }
     
 

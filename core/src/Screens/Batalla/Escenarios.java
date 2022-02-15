@@ -95,7 +95,7 @@ float a;
        fightstage.dibujar();
         b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
         b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
-        if (ts>.05f ) {
+        if (ts>.01f ) {
             colision(); 
             gestorEstados();
             ts=0;
@@ -120,8 +120,8 @@ float a;
             
             case ATAQUEF:
             System.out.println("voy a dibujar");
-            pixmap.fillRectangle((int)p1.getCollide().getX(),(int) p1.getCollide().getY(), 55,48);
-            b.draw(new Texture(pixmap), p1.getCollide().getX(), p1.getCollide().getY());
+            // pixmap.fillRectangle((int)p1.getCollide().getX(),(int) p1.getCollide().getY(), 55,48);
+            // b.draw(new Texture(pixmap), p1.getCollide().getX(), p1.getCollide().getY());
             
             
             break;
@@ -144,6 +144,9 @@ float a;
             break;
             case AEREO3:
          
+            break;
+            case SALTO:
+            p1.setY(p1.getY()+ (velocidad-=gravedad));
             break;
              default:
                  break;
@@ -153,7 +156,7 @@ float a;
            
             case ATAQUEF:
             pixmap.fillRectangle((int)p2.getCollide().getX(),(int) p2.getCollide().getY(), 55,48);
-            b.draw(new Texture(pixmap), p2.getCollide().getX(), p2.getCollide().getY());
+            // b.draw(new Texture(pixmap), p2.getCollide().getX(), p2.getCollide().getY());
             
             
             
@@ -179,38 +182,41 @@ float a;
             case AEREO3:
          
             break;
+            case SALTO:
+            p1.setY(p1.getY()+ (velocidad-=gravedad));
+            break;
              default:
                  break;
          }
      }
 
      private void colision() {
-    //     if (Intersector.overlaps(p1.getCollide(), p2.getCollide())) {
-    //         System.out.println("se tocan");
-    //         if (server.getMsg().equals("izquierda")) {
-    //             server.enviarAtodos(direcciones.POSX.getString()+",-15");
-    //         Pjug().getCollide().setX(Pjug().getCollide().getX()+-15);
+        if (Intersector.overlaps(p1.getCollide(), p2.getCollide())) {
+            System.out.println("se tocan");
+            if (server.getMsg().equals("izquierda")) {
+                server.enviarAtodos(direcciones.POSX.getString()+",-15");
+            Pjug().getCollide().setX(Pjug().getCollide().getX()+-15);
             
-    //         }
-    //         else if (server.getMsg().equals("izquierda")) {
-    //             server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
-    //         Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
+            }
+            else if (server.getMsg().equals("izquierda")) {
+                server.getHl().enviarAtodos(direcciones.POSX.getString()+",15");
+            Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
            
-    //         }
+            }
             
             
-    //     }
+        }
 
-    //      p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
-    //      p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
-    //     if(p1.getCollide().getY() < Config.HEIGHT/2){
-    //         p1.getCollide().setY(Config.HEIGHT/2);
-    //         p1.setEstado(Estado.STANCE);
-    //     }
-    //     if(p2.getCollide().getY() <Config.HEIGHT/2){
-    //         p2.getCollide().setY(Config.HEIGHT/2);
-    //         p2.setEstado(Estado.STANCE);
-    //     }
+         p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
+         p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
+        if(p1.getCollide().getY() < Config.HEIGHT/2){
+            p1.getCollide().setY(Config.HEIGHT/2);
+            p1.setEstado(Estado.STANCE);
+        }
+        if(p2.getCollide().getY() <Config.HEIGHT/2){
+            p2.getCollide().setY(Config.HEIGHT/2);
+            p2.setEstado(Estado.STANCE);
+        }
 
     }
 
@@ -311,29 +317,26 @@ public personajePrefab Pjug(){
 
     @Override
     public void handleInput() {
-
-
-            switch (server.getMsg().toLowerCase()) {
+            server.enviarAtodos(server.getMsg());
+        
+            switch (server.getMsg()) {
                 case "izquierda":
-                   server.enviarAtodos(direcciones.POSX.getString()+",-15");
+                   server.enviarAtodos("posx,-15");
                    Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
                     
                     break;
 
                     case "derecha":
    
-                    server.enviarAtodos("derecha"+",15");
+                    server.enviarAtodos("posx,15");
                     Pjug().getCollide().setPosition(Pjug().getCollide().x + 15, Pjug().getCollide().y);
                     break;
                     case "arriba":
-                    // server.getHl().getDir().POSY.setPOSY(50);
-                    // Pjug().getCollide().setPosition(Pjug().getCollide().x , Pjug().getCollide().y+100);
-                    // server.getHl().enviarAtodos(server.getHl().getDir().POSY.getString());
-                    // server.getHl().getDir().POSY.reposy();
+                     Pjug().setEstado(Estado.SALTO);
                     
                     break;
                     case "abajo":
-
+                    Pjug().setEstado(Estado.AGACHADO);
 
                     
                     break;
@@ -365,7 +368,7 @@ public personajePrefab Pjug(){
                     break;
 
                 default:
-                    System.out.println("no me encuentro instruccion");
+                   Pjug().setEstado(Estado.STANCE);
                     break;
             }
 

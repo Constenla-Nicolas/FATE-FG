@@ -1,7 +1,7 @@
 package personajes;
- 
- 
- 
+
+
+
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
@@ -19,9 +19,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 import utiles.Imagen;
- 
 
- 
+
+
 
 public abstract class personajePrefab implements Action{
     protected TextureAtlas textureAtlas;
@@ -32,13 +32,13 @@ int texWidth, texHeight;
 Imagen img;
   protected int vidamax = 100;
   protected int opc;
- 
+  public boolean a1, a2, a3, leftW = false;
   private  int vidaActual;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
-//  protected static Imagen spriteImagen;   
-  private Rectangle collide;
+//  protected static Imagen spriteImagen;
+  protected Rectangle collide;
   public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
@@ -70,42 +70,42 @@ Imagen img;
   public Animation<TextureRegion> vfx2;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
-   
 
- 
- 
+
+
+
   public Rectangle getCollide() {
       return collide;
   }
     public personajePrefab(){
+
+
          
-          
-         collide=new Rectangle(0, 0, 50, 60);
-    } 
+    }
     public void setCollide(int x, int y) {
         collide.setCenter(x, y);
     }
-   
+
 
     public void update(float dt){
 
     }
      public void setAnims() {
-        
+
     }
-    
+
     public void setInput(int opc){
         this.opc=opc;
     }
     public void setX(float x){
         this.x = x;
         collide.setPosition(x, y);
-        
+
     }
 	public void setY(float y){
         this.y = y;
-        collide.setPosition(x, y);
-         
+         collide.setPosition(x, y);
+
     }
 
     public float getX(){
@@ -133,7 +133,7 @@ Imagen img;
  public void setVidamax(int vidamax) {
      this.vidamax = vidamax;
  }
- 
+
  public float getCargasuper() {
      return cargasuper;
  }
@@ -153,7 +153,7 @@ Imagen img;
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public Object getValue(String key) {
@@ -163,12 +163,12 @@ Imagen img;
     @Override
     public void putValue(String key, Object value) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public void setEnabled(boolean b) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public boolean isEnabled() {
@@ -178,14 +178,14 @@ Imagen img;
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         // TODO Auto-generated method stub
-        
+
     }
-     
-    
+
+
 
 }

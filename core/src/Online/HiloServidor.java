@@ -81,7 +81,7 @@ public class HiloServidor extends Thread {
         }     
 
         }
-        System.out.println("se va a enviar a todos "+ string);  
+        //System.out.println("se va a enviar a todos "+ string);  
     }
 
     public DatagramSocket getSocket() {
@@ -196,7 +196,7 @@ public class HiloServidor extends Thread {
                 else{
                 
                 identificarUsuario(dp);
-                switch (msg.toLowerCase()) {
+                switch (msg) {
                     case "seleccionescenarios":
                         Config.eraseInput(Config.getListInput().get(0));
                        System.out.println("estoy a punto de crear un selecest");
@@ -223,21 +223,22 @@ public class HiloServidor extends Thread {
                   
                     break;
                      
-                    case "personajes.Astolfo":
-                    Usuario[nroUsuario].setP1(Retratos.ASTOLFO.getClase());
-                    break;
-                    case "personajes.Mordred": 
-                    Usuario[nroUsuario].setP1(Retratos.MORDRED.getClase());
-                    break;
-                    case "personajes.Jeanne": 
-                    Usuario[nroUsuario].setP1(Retratos.JEANNE.getClase());
-                    break;
-                    case "personajes.Atalante": 
-                    Usuario[nroUsuario].setP1(Retratos.ATALANTE.getClase());
-                    break;
+                     
                     default:
-                    
-                    
+                    if (msg.contains("personajes.astolfo")) {
+                    System.out.println("llego astolfo");
+                    Usuario[nroUsuario].setP1(Retratos.ASTOLFO.getClase()); 
+                    }
+                    else if (msg.contains("personajes.mordred")) {
+                        System.out.println("llego mordred");
+                        Usuario[nroUsuario].setP1(Retratos.MORDRED.getClase()); 
+                    }
+                    else if(msg.contains("personajes.jeanne")){
+                        Usuario[nroUsuario].setP1(Retratos.JEANNE.getClase()); 
+                    }
+                    else if(msg.contains("personajes.atalante")){
+
+                    }
                     break;
                 }
                  

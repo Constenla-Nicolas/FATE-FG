@@ -4,12 +4,14 @@ package personajes;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
+import com.badlogic.gdx.math.Rectangle;
+
 import utiles.Imagen;
 
 public class Jeanne extends personajePrefab {
   
     public Jeanne(){
-     
+        collide=new Rectangle(0, 0, 50, 60);
     }
 
 @Override

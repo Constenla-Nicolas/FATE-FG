@@ -17,7 +17,7 @@ public class Astolfo extends personajePrefab {
 
     public Imagen img;
     public Astolfo(){
-        
+        collide=new Rectangle(0, 0, 50, 60);
    
     }
     
