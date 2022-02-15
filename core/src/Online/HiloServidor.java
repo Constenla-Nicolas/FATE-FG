@@ -199,7 +199,6 @@ public class HiloServidor extends Thread {
                 switch (msg) {
                     case "seleccionescenarios":
                         Config.eraseInput(Config.getListInput().get(0));
-                       System.out.println("estoy a punto de crear un selecest");
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
                             Render.app.setScreen(new SeleccionEscenarios(Usuario[0].getP1(),Usuario[1].getP1()));
