@@ -40,6 +40,7 @@ Imagen img;
   protected float statetimer=0;
   protected Rectangle collide;
   protected Rectangle hitbox= new Rectangle();
+  protected Texture hitboxRED;
   public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
@@ -95,6 +96,12 @@ Imagen img;
      public void setAnims() {
 
     }
+    public Texture getHitboxRED() {
+        return hitboxRED;
+    }
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
 
     public void setInput(int opc){
         this.opc=opc;
@@ -114,12 +121,13 @@ Imagen img;
     public void setX(float x){
         this.x = x;
         collide.setPosition(x, y);
+        hitbox.setPosition(x, y);
 
     }
 	public void setY(float y){
         this.y = y;
          collide.setPosition(x, y);
-
+        hitbox.setPosition(x, y);
     }
 
     public float getX(){

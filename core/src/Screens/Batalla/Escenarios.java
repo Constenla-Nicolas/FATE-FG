@@ -93,11 +93,11 @@ float a;
         Render.cleaner();
        b.begin();
        fightstage.dibujar();
-        b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
-        b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
+       b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
+       b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
         if (ts>.101f ) {
             colision();
-            gestorEstados();
+             
             ts=0;
                 }
 
@@ -119,7 +119,18 @@ float a;
          switch (p1.getEstado()) {
 
             case ATAQUEF:
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeevoy a dibujar");
+       
 
+        b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
+        //  try {
+        //     synchronized(this){
+        //         this.wait(1000);
+        //     }
+        // } catch (Exception e) {
+        //     //TODO: handle exception
+        // }
+                  
 
 
             break;
@@ -130,10 +141,8 @@ float a;
 
             break;
             case ATAQUED:
-             System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeevoy a dibujar");
-            // pixmap.fillRectangle((int)p1.getCollide().getX(),(int) p1.getCollide().getY(), 55,48);
-            b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
-
+            
+ 
 
 
             break;
@@ -158,9 +167,7 @@ float a;
          switch (p2.getEstado()) {
 
             case ATAQUEF:
-            pixmap.fillRectangle((int)p2.getCollide().getX(),(int) p2.getCollide().getY(), 55,48);
-            b.draw(new Texture(pixmap), p2.getCollide().getX(), p2.getCollide().getY());
-
+           
 
 
 
@@ -171,8 +178,7 @@ float a;
 
             break;
             case ATAQUED:
-
-
+            
 
             break;
             case AEREO1:
@@ -328,6 +334,7 @@ public personajePrefab Pjug(){
     @Override
     public void handleInput() {
             server.enviarAtodos(server.getMsg());
+            
 
             switch (server.getMsg()) {
                 case "izquierda":
@@ -401,7 +408,7 @@ public personajePrefab Pjug(){
                     break;
             }
 
-
+            gestorEstados();
     }
 
 }

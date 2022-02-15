@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,7 +19,7 @@ public class Astolfo extends personajePrefab {
     public Imagen img;
     public Astolfo(){
         collide=new Rectangle(0, 0, 50, 60);
-        setHitbox(1, 1);
+        setHitbox(10, 10);
     }
     
 
@@ -26,7 +27,7 @@ public class Astolfo extends personajePrefab {
 public void setAnims() {
 
     
-    
+    hitboxRED = new Texture("hitbox general.png");
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Intro.atlas");
     
     intro = new Animation<TextureRegion>(1f/14F, textureAtlas.getRegions());

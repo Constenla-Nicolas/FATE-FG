@@ -4,6 +4,7 @@ package personajes;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 import utiles.Imagen;
@@ -12,12 +13,12 @@ public class Jeanne extends personajePrefab {
   
     public Jeanne(){
         collide=new Rectangle(0, 0, 50, 60);
-        setHitbox(1, 1);
+        setHitbox(10, 10);
     }
 
 @Override
 public void setAnims() {
-    
+    hitboxRED = new Texture("hitbox general.png");
     super.setAnims();
 }
 

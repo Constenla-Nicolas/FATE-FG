@@ -5,7 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.FormattableFlags;
 
- 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
  
@@ -27,7 +27,7 @@ public class Mordred extends personajePrefab{
 
     public Mordred(){
       collide=new Rectangle(0, 0, 50, 60);
-      setHitbox(1, 1);
+      setHitbox(10, 10);
 }
     
 
@@ -35,7 +35,7 @@ public class Mordred extends personajePrefab{
  
       @Override
       public void setAnims() {
-
+        hitboxRED = new Texture("hitbox general.png");
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Intro.atlas");
         intro = new Animation<TextureRegion>(1f/10F, textureAtlas.getRegions());
         
