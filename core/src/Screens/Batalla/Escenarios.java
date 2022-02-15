@@ -39,7 +39,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    Hud hud;
    HudBarra hb;
     Pixmap pixmap = new Pixmap(128, 128, Pixmap.Format.RGBA8888);
-      
+private String parte1,parte2;
    boolean animacion;
    int cont, cont2;
    float time, ts;
@@ -66,7 +66,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     p2.setY(Config.HEIGHT/2);
     pixmap.setBlending(Pixmap.Blending.None);
     pixmap.setColor(Color.RED);
-    
+
  }
 
     protected Escenarios(Imagen e2, personajePrefab p12, personajePrefab p22) {
@@ -95,17 +95,17 @@ float a;
        fightstage.dibujar();
         b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
         b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
-        if (ts>.03f ) {
-            colision(); 
+        if (ts>.101f ) {
+            colision();
             gestorEstados();
             ts=0;
                 }
-            
-       
+
+
 
         b.end();
 
-       
+
        hud.mostrarHud();
      hud.getCuentaAtras().setText(hud.getSec());
 
@@ -117,35 +117,35 @@ float a;
      }
      public void gestorEstados (){
          switch (p1.getEstado()) {
-            
+
             case ATAQUEF:
-            
-            
-            
+
+
+
             break;
-            
+
             case ATAQUEM:
 
-          
+
 
             break;
             case ATAQUED:
              System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeevoy a dibujar");
             // pixmap.fillRectangle((int)p1.getCollide().getX(),(int) p1.getCollide().getY(), 55,48);
             b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
- 
-           
-        
+
+
+
             break;
             case AEREO1:
-         
+
 
             break;
             case AEREO2:
-          
+
             break;
             case AEREO3:
-         
+
             break;
             case SALTO:
             System.out.println("estoy saltando");
@@ -156,34 +156,34 @@ float a;
          }
 
          switch (p2.getEstado()) {
-           
+
             case ATAQUEF:
             pixmap.fillRectangle((int)p2.getCollide().getX(),(int) p2.getCollide().getY(), 55,48);
             b.draw(new Texture(pixmap), p2.getCollide().getX(), p2.getCollide().getY());
-            
-            
-            
-            
+
+
+
+
             break;
             case ATAQUEM:
 
-          
+
 
             break;
             case ATAQUED:
 
-           
-        
+
+
             break;
             case AEREO1:
-         
+
 
             break;
             case AEREO2:
-          
+
             break;
             case AEREO3:
-         
+
             break;
             case SALTO:
             p1.setY(p1.getY()+ (velocidad-=gravedad));
@@ -194,22 +194,29 @@ float a;
      }
 
      private void colision() {
+
         if (Intersector.overlaps(p1.getCollide(), p2.getCollide())) {
             System.out.println("se tocan");
-            if (server.getMsg().equals("izquierda")) {
-            server.enviarAtodos("posx,15");
-            Pjug().getCollide().setX(Pjug().getCollide().getX()+15);
-            
+            if (p1.getAnteriorX()<p1.getX()) {
+            p1.setX(p1.getAnteriorX()-10);
+            server.enviarAtodos("posx,"+p1.getX());
             }
-            else if (server.getMsg().equals("derecha")) {
-                server.enviarAtodos("posx,-15");
-            Pjug().getCollide().setX(Pjug().getCollide().getX()-15);
-           
+            else if (p1.getAnteriorX()>p1.getX()) {
+            p1.setX(p1.getAnteriorX()+10);
+            server.enviarAtodos("posx,"+p1.getX());
             }
-            
-            
-        }
+            if (p2.getAnteriorX()<p2.getX()) {
+                p2.setX(p2.getAnteriorX()-10);
+                server.enviarAtodos("posx,"+p2.getX());
+                }
+                else if (p2.getAnteriorX()>p2.getX()) {
+                p2.setX(p2.getAnteriorX()+10);
+                server.enviarAtodos("posx,"+p2.getX());
+                }
 
+        }
+        p1.setAnteriorX(p1.getX());
+        p2.setAnteriorX(p2.getX());
          p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
          p2.getCollide().setY(p2.getCollide().getY() + (velocidad2 -= gravedad));
         if(p1.getCollide().getY() < Config.HEIGHT/2){
@@ -220,7 +227,7 @@ float a;
             p2.getCollide().setY(Config.HEIGHT/2);
             p2.setEstado(Estado.STANCE);
         }
-
+        
     }
 
 
@@ -303,14 +310,14 @@ public int inputSelec() {
     }
 public personajePrefab Pjug(){
     if (server.getUsuario()==server.getUsuarios()[0]) {
-         
+
         return p1;
-        
+
     }
 
     else if(server.getUsuario()==server.getUsuarios()[1]){
-       
-         
+
+
         return p2;
 
     }
@@ -321,34 +328,34 @@ public personajePrefab Pjug(){
     @Override
     public void handleInput() {
             server.enviarAtodos(server.getMsg());
-        
+
             switch (server.getMsg()) {
                 case "izquierda":
-                    
-                   server.enviarAtodos("posx,-15");
-                   Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
-                    
+
+                //    server.enviarAtodos("posx,-15");
+                //    Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
+
                     break;
 
                     case "derecha":
-   
-                    server.enviarAtodos("posx,15");
-                    Pjug().getCollide().setPosition(Pjug().getCollide().x + 15, Pjug().getCollide().y);
+
+                    // server.enviarAtodos("posx,15");
+                    // Pjug().getCollide().setPosition(Pjug().getCollide().x + 15, Pjug().getCollide().y);
                     break;
                     case "arriba":
                      Pjug().setEstado(Estado.SALTO);
-                    
-                    
+
+
                     break;
                     case "abajo":
                     Pjug().setEstado(Estado.AGACHADO);
 
-                    
+
                     break;
                     case "ataquef":
                     System.out.println("llego un ataque fuerte");
                     Pjug().setEstado(Estado.ATAQUEF);
-                
+
 
                     break;
                     case "ataquem":
@@ -359,7 +366,7 @@ public personajePrefab Pjug(){
                     case "ataqued":
 
                     Pjug().setEstado(Estado.ATAQUED);
-                
+
                     break;
                     case "aereo1":
                     Pjug().setEstado(Estado.AEREO1);
@@ -373,6 +380,23 @@ public personajePrefab Pjug(){
                     break;
 
                 default:
+                if (server.getMsg().contains("posx")) {
+                    String partes[]=server.getMsg().split(",");
+
+                    parte1 = partes[0];
+                    parte2=partes[1];
+                    Pjug().setX(Float.parseFloat(parte2));
+                    server.enviarAtodos("posx,"+parte2);
+                }
+                else if(server.getMsg().contains("posy")){
+                    String partes[]=server.getMsg().split(",");
+
+                    parte1 = partes[0];
+                    parte2=partes[1];
+                    Pjug().setY(Float.parseFloat(parte2));
+                    //server.enviarAtodos("posy,"+parte2);
+                }
+
                    Pjug().setEstado(Estado.STANCE);
                     break;
             }
