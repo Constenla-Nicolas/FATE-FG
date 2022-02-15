@@ -98,7 +98,7 @@ float a;
         inputSelec();
          time += delta;
          ts+=delta;
-        if (ts>.05f ) {
+        if (ts>.01f ) {
             movement();
             ts=0;
                 }
@@ -144,7 +144,7 @@ float a;
 
     private void movement(){
 
-        System.out.println(p1.a1);
+         
         
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
@@ -161,16 +161,17 @@ float a;
             p2.setEstado(Estado.STANCE);
 
         }
+
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
             }
             p1.setEstado(Estado.SALTO);
             velocidad = 50;
-            entradas.mandarOnline(19);
+            cliente.enviarMensaje("arriba,50"); 
         }
         else if(entradas.isDown()){
             p1.setEstado(Estado.AGACHADO);
-            entradas.mandarOnline(20);
+            cliente.enviarMensaje("agachado");
 
         }
         else if(entradas.isA() && (!p1.a2 && !p1.a3) || (!p1.ataque1.isAnimationFinished(time) && p1.a1) ){
@@ -203,7 +204,7 @@ float a;
                     p1.setEstado(Estado.ATAQUEM);
                 }
             }
-            else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && p1.a3) && (!p1.a1 && !p1.a2)){
+        else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && p1.a3) && (!p1.a1 && !p1.a2)){
                 p1.a3 = true;
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
@@ -236,7 +237,7 @@ float a;
                         p1.setEstado(Estado.ATAQUEF);
                         cliente.getHiloC().enviarMensaje(Direcciones.ATAQUEF.getString());
                     }
-                }
+            }
         else if(entradas.isRight() && (!p1.a2 && !p1.a3 && !p1.a1)){
             if(p1.getEstado() != Estado.SALTO){
             p1.setEstado(Estado.CORRER);
@@ -247,7 +248,7 @@ float a;
 
             }
            // p1.setX(p1.getX() + 20);
-            entradas.mandarOnline(22);
+           cliente.enviarMensaje("derecha");
 
         }
         else if(entradas.isLeft() && (!p1.a2 && !p1.a3 && !p1.a1)){
@@ -256,10 +257,12 @@ float a;
                 }
 
             //    p1.setX(p1.getX() - 20);
-                entradas.mandarOnline(21);
+             cliente.enviarMensaje("izquierda");
             }
            
-
+        else{
+           // cliente.enviarMensaje("quietecito");
+        }
         p1.setEstadoAnterior(p1.getEstado());
 
 
@@ -724,32 +727,57 @@ public int inputSelec() {
        if (cliente.getHiloC().MiPropioMensaje()) {
 
         switch (cliente.getMsg()) {
-        //     case POSX:
-
-
-        //     p1.setX(p1.getX() + cliente.getHiloC().darmayonesa());
-        //         p1.setEstado(Estado.CORRER);
-        //         break;
-                
-        //     case POSY:
-        //     p1.setY(p1.getY() + cliente.getHiloC().darmayonesa()); //Envia a mi propio cliente
-        //     p1.setEstado(Estado.SALTO);
-        //     break;
+            case "posx":
+            p1.setX(p1.getX()+cliente.getCantidad());
+            System.out.println(p1.getX());
+            break;
             
-               
-        //     case HP:
+            case "izquierda":
+            p1.setEstado(Estado.CORRERL);
 
-        //     p1.setVidaActual(p1.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
-        //     break;
-        //     case ABAJO:
+            break;
+            case "derecha":
+            p1.setEstado(Estado.CORRER);
 
-        //     break;
-        //     case ATAQUED:
-        //     p1.setEstado(Estado.ATAQUED);
+            break;
+
+
+            case "arriba":
+
+            break;
+
+            case "abajo":
+
+            break;
+            
+            case "ataquef":
+            System.out.println("llego un ataque fuerte");
+            p1.setEstado(Estado.ATAQUEF);
+        
+
+            break;
+            case "ataquem":
+
+            p1.setEstado(Estado.ATAQUEM);
+
+            break;
+            case "ataqued":
+
+            p1.setEstado(Estado.ATAQUED);
+        
+            break;
+            case "aereo1":
+            p1.setEstado(Estado.AEREO1);
+
+            break;
+            case "aereo2":
+            p1.setEstado(Estado.AEREO2);
+            break;
+            case "aereo3":
+            p1.setEstado(Estado.AEREO3);
+            break;
             
             default:
-           
-     
                 break;
 
 
@@ -760,24 +788,61 @@ public int inputSelec() {
     else if(!cliente.getHiloC().MiPropioMensaje()) {
 
          switch (cliente.getMsg()) {
+            case "posx":
+            p2.setX(p2.getX()+cliente.getCantidad());
 
-            // case POSX:
-            // p2.setEstado(Estado.CORRER);
-            // p2.setX(p2.getX() + cliente.getHiloC().darmayonesa());
-            // p1.setEstado(Estado.CORRER);
-            //     break;
-            // case POSY:
-            // p2.setY(p2.getY() + cliente.getHiloC().darmayonesa());
-            // p2.setEstado(Estado.SALTO);
+            break;
+            case "izquierda":
+            p2.setEstado(Estado.CORRERL);
 
-            // break;
-       
+            break;
+            case "derecha":
+            p2.setEstado(Estado.CORRER);
+
+            break;
+
+
+            case "arriba":
+            velocidad2=50;
+            p2.setEstado(Estado.SALTO);
+            break;
+
+            case "abajo":
+
+            break;
             
-            // case HP:
-            // p2.setVidaActual(p2.getVidaActual()-Integer.parseInt(cliente.getHiloC().getDir().getString()) );
-            // break;
+            case "ataquef":
+            System.out.println("llego un ataque fuerte");
+            p2.setEstado(Estado.ATAQUEF);
+        
+
+            break;
+            case "ataquem":
+
+            p2.setEstado(Estado.ATAQUEM);
+
+            break;
+            case "ataqued":
+
+            p2.setEstado(Estado.ATAQUED);
+        
+            break;
+            case "aereo1":
+            p2.setEstado(Estado.AEREO1);
+
+            break;
+            case "aereo2":
+            p2.setEstado(Estado.AEREO2);
+            break;
+            case "aereo3":
+            p2.setEstado(Estado.AEREO3);
+            break;
             default:
                 break;
+
+
+
+
    }
 
 

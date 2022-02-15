@@ -139,6 +139,9 @@ public class HiloCliente extends Thread {
          return idcliente;
      }
    
+     public int getCant() {
+         return Integer.parseInt(parte4);
+     }
     
 public boolean MiPropioMensaje(){
         
@@ -151,7 +154,7 @@ public boolean MiPropioMensaje(){
             return true;
         }
     }
-        
+
 
 
     private void procesarMensaje(DatagramPacket dp) {

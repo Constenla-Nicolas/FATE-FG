@@ -38,5 +38,8 @@ public class cliente {
     public static void enviarMensaje(String string){
           hiloC.enviarMensaje(string);
     }
+    public static int getCantidad(){
+        return hiloC.getCant();
+    }
     
 }

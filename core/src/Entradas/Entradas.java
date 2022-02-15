@@ -152,19 +152,7 @@ public class Entradas implements InputProcessor {
         return false;
     }
 
-    public void mandarOnline(int keycode) {
-        
-       
-        if(Config.ONLINE){
-            for (int i = 18; i < Direcciones.values().length; i++) {
-          if (keycode==Integer.parseInt(Direcciones.values()[i].getString())) {
-               
-             
-          cliente.getHiloC().enviarMensaje(Direcciones.values()[i].getString());
-        }   
-        }
-        }
-    }
+    
     @Override
     public boolean keyTyped(char character) {
          
