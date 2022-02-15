@@ -34,7 +34,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    Hud hud;
    HudBarra hb;
    boolean animacion;
-   float time, ts;
+   float time, time2, ts;
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
@@ -165,7 +165,7 @@ float a;
 
         }
        
-        if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.STANCE) ){
+        if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             
             p1.setEstado(Estado.SALTO);
             velocidad = 50;
@@ -445,7 +445,7 @@ switch(p2.getEstado()){
   
     case SALTO:
     
-        p2.currentFrame = p2.jump.getKeyFrame(time);
+        p2.currentFrame = p2.jump.getKeyFrame(time2);
         if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
             p2.currentFrame.flip(true, false);
         }
@@ -453,13 +453,13 @@ switch(p2.getEstado()){
         p2.currentFrame.flip(true, false);
         }
        //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-        if(p2.jump.isAnimationFinished(time)){
-            time = 0;
+        if(p2.jump.isAnimationFinished(time2)){
+            time2 = 0;
         }
         break;
     case AGACHADO:
     
-    p2.currentFrame = p2.crouch.getKeyFrame(time);
+    p2.currentFrame = p2.crouch.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -471,7 +471,7 @@ switch(p2.getEstado()){
     
 
     case ATAQUED:
-    p2.currentFrame = p2.ataque4.getKeyFrame(time);
+    p2.currentFrame = p2.ataque4.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -479,8 +479,8 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.ataque4.isAnimationFinished(time)){
-        time = 0;
+    if(p2.ataque4.isAnimationFinished(time2)){
+        time2 = 0;
     }
 
     p2.a2 = false;
@@ -488,7 +488,7 @@ switch(p2.getEstado()){
     break;
 
     case ATAQUEM:
-    p2.currentFrame = p2.ataque2.getKeyFrame(time);
+    p2.currentFrame = p2.ataque2.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -496,15 +496,15 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.ataque2.isAnimationFinished(time)){
-        time = 0;
+    if(p2.ataque2.isAnimationFinished(time2)){
+        time2 = 0;
     }
     p2.a1 = false;
     p2.a3 = false;
     break;
 
     case ATAQUEF:
-    p2.currentFrame = p2.ataque3.getKeyFrame(time);
+    p2.currentFrame = p2.ataque3.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -512,8 +512,8 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.ataque3.isAnimationFinished(time)){
-        time = 0;
+    if(p2.ataque3.isAnimationFinished(time2)){
+        time2 = 0;
     }
     p2.a1 = false;
     p2.a2 = false;
@@ -521,7 +521,7 @@ switch(p2.getEstado()){
 
     case AEREO1:
     p2.air1.setPlayMode(PlayMode.NORMAL);
-    p2.currentFrame = p2.air1.getKeyFrame(time);
+    p2.currentFrame = p2.air1.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -529,8 +529,8 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.air1.isAnimationFinished(time)){
-        time = 0;
+    if(p2.air1.isAnimationFinished(time2)){
+        time2 = 0;
     }
 
     p2.a2 = false;
@@ -538,7 +538,7 @@ switch(p2.getEstado()){
     break;
 
     case AEREO2:
-    p2.currentFrame = p2.air2.getKeyFrame(time);
+    p2.currentFrame = p2.air2.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -546,8 +546,8 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.air2.isAnimationFinished(time)){
-        time = 0;
+    if(p2.air2.isAnimationFinished(time2)){
+        time2 = 0;
     }
 
     p2.a1 = false;
@@ -555,7 +555,7 @@ switch(p2.getEstado()){
     break;
     case AEREO3:
 
-    p2.currentFrame = p2.air3.getKeyFrame(time);
+    p2.currentFrame = p2.air3.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
@@ -563,33 +563,33 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.air3.isAnimationFinished(time)){
-        time = 0;
+    if(p2.air3.isAnimationFinished(time2)){
+        time2 = 0;
     }
     p2.a1 = false;
     p2.a2 = false;
 
     break;
     case CORRER:
-    p2.currentFrame = p2.walk.getKeyFrame(time);
+    p2.currentFrame = p2.walk.getKeyFrame(time2);
     if(p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.walk.isAnimationFinished(time)){
-        time = 0;
+    if(p2.walk.isAnimationFinished(time2)){
+        time2 = 0;
     }
 
     break;
     case CORRERL:
-    p2.currentFrame = p2.walk.getKeyFrame(time);
+    p2.currentFrame = p2.walk.getKeyFrame(time2);
     if(!p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
 
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.walk.isAnimationFinished(time)){
-        time = 0;
+    if(p2.walk.isAnimationFinished(time2)){
+        time2 = 0;
     }
 
     break;
@@ -597,7 +597,7 @@ switch(p2.getEstado()){
     p2.a1 = false;
     p2.a2 = false;
     p2.a3 = false;
-    p2.currentFrame = p2.stance.getKeyFrame(time,true);
+    p2.currentFrame = p2.stance.getKeyFrame(time2,true);
     if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
         p2.currentFrame.flip(true, false);
     }
@@ -809,8 +809,8 @@ public int inputSelec() {
 
 
             case "arriba":
-            velocidad2=50;
-            p2.setEstado(Estado.SALTO);
+            // velocidad2=50;
+            // p2.setEstado(Estado.SALTO);
             break;
             case "stance":
 p2.setEstado(Estado.STANCE);
