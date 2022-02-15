@@ -153,6 +153,8 @@ float a;
         if(p1.getY() <= Config.HEIGHT/2){
             p1.setY(Config.HEIGHT/2);
             p1.setEstado(Estado.STANCE);
+            
+            cliente.enviarMensaje("stance");
         }
 
         p2.setY(p2.getY() + (velocidad2 -= gravedad));
@@ -163,9 +165,8 @@ float a;
 
         }
        
-        if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
-            if(p1.getEstado() == Estado.CORRERL){
-            }
+        if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.STANCE) ){
+            
             p1.setEstado(Estado.SALTO);
             velocidad = 50;
             cliente.enviarMensaje("arriba");
@@ -442,19 +443,6 @@ p2.setEstadoAnterior(p2.getEstado());
 switch(p2.getEstado()){
     
   
-    
-    case AGACHADO:
-    
-    System.out.println("aaaaaaaaa");
-    p2.currentFrame = p2.crouch.getKeyFrame(time);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-    
-    break;
     case SALTO:
     
         p2.currentFrame = p2.jump.getKeyFrame(time);
@@ -469,6 +457,18 @@ switch(p2.getEstado()){
             time = 0;
         }
         break;
+    case AGACHADO:
+    
+    p2.currentFrame = p2.crouch.getKeyFrame(time);
+    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+    }
+    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+    p2.currentFrame.flip(true, false);
+    }
+    
+    break;
+    
 
     case ATAQUED:
     p2.currentFrame = p2.ataque4.getKeyFrame(time);
@@ -740,16 +740,13 @@ public int inputSelec() {
 
             case "izquierda":
 
-            p1.setEstado(Estado.CORRERL);
 
             break;
             case "derecha":
-            p1.setEstado(Estado.CORRER);
             break;
 
 
             case "arriba":
-            p1.setEstado(Estado.SALTO);
             break;
 
             case "abajo":
