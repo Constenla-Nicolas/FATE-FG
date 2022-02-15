@@ -104,15 +104,15 @@ public class HiloCliente extends Thread {
         return msg;
     }
     public void identificarMensaje(){
-     System.out.println("entro en identifiar mensaje: " +msg);
+    //  System.out.println("entro en identifiar mensaje: " +msg);
          
         try {
             String partes[]= msg.split("<>"); 
 
             parte1= partes[0];
             parte2= partes[1];
-            System.out.println("parte 1 "+parte1);
-            System.out.println("p2 "+parte2);
+            // System.out.println("parte 1 "+parte1);
+            // System.out.println("p2 "+parte2);
        if (parte1.contains(",")) {
             String partes2[]=parte1.split(","); 
            
@@ -120,10 +120,10 @@ public class HiloCliente extends Thread {
            parte4=partes2[1];
           
             
-            System.out.println("parte 1 "+parte1);
-            System.out.println("p2 "+parte2);
-            System.out.println("Que "+parte3); 
-            System.out.println("Cuanto "+ Integer.parseInt(parte4)); 
+            // System.out.println("parte 1 "+parte1);
+            // System.out.println("p2 "+parte2);
+            // System.out.println("Que "+parte3); 
+            // System.out.println("Cuanto "+ Integer.parseInt(parte4)); 
             parte1=parte3;
             
             
@@ -133,7 +133,7 @@ public class HiloCliente extends Thread {
            
         }
        
-       System.out.println(msg);
+    //    System.out.println(msg);
     }
      public int getIdcliente() {
          return idcliente;

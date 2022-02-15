@@ -29,7 +29,7 @@ import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
    float velocidad = 0f,velocidad2=0f;
-   float  gravedad = 10f;
+   float  gravedad = 5f;
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
@@ -145,7 +145,9 @@ float a;
     private void movement(){
 
          
+        System.out.println(p1.getEstado());
         
+        System.out.println(p2.getEstado());
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
         if(p1.getY() <= Config.HEIGHT/2){
@@ -240,11 +242,7 @@ float a;
             if(p1.getEstado() != Estado.SALTO){
             p1.setEstado(Estado.CORRER);
             }
-            if(p1.currentFrame.isFlipX()){
-
-                p1.currentFrame.flip(true, false);
-
-            }
+            
            // p1.setX(p1.getX() + 20);
            cliente.enviarMensaje("derecha");
 
@@ -452,6 +450,7 @@ switch(p2.getEstado()){
     break;
     
     case AGACHADO:
+    System.out.println("aaaaaaaaa");
     p2.currentFrame = p2.crouch.getKeyFrame(time);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
@@ -719,7 +718,7 @@ public int inputSelec() {
     }
     @Override
     public void handleInput() {
-        System.out.println("handle input de escenario");
+        // System.out.println("handle input de escenario");
        
 
        if (cliente.getHiloC().MiPropioMensaje()) {
@@ -736,7 +735,6 @@ public int inputSelec() {
 
             break;
             case "derecha":
-            p1.setEstado(Estado.CORRER);
 
             break;
 
@@ -746,6 +744,7 @@ public int inputSelec() {
             break;
 
             case "abajo":
+            p1.setEstado(Estado.AGACHADO);
 
             break;
             
@@ -763,6 +762,7 @@ public int inputSelec() {
             case "ataqued":
 
             p1.setEstado(Estado.ATAQUED);
+            p1.a1 = true;
         
             break;
             case "aereo1":
@@ -792,7 +792,7 @@ public int inputSelec() {
 
             break;
             case "izquierda":
-            System.out.println("soeaumnaeotutnmaoeumnta");
+            // System.out.println("soeaumnaeotutnmaoeumnta");
             p2.setEstado(Estado.CORRERL);
 
             break;
@@ -808,6 +808,7 @@ public int inputSelec() {
             break;
 
             case "abajo":
+            p2.setEstado(Estado.AGACHADO);
 
             break;
             
