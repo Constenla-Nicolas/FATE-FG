@@ -12,6 +12,7 @@ public class Jeanne extends personajePrefab {
   
     public Jeanne(){
         collide=new Rectangle(0, 0, 50, 60);
+        setHitbox(1, 1);
     }
 
 @Override

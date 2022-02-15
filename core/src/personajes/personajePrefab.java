@@ -37,8 +37,8 @@ Imagen img;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
-//  protected static Imagen spriteImagen;
   protected Rectangle collide;
+  protected Rectangle hitbox= new Rectangle();
   public TextureRegion currentFrame, previusFrame;
   public Animation<TextureRegion> intro;
   public Animation<TextureRegion> stance;
@@ -78,9 +78,10 @@ Imagen img;
       return collide;
   }
     public personajePrefab(){
-
-
-         
+    
+    }
+    public void setHitbox(float width,float height ) {
+       hitbox.set(x, y, width, height);
     }
     public void setCollide(int x, int y) {
         collide.setCenter(x, y);
