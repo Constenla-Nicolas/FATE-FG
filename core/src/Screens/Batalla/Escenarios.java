@@ -52,8 +52,8 @@ private String parte1,parte2;
    private int opc;
    float velocidad = 0f,velocidad2=0f;
    float  gravedad = 5f;
-  private   personajePrefab p1;
-  private  personajePrefab p2;
+    private   personajePrefab p1;
+    private  personajePrefab p2;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
     this.e = escenario;
     this.p1=p1;
@@ -192,7 +192,9 @@ float a;
 
             break;
             case SALTO:
-            p1.setY(p1.getY()+ (velocidad-=gravedad));
+            
+            p2.setY(p2.getY()+ (velocidad-=gravedad));
+            p2.setEstado(Estado.SALTO);
             break;
              default:
                  break;
