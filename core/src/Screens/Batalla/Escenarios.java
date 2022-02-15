@@ -38,7 +38,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    float period= 0.9f;
    Mordred mordred;
    Astolfo astolfo;
-   
+
    Entradas entradas = new Entradas();
   private String e;
   private int opc;
@@ -55,7 +55,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
        p1.setY(Config.HEIGHT/2);
        p2.setX(700);
        p2.setY(Config.HEIGHT/2);
-       
+
     }
     else{
         p1.setX(700);
@@ -94,11 +94,11 @@ float a;
     @Override
     public void render(float delta) {
 
-        
+
         inputSelec();
          time += delta;
          ts+=delta;
-        if (ts>.03f ) {
+        if (ts>.1f ) {
             movement();
             ts=0;
                 }
@@ -109,9 +109,9 @@ float a;
 
       b.draw(p1.currentFrame, p1.getX(), p1.getY());
       b.draw(p2.currentFrame, p2.getX(), p2.getY());
- 
 
- 
+
+
         a=a+0.1f;
 
          b.end();
@@ -133,7 +133,7 @@ float a;
     //        // hud.terminarTimer();
     //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
     // }
-       
+
 
 
 
@@ -144,9 +144,9 @@ float a;
 
     private void movement(){
 
-         
+
         System.out.println(p1.getEstado());
-        
+
         System.out.println(p2.getEstado());
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
@@ -159,17 +159,17 @@ float a;
 
         if(p2.getY() <= Config.HEIGHT/2){
             p2.setY(Config.HEIGHT/2);
-            
+
             p2.setEstado(Estado.STANCE);
 
         }
-
+       
         if((entradas.isUp() && p1.getEstado() == Estado.STANCE) || ((entradas.isUp() && entradas.isRight()) && p1.getEstado() == Estado.CORRER) ){
             if(p1.getEstado() == Estado.CORRERL){
             }
             p1.setEstado(Estado.SALTO);
             velocidad = 50;
-            cliente.enviarMensaje("arriba"); 
+            cliente.enviarMensaje("arriba");
         }
         else if(entradas.isDown()){
             p1.setEstado(Estado.AGACHADO);
@@ -177,7 +177,7 @@ float a;
 
         }
         else if(entradas.isA() && (!p1.a2 && !p1.a3) || (!p1.ataque1.isAnimationFinished(time) && p1.a1) ){
-             
+
             p1.a1 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
                 p1.setEstado(Estado.AEREO1);
@@ -188,17 +188,17 @@ float a;
                     p1.setEstado(Estado.ATAQUED);
                     cliente.enviarMensaje("ataqued");
                 }
-                
-                
+
+
 
         }
         else if(entradas.isS() && (!p1.a1 && !p1.a3) || (!p1.ataque2.isAnimationFinished(time) && p1.a2) ){
             p1.a2 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
                 p1.setEstado(Estado.AEREO2);
-                
+
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO2.getString());
-             
+
             }
                 else{
                     p1.setEstado(Estado.ATAQUEM);
@@ -209,7 +209,7 @@ float a;
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
-                    
+
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO3.getString());
                     if(p1.getX() < p2.getX()){
                         if(entradas.isRight()){
@@ -242,8 +242,8 @@ float a;
             if(p1.getEstado() != Estado.SALTO){
             p1.setEstado(Estado.CORRER);
             }
-            
-           // p1.setX(p1.getX() + 20);
+
+            p1.setX(p1.getX() + 20);
            cliente.enviarMensaje("derecha");
 
         }
@@ -252,10 +252,10 @@ float a;
                 p1.setEstado(Estado.CORRERL);
                 }
 
-            //    p1.setX(p1.getX() - 20);
+                p1.setX(p1.getX() - 20);
              cliente.enviarMensaje("izquierda");
             }
-           
+
         else{
            // cliente.enviarMensaje("quietecito");
         }
@@ -276,7 +276,7 @@ float a;
                 time = 0;
             }
             break;
-            
+
             case AGACHADO:
             p1.currentFrame = p1.crouch.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -286,7 +286,7 @@ float a;
             p1.currentFrame.flip(true, false);
             }
            //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            
+
             break;
 
             case ATAQUED:
@@ -301,7 +301,7 @@ float a;
             if(p1.ataque4.isAnimationFinished(time)){
                 time = 0;
             }
-            
+
             p1.a2 = false;
             p1.a3 = false;
             break;
@@ -351,11 +351,11 @@ float a;
             if(p1.air1.isAnimationFinished(time)){
                 time = 0;
             }
-            
+
             p1.a2 = false;
             p1.a3 = false;
             break;
-            
+
             case AEREO2:
             p1.currentFrame = p1.air2.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
@@ -368,12 +368,12 @@ float a;
             if(p1.air2.isAnimationFinished(time)){
                 time = 0;
             }
-            
+
             p1.a1 = false;
             p1.a3 = false;
             break;
             case AEREO3:
-            
+
             p1.currentFrame = p1.air3.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
@@ -387,7 +387,7 @@ float a;
             }
             p1.a1 = false;
             p1.a2 = false;
-            
+
             break;
             case CORRER:
             p1.currentFrame = p1.walk.getKeyFrame(time);
@@ -398,19 +398,19 @@ float a;
             if(p1.walk.isAnimationFinished(time)){
                 time = 0;
             }
-            
+
             break;
             case CORRERL:
             p1.currentFrame = p1.walk.getKeyFrame(time);
             if(!p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
             }
-            
+
            //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.walk.isAnimationFinished(time)){
                 time = 0;
             }
-            
+
             break;
             default:
             p1.a1 = false;
@@ -424,13 +424,13 @@ float a;
                 p1.currentFrame.flip(true, false);
             }
            //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-            
-           
+
+
                 break;
 
-                
+
         }
-        
+
 p2.setEstadoAnterior(p2.getEstado());
 
 
@@ -448,7 +448,7 @@ switch(p2.getEstado()){
         time = 0;
     }
     break;
-    
+
     case AGACHADO:
     System.out.println("aaaaaaaaa");
     p2.currentFrame = p2.crouch.getKeyFrame(time);
@@ -459,7 +459,7 @@ switch(p2.getEstado()){
     p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    
+
     break;
 
     case ATAQUED:
@@ -474,7 +474,7 @@ switch(p2.getEstado()){
     if(p2.ataque4.isAnimationFinished(time)){
         time = 0;
     }
-    
+
     p2.a2 = false;
     p2.a3 = false;
     break;
@@ -524,11 +524,11 @@ switch(p2.getEstado()){
     if(p2.air1.isAnimationFinished(time)){
         time = 0;
     }
-    
+
     p2.a2 = false;
     p2.a3 = false;
     break;
-    
+
     case AEREO2:
     p2.currentFrame = p2.air2.getKeyFrame(time);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
@@ -541,12 +541,12 @@ switch(p2.getEstado()){
     if(p2.air2.isAnimationFinished(time)){
         time = 0;
     }
-    
+
     p2.a1 = false;
     p2.a3 = false;
     break;
     case AEREO3:
-    
+
     p2.currentFrame = p2.air3.getKeyFrame(time);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
@@ -560,7 +560,7 @@ switch(p2.getEstado()){
     }
     p2.a1 = false;
     p2.a2 = false;
-    
+
     break;
     case CORRER:
     p2.currentFrame = p2.walk.getKeyFrame(time);
@@ -571,19 +571,19 @@ switch(p2.getEstado()){
     if(p2.walk.isAnimationFinished(time)){
         time = 0;
     }
-    
+
     break;
     case CORRERL:
     p2.currentFrame = p2.walk.getKeyFrame(time);
     if(!p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
-    
+
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
     if(p2.walk.isAnimationFinished(time)){
         time = 0;
     }
-    
+
     break;
     default:
     p2.a1 = false;
@@ -597,15 +597,16 @@ switch(p2.getEstado()){
         p2.currentFrame.flip(true, false);
     }
    //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    
-   
+
+
         break;
 
-        
+
 }
 
 
-
+cliente.enviarMensaje("posx,"+p1.getX());
+cliente.enviarMensaje("posy"+p1.getY());
 
 
 
@@ -719,23 +720,23 @@ public int inputSelec() {
     @Override
     public void handleInput() {
         // System.out.println("handle input de escenario");
-       
+
 
        if (cliente.getHiloC().MiPropioMensaje()) {
 
         switch (cliente.getMsg()) {
             case "posx":
-            p1.setX(p1.getX()+cliente.getCantidad());
-            
+            p1.setX(cliente.getCantidad());
+
             break;
-            
+
             case "izquierda":
-            
+
             p1.setEstado(Estado.CORRERL);
 
             break;
             case "derecha":
-
+            p1.setEstado(Estado.CORRER);
             break;
 
 
@@ -747,11 +748,11 @@ public int inputSelec() {
             p1.setEstado(Estado.AGACHADO);
 
             break;
-            
+
             case "ataquef":
             System.out.println("llego un ataque fuerte");
             p1.setEstado(Estado.ATAQUEF);
-        
+
 
             break;
             case "ataquem":
@@ -763,7 +764,7 @@ public int inputSelec() {
 
             p1.setEstado(Estado.ATAQUED);
             p1.a1 = true;
-        
+
             break;
             case "aereo1":
             p1.setEstado(Estado.AEREO1);
@@ -775,7 +776,7 @@ public int inputSelec() {
             case "aereo3":
             p1.setEstado(Estado.AEREO3);
             break;
-            
+
             default:
                 break;
 
@@ -788,7 +789,7 @@ public int inputSelec() {
 
          switch (cliente.getMsg()) {
             case "posx":
-            p2.setX(p2.getX()+cliente.getCantidad());
+            p2.setX(cliente.getCantidad());
 
             break;
             case "izquierda":
@@ -811,11 +812,11 @@ public int inputSelec() {
             p2.setEstado(Estado.AGACHADO);
 
             break;
-            
+
             case "ataquef":
             System.out.println("llego un ataque fuerte");
             p2.setEstado(Estado.ATAQUEF);
-        
+
 
             break;
             case "ataquem":
@@ -826,7 +827,7 @@ public int inputSelec() {
             case "ataqued":
 
             p2.setEstado(Estado.ATAQUED);
-        
+
             break;
             case "aereo1":
             p2.setEstado(Estado.AEREO1);
@@ -850,10 +851,10 @@ public int inputSelec() {
     }
 
 
-     
+
     }
 
 
- 
+
 
 }

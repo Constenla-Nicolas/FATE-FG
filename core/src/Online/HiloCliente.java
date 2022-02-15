@@ -139,8 +139,8 @@ public class HiloCliente extends Thread {
          return idcliente;
      }
    
-     public int getCant() {
-         return Integer.parseInt(parte4);
+     public float getCant() {
+         return Float.parseFloat(parte4);
      }
     
 public boolean MiPropioMensaje(){
