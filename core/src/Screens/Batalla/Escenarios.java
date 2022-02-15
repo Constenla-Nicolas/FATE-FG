@@ -159,8 +159,7 @@ float a;
 
         if(p2.getY() <= Config.HEIGHT/2){
             p2.setY(Config.HEIGHT/2);
-            
-            p2.setEstado(Estado.STANCE);
+            cliente.enviarMensaje("stance");
 
         }
 
@@ -173,7 +172,7 @@ float a;
         }
         else if(entradas.isDown()){
             p1.setEstado(Estado.AGACHADO);
-            cliente.enviarMensaje("agachado");
+            cliente.enviarMensaje("abajo");
 
         }
         else if(entradas.isA() && (!p1.a2 && !p1.a3) || (!p1.ataque1.isAnimationFinished(time) && p1.a1) ){
@@ -196,12 +195,15 @@ float a;
             p1.a2 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
                 p1.setEstado(Estado.AEREO2);
+                cliente.enviarMensaje("aereo2");
                 
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO2.getString());
              
             }
                 else{
                     p1.setEstado(Estado.ATAQUEM);
+                    
+                    cliente.enviarMensaje("ataquem");
                 }
             }
         else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && p1.a3) && (!p1.a1 && !p1.a2)){
@@ -209,6 +211,8 @@ float a;
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
+                    
+                    cliente.enviarMensaje("aereo3");
                     
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO3.getString());
                     if(p1.getX() < p2.getX()){
@@ -235,7 +239,7 @@ float a;
                     }
                     else{
                         p1.setEstado(Estado.ATAQUEF);
-                        cliente.getHiloC().enviarMensaje(Direcciones.ATAQUEF.getString());
+                        cliente.enviarMensaje("ataquef");
                     }
             }
         else if(entradas.isRight() && (!p1.a2 && !p1.a3 && !p1.a1)){
@@ -278,6 +282,7 @@ float a;
             break;
             
             case AGACHADO:
+            
             p1.currentFrame = p1.crouch.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
@@ -435,21 +440,11 @@ p2.setEstadoAnterior(p2.getEstado());
 
 
 switch(p2.getEstado()){
-    case SALTO:
-    p2.currentFrame = p2.jump.getKeyFrame(time);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-    if(p2.jump.isAnimationFinished(time)){
-        time = 0;
-    }
-    break;
+    
+  
     
     case AGACHADO:
+    
     System.out.println("aaaaaaaaa");
     p2.currentFrame = p2.crouch.getKeyFrame(time);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
@@ -458,9 +453,22 @@ switch(p2.getEstado()){
     else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
     p2.currentFrame.flip(true, false);
     }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
     
     break;
+    case SALTO:
+    
+        p2.currentFrame = p2.jump.getKeyFrame(time);
+        if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+            p2.currentFrame.flip(true, false);
+        }
+        else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+        }
+       //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+        if(p2.jump.isAnimationFinished(time)){
+            time = 0;
+        }
+        break;
 
     case ATAQUED:
     p2.currentFrame = p2.ataque4.getKeyFrame(time);
@@ -735,12 +743,12 @@ public int inputSelec() {
 
             break;
             case "derecha":
-
+            p1.setEstado(Estado.CORRER);
             break;
 
 
             case "arriba":
-
+            p1.setEstado(Estado.SALTO);
             break;
 
             case "abajo":
@@ -805,6 +813,9 @@ public int inputSelec() {
             case "arriba":
             velocidad2=50;
             p2.setEstado(Estado.SALTO);
+            break;
+            case "stance":
+p2.setEstado(Estado.STANCE);
             break;
 
             case "abajo":
