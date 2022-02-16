@@ -121,11 +121,11 @@ float a;
  
        if (hud.getSec()<=0) {
             hud.terminarTimer();
-           PeleaTerminada();
+            Render.app.setScreen(new PeleaTerminada(e));
             
     }
-         if (p1.getVidaActual()<=0 ||p2.getVidaActual()<=0 ) {
-             PeleaTerminada();
+        else if (p1.getVidaActual()<=0 ||p2.getVidaActual()<=0 ) {
+            Render.app.setScreen(new PeleaTerminada(e));
          }
     
 
@@ -134,24 +134,8 @@ float a;
 
 
 
-    private void PeleaTerminada() {
-        if ( p1.getVidaActual()<p2.getVidaActual()) {
-        if (p1.toString().contains("Astolfo")) {
-            Render.app.setScreen(new PeleaTerminada(e,"astolfo"));
-        }
-        if (p1.toString().contains("Mordred")) {
-            Render.app.setScreen(new PeleaTerminada(e,"mordred"));
-        }
-        
-    }
-    else if(p2.getVidaActual()<=0 ||p1.getVidaActual()>p2.getVidaActual());
-    if (p1.toString().contains("Astolfo")) {
-        Render.app.setScreen(new PeleaTerminada(e,"astolfo"));
-    }
-    if (p1.toString().contains("Mordred")) {
-        Render.app.setScreen(new PeleaTerminada(e,"mordred"));
-    }
-    }
+
+   
     private void movement(){
 
         System.out.println(p1.getEstado());

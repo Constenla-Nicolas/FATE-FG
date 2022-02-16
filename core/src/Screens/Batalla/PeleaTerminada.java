@@ -28,22 +28,20 @@ public class PeleaTerminada  extends Escenarios {
    private Stage stage;
    private Label label;
    private Viewport viewport;
-    private  String ganador;
+ 
     private float countTime = 0, waitTime = 5;
    private float countTimerEnd = 0, timeEnde = 5;
    private String winner;
    private Imagen endstage;
-    public PeleaTerminada(String e,String ganador){
+    public PeleaTerminada(String e){
 
         super(e,cliente.getJ1(),cliente.getJ1());
-        this.ganador=ganador;  
-        System.out.println(ganador);
         
        if (cliente.getJ1().getVidaActual()>cliente.getJ2().getVidaActual()) {
            winner="gano el cliente 1";
            endstage= new Imagen(cliente.getJ1().getEnd());
        }
-       else{
+       else if (cliente.getJ2().getVidaActual()>cliente.getJ2().getVidaActual()){
            winner ="gano el cliente 2";
            endstage=new Imagen(cliente.getJ2().getEnd());
        }

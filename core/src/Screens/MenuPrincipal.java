@@ -23,8 +23,8 @@ public class MenuPrincipal implements Screen,TieneFondo{
     Imagen menu,negroiImagen;
 	Animation<TextureRegion> animation;
 	SpriteBatch b;
-	Text options[] = new Text[5];
-	String  texts[] = {"Creditos", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
+	Text options[] = new Text[2];
+	String  texts[] = {"Online", "Salir del juego" };
 	float elapsed = 0;
 	private Entradas entradas= new Entradas();
 	Boolean mostrar=false;
@@ -108,20 +108,10 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			switch(opc){
 
 				case 1:
-			 
-				Render.app.setScreen(new SeleccionPJ());  
-				break;
-
-				case 2:
 				 cl= new cliente();
 				entradas.stopInput();
 				break;
-
-				case 3:
-				Render.app.setScreen(new SeleccionPJ());
-				break;
-
-				case 5:
+				case 2:
 				Gdx.app.exit();
 				break;
 			}
