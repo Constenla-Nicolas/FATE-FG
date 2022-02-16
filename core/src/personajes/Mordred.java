@@ -130,10 +130,13 @@ public class Mordred extends personajePrefab{
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/ClarentBloodVFX.atlas");
         vfx4 = new Animation<TextureRegion>(1f/30F, textureAtlas.getRegions());
-        
-        KICKSOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE003.wav"));
-    
 
+        ATAQUE1SOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE004.wav")); 
+        ATAQUE2SOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE003.wav")); 
+        ATAQUE3SOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE004.wav")); 
+        AEREO1SOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE004.wav")); 
+        AEREO2SOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE003.wav")); 
+        AEREO3SOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE004.wav")); 
       }
 
 

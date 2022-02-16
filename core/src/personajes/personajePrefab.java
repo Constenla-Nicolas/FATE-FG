@@ -70,7 +70,12 @@ Imagen img;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
   private Timer tiempo;
-  public Sound KICKSOUND;
+  public Sound ATAQUE1SOUND;
+  public Sound ATAQUE2SOUND;
+  public Sound ATAQUE3SOUND;
+  public Sound AEREO1SOUND;
+  public Sound AEREO2SOUND;
+  public Sound AEREO3SOUND;
   
  
 

@@ -12,6 +12,8 @@ public class Recursos {
 	public final static String MENUFONT = "Fuentes/Trajan Pro Regular.ttf";
 	public final static String BACKGROUND = "fondos/fire.jpg";
 	public final static Music TITLEMUSIC = Gdx.audio.newMusic(Gdx.files.internal("Music/CosmosInTheLostbelt.mp3"));
+	public final static Music MORDREDTHEME = Gdx.audio.newMusic(Gdx.files.internal("Music/The Knight of Rebellion - Mordred's Theme.mp3"));
+	public final static Music ASTOLFOTHEME = Gdx.audio.newMusic(Gdx.files.internal("Music/Rick Astley - Never Gonna Give You Up.mp3"));
 	public final static Sound MENUSOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE152.wav"));
 	public final static Sound SELECESCSOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE150.wav"));
 	public final static Sound CONFIRMSOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE151.wav"));

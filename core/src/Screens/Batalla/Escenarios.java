@@ -34,11 +34,9 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
-   int sound;
+   int sound, sound2;
    float time, time2, ts;
    float period= 0.9f;
- 
-
    Entradas entradas = new Entradas();
   public static String e;
   private int opc;
@@ -55,7 +53,6 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
        p1.setY(Config.HEIGHT/2);
        p2.setX(700);
        p2.setY(Config.HEIGHT/2);
-
     }
     else{
         p1.setX(700);
@@ -63,8 +60,6 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         p2.setX(450);
         p2.setY(Config.HEIGHT/2);
     }
-
-
     p1.setAnims();
     p2.setAnims();
     p1.setEstado(Estado.STANCE);
@@ -78,7 +73,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
     }
     @Override
     public void show() {
-
+        musica();
         b= Render.batch;
         hud= new Hud(b);
         hb= new HudBarra();
@@ -107,11 +102,8 @@ float a;
        b.begin();
         fightstage.dibujar();
 
-
       b.draw(p1.currentFrame, p1.getX(), p1.getY());
       b.draw(p2.currentFrame, p2.getX(), p2.getY());
-
-
 
         a=a+0.1f;
 
@@ -162,9 +154,7 @@ float a;
     }
     private void movement(){
 
-
         System.out.println(p1.getEstado());
-
         System.out.println(p2.getEstado());
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
@@ -195,19 +185,15 @@ float a;
 
         }
         else if(entradas.isA() && (!p1.a2 && !p1.a3) || (!p1.ataque1.isAnimationFinished(time) && p1.a1) ){
-
             p1.a1 = true;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO1 ){
                 p1.setEstado(Estado.AEREO1);
                 cliente.enviarMensaje("aereo1");
-
                 }
                 else{
                     p1.setEstado(Estado.ATAQUED);
                     cliente.enviarMensaje("ataqued");
                 }
-
-
 
         }
         else if(entradas.isS() && (!p1.a1 && !p1.a3) || (!p1.ataque2.isAnimationFinished(time) && p1.a2) ){
@@ -227,8 +213,6 @@ float a;
             }
         else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && p1.a3) && (!p1.a1 && !p1.a2)){
                 p1.a3 = true;
-                
-			
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
@@ -239,23 +223,18 @@ float a;
                     if(p1.getX() < p2.getX()){
                         if(entradas.isRight()){
                             p1.setX(p1.getX() + 10);
-
                         }
                         if(entradas.isLeft()){
                             p1.setX(p1.getX() - 5);
-
                         }
                     }
                     else{
                         if(entradas.isRight()){
                             p1.setX(p1.getX() + 5);
-
                         }
                         if(entradas.isLeft()){
                             p1.setX(p1.getX() - 10);
-
                         }
-
                     }
                     }
                     else{
@@ -267,10 +246,8 @@ float a;
             if(p1.getEstado() != Estado.SALTO){
             p1.setEstado(Estado.CORRER);
             }
-
             p1.setX(p1.getX() + 20);
            cliente.enviarMensaje("derecha");
-
         }
         else if(entradas.isLeft() && (!p1.a2 && !p1.a3 && !p1.a1)){
             if(p1.getEstado() != Estado.SALTO){
@@ -301,7 +278,7 @@ float a;
             break;
             case ATAQUED:
             if(sound == 0){
-                p1.KICKSOUND.play();
+                p1.ATAQUE1SOUND.play();
                 sound = 1;
             }
             p1.currentFrame = p1.ataque4.getKeyFrame(time);
@@ -313,30 +290,44 @@ float a;
             p1.a2 = false;
             p1.a3 = false;
             break;
-
             case ATAQUEM:
+            if(sound == 0){
+                p1.ATAQUE2SOUND.play();
+                sound = 1;
+            }
             p1.currentFrame = p1.ataque2.getKeyFrame(time);
             flip();
             if(p1.ataque2.isAnimationFinished(time)){
+                sound = 0;
                 time = 0;
             }
             p1.a1 = false;
             p1.a3 = false;
             break;
             case ATAQUEF:
+            if(sound == 0){
+                p1.ATAQUE3SOUND.play();
+                sound = 1;
+            }
             p1.currentFrame = p1.ataque3.getKeyFrame(time);
             flip();
             if(p1.ataque3.isAnimationFinished(time)){
+                sound = 0;
                 time = 0;
             }
             p1.a1 = false;
             p1.a2 = false;
             break;
             case AEREO1:
+            if(sound == 0){
+                p1.AEREO1SOUND.play();
+                sound = 1;
+            }
             p1.air1.setPlayMode(PlayMode.NORMAL);
             p1.currentFrame = p1.air1.getKeyFrame(time);
             flip();
             if(p1.air1.isAnimationFinished(time)){
+                sound = 0;
                 time = 0;
             }
             p1.a2 = false;
@@ -344,18 +335,28 @@ float a;
             break;
 
             case AEREO2:
+            if(sound == 0){
+                p1.AEREO2SOUND.play();
+                sound = 1;
+            }
             p1.currentFrame = p1.air2.getKeyFrame(time);
             flip();
             if(p1.air2.isAnimationFinished(time)){
+                sound = 0;
                 time = 0;
             }
             p1.a1 = false;
             p1.a3 = false;
             break;
             case AEREO3:
+            if(sound == 0){
+                p1.AEREO3SOUND.play();
+                sound = 1;
+            }
             p1.currentFrame = p1.air3.getKeyFrame(time);
             flip();
             if(p1.air3.isAnimationFinished(time)){
+                sound = 0;
                 time = 0;
             }
             p1.a1 = false;
@@ -390,18 +391,12 @@ float a;
             p1.currentFrame = p1.stance.getKeyFrame(time,true);
             flip();
                 break;
-
-
         }
 
 p2.setEstadoAnterior(p2.getEstado());
 
-
 switch(p2.getEstado()){
-
-
     case SALTO:
-    
         p2.currentFrame = p2.jump.getKeyFrame(time2);
         flip2();
         if(p2.jump.isAnimationFinished(time2)){
@@ -414,59 +409,86 @@ switch(p2.getEstado()){
     flip2();
     break;
     case ATAQUED:
-    if(sound == 0){
-        p2.KICKSOUND.play();
-        sound = 1;
+    if(sound2 == 0){
+        p2.ATAQUE1SOUND.play();
+        sound2 = 1;
     }
     p2.currentFrame = p2.ataque4.getKeyFrame(time2);
     flip2();
     if(p2.ataque4.isAnimationFinished(time2)){
         time2 = 0;
+        sound2 = 0;
     }
     p2.a2 = false;
     p2.a3 = false;
     break;
     case ATAQUEM:
+    if(sound2 == 0){
+        p2.ATAQUE2SOUND.play();
+        sound2 = 1;
+    }
     p2.currentFrame = p2.ataque2.getKeyFrame(time2);
     flip2();
     if(p2.ataque2.isAnimationFinished(time2)){
+        sound2 = 0;
         time2 = 0;
     }
     p2.a1 = false;
     p2.a3 = false;
     break;
     case ATAQUEF:
+    
+    if(sound2 == 0){
+        p2.ATAQUE3SOUND.play();
+        sound2 = 1;
+    }
     p2.currentFrame = p2.ataque3.getKeyFrame(time2);
     flip2();
     if(p2.ataque3.isAnimationFinished(time2)){
         time2 = 0;
+        sound2 = 0;
     }
     p2.a1 = false;
     p2.a2 = false;
     break;
     case AEREO1:
+    if(sound2 == 0){
+        p2.AEREO1SOUND.play();
+        sound2 = 1;
+    }
     p2.air1.setPlayMode(PlayMode.NORMAL);
     p2.currentFrame = p2.air1.getKeyFrame(time2);
     flip2();
     if(p2.air1.isAnimationFinished(time2)){
         time2 = 0;
+        sound2 = 0;
     }
     p2.a2 = false;
     p2.a3 = false;
     break;
     case AEREO2:
+    if(sound2 == 0){
+        p2.AEREO2SOUND.play();
+        sound2 = 1;
+    }
     p2.currentFrame = p2.air2.getKeyFrame(time2);
     flip2();
     if(p2.air2.isAnimationFinished(time2)){
+        sound2 = 0;
         time2 = 0;
     }
     p2.a1 = false;
     p2.a3 = false;
     break;
     case AEREO3:
+    if(sound2 == 0){
+        p2.AEREO3SOUND.play();
+        sound2 = 1;
+    }
     p2.currentFrame = p2.air3.getKeyFrame(time2);
     flip2();
     if(p2.air3.isAnimationFinished(time2)){
+        sound2 = 0;
         time2 = 0;
     }
     p2.a1 = false;
@@ -500,21 +522,12 @@ switch(p2.getEstado()){
     p2.currentFrame = p2.stance.getKeyFrame(time2,true);
     flip2();
         break;
-
-
 }
-
 
 cliente.enviarMensaje("posx,"+p1.getX());
 cliente.enviarMensaje("posy"+p1.getY());
 
         }
-
-
-    
-    
-
-     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void ActualizarBarras() {
     if (p1.getVidaActual()!=p1.getVidamax()) {
@@ -529,9 +542,7 @@ cliente.enviarMensaje("posy"+p1.getY());
     if (p1.getCargasuper()!=0) {
         hb.Actualizarsuper2(p1.getCargasuper());
     }
-
     }
-
 
 public int inputSelec() {
     if(!Config.ONLINE){
@@ -546,7 +557,6 @@ public int inputSelec() {
 
               e.printStackTrace();
           }
-
 
             if (entradas.isDown()) {
 
@@ -571,38 +581,8 @@ public int inputSelec() {
             }
 
     }
-
     return opc;
-
 }
-
-
-
-
-
-    @Override
-    public void resize(int width, int height) {
-        //
-
-    }
-
-    @Override
-    public void pause() {
-        //
-
-    }
-
-    @Override
-    public void resume() {
-        //
-
-    }
-
-    @Override
-    public void hide() {
-        //
-
-    }
 
     @Override
     public void dispose() {
@@ -631,8 +611,14 @@ public int inputSelec() {
         }
     }
 
-
-
+    public void musica(){
+        if(p1.getNombre() == "mordred"){
+            Recursos.MORDREDTHEME.play();
+        }
+        else{
+            Recursos.ASTOLFOTHEME.play();
+        }
+    }
 
      @Override
     public void setFondo() {
@@ -668,55 +654,34 @@ public int inputSelec() {
                 //     }
                 // }
             }
-    
-
-
         }
-
 
        if (cliente.getHiloC().MiPropioMensaje()) {
 
         switch (cliente.getMsg()) {
             case "posx":
             p1.setX(cliente.getCantidad());
-
             break;
-
             case "izquierda":
-
-
             break;
             case "derecha":
             break;
-
-
             case "arriba":
             break;
-
             case "abajo":
             p1.setEstado(Estado.AGACHADO);
-
             break;
-
             case "ataquef":
             p1.setEstado(Estado.ATAQUEF);
-
-
             break;
             case "ataquem":
-
             p1.setEstado(Estado.ATAQUEM);
-
             break;
             case "ataqued":
-
             p1.setEstado(Estado.ATAQUED);
-            p1.a1 = true;
-
             break;
             case "aereo1":
             p1.setEstado(Estado.AEREO1);
-
             break;
             case "aereo2":
             p1.setEstado(Estado.AEREO2);
@@ -724,33 +689,23 @@ public int inputSelec() {
             case "aereo3":
             p1.setEstado(Estado.AEREO3);
             break;
-
             default:
                 break;
-
-
         }
-
     }
-
     else if(!cliente.getHiloC().MiPropioMensaje()) {
 
          switch (cliente.getMsg()) {
             case "posx":
             p2.setX(cliente.getCantidad());
-
             break;
             case "izquierda":
             // System.out.println("soeaumnaeotutnmaoeumnta");
             p2.setEstado(Estado.CORRERL);
-
             break;
             case "derecha":
             p2.setEstado(Estado.CORRER);
-
             break;
-
-
             case "arriba":
             velocidad2=50;
             p2.setEstado(Estado.SALTO);
@@ -758,30 +713,20 @@ public int inputSelec() {
             case "stance":
 p2.setEstado(Estado.STANCE);
             break;
-
             case "abajo":
             p2.setEstado(Estado.AGACHADO);
-
             break;
-
             case "ataquef":
             p2.setEstado(Estado.ATAQUEF);
-
-
             break;
             case "ataquem":
-
             p2.setEstado(Estado.ATAQUEM);
-
             break;
             case "ataqued":
-
             p2.setEstado(Estado.ATAQUED);
-
             break;
             case "aereo1":
             p2.setEstado(Estado.AEREO1);
-
             break;
             case "aereo2":
             p2.setEstado(Estado.AEREO2);
@@ -791,20 +736,19 @@ p2.setEstado(Estado.STANCE);
             break;
             default:
                 break;
-
-
-
-
    }
-
-
     }
-
-
-
     }
-
-
-
-
+    @Override
+    public void resize(int width, int height) {
+    }
+    @Override
+    public void pause() {
+    }
+    @Override
+    public void resume() {
+    }
+    @Override
+    public void hide() {
+    }
 }

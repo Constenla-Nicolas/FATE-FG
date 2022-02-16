@@ -24,7 +24,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 	Animation<TextureRegion> animation;
 	SpriteBatch b;
 	Text options[] = new Text[5];
-	String  texts[] = {"Arcade", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
+	String  texts[] = {"Creditos", "Online", "Entrenamiento", "Galeria", "Salir del juego"};
 	float elapsed = 0;
 	private Entradas entradas= new Entradas();
 	Boolean mostrar=false;
@@ -38,7 +38,6 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		System.out.println("estoy en menuprincipal");
 		Recursos.TITLEMUSIC.play();
 		 setFondo();
-		setImgEspera();
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
 		 mostrar=false;
@@ -115,7 +114,6 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 				case 2:
 				 cl= new cliente();
-				mostrar=true;
 				entradas.stopInput();
 				break;
 
@@ -134,10 +132,7 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		Render.cleaner();
 
 		b.begin();
-		if (mostrar) {
-			negroiImagen.dibujar();
-			entradas.stopInput();
-		}
+	
 		elapsed += Gdx.graphics.getDeltaTime();
 		b.draw(animation.getKeyFrame(elapsed),0.0f, 0.0f,Config.WIDTH,Config.HEIGHT);
 		menu.dibujar();
@@ -194,11 +189,6 @@ public class MenuPrincipal implements Screen,TieneFondo{
 		menu = new Imagen(Recursos.TITLESCREEN);
 		menu.setSize(Config.tamanioDeAlgo(60,Config.WIDTH),Config.tamanioDeAlgo(60,Config.HEIGHT));
 		menu.setPosition(Config.centrado(Config.WIDTH),Config.centrado(Config.WIDTH));
-	}
-	public void setImgEspera(){
-		negroiImagen= new Imagen(Recursos.COLORESPERA);
-		negroiImagen.setSize(Config.tamanioDeAlgo(38, Config.WIDTH), Config.tamanioDeAlgo(30, Config.HEIGHT));
-		negroiImagen.setPosition(Config.centrado(Config.WIDTH), Config.centrado(Config.HEIGHT));
 	}
     
 }
