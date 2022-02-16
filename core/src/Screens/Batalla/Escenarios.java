@@ -427,6 +427,15 @@ float a;
             }
 
             break;
+            case STUN:
+            p1.currentFrame = p1.dmgTaken.getKeyFrame(time);
+            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+                p1.currentFrame.flip(true, false);
+            }
+            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+            p1.currentFrame.flip(true, false);
+            }
+            break;
             default:
             p1.a1 = false;
             p1.a2 = false;
@@ -602,6 +611,15 @@ switch(p2.getEstado()){
     }
 
     break;
+    case STUN:
+            p2.currentFrame = p2.dmgTaken.getKeyFrame(time);
+            if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+                p2.currentFrame.flip(true, false);
+            }
+            else if(p2.getX() < p1.getX() && p1.currentFrame.isFlipX()){
+            p2.currentFrame.flip(true, false);
+            }
+            break;
     default:
     p2.a1 = false;
     p2.a2 = false;
