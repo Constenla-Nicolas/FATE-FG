@@ -79,10 +79,14 @@ public class HiloCliente extends Thread {
                
 
                 
-            } catch (IOException e) {
+            }  catch(SocketException e){
+                System.out.println("instruccion no aceptada, socket ya cerrado");
+            }
+            catch (IOException e) {
                  
                 e.printStackTrace();
             }
+           
             
             
         }
@@ -110,7 +114,7 @@ public class HiloCliente extends Thread {
     }
     public void stopSv(){
         enviarMensaje("cerrar");
-        System.out.println("cerrando server");
+         
         if (!s.isClosed()) {
            s.close();
         }

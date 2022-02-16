@@ -121,23 +121,37 @@ float a;
  
        if (hud.getSec()<=0) {
             hud.terminarTimer();
-            if (p1.getVidaActual()>p2.getVidaActual()) {
-                Render.app.setScreen(new PeleaTerminada(e,p1));
-            }
-            else if(p1.getVidaActual()>p2.getVidaActual()){
-                Render.app.setScreen(new PeleaTerminada(e,p2));
-            }
+           PeleaTerminada();
             
     }
-        if (p1.getVidaActual()<=0) {
-            Render.app.setScreen(new PeleaTerminada(e,p2));
-        }
-        else if (p2.getVidaActual()<=0) {
-            Render.app.setScreen(new PeleaTerminada(e,p1));
-        }
+         if (p1.getVidaActual()<=0 ||p2.getVidaActual()<=0 ) {
+             PeleaTerminada();
+         }
+    
+
      }
 
 
+
+
+    private void PeleaTerminada() {
+        if ( p1.getVidaActual()<p2.getVidaActual()) {
+        if (p1.toString().contains("Astolfo")) {
+            Render.app.setScreen(new PeleaTerminada(e,"astolfo"));
+        }
+        if (p1.toString().contains("Mordred")) {
+            Render.app.setScreen(new PeleaTerminada(e,"mordred"));
+        }
+        
+    }
+    else if(p2.getVidaActual()<=0 ||p1.getVidaActual()>p2.getVidaActual());
+    if (p1.toString().contains("Astolfo")) {
+        Render.app.setScreen(new PeleaTerminada(e,"astolfo"));
+    }
+    if (p1.toString().contains("Mordred")) {
+        Render.app.setScreen(new PeleaTerminada(e,"mordred"));
+    }
+    }
     private void movement(){
 
         System.out.println(p1.getEstado());
@@ -520,7 +534,7 @@ cliente.enviarMensaje("posy"+p1.getY());
            hb.Restarvida1(p1.getVidaActual());
         }
     if (p2.getVidaActual()!=p2.getVidamax()) {
-        hb.Restarvida2(p2.getVidaActual());
+        hb.Restarvida2(100-p2.getVidaActual());
     }
     if (p2.getCargasuper()!=0) {
         hb.Actualizarsuper1(p2.getCargasuper());

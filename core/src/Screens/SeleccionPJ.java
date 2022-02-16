@@ -39,7 +39,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     }
     @Override
     public void show() { 
-        Recursos.SELECPJMUSIC.play();
+        
         Gdx.input.setInputProcessor(entradas);
          setFondo();
 		b = Render.batch;
@@ -119,18 +119,16 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         
         if (Config.ONLINE) {
             if (entradas.isLeft()) {
-                System.out.println("izquireda");
+                Recursos.MENUSOUND.play();
                cliente.enviarMensaje("izquierda");
-                 Recursos.MENUSOUND.play();
              }
              if (entradas.isRight()) {
-                 System.out.println("derecha");
+                 Recursos.MENUSOUND.play();
                 cliente.enviarMensaje("derecha");
-                Recursos.MENUSOUND.play();
              }
              if(entradas.isEnter()){
+                 Recursos.CONFIRMSOUND.play();
                 cliente.enviarMensaje("enter");
-                Recursos.CONFIRMSOUND.play();
              }
             portrait[opc][1].dibujar();
             portraitEnemigo[opc2].dibujar();
@@ -192,9 +190,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         
 
               if (entradas.isLeft()) {
-                  
-			Recursos.MENUSOUND.play();
-              
+              Recursos.MENUSOUND.play();
                 if (opcOFF==0) {
                      
                     opcOFF=3;
@@ -207,8 +203,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
                 
             }
             if (entradas.isRight()) {
-                
-			Recursos.MENUSOUND.play();
+                Recursos.MENUSOUND.play();
                 if(opcOFF==3){
                  opcOFF=0;
                 }
@@ -260,9 +255,9 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
        for (int i = 0; i < a.length; i++) {
            flecha[i].dispose();
            flecha2[i].dispose();
-       }
-       jugador.dispose();
-       jugador2.dispose();
+        }
+        jugador.dispose();
+        jugador2.dispose();
     }
     @Override
     public void setFondo() {
@@ -279,7 +274,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     public void handleInput() {
 
        
-        //  System.out.println("handleinput de seleccion pj");
+         System.out.println("handleinput de seleccion pj");
          if (cliente.getHiloC().MiPropioMensaje()) {
          
             switch (cliente.getMsg()) {
@@ -321,9 +316,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
              
         }
      
-        else if (!cliente.getHiloC().MiPropioMensaje()) {
-            
-        }{
+        else{
           
              switch (cliente.getMsg()) {
            case "izquierda":
