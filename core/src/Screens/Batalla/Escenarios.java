@@ -96,6 +96,7 @@ float a;
 
         inputSelec();
          time += delta;
+         time2 += delta;
          ts+=delta;
         if (ts>.1f ) {
             movement();

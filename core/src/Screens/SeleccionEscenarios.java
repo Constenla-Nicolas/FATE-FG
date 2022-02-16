@@ -178,7 +178,6 @@ public class SeleccionEscenarios implements Screen,InputEvent {
             if (entradas.isEnter()) {
                 Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
                 
-        Recursos.SELECPJMUSIC.play();
                 }
             return opc;
     }
@@ -254,7 +253,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 case "enter":
                 entradas.stopInput();
                 
-        Recursos.SELECPJMUSIC.play();
+        Recursos.SELECPJMUSIC.stop();
                 
                 System.out.println("llego un enter");
                 break;
