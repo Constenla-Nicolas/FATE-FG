@@ -102,4 +102,8 @@ public class Hud {
    public int getSec() {
        return sec;
    }
+
+public void terminarTimer() {
+    TimerSegundos.cancel();
+}
 }

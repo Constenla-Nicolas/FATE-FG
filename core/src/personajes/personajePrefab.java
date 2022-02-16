@@ -27,10 +27,10 @@ public abstract class personajePrefab implements Action{
   protected float x, y, texHeight;
 int texWidth;
 Imagen img;
-  protected int vidamax;
+  protected int vidamax=100;
   protected int opc;
   private Imagen i;
-  private  int vidaActual;
+  private  int vidaActual=100;
   public boolean a1, a2, a3, leftW = false;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
