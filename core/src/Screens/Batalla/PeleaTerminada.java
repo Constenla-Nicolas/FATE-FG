@@ -38,18 +38,14 @@ public class PeleaTerminada  extends Escenarios {
         super(e,cliente.getJ1(),cliente.getJ1());
         this.ganador=ganador;  
         System.out.println(ganador);
-        if (ganador.contains("mordred")) {
-            endstage= new Imagen( "Endings/fate-s-saber-of-red.jpg");
-        }
-  
-       else if (ganador.contains("astolfo")) {
-        endstage=new Imagen("Endings/fate-gran-orden-astolfo.jpg" );
-       }
+        
        if (cliente.getJ1().getVidaActual()>cliente.getJ2().getVidaActual()) {
            winner="gano el cliente 1";
+           endstage= new Imagen(cliente.getJ1().getEnd());
        }
        else{
            winner ="gano el cliente 2";
+           endstage=new Imagen(cliente.getJ2().getEnd());
        }
         b= Render.batch;
         viewport = new FitViewport( Config.WIDTH,Config.HEIGHT, new OrthographicCamera());

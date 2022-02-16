@@ -38,6 +38,10 @@ public class Mordred extends personajePrefab{
        
         
       }
+    @Override
+    public String getEnd() {
+    return "Endings/fate-s-saber-of-red.jpg";
+    }
       @Override
       public void setAnims() {
 

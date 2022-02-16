@@ -19,6 +19,15 @@ public class Astolfo extends personajePrefab {
         public String getNombre() {
             return "astolfo";
         }
+
+
+        
+@Override
+public String getEnd() {
+return "Endings/fate-gran-orden-astolfo.jpg";
+}
+
+
 @Override
 public void setAnims() {
     

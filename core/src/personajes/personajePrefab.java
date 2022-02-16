@@ -144,6 +144,10 @@ Imagen img;
      this.vidamax = vidamax;
  }
  
+ public String getEnd(){
+    return null;
+     
+ }
  public float getCargasuper() {
      return cargasuper;
  }
