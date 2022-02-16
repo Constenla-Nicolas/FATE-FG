@@ -63,7 +63,7 @@ public void setAnims() {
     dash = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/DmgTaken.atlas");
-    dmgTaken = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
+    dmgTaken = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Air1.atlas");
     air1 = new Animation<TextureRegion>(1f/4F, textureAtlas.getRegions());
