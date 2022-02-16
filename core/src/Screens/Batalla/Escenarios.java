@@ -36,11 +36,10 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    boolean animacion;
    float time, time2, ts;
    float period= 0.9f;
-   Mordred mordred;
-   Astolfo astolfo;
+ 
 
    Entradas entradas = new Entradas();
-  private String e;
+  public static String e;
   private int opc;
   private   personajePrefab p1;
   private  personajePrefab p2;
@@ -125,16 +124,25 @@ float a;
 
         hud.mostrarHud();
         hud.getCuentaAtras().setText(hud.getSec());
-        // p1.box1.setPosition(p1.getX(), p1.getY());
-
-        // p2.box1.setPosition(p2.getX(), p2.getY());
-
-    //    if (hud.getSec()<=95) {
-    //        // hud.terminarTimer();
-    //         Render.app.setScreen(new PeleaTerminada(this.fightstage,this.p1,this.p2));
-    // }
-
-
+ 
+       if (hud.getSec()<=0) {
+            hud.terminarTimer();
+            if (p1.getVidaActual()>p2.getVidaActual()) {
+                Render.app.setScreen(new PeleaTerminada(e,p1));
+            }
+            else if(p1.getVidaActual()>p2.getVidaActual()){
+                Render.app.setScreen(new PeleaTerminada(e,p2));
+            }
+            
+    }
+        if (p1.getVidaActual()<=0) {
+            Render.app.setScreen(new PeleaTerminada(e,p2));
+            
+        }
+   
+        else if (p2.getVidaActual()<=1) {
+            Render.app.setScreen(new PeleaTerminada(e,p1));
+        }
 
 
      }
@@ -153,7 +161,7 @@ float a;
         if(p1.getY() <= Config.HEIGHT/2){
             p1.setY(Config.HEIGHT/2);
             p1.setEstado(Estado.STANCE);
-            
+
             cliente.enviarMensaje("stance");
         }
 
@@ -197,13 +205,13 @@ float a;
             if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO2 ){
                 p1.setEstado(Estado.AEREO2);
                 cliente.enviarMensaje("aereo2");
-                
+
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO2.getString());
 
             }
                 else{
                     p1.setEstado(Estado.ATAQUEM);
-                    
+
                     cliente.enviarMensaje("ataquem");
                 }
             }
@@ -212,9 +220,9 @@ float a;
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
-                    
+
                     cliente.enviarMensaje("aereo3");
-                    
+
             cliente.getHiloC().enviarMensaje(Direcciones.AEREO3.getString());
                     if(p1.getX() < p2.getX()){
                         if(entradas.isRight()){
@@ -283,7 +291,7 @@ float a;
             break;
 
             case AGACHADO:
-            
+
             p1.currentFrame = p1.crouch.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
@@ -441,8 +449,8 @@ p2.setEstadoAnterior(p2.getEstado());
 
 
 switch(p2.getEstado()){
-    
-  
+
+
     case SALTO:
     
         p2.currentFrame = p2.jump.getKeyFrame(time2);
@@ -466,9 +474,9 @@ switch(p2.getEstado()){
     else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
     p2.currentFrame.flip(true, false);
     }
-    
+
     break;
-    
+
 
     case ATAQUED:
     p2.currentFrame = p2.ataque4.getKeyFrame(time2);
@@ -616,11 +624,11 @@ switch(p2.getEstado()){
 cliente.enviarMensaje("posx,"+p1.getX());
 cliente.enviarMensaje("posy"+p1.getY());
 
+        }
 
 
-
-
-    }
+    
+    
 
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -628,8 +636,8 @@ cliente.enviarMensaje("posy"+p1.getY());
     if (p1.getVidaActual()!=p1.getVidamax()) {
            hb.Restarvida1(p1.getVidaActual());
         }
-    if (p1.getVidaActual()!=p1.getVidamax()) {
-        hb.Restarvida2(p1.getVidaActual());
+    if (p2.getVidaActual()!=p2.getVidamax()) {
+        hb.Restarvida2(p2.getVidaActual());
     }
     if (p2.getCargasuper()!=0) {
         hb.Actualizarsuper1(p2.getCargasuper());
@@ -715,9 +723,11 @@ public int inputSelec() {
     @Override
     public void dispose() {
     p1.currentFrame.getTexture().dispose();
-    p1.currentFrame.getTexture().dispose();
+    p2.currentFrame.getTexture().dispose();
     Render.batch.dispose();
     hud.dispose();
+    b.dispose();
+    hb.dispose();
     }
      @Override
     public void setFondo() {
@@ -728,7 +738,16 @@ public int inputSelec() {
     @Override
     public void handleInput() {
         // System.out.println("handle input de escenario");
+        if (cliente.getMsg().equals("hp")) {
+            if (cliente.getHiloC().getPersona()==0) {
+                p1.setVidaActual((int)cliente.getCantidad());
+            }
+            else if(cliente.getHiloC().getPersona()==1){
+                p2.setVidaActual((int)cliente.getCantidad());
+            }
+    
 
+        }
 
        if (cliente.getHiloC().MiPropioMensaje()) {
 

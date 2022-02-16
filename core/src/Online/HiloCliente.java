@@ -19,6 +19,7 @@ import Screens.MenuPrincipal;
 import Screens.SeleccionEscenarios;
 import Screens.SeleccionPJ;
 import Screens.Batalla.Escenarios;
+import Screens.Batalla.PeleaTerminada;
 import utiles.Config;
 import utiles.Render;
  
@@ -38,23 +39,23 @@ public class HiloCliente extends Thread {
     private int nmb;
     Enumeration e;
     Enumeration ee;
+    private int persona;
     public HiloCliente(){
          
         try 
-        { 
-    //         e = NetworkInterface.getNetworkInterfaces(); 
-    //         while(e.hasMoreElements())
-    //         {
-    // NetworkInterface n = (NetworkInterface) e.nextElement();
-    // Enumeration ee = n.getInetAddresses();
-    // while (ee.hasMoreElements())
-    // {
-    //       ipserver = (InetAddress) ee.nextElement();
+        {
+             e = NetworkInterface.getNetworkInterfaces(); 
+            while(e.hasMoreElements())
+            {
+        NetworkInterface n = (NetworkInterface) e.nextElement();
+     Enumeration ee = n.getInetAddresses();
+     while (ee.hasMoreElements())
+      {
+          ipserver = (InetAddress) ee.nextElement();
          
-    // }
-            // }
-            ipserver = InetAddress.getByName("26.137.140.220");
-
+                 }
+            }
+     
             s= new DatagramSocket();
             
             System.out.println(ipserver);
@@ -62,10 +63,7 @@ public class HiloCliente extends Thread {
         } catch (SocketException e) {
              
             e.printStackTrace();
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        } 
          
     }
     @Override
@@ -126,14 +124,15 @@ public class HiloCliente extends Thread {
            parte4=partes2[1];
           
             
-            // System.out.println("parte 1 "+parte1);
-            // System.out.println("p2 "+parte2);
-            // System.out.println("Que "+parte3); 
-            // System.out.println("Cuanto "+ Integer.parseInt(parte4)); 
+            System.out.println("parte 1 "+parte1);
+            System.out.println("p2 "+parte2);
+            System.out.println("Que "+parte3); 
+            System.out.println("Cuanto "+ Float.parseFloat(parte4)); 
             parte1=parte3;
             
-            
-       }
+            persona= Integer.parseInt(parte2); 
+            }
+       
         msg=parte1;
         } catch (PatternSyntaxException e) {       
            
@@ -141,6 +140,10 @@ public class HiloCliente extends Thread {
        
     //    System.out.println(msg);
     }
+    public int getPersona() {
+        return persona;
+    }
+    
      public int getIdcliente() {
          return idcliente;
      }
@@ -251,14 +254,7 @@ public boolean MiPropioMensaje(){
             
             
             break;
-            case "peleaterminada":
-            Config.eraseInput(Config.getListInput().get(0));
-            Gdx.app.postRunnable(new Runnable() {
-                public void run(){
-                    Render.app.setScreen(new SeleccionEscenarios(cliente.getJ1(),cliente.getJ2()));
-                }
-            });
-            break;
+             
             default:
             break;
         }
