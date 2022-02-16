@@ -111,6 +111,9 @@ public void setAnims() {
     vfx4 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
 
     
+    KICKSOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE003.wav"));
+
+    
 
 }
 

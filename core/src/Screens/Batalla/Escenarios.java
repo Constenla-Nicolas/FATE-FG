@@ -30,7 +30,7 @@ import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
    float velocidad = 0f,velocidad2=0f;
-   float  gravedad = 5f;
+   float  gravedad = 10f;
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
@@ -282,44 +282,22 @@ float a;
         switch(p1.getEstado()){
             case SALTO:
             p1.currentFrame = p1.jump.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.jump.isAnimationFinished(time)){
                 time = 0;
             }
             break;
-
             case AGACHADO:
-
             p1.currentFrame = p1.crouch.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-
+            flip();
             break;
-
             case ATAQUED:
             if(sound == 0){
                 p1.KICKSOUND.play();
                 sound = 1;
             }
             p1.currentFrame = p1.ataque4.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.ataque4.isAnimationFinished(time)){
                 time = 0;
                 sound = 0;
@@ -330,133 +308,79 @@ float a;
 
             case ATAQUEM:
             p1.currentFrame = p1.ataque2.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.ataque2.isAnimationFinished(time)){
                 time = 0;
             }
             p1.a1 = false;
             p1.a3 = false;
             break;
-
             case ATAQUEF:
             p1.currentFrame = p1.ataque3.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.ataque3.isAnimationFinished(time)){
                 time = 0;
             }
             p1.a1 = false;
             p1.a2 = false;
             break;
-
             case AEREO1:
             p1.air1.setPlayMode(PlayMode.NORMAL);
             p1.currentFrame = p1.air1.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.air1.isAnimationFinished(time)){
                 time = 0;
             }
-
             p1.a2 = false;
             p1.a3 = false;
             break;
 
             case AEREO2:
             p1.currentFrame = p1.air2.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.air2.isAnimationFinished(time)){
                 time = 0;
             }
-
             p1.a1 = false;
             p1.a3 = false;
             break;
             case AEREO3:
-
             p1.currentFrame = p1.air3.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
+            flip();
             if(p1.air3.isAnimationFinished(time)){
                 time = 0;
             }
             p1.a1 = false;
             p1.a2 = false;
-
             break;
             case CORRER:
             p1.currentFrame = p1.walk.getKeyFrame(time);
             if(p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
             }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.walk.isAnimationFinished(time)){
                 time = 0;
             }
-
             break;
             case CORRERL:
             p1.currentFrame = p1.walk.getKeyFrame(time);
             if(!p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
             }
-
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.walk.isAnimationFinished(time)){
                 time = 0;
             }
-
             break;
             case STUN:
             p1.currentFrame = p1.dmgTaken.getKeyFrame(time);
-            if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-            p1.currentFrame.flip(true, false);
-            }
+            flip();
             break;
             default:
             p1.a1 = false;
             p1.a2 = false;
             p1.a3 = false;
             p1.currentFrame = p1.stance.getKeyFrame(time,true);
-            if (p1.getX() > p2.getX() && !p1.currentFrame.isFlipX())  {
-                p1.currentFrame.flip(true, false);
-            }
-            else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
-                p1.currentFrame.flip(true, false);
-            }
-           //b.draw(p1.currentFrame, p1.getX(), p1.getY());
-
-
+            flip();
                 break;
 
 
@@ -471,13 +395,7 @@ switch(p2.getEstado()){
     case SALTO:
     
         p2.currentFrame = p2.jump.getKeyFrame(time2);
-        if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-            p2.currentFrame.flip(true, false);
-        }
-        else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-        }
-       //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+        flip2();
         if(p2.jump.isAnimationFinished(time2)){
             time2 = 0;
         }
@@ -485,166 +403,94 @@ switch(p2.getEstado()){
     case AGACHADO:
     
     p2.currentFrame = p2.crouch.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-
+    flip2();
     break;
-
-
     case ATAQUED:
     if(sound == 0){
         p2.KICKSOUND.play();
         sound = 1;
     }
     p2.currentFrame = p2.ataque4.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    flip2();
     if(p2.ataque4.isAnimationFinished(time2)){
         time2 = 0;
     }
-
     p2.a2 = false;
     p2.a3 = false;
     break;
-
     case ATAQUEM:
     p2.currentFrame = p2.ataque2.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    flip2();
     if(p2.ataque2.isAnimationFinished(time2)){
         time2 = 0;
     }
     p2.a1 = false;
     p2.a3 = false;
     break;
-
     case ATAQUEF:
     p2.currentFrame = p2.ataque3.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    flip2();
     if(p2.ataque3.isAnimationFinished(time2)){
         time2 = 0;
     }
     p2.a1 = false;
     p2.a2 = false;
     break;
-
     case AEREO1:
     p2.air1.setPlayMode(PlayMode.NORMAL);
     p2.currentFrame = p2.air1.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    flip2();
     if(p2.air1.isAnimationFinished(time2)){
         time2 = 0;
     }
-
     p2.a2 = false;
     p2.a3 = false;
     break;
-
     case AEREO2:
     p2.currentFrame = p2.air2.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    flip2();
     if(p2.air2.isAnimationFinished(time2)){
         time2 = 0;
     }
-
     p2.a1 = false;
     p2.a3 = false;
     break;
     case AEREO3:
-
     p2.currentFrame = p2.air3.getKeyFrame(time2);
-    if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-    p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
+    flip2();
     if(p2.air3.isAnimationFinished(time2)){
         time2 = 0;
     }
     p2.a1 = false;
     p2.a2 = false;
-
     break;
     case CORRER:
     p2.currentFrame = p2.walk.getKeyFrame(time2);
     if(p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
     if(p2.walk.isAnimationFinished(time2)){
         time2 = 0;
     }
-
     break;
     case CORRERL:
     p2.currentFrame = p2.walk.getKeyFrame(time2);
     if(!p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);
     }
-
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
     if(p2.walk.isAnimationFinished(time2)){
         time2 = 0;
     }
-
     break;
     case STUN:
-            p2.currentFrame = p2.dmgTaken.getKeyFrame(time);
-            if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
-                p2.currentFrame.flip(true, false);
-            }
-            else if(p2.getX() < p1.getX() && p1.currentFrame.isFlipX()){
-            p2.currentFrame.flip(true, false);
-            }
+    flip2();
             break;
     default:
     p2.a1 = false;
     p2.a2 = false;
     p2.a3 = false;
     p2.currentFrame = p2.stance.getKeyFrame(time2,true);
-    if (p2.getX() > p1.getX() && !p2.currentFrame.isFlipX())  {
-        p2.currentFrame.flip(true, false);
-    }
-    else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
-        p2.currentFrame.flip(true, false);
-    }
-   //b.draw(p2.currentFrame, p2.getX(), p2.getY());
-
-
+    flip2();
         break;
 
 
@@ -759,6 +605,27 @@ public int inputSelec() {
    fightstage.dispose();
     hb.dispose();
     }
+
+    public void flip(){
+        if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
+            p1.currentFrame.flip(true, false);
+        }
+        else if(p1.getX() < p2.getX() && p1.currentFrame.isFlipX()){
+        p1.currentFrame.flip(true, false);
+        }
+    }
+    public void flip2(){
+        if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
+            p2.currentFrame.flip(true, false);
+        }
+        else if(p2.getX() < p1.getX() && p2.currentFrame.isFlipX()){
+        p2.currentFrame.flip(true, false);
+        }
+    }
+
+
+
+
      @Override
     public void setFondo() {
         fightstage= new Imagen(e);
@@ -795,7 +662,9 @@ public int inputSelec() {
             }
     
 
+
         }
+
 
        if (cliente.getHiloC().MiPropioMensaje()) {
 
@@ -822,7 +691,6 @@ public int inputSelec() {
             break;
 
             case "ataquef":
-            System.out.println("llego un ataque fuerte");
             p1.setEstado(Estado.ATAQUEF);
 
 
@@ -876,8 +744,8 @@ public int inputSelec() {
 
 
             case "arriba":
-            // velocidad2=50;
-            // p2.setEstado(Estado.SALTO);
+            velocidad2=50;
+            p2.setEstado(Estado.SALTO);
             break;
             case "stance":
 p2.setEstado(Estado.STANCE);
@@ -889,7 +757,6 @@ p2.setEstado(Estado.STANCE);
             break;
 
             case "ataquef":
-            System.out.println("llego un ataque fuerte");
             p2.setEstado(Estado.ATAQUEF);
 
 
