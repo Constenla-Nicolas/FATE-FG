@@ -81,7 +81,7 @@ float a;
        fightstage.dibujar();
       // b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
        b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
-        if (ts>.101f ) {
+        if (ts>.08 ) {
          
             hitbox();
             colision();
