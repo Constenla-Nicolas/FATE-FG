@@ -71,6 +71,7 @@ public class HiloServidor extends Thread {
         else if(getUsuario()==getUsuarios()[1]){
             string=string+"<>1";
         }
+        System.out.println("entro en enviar a todos "+ string);
         byte[] data = string.getBytes();
         for (int i = 0; i < Usuario.length; i++) {
        try {  
@@ -219,6 +220,7 @@ public class HiloServidor extends Thread {
                     }); 
                     break;
                     case "seleccionpj":
+                    
                     Gdx.app.postRunnable(new Runnable() {
                         public void run(){
                             Render.app.setScreen(new SeleccionPJ());
