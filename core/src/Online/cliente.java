@@ -41,5 +41,8 @@ public class cliente {
     public static float getCantidad(){
         return hiloC.getCant();
     }
+    public static void dispose() {
+        if(hiloC!=null){hiloC.stopSv();}
+    }
     
 }

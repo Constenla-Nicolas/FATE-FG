@@ -261,6 +261,8 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
            flecha[i].dispose();
            flecha2[i].dispose();
        }
+       jugador.dispose();
+       jugador2.dispose();
     }
     @Override
     public void setFondo() {

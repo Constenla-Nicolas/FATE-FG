@@ -159,5 +159,90 @@ Imagen img;
     }
   
     
+    public void dispose(){
+        for (int i = 0; i < intro.getKeyFrames().length; i++) {
+            intro.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i <  stance.getKeyFrames().length; i++) {
+             stance.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < win.getKeyFrames().length; i++) {
+            win.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < walk.getKeyFrames().length; i++) {
+            walk.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < walkLeft.getKeyFrames().length; i++) {
+            walkLeft.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < ataque1.getKeyFrames().length; i++) {
+            ataque1.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < ataque2.getKeyFrames().length; i++) {
+            ataque2.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < ataque3.getKeyFrames().length; i++) {
+            ataque3.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < ataque4.getKeyFrames().length; i++) {
+            ataque4.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < jump.getKeyFrames().length; i++) {
+            jump.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < crouch.getKeyFrames().length; i++) {
+            crouch.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < fall.getKeyFrames().length; i++) {
+            fall.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < guard.getKeyFrames().length; i++) {
+            guard.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < dash.getKeyFrames().length; i++) {
+            dash.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < dmgTaken.getKeyFrames().length; i++) {
+            dmgTaken.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < air1.getKeyFrames().length; i++) {
+            air1.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < air2.getKeyFrames().length; i++) {
+            air2.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < air3.getKeyFrames().length; i++) {
+            air3.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < air4.getKeyFrames().length; i++) {
+            air4.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < special1.getKeyFrames().length; i++) {
+            special1.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < special2.getKeyFrames().length; i++) {
+            special2.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < special3.getKeyFrames().length; i++) {
+            special3.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < special4.getKeyFrames().length; i++) {
+            special4.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < special5.getKeyFrames().length; i++) {
+            special5.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < special6.getKeyFrames().length; i++) {
+            special6.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < noblePhantasm.getKeyFrames().length; i++) {
+            noblePhantasm.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < vfx1.getKeyFrames().length; i++) {
+            vfx1.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < vfx2.getKeyFrames().length; i++) {
+            vfx2.getKeyFrames()[i].getTexture().dispose();
+        }for (int i = 0; i < vfx3.getKeyFrames().length; i++) {
+            vfx3.getKeyFrames()[i].getTexture().dispose();
+        }
+        for (int i = 0; i < vfx4.getKeyFrames().length; i++) {
+            vfx4.getKeyFrames()[i].getTexture().dispose();
+        }
+        currentFrame.getTexture().dispose();
+        previusFrame.getTexture().dispose();
+        texRegion.getTexture().dispose();
+        for (int i = 0; i < textureAtlas.getRegions().size; i++) {
+                textureAtlas.getRegions().get(i).getTexture().dispose();
+     
+        }
+   }
+
+
 
 }

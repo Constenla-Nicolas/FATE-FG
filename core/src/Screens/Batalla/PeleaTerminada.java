@@ -120,7 +120,9 @@ public class PeleaTerminada  extends Escenarios {
 
     @Override
     public void dispose() {
-        
+        ganador.dispose();
+        b.dispose();
+        fightstage.dispose();
         
     }
 
