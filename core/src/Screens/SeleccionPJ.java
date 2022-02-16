@@ -39,7 +39,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     }
     @Override
     public void show() { 
-        
+        Recursos.SELECPJMUSIC.stop();
         Gdx.input.setInputProcessor(entradas);
          setFondo();
 		b = Render.batch;

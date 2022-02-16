@@ -50,15 +50,15 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
         System.out.println("soy el cliente 0");
        cliente.enviarMensaje("escenarios");
        p1.setX(450);
-       p1.setY(Config.HEIGHT/2);
+       p1.setY(Config.HEIGHT/3);
        p2.setX(700);
-       p2.setY(Config.HEIGHT/2);
+       p2.setY(Config.HEIGHT/3);
     }
     else{
         p1.setX(700);
-        p1.setY(Config.HEIGHT/2);
+        p1.setY(Config.HEIGHT/3);
         p2.setX(450);
-        p2.setY(Config.HEIGHT/2);
+        p2.setY(Config.HEIGHT/3);
     }
     p1.setAnims();
     p2.setAnims();
@@ -94,7 +94,7 @@ float a;
          time += delta;
          time2 += delta;
          ts+=delta;
-        if (ts>.08f ) {
+        if (ts>.08 ) {
             movement();
             ts=0;
                 }
@@ -122,10 +122,14 @@ float a;
        if (hud.getSec()<=0) {
             hud.terminarTimer();
             Render.app.setScreen(new PeleaTerminada(e));
+            Recursos.MORDREDTHEME.stop();
+            Recursos.ASTOLFOTHEME.stop();
             
     }
         else if (p1.getVidaActual()<=0 ||p2.getVidaActual()<=0 ) {
             Render.app.setScreen(new PeleaTerminada(e));
+            Recursos.MORDREDTHEME.stop();
+            Recursos.ASTOLFOTHEME.stop();
          }
     
 
@@ -142,8 +146,8 @@ float a;
         System.out.println(p2.getEstado());
         p1.setY(p1.getY() + (velocidad -= gravedad));
 
-        if(p1.getY() <= Config.HEIGHT/2){
-            p1.setY(Config.HEIGHT/2);
+        if(p1.getY() <= Config.HEIGHT/3){
+            p1.setY(Config.HEIGHT/3);
             p1.setEstado(Estado.STANCE);
 
             cliente.enviarMensaje("stance");
@@ -151,8 +155,8 @@ float a;
 
         p2.setY(p2.getY() + (velocidad2 -= gravedad));
 
-        if(p2.getY() <= Config.HEIGHT/2){
-            p2.setY(Config.HEIGHT/2);
+        if(p2.getY() <= Config.HEIGHT/3){
+            p2.setY(Config.HEIGHT/3);
             cliente.enviarMensaje("stance");
 
         }
