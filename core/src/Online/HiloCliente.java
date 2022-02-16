@@ -66,6 +66,7 @@ public class HiloCliente extends Thread {
         } 
          
     }
+
     @Override
     public void run(){
        
@@ -106,6 +107,14 @@ public class HiloCliente extends Thread {
     
     public String getMsg() {
         return msg;
+    }
+    public void stopSv(){
+        enviarMensaje("cerrar");
+        System.out.println("cerrando server");
+        if (!s.isClosed()) {
+           s.close();
+        }
+        this.interrupt();
     }
     public void identificarMensaje(){
     //  System.out.println("entro en identifiar mensaje: " +msg);

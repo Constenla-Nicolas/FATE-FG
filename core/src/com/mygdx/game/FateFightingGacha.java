@@ -3,7 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
   
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
- 
+
+import Online.cliente;
 import Screens.*;
 import personajes.Mordred;
 import personajes.personajePrefab;
@@ -18,9 +19,7 @@ public class FateFightingGacha extends Game {
 	  
 	@Override
 	public void create () {
-		personajePrefab p1,p2;
-		p1=new Mordred();
-		p2=new Mordred();
+ 
 		Render.batch=new SpriteBatch();
 		Render.app = this;
 		Config.initialize();
@@ -37,7 +36,10 @@ public class FateFightingGacha extends Game {
 	
 	@Override
 	public void dispose () {
-		 
+		if (Config.ONLINE) {
+			cliente.dispose();
+				}
 		super.dispose();
+		Render.batch.dispose();
 	}
 }

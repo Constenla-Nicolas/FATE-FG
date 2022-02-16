@@ -752,11 +752,11 @@ public int inputSelec() {
 
     @Override
     public void dispose() {
-    p1.currentFrame.getTexture().dispose();
-    p2.currentFrame.getTexture().dispose();
-    Render.batch.dispose();
-    hud.dispose();
+    p1.dispose();
+    p2.dispose();
     b.dispose();
+    hud.dispose();
+   fightstage.dispose();
     hb.dispose();
     }
      @Override

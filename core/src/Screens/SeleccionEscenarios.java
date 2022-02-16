@@ -222,7 +222,9 @@ public class SeleccionEscenarios implements Screen,InputEvent {
          for (int i = 0; i < Escena.length; i++) {
             flecha[i].dispose();
          }
-        
+        b.dispose();
+        j1.dispose();
+        j2.dispose();
     }
    
     @Override
