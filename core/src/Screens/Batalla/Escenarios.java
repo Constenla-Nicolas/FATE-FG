@@ -37,7 +37,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    private String e;
    private int opc;
    float velocidad = 0f,velocidad2=0f;
-   float  gravedad = 5f;
+   float  gravedad = 10f;
     private   personajePrefab p1;
     private  personajePrefab p2;
     public Escenarios(String escenario, personajePrefab p1, personajePrefab p2){
