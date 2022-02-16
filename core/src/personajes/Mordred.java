@@ -5,7 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.FormattableFlags;
 
- 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
  
@@ -125,6 +126,8 @@ public class Mordred extends personajePrefab{
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/ClarentBloodVFX.atlas");
         vfx4 = new Animation<TextureRegion>(1f/30F, textureAtlas.getRegions());
+        
+        KICKSOUND = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/SE003.wav"));
     
 
       }

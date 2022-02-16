@@ -137,10 +137,10 @@ public class HiloCliente extends Thread {
            parte4=partes2[1];
           
             
-            System.out.println("parte 1 "+parte1);
-            System.out.println("p2 "+parte2);
-            System.out.println("Que "+parte3); 
-            System.out.println("Cuanto "+ Float.parseFloat(parte4)); 
+            // System.out.println("parte 1 "+parte1);
+            // System.out.println("p2 "+parte2);
+            // System.out.println("Que "+parte3); 
+            // System.out.println("Cuanto "+ Float.parseFloat(parte4)); 
             parte1=parte3;
             
             persona= Integer.parseInt(parte2); 
