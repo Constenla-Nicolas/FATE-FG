@@ -103,12 +103,18 @@ public class SeleccionEscenarios implements Screen,InputEvent {
           }
         if (entradas.isLeft()) {
           cliente.enviarMensaje("izquierda");
+          Recursos.SELECESCSOUND.play();
          }
          if (entradas.isRight()) {
          cliente.enviarMensaje("derecha");
+         Recursos.SELECESCSOUND.play();
          }
          if(entradas.isEnter()){
          cliente.enviarMensaje("enter");
+         
+        Recursos.SELECPJMUSIC.stop();
+        Recursos.CONFIRMSOUND.play();
+         
          }
            Escena[opc].dibujar();
        }
@@ -171,6 +177,7 @@ public class SeleccionEscenarios implements Screen,InputEvent {
             }
             if (entradas.isEnter()) {
                 Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
+                
                 }
             return opc;
     }
@@ -245,6 +252,8 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 break;
                 case "enter":
                 entradas.stopInput();
+                
+        Recursos.SELECPJMUSIC.stop();
                 
                 System.out.println("llego un enter");
                 break;

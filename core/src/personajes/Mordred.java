@@ -83,7 +83,7 @@ public class Mordred extends personajePrefab{
         dash = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/DmgTaken.atlas");
-        dmgTaken = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
+        dmgTaken = new Animation<TextureRegion>(1f/2F, textureAtlas.getRegions());
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Air1.atlas");
         air1 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
