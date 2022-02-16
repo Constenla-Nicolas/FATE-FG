@@ -7,6 +7,7 @@ import javax.swing.Timer;
 import javax.tools.Diagnostic;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -69,6 +70,7 @@ Imagen img;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
   private Timer tiempo;
+  public Sound KICKSOUND;
   
  
 

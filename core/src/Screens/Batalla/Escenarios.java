@@ -25,6 +25,7 @@ import personajes.personajePrefab.Estado;
 import utiles.Config;
 import utiles.Imagen;
 import utiles.InputEvent;
+import utiles.Recursos;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
    SpriteBatch b;
@@ -33,7 +34,7 @@ public class Escenarios implements Screen,TieneFondo,InputEvent{
    protected Imagen fightstage;
    Hud hud;
    HudBarra hb;
-   boolean animacion;
+   int sound;
    float time, time2, ts;
    float period= 0.9f;
  
@@ -218,6 +219,8 @@ float a;
             }
         else if(entradas.isD() || (!p1.ataque4.isAnimationFinished(time) && p1.a3) && (!p1.a1 && !p1.a2)){
                 p1.a3 = true;
+                
+			
 
                 if(p1.getEstado() == Estado.SALTO || p1.getEstado() == Estado.AEREO3 ){
                     p1.setEstado(Estado.AEREO3);
@@ -305,6 +308,10 @@ float a;
             break;
 
             case ATAQUED:
+            if(sound == 0){
+                p1.KICKSOUND.play();
+                sound = 1;
+            }
             p1.currentFrame = p1.ataque4.getKeyFrame(time);
             if(p1.getX() > p2.getX() && !p1.currentFrame.isFlipX()){
                 p1.currentFrame.flip(true, false);
@@ -315,8 +322,8 @@ float a;
            //b.draw(p1.currentFrame, p1.getX(), p1.getY());
             if(p1.ataque4.isAnimationFinished(time)){
                 time = 0;
+                sound = 0;
             }
-
             p1.a2 = false;
             p1.a3 = false;
             break;
@@ -489,6 +496,10 @@ switch(p2.getEstado()){
 
 
     case ATAQUED:
+    if(sound == 0){
+        p2.KICKSOUND.play();
+        sound = 1;
+    }
     p2.currentFrame = p2.ataque4.getKeyFrame(time2);
     if(p2.getX() > p1.getX() && !p2.currentFrame.isFlipX()){
         p2.currentFrame.flip(true, false);

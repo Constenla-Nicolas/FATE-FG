@@ -176,6 +176,8 @@ public class SeleccionEscenarios implements Screen,InputEvent {
                 }
             }
             if (entradas.isEnter()) {
+                
+        Recursos.CONFIRMSOUND.play();
                 Render.app.setScreen(new Escenarios(Background.values()[opc].getRoot(),j1,j2));
                 
                 }
