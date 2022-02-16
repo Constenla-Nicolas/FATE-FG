@@ -63,7 +63,7 @@ public class HiloCliente extends Thread {
         } catch (SocketException e) {
              
             e.printStackTrace();
-        }
+        } 
          
     }
     @Override
