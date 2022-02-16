@@ -27,10 +27,10 @@ public class PeleaTerminada  extends Escenarios {
         super(e,cliente.getJ1(),cliente.getJ1());
         this.ganador=ganador;  
         System.out.println(ganador);
-        if (ganador.equals(mordred)) {
+        if (ganador.getNombre().equals("mordred")) {
              fightstage= new Imagen( "Endings/fate-s-saber-of-red.jpg");
        }
-       else if (ganador.equals(Astolfo)) {
+       else if (ganador.getNombre().equals("astolfo")) {
           fightstage=new Imagen("Endings/fate-gran-orden-astolfo.jpg" );
        }
        

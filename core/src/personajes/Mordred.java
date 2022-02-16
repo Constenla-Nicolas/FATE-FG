@@ -25,7 +25,10 @@ public class Mordred extends personajePrefab{
 
     
 
-    
+    @Override
+    public String getNombre() {
+      return "mordred";
+    }
     
 
    

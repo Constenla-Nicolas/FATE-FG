@@ -101,6 +101,10 @@ Imagen img;
         this.i = i;
         
     }
+    public String getNombre(){
+        return null;
+        
+    }
     public void setInput(int opc){
         this.opc=opc;
     }

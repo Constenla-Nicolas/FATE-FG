@@ -15,10 +15,13 @@ import utiles.Imagen;
 
 public class Astolfo extends personajePrefab {
 
-    
+        @Override
+        public String getNombre() {
+            return "astolfo";
+        }
 @Override
 public void setAnims() {
-
+    
     
     
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Intro.atlas");

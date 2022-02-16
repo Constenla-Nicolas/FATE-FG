@@ -119,9 +119,11 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         
         if (Config.ONLINE) {
             if (entradas.isLeft()) {
+                System.out.println("izquireda");
                cliente.enviarMensaje("izquierda");
              }
              if (entradas.isRight()) {
+                 System.out.println("derecha");
                 cliente.enviarMensaje("derecha");
              }
              if(entradas.isEnter()){
@@ -268,7 +270,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     public void handleInput() {
 
        
-         System.out.println("handleinput de seleccion pj");
+        //  System.out.println("handleinput de seleccion pj");
          if (cliente.getHiloC().MiPropioMensaje()) {
          
             switch (cliente.getMsg()) {
@@ -310,7 +312,9 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
              
         }
      
-        else{
+        else if (!cliente.getHiloC().MiPropioMensaje()) {
+            
+        }{
           
              switch (cliente.getMsg()) {
            case "izquierda":

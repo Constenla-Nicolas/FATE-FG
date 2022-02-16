@@ -97,7 +97,7 @@ float a;
         inputSelec();
          time += delta;
          ts+=delta;
-        if (ts>.1f ) {
+        if (ts>.08f ) {
             movement();
             ts=0;
                 }
@@ -140,7 +140,7 @@ float a;
             
         }
    
-        else if (p2.getVidaActual()<=1) {
+        else if (p2.getVidaActual()<=0) {
             Render.app.setScreen(new PeleaTerminada(e,p1));
         }
 
@@ -741,9 +741,27 @@ public int inputSelec() {
         if (cliente.getMsg().equals("hp")) {
             if (cliente.getHiloC().getPersona()==0) {
                 p1.setVidaActual((int)cliente.getCantidad());
+                p1.setEstado(Estado.STUN);
+                // synchronized(entradas){
+                //     try {
+                //         entradas.wait(500);
+                //     } catch (InterruptedException e) {
+                //         // TODO Auto-generated catch block
+                //         e.printStackTrace();
+                //     }
+                // }
             }
             else if(cliente.getHiloC().getPersona()==1){
                 p2.setVidaActual((int)cliente.getCantidad());
+                p2.setEstado(Estado.STUN);
+                // synchronized(entradas){
+                //     try {
+                //         entradas.wait(500);
+                //     } catch (InterruptedException e) {
+                //         // TODO Auto-generated catch block
+                //         e.printStackTrace();
+                //     }
+                // }
             }
     
 
