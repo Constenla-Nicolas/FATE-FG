@@ -34,6 +34,8 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 	@Override
 	public void show() {
+		
+		Recursos.TITLEMUSIC.play();
 		 setFondo();
 		setImgEspera();
 		b = Render.batch;
@@ -53,11 +55,11 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 		
 	}
-	private void inputwait(int tiempo) {
+	private void inputwait() {
 
         synchronized(entradas){
             try {
-                entradas.wait(100,1);
+                entradas.wait(100);
             } catch (InterruptedException e) {
              
                 e.printStackTrace();
@@ -66,8 +68,11 @@ public class MenuPrincipal implements Screen,TieneFondo{
     }
 	public  void labelInput(){
 			 
+		
 		 
 		if(entradas.isDown()){ 	//entradas = input entrys
+			inputwait();			
+			Recursos.MENUSOUND.play();
 			if(tiempo > 0.1f){ 	//tiempo = time
 				tiempo = 0;
 				opc++;			// opc= option;
@@ -77,7 +82,8 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			}
 		}
 		if(entradas.isUp()){
-			 
+			inputwait();
+			Recursos.MENUSOUND.play();
 			if(tiempo > 0.1f){
 				tiempo = 0;
 				opc--;
@@ -95,7 +101,9 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			}
 		}
 		if(entradas.isEnter()){
-			inputwait(100);
+			inputwait();
+			Recursos.CONFIRMSOUND.play();
+			Recursos.TITLEMUSIC.stop();
 		 
 			switch(opc){
 
@@ -129,7 +137,6 @@ public class MenuPrincipal implements Screen,TieneFondo{
 			negroiImagen.dibujar();
 			entradas.stopInput();
 		}
-		Recursos.TITLEMUSIC.play();
 		elapsed += Gdx.graphics.getDeltaTime();
 		b.draw(animation.getKeyFrame(elapsed),0.0f, 0.0f,Config.WIDTH,Config.HEIGHT);
 		menu.dibujar();

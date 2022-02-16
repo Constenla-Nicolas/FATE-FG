@@ -39,7 +39,7 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
     }
     @Override
     public void show() { 
-        
+        Recursos.SELECPJMUSIC.play();
         Gdx.input.setInputProcessor(entradas);
          setFondo();
 		b = Render.batch;
@@ -120,12 +120,15 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         if (Config.ONLINE) {
             if (entradas.isLeft()) {
                cliente.enviarMensaje("izquierda");
+                 Recursos.MENUSOUND.play();
              }
              if (entradas.isRight()) {
                 cliente.enviarMensaje("derecha");
+                Recursos.MENUSOUND.play();
              }
              if(entradas.isEnter()){
                 cliente.enviarMensaje("enter");
+                Recursos.CONFIRMSOUND.play();
              }
             portrait[opc][1].dibujar();
             portraitEnemigo[opc2].dibujar();
@@ -187,6 +190,8 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
         
 
               if (entradas.isLeft()) {
+                  
+			Recursos.MENUSOUND.play();
               
                 if (opcOFF==0) {
                      
@@ -200,6 +205,8 @@ public class SeleccionPJ  implements Screen,TieneFondo,InputEvent {
                 
             }
             if (entradas.isRight()) {
+                
+			Recursos.MENUSOUND.play();
                 if(opcOFF==3){
                  opcOFF=0;
                 }
