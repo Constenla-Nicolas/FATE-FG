@@ -34,6 +34,7 @@ public class PeleaTerminada  extends Escenarios {
    private String winner;
    private Imagen endstage;
     public PeleaTerminada(String e){
+        
 
         super(e,cliente.getJ1(),cliente.getJ1());
         

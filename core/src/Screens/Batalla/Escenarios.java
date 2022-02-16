@@ -94,7 +94,7 @@ float a;
          time += delta;
          time2 += delta;
          ts+=delta;
-        if (ts>.08 ) {
+        if (ts>08f ) {
             movement();
             ts=0;
                 }
@@ -122,14 +122,15 @@ float a;
        if (hud.getSec()<=0) {
             hud.terminarTimer();
             Render.app.setScreen(new PeleaTerminada(e));
-            Recursos.MORDREDTHEME.stop();
             Recursos.ASTOLFOTHEME.stop();
+            Recursos.MORDREDTHEME.stop();
             
     }
         else if (p1.getVidaActual()<=0 ||p2.getVidaActual()<=0 ) {
             Render.app.setScreen(new PeleaTerminada(e));
-            Recursos.MORDREDTHEME.stop();
+            
             Recursos.ASTOLFOTHEME.stop();
+            Recursos.MORDREDTHEME.stop();
          }
     
 
