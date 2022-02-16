@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 
 import Entradas.direcciones;
 import Screens.SeleccionEscenarios;
+import Screens.SeleccionPJ;
 import Screens.Batalla.Escenarios;
  
 import utiles.Config;
@@ -87,7 +88,19 @@ public class HiloServidor extends Thread {
     public DatagramSocket getSocket() {
         return s;
     }
-    
+    public void enviarHP(String string){
+        byte[] data = string.getBytes();
+        for (int i = 0; i < Usuario.length; i++) {
+       try {  
+        DatagramPacket dp = new DatagramPacket(data, data.length,Usuario[i].getIp(),Usuario[i].getPuerto());
+        s.send(dp);
+        } catch (IOException e) {
+          
+            e.printStackTrace();
+        }     
+
+        }
+    }
      @Override
      public void run(){
             
@@ -204,9 +217,13 @@ public class HiloServidor extends Thread {
                             Render.app.setScreen(new SeleccionEscenarios(Usuario[0].getP1(),Usuario[1].getP1()));
                         }
                     }); 
-               
-                    
- 
+                    break;
+                    case "seleccionpj":
+                    Gdx.app.postRunnable(new Runnable() {
+                        public void run(){
+                            Render.app.setScreen(new SeleccionPJ());
+                        }
+                    }); 
                     break;
                     case "escenarios":
                     
@@ -221,7 +238,14 @@ public class HiloServidor extends Thread {
                     });
                   
                     break;
-                     
+                    case "terminarpelea":
+                    Gdx.app.postRunnable(new Runnable() {
+                        public void run(){
+                            
+                            Render.app.setScreen(new SeleccionPJ());
+                        }
+                    });
+                    break;
                      
                     default:
                     if (msg.contains("personajes.astolfo")) {

@@ -1,31 +1,20 @@
 package Screens.Batalla;
 
 
-import java.security.Key;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
+
 import Entradas.Entradas;
-import Entradas.direcciones;
 import Online.server;
 import Screens.Hud;
 import Screens.HudBarra;
 import Screens.TieneFondo;
-import personajes.Astolfo;
-import personajes.Atalante;
-import personajes.Jeanne;
-import personajes.Mordred;
 import personajes.personajePrefab;
 import personajes.personajePrefab.Estado;
 import utiles.Config;
@@ -33,19 +22,16 @@ import utiles.Imagen;
 import utiles.InputEvent;
 import utiles.Render;
 public class Escenarios implements Screen,TieneFondo,InputEvent{
-   SpriteBatch b;
-
+  private SpriteBatch b;
+   private ShapeRenderer sr;
+    private float tamanioenx,tamanioenx2;
    protected Imagen fightstage;
-   Hud hud;
-   HudBarra hb;
-    Pixmap pixmap = new Pixmap(128, 128, Pixmap.Format.RGBA8888);
-private String parte1,parte2;
-   boolean animacion;
-   int cont, cont2;
-   float time, ts;
-   float period= 0.9f;
-   Mordred mordred;
-   Astolfo astolfo;
+  protected Hud hud;
+  protected HudBarra hb;
+ private String parte1,parte2;
+ 
+  private float   ts;
+ 
    boolean a1, a2, a3, leftW = false;
    Entradas entradas = new Entradas(this);
    private String e;
@@ -58,14 +44,14 @@ private String parte1,parte2;
     this.e = escenario;
     this.p1=p1;
     this.p2=p2;
+   
     Config.addListInput(this);
     setFondo();
     p1.setX(450);
     p1.setY(Config.HEIGHT/2);
     p2.setX(700);
     p2.setY(Config.HEIGHT/2);
-    pixmap.setBlending(Pixmap.Blending.None);
-    pixmap.setColor(Color.RED);
+    sr = new ShapeRenderer();
 
  }
 
@@ -85,7 +71,7 @@ private String parte1,parte2;
 float a;
  @Override
     public void render(float delta) {
-        time += delta;
+        
 
 
 
@@ -93,16 +79,30 @@ float a;
         Render.cleaner();
        b.begin();
        fightstage.dibujar();
-       b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
+      // b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
        b.draw(new Texture((int)p2.getCollide().width,(int)p2.getCollide().height,Pixmap.Format.RGB565), p2.getCollide().getX(), p2.getCollide().getY());
         if (ts>.101f ) {
+         
+            hitbox();
             colision();
-             
+
             ts=0;
                 }
+                sr.setProjectionMatrix(Config.getCamara().combined);
+                sr.begin(ShapeRenderer.ShapeType.Filled);
 
+                sr.setColor(Color.BLUE);
+                sr.rect(p1.getX(), p1.getY(), p1.getCollide().getWidth(), p1.getCollide().getHeight());
+                sr.setColor(Color.RED);
+                sr.rect(p1.getHitbox().getX(), p1.getHitbox().getY(),p1.getHitbox().getWidth(), p1.getHitbox().getHeight());
+                sr.setColor(Color.WHITE);
+                sr.rect(p2.getX(), p2.getY(), p2.getCollide().getWidth(), p2.getCollide().getHeight());
 
-
+                sr.end();
+                sr.begin(ShapeRenderer.ShapeType.Filled);
+                sr.setColor(Color.RED);
+                sr.rect(p2.getHitbox().getX(), p2.getHitbox().getY(),p2.getHitbox().getWidth(), p2.getHitbox().getHeight());
+                sr.end();
         b.end();
 
 
@@ -116,45 +116,45 @@ float a;
 
      }
      public void gestorEstados (){
+    
+         if (p1.getX()>p2.getX()) {tamanioenx=-80;
+        }
+         else if(p1.getX()<p2.getX()){tamanioenx=75;}
+
+         if (p2.getX()>p1.getX()) {tamanioenx2=-130;
+        }
+ 
+          else if(p2.getX()<p1.getX()){tamanioenx2=80;}
          switch (p1.getEstado()) {
 
             case ATAQUEF:
-        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeevoy a dibujar");
-       
+            p1.setHitbox(tamanioenx, 30);
 
-        b.draw(new Texture((int)p1.getCollide().width,(int)p1.getCollide().height,Pixmap.Format.RGB565), p1.getCollide().getX(), p1.getCollide().getY());
-        //  try {
-        //     synchronized(this){
-        //         this.wait(1000);
-        //     }
-        // } catch (Exception e) {
-        //     //TODO: handle exception
-        // }
-                  
+
 
 
             break;
 
             case ATAQUEM:
 
-
+            p1.setHitbox(tamanioenx, 60);
 
             break;
             case ATAQUED:
-            
- 
+            p1.setHitbox(tamanioenx, 60);
+
 
 
             break;
             case AEREO1:
-
+            p1.setHitbox(tamanioenx, 60);
 
             break;
             case AEREO2:
-
+            p1.setHitbox(tamanioenx, 60);
             break;
             case AEREO3:
-
+            p1.setHitbox(tamanioenx, 60);
             break;
             case SALTO:
             System.out.println("estoy saltando");
@@ -162,41 +162,45 @@ float a;
             break;
              default:
                  break;
+
          }
 
          switch (p2.getEstado()) {
 
             case ATAQUEF:
-           
 
 
-
+            p2.setHitbox(tamanioenx2, 60);
+            
             break;
             case ATAQUEM:
-
-
+            p2.setHitbox(tamanioenx2, 60);
+         
 
             break;
             case ATAQUED:
-            
-
+            p2.setHitbox(tamanioenx2, 60);
+           
             break;
             case AEREO1:
-
-
+            p2.setHitbox(tamanioenx2, 60);
+         
             break;
             case AEREO2:
-
+            p2.setHitbox(tamanioenx2, 60);
+           
             break;
             case AEREO3:
-
+            p2.setHitbox(tamanioenx2, 60);
+           
             break;
             case SALTO:
-            p1.setY(p1.getY()+ (velocidad-=gravedad));
+            p2.setY(p2.getY()+ (p2.velocidad-=gravedad));
             break;
              default:
                  break;
          }
+
      }
 
      private void colision() {
@@ -221,6 +225,8 @@ float a;
                 }
 
         }
+        p1.setHitbox(30, 30);
+        p2.setHitbox(30, 30);
         p1.setAnteriorX(p1.getX());
         p2.setAnteriorX(p2.getX());
          p1.getCollide().setY(p1.getCollide().getY() + (velocidad -= gravedad));
@@ -233,10 +239,20 @@ float a;
             p2.getCollide().setY(Config.HEIGHT/2);
             p2.setEstado(Estado.STANCE);
         }
-        
+
+
     }
 
-
+    public void hitbox() {
+            if (p1.getHitbox().overlaps(p2.getCollide())) {
+                p2.setVidaActual(p2.getVidaActual()-1);
+            server.enviarHP("hp,"+p2.getVidaActual()+"<>1");
+            }
+            else if(p2.getHitbox().overlaps(p1.getCollide())){
+                p1.setVidaActual(p1.getVidaActual()-1);
+            server.enviarHP("hp,"+p1.getVidaActual()+"<>0");
+            }
+    }
 public int inputSelec() {
     try {
         synchronized(entradas){
@@ -307,6 +323,8 @@ public int inputSelec() {
 
     Render.batch.dispose();
     hud.dispose();
+    fightstage.dispose();
+    sr.dispose();
     }
      @Override
     public void setFondo() {
@@ -334,7 +352,7 @@ public personajePrefab Pjug(){
     @Override
     public void handleInput() {
             server.enviarAtodos(server.getMsg());
-            
+
 
             switch (server.getMsg()) {
                 case "izquierda":
@@ -343,17 +361,15 @@ public personajePrefab Pjug(){
                 //    Pjug().getCollide().setPosition(Pjug().getCollide().x-15, Pjug().getCollide().y);
 
                     break;
-
+                    case "arriba":
+                    Pjug().velocidad = 50;
+                    break;
                     case "derecha":
 
                     // server.enviarAtodos("posx,15");
                     // Pjug().getCollide().setPosition(Pjug().getCollide().x + 15, Pjug().getCollide().y);
                     break;
-                    case "arriba":
-                     Pjug().setEstado(Estado.SALTO);
 
-
-                    break;
                     case "abajo":
                     Pjug().setEstado(Estado.AGACHADO);
 
@@ -396,19 +412,16 @@ public personajePrefab Pjug(){
                     server.enviarAtodos("posx,"+parte2);
                 }
                 else if(server.getMsg().contains("posy")){
-                    String partes[]=server.getMsg().split(",");
 
-                    parte1 = partes[0];
-                    parte2=partes[1];
-                    Pjug().setY(Float.parseFloat(parte2));
-                    //server.enviarAtodos("posy,"+parte2);
+                    Pjug().velocidad=50;
+
                 }
 
                    Pjug().setEstado(Estado.STANCE);
                     break;
             }
-
             gestorEstados();
+            
     }
 
 }

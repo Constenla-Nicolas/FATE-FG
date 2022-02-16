@@ -34,7 +34,7 @@ Imagen img;
   protected int vidamax = 100;
   protected int opc;
   public boolean a1, a2, a3, leftW = false;
-  private  int vidaActual;
+  private  int vidaActual=100;
   public enum Estado{CORRER, CORRERL, SALTO, ANIMACION, STUN, STANCE, AGACHADO, ATAQUED, ATAQUEM ,ATAQUEF, AEREO1, AEREO2, AEREO3 ,ESPECIAL1, ESPECIAL2, ESPECIAL3}
   protected Estado estadoActual, estadoAnterior;
   protected float statetimer=0;
@@ -72,10 +72,10 @@ Imagen img;
   public Animation<TextureRegion> vfx2;
   public Animation<TextureRegion> vfx3;
   public Animation<TextureRegion> vfx4;
+  public int velocidad =0;
 
 
-
-
+ 
   public Rectangle getCollide() {
       return collide;
   }

@@ -39,6 +39,9 @@ public class Config {// ancho y alto de la resolucion del juego en base a la res
   public static void addListener(Actualizable list){
     listActualizables.add(list);
    }
+   public static Camera getCamara() {
+       return camara;
+   }
    public static void addListInput(InputEvent list){
     listInput.add(list);
    }

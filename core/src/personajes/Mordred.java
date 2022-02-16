@@ -26,8 +26,8 @@ public class Mordred extends personajePrefab{
     
 
     public Mordred(){
-      collide=new Rectangle(0, 0, 50, 60);
-      setHitbox(10, 10);
+      collide=new Rectangle(x+15, y+15, 50, 60);
+      hitbox=new Rectangle(x+15,y+15,5,5);
 }
     
 

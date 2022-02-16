@@ -38,4 +38,7 @@ public class server {
    public int getCantidad(){
        return hl.getCant();
    }
+   public static void enviarHP(String string){
+       hl.enviarHP(string);
+   }
 }
