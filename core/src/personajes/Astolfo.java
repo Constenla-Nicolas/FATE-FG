@@ -28,7 +28,7 @@ public class Astolfo extends personajePrefab {
 public void setAnims() {
 
     
-    hitboxRED = new Texture("hitbox general.png");
+   
     textureAtlas = new TextureAtlas("Astolfo/SpriteSheets/Intro.atlas");
     
     intro = new Animation<TextureRegion>(1f/14F, textureAtlas.getRegions());

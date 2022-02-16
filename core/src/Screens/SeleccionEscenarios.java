@@ -120,8 +120,18 @@ public class SeleccionEscenarios implements Screen,InputEvent {
 
     @Override
     public void dispose() {
-         
-        
+        b.dispose();
+         for (int i = 0; i < Escena.length; i++) {
+          Escena[i].dispose();   
+         }
+         for (int i = 0; i < portrait.length; i++) {
+             portrait[i].dispose();
+         }
+         for (int i = 0; i < flecha.length; i++) {
+             flecha[i].dispose();
+         }
+        j1.dispose();
+        j2.dispose();
     }
 
     @Override

@@ -174,6 +174,9 @@ public class SeleccionPJ  implements Screen,TieneFondo, InputEvent {
             portraitEnemigo[i].dispose();
         }
        fondoImagen.dispose();
+       for (int i = 0; i < flecha.length; i++) {
+           flecha[i].dispose();
+       }
     }
     @Override
     public void setFondo() {

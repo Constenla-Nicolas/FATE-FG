@@ -50,7 +50,7 @@ public class FateFightingGacha extends Game {
 	 sv.dispose();
 	 
 		 }
-		 
+		 Render.batch.dispose();
 		super.dispose();
 	}
 }

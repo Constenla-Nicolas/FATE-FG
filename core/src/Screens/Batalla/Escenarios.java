@@ -323,10 +323,13 @@ public int inputSelec() {
     @Override
     public void dispose() {
 
-    Render.batch.dispose();
+    b.dispose();
     hud.dispose();
     fightstage.dispose();
+    hb.dispose();
     sr.dispose();
+    p1.dispose();
+    p2.dispose();
     }
      @Override
     public void setFondo() {

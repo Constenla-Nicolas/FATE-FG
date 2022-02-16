@@ -35,7 +35,7 @@ public class Mordred extends personajePrefab{
  
       @Override
       public void setAnims() {
-        hitboxRED = new Texture("hitbox general.png");
+   
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Intro.atlas");
         intro = new Animation<TextureRegion>(1f/10F, textureAtlas.getRegions());
         

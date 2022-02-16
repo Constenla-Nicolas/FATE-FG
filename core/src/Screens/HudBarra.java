@@ -31,12 +31,12 @@ public class HudBarra extends ApplicationAdapter {
         super2.setValue(a);   
     }
     
-
+ 
     public HudBarra() {
         stage = new Stage(new ScreenViewport());
         skin = new Skin(Gdx.files.internal("hudbarras/hud.json"));
         Gdx.input.setInputProcessor(stage);
-
+        
         Table table = new Table();
         table.align(Align.top);
         table.setFillParent(true);

@@ -246,7 +246,21 @@ public class HiloServidor extends Thread {
                         }
                     });
                     break;
-                     
+                    case "cerrar":
+                    enviarAtodos("cerrar");
+                    Gdx.app.postRunnable(new Runnable() {
+                    public void run(){
+                    Usuario[0]=null;
+                    Usuario[1]=null;
+                    contconexion=0;
+                    // System.out.println("Volviendo al menu...");
+                    Render.app.setScreen(new SeleccionPJ());
+    
+                     }
+                    });
+                    this.interrupt();
+    
+               break;
                     default:
                     if (msg.contains("personajes.astolfo")) {
                     System.out.println("llego astolfo");

@@ -19,7 +19,7 @@ public class Atalante extends personajePrefab{
 
 @Override
 public void setAnims() {
-    hitboxRED = new Texture("hitbox general.png");
+ 
     super.setAnims();
 }
 
