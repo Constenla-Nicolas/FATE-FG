@@ -34,13 +34,14 @@ public class MenuPrincipal implements Screen,TieneFondo{
 
 	@Override
 	public void show() {
-		
+		entradas.startInput();
+		System.out.println("estoy en menuprincipal");
 		Recursos.TITLEMUSIC.play();
 		 setFondo();
 		setImgEspera();
 		b = Render.batch;
 		animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Fondos/Fem.gif").read());
-		 
+		 mostrar=false;
 		Gdx.input.setInputProcessor(entradas);
 		int avance = 80;
 		 for (int i = 0; i < options.length; i++) {

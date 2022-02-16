@@ -51,10 +51,6 @@ public class Mordred extends personajePrefab{
 
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Walk.atlas");
         walk = new Animation<TextureRegion>(1f/6F, textureAtlas.getRegions());
-        
-        
-        
-
         textureAtlas = new TextureAtlas("Moedred/SpriteSheets/Ataque1.atlas");
         ataque1 = new Animation<TextureRegion>(1f/3F, textureAtlas.getRegions());
 
